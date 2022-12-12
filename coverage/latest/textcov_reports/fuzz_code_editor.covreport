@@ -1,0 +1,28 @@
+_ZN5Cache10InitializeEv:
+   49|      1|    {
+   50|      1|        Cache c;
+   51|       |
+   52|       |        // Resize vector args
+   53|      9|        for (phi::usize i{0u}; i < MaxVectorSize; ++i)
+  ------------------
+  |  Branch (53:32): [True: 8, False: 1]
+  ------------------
+   54|      8|        {
+   55|      8|            svec& vector = c.vector_string[i.unsafe()];
+   56|      8|            vector.resize(i.unsafe());
+   57|       |
+   58|       |            // Reserve max size
+   59|      8|            for (std::string& str : vector)
+  ------------------
+  |  Branch (59:35): [True: 28, False: 8]
+  ------------------
+   60|     28|            {
+   61|     28|                str.reserve(MaxStringLength);
+   62|     28|            }
+   63|      8|        }
+   64|       |
+   65|      1|        c.string.reserve(MaxStringLength);
+   66|       |
+   67|      1|        return c;
+   68|      1|    }
+
