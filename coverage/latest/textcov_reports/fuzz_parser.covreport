@@ -1,0 +1,3901 @@
+_ZNK3dlx15InstructionInfo15GetArgumentTypeEN3phi7integerIhEE:
+  168|  80.8k|        {
+  169|  80.8k|            PHI_ASSERT(index < 3u);
+  170|       |
+  171|  80.8k|            switch (index.unsafe())
+  172|  80.8k|            {
+  173|  36.9k|                case 0:
+  ------------------
+  |  Branch (173:17): [True: 36.9k, False: 43.8k]
+  ------------------
+  174|  36.9k|                    return m_Arg1Type;
+  175|       |
+  176|  22.2k|                case 1:
+  ------------------
+  |  Branch (176:17): [True: 22.2k, False: 58.6k]
+  ------------------
+  177|  22.2k|                    return m_Arg2Type;
+  178|       |
+  179|  21.6k|                case 2:
+  ------------------
+  |  Branch (179:17): [True: 21.6k, False: 59.1k]
+  ------------------
+  180|  21.6k|                    return m_Arg3Type;
+  181|       |
+  182|      0|#if !defined(DLXEMU_COVERAGE_BUILD)
+  183|      0|                default:
+  ------------------
+  |  Branch (183:17): [True: 0, False: 80.8k]
+  ------------------
+  184|      0|                    PHI_ASSERT_NOT_REACHED();
+  185|      0|                    return m_Arg1Type;
+  186|  80.8k|#endif
+  187|  80.8k|            }
+  188|  80.8k|        }
+_ZNK3dlx15InstructionInfo28GetNumberOfRequiredArgumentsEv:
+  194|  21.4k|        {
+  195|  21.4k|            phi::u8 number_of_argument_required = static_cast<std::uint8_t>(0u);
+  196|       |
+  197|       |            // Count the number of argument we need
+  198|  21.4k|            if (m_Arg1Type != ArgumentType::None)
+  ------------------
+  |  Branch (198:17): [True: 21.0k, False: 399]
+  ------------------
+  199|  21.0k|            {
+  200|  21.0k|                number_of_argument_required += static_cast<std::uint8_t>(1u);
+  201|  21.0k|            }
+  202|  21.4k|            if (m_Arg2Type != ArgumentType::None)
+  ------------------
+  |  Branch (202:17): [True: 14.6k, False: 6.75k]
+  ------------------
+  203|  14.6k|            {
+  204|  14.6k|                number_of_argument_required += static_cast<std::uint8_t>(1u);
+  205|  14.6k|            }
+  206|  21.4k|            if (m_Arg3Type != ArgumentType::None)
+  ------------------
+  |  Branch (206:17): [True: 8.82k, False: 12.5k]
+  ------------------
+  207|  8.82k|            {
+  208|  8.82k|                number_of_argument_required += static_cast<std::uint8_t>(1u);
+  209|  8.82k|            }
+  210|       |
+  211|  21.4k|            return number_of_argument_required;
+  212|  21.4k|        }
+_ZNK3dlx15InstructionInfo11GetExecutorEv:
+  220|  21.4k|        {
+  221|  21.4k|            return m_Executor;
+  222|  21.4k|        }
+_ZN3dlxanENS_12ArgumentTypeES0_:
+   37|  12.7k|    {
+   38|  12.7k|        using underlying_t = phi::underlying_type_t<ArgumentType>;
+   39|       |
+   40|  12.7k|        return static_cast<ArgumentType>(static_cast<underlying_t>(lhs) &
+   41|  12.7k|                                         static_cast<underlying_t>(rhs));
+   42|  12.7k|    }
+_ZN3dlx20ArgumentTypeIncludesENS_12ArgumentTypeES0_:
+   54|  12.7k|    {
+   55|  12.7k|        using underlying_t = std::underlying_type_t<ArgumentType>;
+   56|       |
+   57|  12.7k|        return static_cast<underlying_t>(type & test) != 0;
+   58|  12.7k|    }
+
+_ZN3dlx20IsReservedIdentifierENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+   31|   182k|    {
+   32|   182k|        if (StringToIntRegister(token) != IntRegisterID::None)
+  ------------------
+  |  Branch (32:13): [True: 3.19k, False: 179k]
+  ------------------
+   33|  3.19k|        {
+   34|  3.19k|            return true;
+   35|  3.19k|        }
+   36|       |
+   37|   179k|        if (StringToFloatRegister(token) != FloatRegisterID::None)
+  ------------------
+  |  Branch (37:13): [True: 1.47k, False: 177k]
+  ------------------
+   38|  1.47k|        {
+   39|  1.47k|            return true;
+   40|  1.47k|        }
+   41|       |
+   42|   177k|        if (StringToOpCode(token) != OpCode::NONE)
+  ------------------
+  |  Branch (42:13): [True: 20.0k, False: 157k]
+  ------------------
+   43|  20.0k|        {
+   44|  20.0k|            return true;
+   45|  20.0k|        }
+   46|       |
+   47|   157k|        if (IsFPSR(token))
+  ------------------
+  |  Branch (47:13): [True: 98, False: 157k]
+  ------------------
+   48|     98|        {
+   49|     98|            return true;
+   50|     98|        }
+   51|       |
+   52|   157k|        return false;
+   53|   157k|    }
+_ZN3dlx17IsValidIdentifierENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+   56|   157k|    {
+   57|   157k|        if (token.empty())
+  ------------------
+  |  Branch (57:13): [True: 0, False: 157k]
+  ------------------
+   58|      0|        {
+   59|      0|            return false;
+   60|      0|        }
+   61|       |
+   62|   157k|        const char first_char = token.at(0);
+   63|       |
+   64|   157k|        if (token.length() == 1u)
+  ------------------
+  |  Branch (64:13): [True: 30.3k, False: 127k]
+  ------------------
+   65|  30.3k|        {
+   66|  30.3k|            return phi::is_alpha(first_char);
+   67|  30.3k|        }
+   68|       |
+   69|   127k|        phi::boolean just_under_scores = (first_char == '_');
+   70|   127k|        if (!(phi::is_alpha(first_char) || (first_char == '_')))
+  ------------------
+  |  Branch (70:13): [True: 49.0k, False: 78.1k]
+  |  Branch (70:15): [True: 77.4k, False: 49.7k]
+  |  Branch (70:44): [True: 725, False: 49.0k]
+  ------------------
+   71|  49.0k|        {
+   72|  49.0k|            return false;
+   73|  49.0k|        }
+   74|       |
+   75|   278k|        for (std::size_t index{1u}; index < token.length(); ++index)
+  ------------------
+  |  Branch (75:37): [True: 246k, False: 32.2k]
+  ------------------
+   76|   246k|        {
+   77|   246k|            const char c{token.at(index)};
+   78|       |
+   79|   246k|            if (phi::is_alpha_numeric(c))
+  ------------------
+  |  Branch (79:17): [True: 198k, False: 47.9k]
+  ------------------
+   80|   198k|            {
+   81|   198k|                just_under_scores = false;
+   82|   198k|            }
+   83|  47.9k|            else if (c == '_')
+  ------------------
+  |  Branch (83:22): [True: 2.08k, False: 45.8k]
+  ------------------
+   84|  2.08k|            {
+   85|  2.08k|                continue;
+   86|  2.08k|            }
+   87|  45.8k|            else
+   88|  45.8k|            {
+   89|  45.8k|                return false;
+   90|  45.8k|            }
+   91|   246k|        }
+   92|       |
+   93|  32.2k|        return !just_under_scores;
+   94|  78.1k|    }
+_ZN3dlx11ParseNumberENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+  100|   519k|    {
+  101|   519k|        if (token.empty())
+  ------------------
+  |  Branch (101:13): [True: 0, False: 519k]
+  ------------------
+  102|      0|        {
+  103|      0|            return {};
+  104|      0|        }
+  105|       |
+  106|   519k|        if (token.length() == 1)
+  ------------------
+  |  Branch (106:13): [True: 75.5k, False: 443k]
+  ------------------
+  107|  75.5k|        {
+  108|  75.5k|            if (phi::is_digit(token.at(0)))
+  ------------------
+  |  Branch (108:17): [True: 8.67k, False: 66.8k]
+  ------------------
+  109|  8.67k|            {
+  110|  8.67k|                return static_cast<std::int16_t>(token.at(0) - '0');
+  111|  8.67k|            }
+  112|       |
+  113|  66.8k|            return {};
+  114|  75.5k|        }
+  115|       |
+  116|       |        // Disallow trailing seperators
+  117|   443k|        if (token.at(token.size() - 1) == '\'')
+  ------------------
+  |  Branch (117:13): [True: 3.10k, False: 440k]
+  ------------------
+  118|  3.10k|        {
+  119|  3.10k|            return {};
+  120|  3.10k|        }
+  121|       |
+  122|   440k|        std::int32_t number{0};
+  123|   440k|        phi::boolean is_negative{false};
+  124|   440k|        phi::boolean starts_with_zero{false};
+  125|   440k|        phi::boolean parsing_binary{false};
+  126|   440k|        phi::boolean parsing_octal{false};
+  127|   440k|        phi::boolean parsing_hexadecimal{false};
+  128|   440k|        phi::boolean parsed_something{false};
+  129|   440k|        phi::boolean parsed_separator{false};
+  130|       |
+  131|       |        // TODO: Move x'th character checks out of the for loop
+  132|       |
+  133|   488k|        for (std::size_t index{0u}; index < token.length(); ++index)
+  ------------------
+  |  Branch (133:37): [True: 485k, False: 2.65k]
+  ------------------
+  134|   485k|        {
+  135|   485k|            const char c{token.at(index)};
+  136|       |
+  137|       |            // First character
+  138|   485k|            if (index == 0u)
+  ------------------
+  |  Branch (138:17): [True: 440k, False: 45.2k]
+  ------------------
+  139|   440k|            {
+  140|   440k|                if (c == '+')
+  ------------------
+  |  Branch (140:21): [True: 1.65k, False: 439k]
+  ------------------
+  141|  1.65k|                {
+  142|  1.65k|                    continue;
+  143|  1.65k|                }
+  144|       |
+  145|   439k|                if (c == '-')
+  ------------------
+  |  Branch (145:21): [True: 2.06k, False: 436k]
+  ------------------
+  146|  2.06k|                {
+  147|  2.06k|                    is_negative = true;
+  148|  2.06k|                    continue;
+  149|  2.06k|                }
+  150|       |
+  151|   436k|                if (c == '0')
+  ------------------
+  |  Branch (151:21): [True: 10.2k, False: 426k]
+  ------------------
+  152|  10.2k|                {
+  153|  10.2k|                    starts_with_zero = true;
+  154|  10.2k|                    continue;
+  155|  10.2k|                }
+  156|       |
+  157|   426k|                if (c == '\'')
+  ------------------
+  |  Branch (157:21): [True: 1.81k, False: 424k]
+  ------------------
+  158|  1.81k|                {
+  159|  1.81k|                    return {};
+  160|  1.81k|                }
+  161|   426k|            }
+  162|       |
+  163|       |            // Second character
+  164|   470k|            if (index == 1u)
+  ------------------
+  |  Branch (164:17): [True: 22.1k, False: 448k]
+  ------------------
+  165|  22.1k|            {
+  166|  22.1k|                if (starts_with_zero)
+  ------------------
+  |  Branch (166:21): [True: 10.2k, False: 11.8k]
+  ------------------
+  167|  10.2k|                {
+  168|       |                    // Binary
+  169|  10.2k|                    if (c == 'b' || c == 'B')
+  ------------------
+  |  Branch (169:25): [True: 684, False: 9.56k]
+  |  Branch (169:37): [True: 180, False: 9.38k]
+  ------------------
+  170|    864|                    {
+  171|    864|                        parsing_binary = true;
+  172|    864|                        continue;
+  173|    864|                    }
+  174|       |
+  175|       |                    // Hexadecimal
+  176|  9.38k|                    if (c == 'x' || c == 'X')
+  ------------------
+  |  Branch (176:25): [True: 2.45k, False: 6.93k]
+  |  Branch (176:37): [True: 1.12k, False: 5.81k]
+  ------------------
+  177|  3.57k|                    {
+  178|  3.57k|                        parsing_hexadecimal = true;
+  179|  3.57k|                        continue;
+  180|  3.57k|                    }
+  181|       |
+  182|       |                    // Octal
+  183|  5.81k|                    parsing_octal = true;
+  184|  5.81k|                }
+  185|  22.1k|            }
+  186|       |
+  187|       |            // Handle seperators
+  188|   465k|            if (c == '\'')
+  ------------------
+  |  Branch (188:17): [True: 500, False: 465k]
+  ------------------
+  189|    500|            {
+  190|    500|                if (parsed_separator)
+  ------------------
+  |  Branch (190:21): [True: 166, False: 334]
+  ------------------
+  191|    166|                {
+  192|    166|                    return {};
+  193|    166|                }
+  194|       |
+  195|    334|                parsed_separator = true;
+  196|    334|                continue;
+  197|    500|            }
+  198|       |
+  199|       |            // Check for over/underflow
+  200|   465k|            if (is_negative && (-number < std::numeric_limits<std::int16_t>::min()))
+  ------------------
+  |  Branch (200:17): [True: 6.28k, False: 458k]
+  |  Branch (200:32): [True: 410, False: 5.87k]
+  ------------------
+  201|    410|            {
+  202|       |                // Would underflow
+  203|    410|                return {};
+  204|    410|            }
+  205|   464k|            if (!is_negative && (number > std::numeric_limits<std::int16_t>::max()))
+  ------------------
+  |  Branch (205:17): [True: 458k, False: 5.87k]
+  |  Branch (205:17): [True: 587, False: 464k]
+  |  Branch (205:33): [True: 587, False: 458k]
+  ------------------
+  206|    587|            {
+  207|       |                // Would overflow
+  208|    587|                return {};
+  209|    587|            }
+  210|       |
+  211|   464k|            parsed_separator = false;
+  212|   464k|            parsed_something = true;
+  213|       |
+  214|   464k|            if (parsing_binary)
+  ------------------
+  |  Branch (214:17): [True: 1.63k, False: 462k]
+  ------------------
+  215|  1.63k|            {
+  216|  1.63k|                if (!phi::is_binary_digit(c))
+  ------------------
+  |  Branch (216:21): [True: 836, False: 797]
+  ------------------
+  217|    836|                {
+  218|    836|                    return {};
+  219|    836|                }
+  220|       |
+  221|    797|                number <<= 1;
+  222|    797|                number |= (c - '0');
+  223|    797|            }
+  224|   462k|            else if (parsing_octal)
+  ------------------
+  |  Branch (224:22): [True: 12.6k, False: 449k]
+  ------------------
+  225|  12.6k|            {
+  226|  12.6k|                if (!phi::is_octal_digit(c))
+  ------------------
+  |  Branch (226:21): [True: 5.12k, False: 7.55k]
+  ------------------
+  227|  5.12k|                {
+  228|  5.12k|                    return {};
+  229|  5.12k|                }
+  230|       |
+  231|  7.55k|                number <<= 3;
+  232|  7.55k|                number |= (c - '0');
+  233|  7.55k|            }
+  234|   449k|            else if (parsing_hexadecimal)
+  ------------------
+  |  Branch (234:22): [True: 5.65k, False: 444k]
+  ------------------
+  235|  5.65k|            {
+  236|  5.65k|                if (!phi::is_hex_digit(c))
+  ------------------
+  |  Branch (236:21): [True: 3.03k, False: 2.62k]
+  ------------------
+  237|  3.03k|                {
+  238|  3.03k|                    return {};
+  239|  3.03k|                }
+  240|       |
+  241|  2.62k|                number <<= 4;
+  242|  2.62k|                number |= phi::hex_digit_value(c).unsafe();
+  243|  2.62k|            }
+  244|   444k|            else
+  245|   444k|            {
+  246|   444k|                if (!phi::is_digit(c))
+  ------------------
+  |  Branch (246:21): [True: 425k, False: 18.4k]
+  ------------------
+  247|   425k|                {
+  248|   425k|                    return {};
+  249|   425k|                }
+  250|       |
+  251|       |                // Disallow leading zeros
+  252|  18.4k|                if (number == 0 && c == '0')
+  ------------------
+  |  Branch (252:21): [True: 9.48k, False: 8.95k]
+  |  Branch (252:36): [True: 266, False: 9.22k]
+  ------------------
+  253|    266|                {
+  254|    266|                    return {};
+  255|    266|                }
+  256|       |
+  257|  18.1k|                number *= 10;
+  258|  18.1k|                number += (c - '0');
+  259|  18.1k|            }
+  260|   464k|        }
+  261|       |
+  262|  2.65k|        if (parsed_something)
+  ------------------
+  |  Branch (262:13): [True: 2.29k, False: 369]
+  ------------------
+  263|  2.29k|        {
+  264|       |            // Check for over/underflow
+  265|  2.29k|            if (is_negative && (-number < std::numeric_limits<std::int16_t>::min()))
+  ------------------
+  |  Branch (265:17): [True: 609, False: 1.68k]
+  |  Branch (265:32): [True: 388, False: 221]
+  ------------------
+  266|    388|            {
+  267|       |                // Would underflow
+  268|    388|                return {};
+  269|    388|            }
+  270|  1.90k|            if (!is_negative && (number > std::numeric_limits<std::int16_t>::max()))
+  ------------------
+  |  Branch (270:17): [True: 1.68k, False: 221]
+  |  Branch (270:17): [True: 237, False: 1.66k]
+  |  Branch (270:33): [True: 237, False: 1.44k]
+  ------------------
+  271|    237|            {
+  272|       |                // Would overflow
+  273|    237|                return {};
+  274|    237|            }
+  275|       |
+  276|  1.66k|            if (is_negative)
+  ------------------
+  |  Branch (276:17): [True: 221, False: 1.44k]
+  ------------------
+  277|    221|            {
+  278|    221|                return static_cast<std::int16_t>(-number);
+  279|    221|            }
+  280|       |
+  281|  1.44k|            return static_cast<std::int16_t>(number);
+  282|  1.66k|        }
+  283|       |
+  284|    369|        return {};
+  285|  2.65k|    }
+
+Parser.cpp:_ZNK3dlx11TokenStream19find_first_token_ifIZNS_6Parser5ParseERS0_E3$_0EEPKNS_5TokenET_:
+   58|  36.9k|        {
+   59|       |#if defined(PHI_DEBUG)
+   60|       |            PHI_ASSERT(m_Finialized);
+   61|       |#endif
+   62|       |
+   63|  36.9k|            for (const Token& token : m_Tokens)
+  ------------------
+  |  Branch (63:37): [True: 1.18M, False: 0]
+  ------------------
+   64|  1.18M|            {
+   65|  1.18M|                if (pred(token))
+  ------------------
+  |  Branch (65:21): [True: 36.9k, False: 1.14M]
+  ------------------
+   66|  36.9k|                {
+   67|  36.9k|                    return &token;
+   68|  36.9k|                }
+   69|  1.18M|            }
+   70|       |
+   71|      0|            return nullptr;
+   72|  36.9k|        }
+_ZN3dlx11TokenStream12emplace_backIJNS_5Token4TypeENSt3__117basic_string_viewIcNS4_11char_traitsIcEEEERN3phi7integerImEESC_EEEvDpOT_:
+   24|   189k|        {
+   25|       |#if defined(PHI_DEBUG)
+   26|       |            PHI_ASSERT(!m_Finialized);
+   27|       |#endif
+   28|       |
+   29|   189k|            m_Tokens.emplace_back(std::forward<ArgsT>(args)...);
+   30|   189k|        }
+_ZN3dlx11TokenStream12emplace_backIJNS_5TokenEEEEvDpOT_:
+   24|   523k|        {
+   25|       |#if defined(PHI_DEBUG)
+   26|       |            PHI_ASSERT(!m_Finialized);
+   27|       |#endif
+   28|       |
+   29|   523k|            m_Tokens.emplace_back(std::forward<ArgsT>(args)...);
+   30|   523k|        }
+_ZN3dlx11TokenStream12emplace_backIJRNS_5Token4TypeENSt3__117basic_string_viewIcNS5_11char_traitsIcEEEERN3phi7integerImEESD_EEEvDpOT_:
+   24|   569k|        {
+   25|       |#if defined(PHI_DEBUG)
+   26|       |            PHI_ASSERT(!m_Finialized);
+   27|       |#endif
+   28|       |
+   29|   569k|            m_Tokens.emplace_back(std::forward<ArgsT>(args)...);
+   30|   569k|        }
+
+_ZN3dlx11InstructionC2ERKNS_15InstructionInfoEN3phi7integerImEE:
+   18|  21.4k|    {}
+_ZN3dlx11Instruction11SetArgumentEN3phi7integerIhEENS_19InstructionArgumentE:
+   23|  1.98k|    {
+   24|  1.98k|        PHI_ASSERT(argument_number < 3u);
+   25|       |
+   26|  1.98k|        switch (argument_number.unsafe())
+   27|  1.98k|        {
+   28|  1.61k|            case 0u:
+  ------------------
+  |  Branch (28:13): [True: 1.61k, False: 370]
+  ------------------
+   29|  1.61k|                m_Arg1 = argument;
+   30|  1.61k|                break;
+   31|    235|            case 1u:
+  ------------------
+  |  Branch (31:13): [True: 235, False: 1.74k]
+  ------------------
+   32|    235|                m_Arg2 = argument;
+   33|    235|                break;
+   34|    135|            case 2u:
+  ------------------
+  |  Branch (34:13): [True: 135, False: 1.84k]
+  ------------------
+   35|    135|                m_Arg3 = argument;
+   36|    135|                break;
+   37|      0|#if !defined(DLXEMU_COVERAGE_BUILD)
+   38|      0|            default:
+  ------------------
+  |  Branch (38:13): [True: 0, False: 1.98k]
+  ------------------
+   39|      0|                PHI_ASSERT_NOT_REACHED();
+   40|  1.98k|#endif
+   41|  1.98k|        }
+   42|  1.98k|    }
+
+_ZN3dlx19InstructionArgumentC2Ev:
+   23|  66.1k|    {}
+_ZN3dlx39ConstructInstructionArgumentRegisterIntENS_13IntRegisterIDE:
+  173|    339|    {
+  174|    339|        InstructionArgument arg;
+  175|    339|        arg.m_Type                   = ArgumentType::IntRegister;
+  176|    339|        arg.register_int.register_id = id;
+  177|    339|        return arg;
+  178|    339|    }
+_ZN3dlx41ConstructInstructionArgumentRegisterFloatENS_15FloatRegisterIDE:
+  182|    445|    {
+  183|    445|        InstructionArgument arg;
+  184|    445|        arg.m_Type                     = ArgumentType::FloatRegister;
+  185|    445|        arg.register_float.register_id = id;
+  186|    445|        return arg;
+  187|    445|    }
+_ZN3dlx42ConstructInstructionArgumentImmediateValueEs:
+  191|    334|    {
+  192|    334|        InstructionArgument arg;
+  193|    334|        arg.m_Type                       = ArgumentType::ImmediateInteger;
+  194|    334|        arg.immediate_value.signed_value = value;
+  195|    334|        return arg;
+  196|    334|    }
+_ZN3dlx47ConstructInstructionArgumentAddressDisplacementENS_13IntRegisterIDEN3phi7integerIiEE:
+  200|    123|    {
+  201|    123|        InstructionArgument arg;
+  202|    123|        arg.m_Type                            = ArgumentType::AddressDisplacement;
+  203|    123|        arg.address_displacement.register_id  = id;
+  204|    123|        arg.address_displacement.displacement = displacement;
+  205|    123|        return arg;
+  206|    123|    }
+_ZN3dlx33ConstructInstructionArgumentLabelENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+  210|    742|    {
+  211|    742|        InstructionArgument arg;
+  212|    742|        arg.m_Type           = ArgumentType::Label;
+  213|    742|        arg.label.label_name = label_name;
+  214|    742|        return arg;
+  215|    742|    }
+
+_ZN3dlx20LookUpIntructionInfoENS_6OpCodeE:
+  452|  21.4k|    {
+  453|  21.4k|        return instruction_table.at(static_cast<std::size_t>(instruction));
+  454|  21.4k|    }
+
+_ZN3dlx14StringToOpCodeENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+   23|   681k|    {
+   24|   681k|        switch (token.length())
+   25|   681k|        {
+   26|       |            // 1 character OpCodes
+   27|  97.2k|            case 1: {
+  ------------------
+  |  Branch (27:13): [True: 97.2k, False: 584k]
+  ------------------
+   28|  97.2k|                char c1 = token[0];
+   29|  97.2k|                if (ice(c1, 'J'))
+  ------------------
+  |  Branch (29:21): [True: 11.8k, False: 85.3k]
+  ------------------
+   30|  11.8k|                {
+   31|  11.8k|                    return OpCode::J;
+   32|  11.8k|                }
+   33|  85.3k|                break;
+   34|  97.2k|            }
+   35|       |
+   36|       |            // 2 character OpCodes
+   37|   106k|            case 2: {
+  ------------------
+  |  Branch (37:13): [True: 106k, False: 575k]
+  ------------------
+   38|   106k|                char c1 = token[0];
+   39|   106k|                char c2 = token[1];
+   40|       |
+   41|   106k|                switch (c1)
+  ------------------
+  |  Branch (41:25): [True: 77.5k, False: 28.7k]
+  ------------------
+   42|   106k|                {
+   43|  1.16k|                    case 'J':
+  ------------------
+  |  Branch (43:21): [True: 1.16k, False: 105k]
+  ------------------
+   44|  2.01k|                    case 'j':
+  ------------------
+  |  Branch (44:21): [True: 847, False: 105k]
+  ------------------
+   45|  2.01k|                        if (ice(c2, 'R'))
+  ------------------
+  |  Branch (45:29): [True: 264, False: 1.74k]
+  ------------------
+   46|    264|                        {
+   47|    264|                            return OpCode::JR;
+   48|    264|                        }
+   49|  1.74k|                        break;
+   50|       |
+   51|  4.32k|                    case 'L':
+  ------------------
+  |  Branch (51:21): [True: 4.32k, False: 101k]
+  ------------------
+   52|  10.4k|                    case 'l':
+  ------------------
+  |  Branch (52:21): [True: 6.14k, False: 100k]
+  ------------------
+   53|  10.4k|                        switch (c2)
+  ------------------
+  |  Branch (53:33): [True: 5.57k, False: 4.89k]
+  ------------------
+   54|  10.4k|                        {
+   55|    298|                            case 'B':
+  ------------------
+  |  Branch (55:29): [True: 298, False: 10.1k]
+  ------------------
+   56|    775|                            case 'b':
+  ------------------
+  |  Branch (56:29): [True: 477, False: 9.99k]
+  ------------------
+   57|    775|                                return OpCode::LB;
+   58|    128|                            case 'D':
+  ------------------
+  |  Branch (58:29): [True: 128, False: 10.3k]
+  ------------------
+   59|    274|                            case 'd':
+  ------------------
+  |  Branch (59:29): [True: 146, False: 10.3k]
+  ------------------
+   60|    274|                                return OpCode::LD;
+   61|  1.21k|                            case 'F':
+  ------------------
+  |  Branch (61:29): [True: 1.21k, False: 9.25k]
+  ------------------
+   62|  1.39k|                            case 'f':
+  ------------------
+  |  Branch (62:29): [True: 171, False: 10.3k]
+  ------------------
+   63|  1.39k|                                return OpCode::LF;
+   64|    876|                            case 'H':
+  ------------------
+  |  Branch (64:29): [True: 876, False: 9.59k]
+  ------------------
+   65|  1.62k|                            case 'h':
+  ------------------
+  |  Branch (65:29): [True: 752, False: 9.71k]
+  ------------------
+   66|  1.62k|                                return OpCode::LH;
+   67|    146|                            case 'W':
+  ------------------
+  |  Branch (67:29): [True: 146, False: 10.3k]
+  ------------------
+   68|    828|                            case 'w':
+  ------------------
+  |  Branch (68:29): [True: 682, False: 9.78k]
+  ------------------
+   69|    828|                                return OpCode::LW;
+   70|  10.4k|                        }
+   71|  5.57k|                        break;
+   72|  5.57k|                    case 'O':
+  ------------------
+  |  Branch (72:21): [True: 1.31k, False: 104k]
+  ------------------
+   73|  3.44k|                    case 'o':
+  ------------------
+  |  Branch (73:21): [True: 2.13k, False: 104k]
+  ------------------
+   74|  3.44k|                        if (ice(c2, 'R'))
+  ------------------
+  |  Branch (74:29): [True: 816, False: 2.63k]
+  ------------------
+   75|    816|                        {
+   76|    816|                            return OpCode::OR;
+   77|    816|                        }
+   78|  2.63k|                        break;
+   79|  5.75k|                    case 'S':
+  ------------------
+  |  Branch (79:21): [True: 5.75k, False: 100k]
+  ------------------
+   80|  12.8k|                    case 's':
+  ------------------
+  |  Branch (80:21): [True: 7.04k, False: 99.2k]
+  ------------------
+   81|  12.8k|                        switch (c2)
+  ------------------
+  |  Branch (81:33): [True: 7.88k, False: 4.91k]
+  ------------------
+   82|  12.8k|                        {
+   83|    332|                            case 'B':
+  ------------------
+  |  Branch (83:29): [True: 332, False: 12.4k]
+  ------------------
+   84|    578|                            case 'b':
+  ------------------
+  |  Branch (84:29): [True: 246, False: 12.5k]
+  ------------------
+   85|    578|                                return OpCode::SB;
+   86|  1.43k|                            case 'D':
+  ------------------
+  |  Branch (86:29): [True: 1.43k, False: 11.3k]
+  ------------------
+   87|  1.80k|                            case 'd':
+  ------------------
+  |  Branch (87:29): [True: 367, False: 12.4k]
+  ------------------
+   88|  1.80k|                                return OpCode::SD;
+   89|    389|                            case 'F':
+  ------------------
+  |  Branch (89:29): [True: 389, False: 12.4k]
+  ------------------
+   90|    554|                            case 'f':
+  ------------------
+  |  Branch (90:29): [True: 165, False: 12.6k]
+  ------------------
+   91|    554|                                return OpCode::SF;
+   92|    174|                            case 'H':
+  ------------------
+  |  Branch (92:29): [True: 174, False: 12.6k]
+  ------------------
+   93|    481|                            case 'h':
+  ------------------
+  |  Branch (93:29): [True: 307, False: 12.4k]
+  ------------------
+   94|    481|                                return OpCode::SH;
+   95|    579|                            case 'w':
+  ------------------
+  |  Branch (95:29): [True: 579, False: 12.2k]
+  ------------------
+   96|  1.50k|                            case 'W':
+  ------------------
+  |  Branch (96:29): [True: 922, False: 11.8k]
+  ------------------
+   97|  1.50k|                                return OpCode::SW;
+   98|  12.8k|                        }
+   99|  7.88k|                        break;
+  100|   106k|                }
+  101|  95.4k|                break;
+  102|   106k|            }
+  103|       |
+  104|       |            // 3 character OpCodes
+  105|   111k|            case 3: {
+  ------------------
+  |  Branch (105:13): [True: 111k, False: 570k]
+  ------------------
+  106|   111k|                char c1 = token[0];
+  107|   111k|                char c2 = token[1];
+  108|   111k|                char c3 = token[2];
+  109|       |
+  110|   111k|                switch (c1)
+  ------------------
+  |  Branch (110:25): [True: 53.6k, False: 57.6k]
+  ------------------
+  111|   111k|                {
+  112|  2.87k|                    case 'A':
+  ------------------
+  |  Branch (112:21): [True: 2.87k, False: 108k]
+  ------------------
+  113|  4.24k|                    case 'a':
+  ------------------
+  |  Branch (113:21): [True: 1.37k, False: 109k]
+  ------------------
+  114|  4.24k|                        if (ice(c2, 'D') && ice(c3, 'D'))
+  ------------------
+  |  Branch (114:29): [True: 819, False: 3.42k]
+  |  Branch (114:29): [True: 536, False: 3.70k]
+  |  Branch (114:45): [True: 536, False: 283]
+  ------------------
+  115|    536|                        {
+  116|    536|                            return OpCode::ADD;
+  117|    536|                        }
+  118|  3.70k|                        else if (ice(c2, 'N') && ice(c3, 'D'))
+  ------------------
+  |  Branch (118:34): [True: 1.43k, False: 2.26k]
+  |  Branch (118:34): [True: 658, False: 3.04k]
+  |  Branch (118:50): [True: 658, False: 779]
+  ------------------
+  119|    658|                        {
+  120|    658|                            return OpCode::AND;
+  121|    658|                        }
+  122|  3.04k|                        break;
+  123|       |
+  124|  3.04k|                    case 'D':
+  ------------------
+  |  Branch (124:21): [True: 642, False: 110k]
+  ------------------
+  125|  2.14k|                    case 'd':
+  ------------------
+  |  Branch (125:21): [True: 1.50k, False: 109k]
+  ------------------
+  126|  2.14k|                        if (ice(c2, 'I') && ice(c3, 'V'))
+  ------------------
+  |  Branch (126:29): [True: 1.05k, False: 1.08k]
+  |  Branch (126:29): [True: 501, False: 1.64k]
+  |  Branch (126:45): [True: 501, False: 558]
+  ------------------
+  127|    501|                        {
+  128|    501|                            return OpCode::DIV;
+  129|    501|                        }
+  130|  1.64k|                        break;
+  131|       |
+  132|  1.89k|                    case 'E':
+  ------------------
+  |  Branch (132:21): [True: 1.89k, False: 109k]
+  ------------------
+  133|  3.10k|                    case 'e':
+  ------------------
+  |  Branch (133:21): [True: 1.21k, False: 110k]
+  ------------------
+  134|  3.10k|                        if (ice(c2, 'Q'))
+  ------------------
+  |  Branch (134:29): [True: 2.27k, False: 836]
+  ------------------
+  135|  2.27k|                        {
+  136|  2.27k|                            if (ice(c3, 'D'))
+  ------------------
+  |  Branch (136:33): [True: 355, False: 1.91k]
+  ------------------
+  137|    355|                            {
+  138|    355|                                return OpCode::EQD;
+  139|    355|                            }
+  140|  1.91k|                            else if (ice(c3, 'F'))
+  ------------------
+  |  Branch (140:38): [True: 517, False: 1.40k]
+  ------------------
+  141|    517|                            {
+  142|    517|                                return OpCode::EQF;
+  143|    517|                            }
+  144|  2.27k|                        }
+  145|  2.23k|                        break;
+  146|       |
+  147|  3.44k|                    case 'G':
+  ------------------
+  |  Branch (147:21): [True: 3.44k, False: 107k]
+  ------------------
+  148|  5.52k|                    case 'g':
+  ------------------
+  |  Branch (148:21): [True: 2.08k, False: 109k]
+  ------------------
+  149|  5.52k|                        if (ice(c2, 'E'))
+  ------------------
+  |  Branch (149:29): [True: 1.89k, False: 3.62k]
+  ------------------
+  150|  1.89k|                        {
+  151|  1.89k|                            if (ice(c3, 'D'))
+  ------------------
+  |  Branch (151:33): [True: 935, False: 964]
+  ------------------
+  152|    935|                            {
+  153|    935|                                return OpCode::GED;
+  154|    935|                            }
+  155|    964|                            else if (ice(c3, 'F'))
+  ------------------
+  |  Branch (155:38): [True: 270, False: 694]
+  ------------------
+  156|    270|                            {
+  157|    270|                                return OpCode::GEF;
+  158|    270|                            }
+  159|  1.89k|                        }
+  160|  3.62k|                        else if (ice(c2, 'T'))
+  ------------------
+  |  Branch (160:34): [True: 1.85k, False: 1.77k]
+  ------------------
+  161|  1.85k|                        {
+  162|  1.85k|                            if (ice(c3, 'D'))
+  ------------------
+  |  Branch (162:33): [True: 398, False: 1.45k]
+  ------------------
+  163|    398|                            {
+  164|    398|                                return OpCode::GTD;
+  165|    398|                            }
+  166|  1.45k|                            if (ice(c3, 'F'))
+  ------------------
+  |  Branch (166:33): [True: 654, False: 802]
+  ------------------
+  167|    654|                            {
+  168|    654|                                return OpCode::GTF;
+  169|    654|                            }
+  170|  1.45k|                        }
+  171|  3.27k|                        break;
+  172|       |
+  173|  3.27k|                    case 'J':
+  ------------------
+  |  Branch (173:21): [True: 725, False: 110k]
+  ------------------
+  174|  1.83k|                    case 'j':
+  ------------------
+  |  Branch (174:21): [True: 1.10k, False: 110k]
+  ------------------
+  175|  1.83k|                        if (ice(c2, 'A') && ice(c3, 'L'))
+  ------------------
+  |  Branch (175:29): [True: 1.03k, False: 803]
+  |  Branch (175:29): [True: 692, False: 1.14k]
+  |  Branch (175:45): [True: 692, False: 339]
+  ------------------
+  176|    692|                        {
+  177|    692|                            return OpCode::JAL;
+  178|    692|                        }
+  179|  1.14k|                        break;
+  180|       |
+  181|  5.85k|                    case 'L':
+  ------------------
+  |  Branch (181:21): [True: 5.85k, False: 105k]
+  ------------------
+  182|  10.3k|                    case 'l':
+  ------------------
+  |  Branch (182:21): [True: 4.54k, False: 106k]
+  ------------------
+  183|  10.3k|                        switch (c2)
+  ------------------
+  |  Branch (183:33): [True: 2.57k, False: 7.82k]
+  ------------------
+  184|  10.3k|                        {
+  185|    454|                            case 'B':
+  ------------------
+  |  Branch (185:29): [True: 454, False: 9.94k]
+  ------------------
+  186|  1.10k|                            case 'b':
+  ------------------
+  |  Branch (186:29): [True: 655, False: 9.74k]
+  ------------------
+  187|  1.10k|                                if (ice(c3, 'U'))
+  ------------------
+  |  Branch (187:37): [True: 266, False: 843]
+  ------------------
+  188|    266|                                {
+  189|    266|                                    return OpCode::LBU;
+  190|    266|                                }
+  191|    843|                                break;
+  192|       |
+  193|  2.05k|                            case 'E':
+  ------------------
+  |  Branch (193:29): [True: 2.05k, False: 8.34k]
+  ------------------
+  194|  2.28k|                            case 'e':
+  ------------------
+  |  Branch (194:29): [True: 226, False: 10.1k]
+  ------------------
+  195|  2.28k|                                if (ice(c3, 'D'))
+  ------------------
+  |  Branch (195:37): [True: 301, False: 1.98k]
+  ------------------
+  196|    301|                                {
+  197|    301|                                    return OpCode::LED;
+  198|    301|                                }
+  199|  1.98k|                                else if (ice(c3, 'F'))
+  ------------------
+  |  Branch (199:42): [True: 289, False: 1.69k]
+  ------------------
+  200|    289|                                {
+  201|    289|                                    return OpCode::LEF;
+  202|    289|                                }
+  203|  1.69k|                                break;
+  204|       |
+  205|  1.69k|                            case 'H':
+  ------------------
+  |  Branch (205:29): [True: 373, False: 10.0k]
+  ------------------
+  206|  1.30k|                            case 'h':
+  ------------------
+  |  Branch (206:29): [True: 927, False: 9.47k]
+  ------------------
+  207|  1.30k|                                if (ice(c3, 'I'))
+  ------------------
+  |  Branch (207:37): [True: 349, False: 951]
+  ------------------
+  208|    349|                                {
+  209|    349|                                    return OpCode::LHI;
+  210|    349|                                }
+  211|    951|                                else if (ice(c3, 'U'))
+  ------------------
+  |  Branch (211:42): [True: 357, False: 594]
+  ------------------
+  212|    357|                                {
+  213|    357|                                    return OpCode::LHU;
+  214|    357|                                }
+  215|    594|                                break;
+  216|       |
+  217|  1.27k|                            case 'T':
+  ------------------
+  |  Branch (217:29): [True: 1.27k, False: 9.12k]
+  ------------------
+  218|  1.71k|                            case 't':
+  ------------------
+  |  Branch (218:29): [True: 438, False: 9.96k]
+  ------------------
+  219|  1.71k|                                if (ice(c3, 'D'))
+  ------------------
+  |  Branch (219:37): [True: 623, False: 1.08k]
+  ------------------
+  220|    623|                                {
+  221|    623|                                    return OpCode::LTD;
+  222|    623|                                }
+  223|  1.08k|                                else if (ice(c3, 'F'))
+  ------------------
+  |  Branch (223:42): [True: 566, False: 522]
+  ------------------
+  224|    566|                                {
+  225|    566|                                    return OpCode::LTF;
+  226|    566|                                }
+  227|    522|                                break;
+  228|       |
+  229|    667|                            case 'W':
+  ------------------
+  |  Branch (229:29): [True: 667, False: 9.73k]
+  ------------------
+  230|  1.41k|                            case 'w':
+  ------------------
+  |  Branch (230:29): [True: 749, False: 9.65k]
+  ------------------
+  231|  1.41k|                                if (ice(c3, 'U'))
+  ------------------
+  |  Branch (231:37): [True: 184, False: 1.23k]
+  ------------------
+  232|    184|                                {
+  233|    184|                                    return OpCode::LWU;
+  234|    184|                                }
+  235|  1.23k|                                break;
+  236|  10.3k|                        }
+  237|  7.46k|                        break;
+  238|       |
+  239|  7.46k|                    case 'N':
+  ------------------
+  |  Branch (239:21): [True: 826, False: 110k]
+  ------------------
+  240|  4.45k|                    case 'n':
+  ------------------
+  |  Branch (240:21): [True: 3.62k, False: 107k]
+  ------------------
+  241|  4.45k|                        if (ice(c2, 'E'))
+  ------------------
+  |  Branch (241:29): [True: 2.04k, False: 2.40k]
+  ------------------
+  242|  2.04k|                        {
+  243|  2.04k|                            if (ice(c3, 'D'))
+  ------------------
+  |  Branch (243:33): [True: 1.22k, False: 825]
+  ------------------
+  244|  1.22k|                            {
+  245|  1.22k|                                return OpCode::NED;
+  246|  1.22k|                            }
+  247|    825|                            else if (ice(c3, 'F'))
+  ------------------
+  |  Branch (247:38): [True: 198, False: 627]
+  ------------------
+  248|    198|                            {
+  249|    198|                                return OpCode::NEF;
+  250|    198|                            }
+  251|  2.04k|                        }
+  252|  2.40k|                        else if (ice(c2, 'O') && ice(c3, 'P'))
+  ------------------
+  |  Branch (252:34): [True: 672, False: 1.73k]
+  |  Branch (252:34): [True: 325, False: 2.08k]
+  |  Branch (252:50): [True: 325, False: 347]
+  ------------------
+  253|    325|                        {
+  254|    325|                            return OpCode::NOP;
+  255|    325|                        }
+  256|       |
+  257|  2.70k|                        break;
+  258|       |
+  259|  2.70k|                    case 'O':
+  ------------------
+  |  Branch (259:21): [True: 1.81k, False: 109k]
+  ------------------
+  260|  5.70k|                    case 'o':
+  ------------------
+  |  Branch (260:21): [True: 3.88k, False: 107k]
+  ------------------
+  261|  5.70k|                        if (ice(c2, 'R') && ice(c3, 'I'))
+  ------------------
+  |  Branch (261:29): [True: 2.68k, False: 3.01k]
+  |  Branch (261:29): [True: 476, False: 5.22k]
+  |  Branch (261:45): [True: 476, False: 2.21k]
+  ------------------
+  262|    476|                        {
+  263|    476|                            return OpCode::ORI;
+  264|    476|                        }
+  265|  5.22k|                        break;
+  266|       |
+  267|  7.80k|                    case 'S':
+  ------------------
+  |  Branch (267:21): [True: 7.80k, False: 103k]
+  ------------------
+  268|  19.0k|                    case 's':
+  ------------------
+  |  Branch (268:21): [True: 11.2k, False: 100k]
+  ------------------
+  269|  19.0k|                        switch (c2)
+  ------------------
+  |  Branch (269:33): [True: 4.61k, False: 14.4k]
+  ------------------
+  270|  19.0k|                        {
+  271|    543|                            case 'B':
+  ------------------
+  |  Branch (271:29): [True: 543, False: 18.4k]
+  ------------------
+  272|    864|                            case 'b':
+  ------------------
+  |  Branch (272:29): [True: 321, False: 18.7k]
+  ------------------
+  273|    864|                                if (ice(c3, 'U'))
+  ------------------
+  |  Branch (273:37): [True: 397, False: 467]
+  ------------------
+  274|    397|                                {
+  275|    397|                                    return OpCode::SBU;
+  276|    397|                                }
+  277|    467|                                break;
+  278|       |
+  279|    478|                            case 'E':
+  ------------------
+  |  Branch (279:29): [True: 478, False: 18.5k]
+  ------------------
+  280|    904|                            case 'e':
+  ------------------
+  |  Branch (280:29): [True: 426, False: 18.6k]
+  ------------------
+  281|    904|                                if (ice(c3, 'Q'))
+  ------------------
+  |  Branch (281:37): [True: 391, False: 513]
+  ------------------
+  282|    391|                                {
+  283|    391|                                    return OpCode::SEQ;
+  284|    391|                                }
+  285|    513|                                break;
+  286|       |
+  287|    553|                            case 'G':
+  ------------------
+  |  Branch (287:29): [True: 553, False: 18.4k]
+  ------------------
+  288|  1.40k|                            case 'g':
+  ------------------
+  |  Branch (288:29): [True: 849, False: 18.1k]
+  ------------------
+  289|  1.40k|                                if (ice(c3, 'E'))
+  ------------------
+  |  Branch (289:37): [True: 669, False: 733]
+  ------------------
+  290|    669|                                {
+  291|    669|                                    return OpCode::SGE;
+  292|    669|                                }
+  293|    733|                                else if (ice(c3, 'T'))
+  ------------------
+  |  Branch (293:42): [True: 374, False: 359]
+  ------------------
+  294|    374|                                {
+  295|    374|                                    return OpCode::SGT;
+  296|    374|                                }
+  297|    359|                                break;
+  298|       |
+  299|    359|                            case 'H':
+  ------------------
+  |  Branch (299:29): [True: 345, False: 18.6k]
+  ------------------
+  300|    900|                            case 'h':
+  ------------------
+  |  Branch (300:29): [True: 555, False: 18.4k]
+  ------------------
+  301|    900|                                if (ice(c3, 'U'))
+  ------------------
+  |  Branch (301:37): [True: 246, False: 654]
+  ------------------
+  302|    246|                                {
+  303|    246|                                    return OpCode::SHU;
+  304|    246|                                }
+  305|    654|                                break;
+  306|       |
+  307|    654|                            case 'L':
+  ------------------
+  |  Branch (307:29): [True: 557, False: 18.4k]
+  ------------------
+  308|  4.81k|                            case 'l':
+  ------------------
+  |  Branch (308:29): [True: 4.25k, False: 14.7k]
+  ------------------
+  309|  4.81k|                                switch (c3)
+  ------------------
+  |  Branch (309:41): [True: 2.29k, False: 2.51k]
+  ------------------
+  310|  4.81k|                                {
+  311|    205|                                    case 'A':
+  ------------------
+  |  Branch (311:37): [True: 205, False: 4.60k]
+  ------------------
+  312|    502|                                    case 'a':
+  ------------------
+  |  Branch (312:37): [True: 297, False: 4.51k]
+  ------------------
+  313|    502|                                        return OpCode::SLA;
+  314|       |
+  315|    638|                                    case 'E':
+  ------------------
+  |  Branch (315:37): [True: 638, False: 4.17k]
+  ------------------
+  316|    759|                                    case 'e':
+  ------------------
+  |  Branch (316:37): [True: 121, False: 4.69k]
+  ------------------
+  317|    759|                                        return OpCode::SLE;
+  318|       |
+  319|    317|                                    case 'L':
+  ------------------
+  |  Branch (319:37): [True: 317, False: 4.49k]
+  ------------------
+  320|    706|                                    case 'l':
+  ------------------
+  |  Branch (320:37): [True: 389, False: 4.42k]
+  ------------------
+  321|    706|                                        return OpCode::SLL;
+  322|       |
+  323|    213|                                    case 'T':
+  ------------------
+  |  Branch (323:37): [True: 213, False: 4.59k]
+  ------------------
+  324|    548|                                    case 't':
+  ------------------
+  |  Branch (324:37): [True: 335, False: 4.47k]
+  ------------------
+  325|    548|                                        return OpCode::SLT;
+  326|  4.81k|                                }
+  327|  2.29k|                                break;
+  328|       |
+  329|  2.29k|                            case 'N':
+  ------------------
+  |  Branch (329:29): [True: 225, False: 18.8k]
+  ------------------
+  330|  1.32k|                            case 'n':
+  ------------------
+  |  Branch (330:29): [True: 1.09k, False: 17.9k]
+  ------------------
+  331|  1.32k|                                if (ice(c3, 'E'))
+  ------------------
+  |  Branch (331:37): [True: 336, False: 987]
+  ------------------
+  332|    336|                                {
+  333|    336|                                    return OpCode::SNE;
+  334|    336|                                }
+  335|    987|                                break;
+  336|       |
+  337|    987|                            case 'R':
+  ------------------
+  |  Branch (337:29): [True: 523, False: 18.5k]
+  ------------------
+  338|    883|                            case 'r':
+  ------------------
+  |  Branch (338:29): [True: 360, False: 18.6k]
+  ------------------
+  339|    883|                                if (ice(c3, 'A'))
+  ------------------
+  |  Branch (339:37): [True: 426, False: 457]
+  ------------------
+  340|    426|                                {
+  341|    426|                                    return OpCode::SRA;
+  342|    426|                                }
+  343|    457|                                else if (ice(c3, 'L'))
+  ------------------
+  |  Branch (343:42): [True: 215, False: 242]
+  ------------------
+  344|    215|                                {
+  345|    215|                                    return OpCode::SRL;
+  346|    215|                                }
+  347|    242|                                break;
+  348|       |
+  349|  1.49k|                            case 'U':
+  ------------------
+  |  Branch (349:29): [True: 1.49k, False: 17.5k]
+  ------------------
+  350|  1.87k|                            case 'u':
+  ------------------
+  |  Branch (350:29): [True: 386, False: 18.6k]
+  ------------------
+  351|  1.87k|                                if (ice(c3, 'B'))
+  ------------------
+  |  Branch (351:37): [True: 816, False: 1.06k]
+  ------------------
+  352|    816|                                {
+  353|    816|                                    return OpCode::SUB;
+  354|    816|                                }
+  355|  1.06k|                                break;
+  356|       |
+  357|  1.06k|                            case 'W':
+  ------------------
+  |  Branch (357:29): [True: 214, False: 18.8k]
+  ------------------
+  358|  1.44k|                            case 'w':
+  ------------------
+  |  Branch (358:29): [True: 1.23k, False: 17.7k]
+  ------------------
+  359|  1.44k|                                if (ice(c3, 'U'))
+  ------------------
+  |  Branch (359:37): [True: 292, False: 1.15k]
+  ------------------
+  360|    292|                                {
+  361|    292|                                    return OpCode::SWU;
+  362|    292|                                }
+  363|  1.15k|                                break;
+  364|  19.0k|                        }
+  365|       |
+  366|  12.7k|                    case 'X':
+  ------------------
+  |  Branch (366:21): [True: 429, False: 110k]
+  ------------------
+  367|  13.5k|                    case 'x':
+  ------------------
+  |  Branch (367:21): [True: 735, False: 110k]
+  ------------------
+  368|  13.5k|                        if (ice(c2, 'O') && ice(c3, 'R'))
+  ------------------
+  |  Branch (368:29): [True: 789, False: 12.7k]
+  |  Branch (368:29): [True: 373, False: 13.1k]
+  |  Branch (368:45): [True: 373, False: 416]
+  ------------------
+  369|    373|                        {
+  370|    373|                            return OpCode::XOR;
+  371|    373|                        }
+  372|  13.1k|                        break;
+  373|   111k|                }
+  374|  93.5k|                break;
+  375|   111k|            }
+  376|       |
+  377|       |            // 4 character OpCodes
+  378|   109k|            case 4: {
+  ------------------
+  |  Branch (378:13): [True: 109k, False: 572k]
+  ------------------
+  379|   109k|                char c1 = token[0];
+  380|   109k|                char c2 = token[1];
+  381|   109k|                char c3 = token[2];
+  382|   109k|                char c4 = token[3];
+  383|       |
+  384|   109k|                switch (c1)
+  ------------------
+  |  Branch (384:25): [True: 52.1k, False: 56.8k]
+  ------------------
+  385|   109k|                {
+  386|  4.96k|                    case 'A':
+  ------------------
+  |  Branch (386:21): [True: 4.96k, False: 104k]
+  ------------------
+  387|  7.88k|                    case 'a':
+  ------------------
+  |  Branch (387:21): [True: 2.92k, False: 106k]
+  ------------------
+  388|  7.88k|                        switch (c2)
+  ------------------
+  |  Branch (388:33): [True: 2.56k, False: 5.32k]
+  ------------------
+  389|  7.88k|                        {
+  390|    909|                            case 'D':
+  ------------------
+  |  Branch (390:29): [True: 909, False: 6.97k]
+  ------------------
+  391|  2.85k|                            case 'd':
+  ------------------
+  |  Branch (391:29): [True: 1.94k, False: 5.93k]
+  ------------------
+  392|  2.85k|                                if (ice(c3, 'D'))
+  ------------------
+  |  Branch (392:37): [True: 2.53k, False: 326]
+  ------------------
+  393|  2.53k|                                {
+  394|  2.53k|                                    switch (c4)
+  ------------------
+  |  Branch (394:45): [True: 330, False: 2.20k]
+  ------------------
+  395|  2.53k|                                    {
+  396|    251|                                        case 'D':
+  ------------------
+  |  Branch (396:41): [True: 251, False: 2.28k]
+  ------------------
+  397|    848|                                        case 'd':
+  ------------------
+  |  Branch (397:41): [True: 597, False: 1.93k]
+  ------------------
+  398|    848|                                            return OpCode::ADDD;
+  399|       |
+  400|    100|                                        case 'F':
+  ------------------
+  |  Branch (400:41): [True: 100, False: 2.43k]
+  ------------------
+  401|    226|                                        case 'f':
+  ------------------
+  |  Branch (401:41): [True: 126, False: 2.40k]
+  ------------------
+  402|    226|                                            return OpCode::ADDF;
+  403|       |
+  404|    176|                                        case 'I':
+  ------------------
+  |  Branch (404:41): [True: 176, False: 2.35k]
+  ------------------
+  405|    435|                                        case 'i':
+  ------------------
+  |  Branch (405:41): [True: 259, False: 2.27k]
+  ------------------
+  406|    435|                                            return OpCode::ADDI;
+  407|       |
+  408|    369|                                        case 'U':
+  ------------------
+  |  Branch (408:41): [True: 369, False: 2.16k]
+  ------------------
+  409|    692|                                        case 'u':
+  ------------------
+  |  Branch (409:41): [True: 323, False: 2.20k]
+  ------------------
+  410|    692|                                            return OpCode::ADDU;
+  411|  2.53k|                                    }
+  412|  2.53k|                                }
+  413|    656|                                break;
+  414|       |
+  415|    656|                            case 'N':
+  ------------------
+  |  Branch (415:29): [True: 205, False: 7.68k]
+  ------------------
+  416|  2.46k|                            case 'n':
+  ------------------
+  |  Branch (416:29): [True: 2.26k, False: 5.62k]
+  ------------------
+  417|  2.46k|                                if (ice(c3, 'D') && ice(c4, 'I'))
+  ------------------
+  |  Branch (417:37): [True: 1.73k, False: 736]
+  |  Branch (417:37): [True: 527, False: 1.94k]
+  |  Branch (417:53): [True: 527, False: 1.20k]
+  ------------------
+  418|    527|                                {
+  419|    527|                                    return OpCode::ANDI;
+  420|    527|                                }
+  421|       |
+  422|  1.94k|                                break;
+  423|  7.88k|                        }
+  424|  5.15k|                        break;
+  425|       |
+  426|  5.15k|                    case 'B':
+  ------------------
+  |  Branch (426:21): [True: 4.55k, False: 104k]
+  ------------------
+  427|  6.65k|                    case 'b':
+  ------------------
+  |  Branch (427:21): [True: 2.10k, False: 106k]
+  ------------------
+  428|  6.65k|                        switch (c2)
+  ------------------
+  |  Branch (428:33): [True: 2.37k, False: 4.27k]
+  ------------------
+  429|  6.65k|                        {
+  430|    414|                            case 'E':
+  ------------------
+  |  Branch (430:29): [True: 414, False: 6.23k]
+  ------------------
+  431|    704|                            case 'e':
+  ------------------
+  |  Branch (431:29): [True: 290, False: 6.36k]
+  ------------------
+  432|    704|                                if (ice(c3, 'Q') && ice(c4, 'Z'))
+  ------------------
+  |  Branch (432:37): [True: 514, False: 190]
+  |  Branch (432:37): [True: 239, False: 465]
+  |  Branch (432:53): [True: 239, False: 275]
+  ------------------
+  433|    239|                                {
+  434|    239|                                    return OpCode::BEQZ;
+  435|    239|                                }
+  436|    465|                                break;
+  437|       |
+  438|    465|                            case 'F':
+  ------------------
+  |  Branch (438:29): [True: 381, False: 6.27k]
+  ------------------
+  439|  1.38k|                            case 'f':
+  ------------------
+  |  Branch (439:29): [True: 1.00k, False: 5.64k]
+  ------------------
+  440|  1.38k|                                if (ice(c3, 'P'))
+  ------------------
+  |  Branch (440:37): [True: 1.07k, False: 318]
+  ------------------
+  441|  1.07k|                                {
+  442|  1.07k|                                    if (ice(c4, 'F'))
+  ------------------
+  |  Branch (442:41): [True: 639, False: 431]
+  ------------------
+  443|    639|                                    {
+  444|    639|                                        return OpCode::BFPF;
+  445|    639|                                    }
+  446|    431|                                    else if (ice(c4, 'T'))
+  ------------------
+  |  Branch (446:46): [True: 170, False: 261]
+  ------------------
+  447|    170|                                    {
+  448|    170|                                        return OpCode::BFPT;
+  449|    170|                                    }
+  450|  1.07k|                                }
+  451|    579|                                break;
+  452|       |
+  453|    579|                            case 'N':
+  ------------------
+  |  Branch (453:29): [True: 174, False: 6.47k]
+  ------------------
+  454|  2.18k|                            case 'n':
+  ------------------
+  |  Branch (454:29): [True: 2.00k, False: 4.64k]
+  ------------------
+  455|  2.18k|                                if (ice(c3, 'E') && ice(c4, 'Z'))
+  ------------------
+  |  Branch (455:37): [True: 1.21k, False: 965]
+  |  Branch (455:37): [True: 370, False: 1.81k]
+  |  Branch (455:53): [True: 370, False: 847]
+  ------------------
+  456|    370|                                {
+  457|    370|                                    return OpCode::BNEZ;
+  458|    370|                                }
+  459|  6.65k|                        }
+  460|  5.23k|                        break;
+  461|       |
+  462|  5.23k|                    case 'D':
+  ------------------
+  |  Branch (462:21): [True: 1.29k, False: 107k]
+  ------------------
+  463|  4.14k|                    case 'd':
+  ------------------
+  |  Branch (463:21): [True: 2.85k, False: 106k]
+  ------------------
+  464|  4.14k|                        if (ice(c2, 'I') && ice(c3, 'V'))
+  ------------------
+  |  Branch (464:29): [True: 2.93k, False: 1.20k]
+  |  Branch (464:29): [True: 2.44k, False: 1.69k]
+  |  Branch (464:45): [True: 2.44k, False: 488]
+  ------------------
+  465|  2.44k|                        {
+  466|  2.44k|                            switch (c4)
+  ------------------
+  |  Branch (466:37): [True: 237, False: 2.21k]
+  ------------------
+  467|  2.44k|                            {
+  468|    218|                                case 'D':
+  ------------------
+  |  Branch (468:33): [True: 218, False: 2.23k]
+  ------------------
+  469|    401|                                case 'd':
+  ------------------
+  |  Branch (469:33): [True: 183, False: 2.26k]
+  ------------------
+  470|    401|                                    return OpCode::DIVD;
+  471|       |
+  472|    149|                                case 'F':
+  ------------------
+  |  Branch (472:33): [True: 149, False: 2.29k]
+  ------------------
+  473|    515|                                case 'f':
+  ------------------
+  |  Branch (473:33): [True: 366, False: 2.08k]
+  ------------------
+  474|    515|                                    return OpCode::DIVF;
+  475|       |
+  476|    272|                                case 'I':
+  ------------------
+  |  Branch (476:33): [True: 272, False: 2.17k]
+  ------------------
+  477|    407|                                case 'i':
+  ------------------
+  |  Branch (477:33): [True: 135, False: 2.31k]
+  ------------------
+  478|    407|                                    return OpCode::DIVI;
+  479|       |
+  480|    519|                                case 'U':
+  ------------------
+  |  Branch (480:33): [True: 519, False: 1.92k]
+  ------------------
+  481|    888|                                case 'u':
+  ------------------
+  |  Branch (481:33): [True: 369, False: 2.07k]
+  ------------------
+  482|    888|                                    return OpCode::DIVU;
+  483|  2.44k|                            }
+  484|  2.44k|                        }
+  485|  1.93k|                        break;
+  486|       |
+  487|  1.93k|                    case 'H':
+  ------------------
+  |  Branch (487:21): [True: 449, False: 108k]
+  ------------------
+  488|  1.85k|                    case 'h':
+  ------------------
+  |  Branch (488:21): [True: 1.40k, False: 107k]
+  ------------------
+  489|  1.85k|                        if (ice(c2, 'A') && ice(c3, 'L') && ice(c4, 'T'))
+  ------------------
+  |  Branch (489:29): [True: 998, False: 857]
+  |  Branch (489:29): [True: 457, False: 1.39k]
+  |  Branch (489:45): [True: 651, False: 347]
+  |  Branch (489:61): [True: 457, False: 194]
+  ------------------
+  490|    457|                        {
+  491|    457|                            return OpCode::HALT;
+  492|    457|                        }
+  493|  1.39k|                        break;
+  494|       |
+  495|  1.39k|                    case 'J':
+  ------------------
+  |  Branch (495:21): [True: 454, False: 108k]
+  ------------------
+  496|  1.73k|                    case 'j':
+  ------------------
+  |  Branch (496:21): [True: 1.28k, False: 107k]
+  ------------------
+  497|  1.73k|                        if (ice(c2, 'A') && ice(c3, 'L') && ice(c4, 'R'))
+  ------------------
+  |  Branch (497:29): [True: 1.18k, False: 548]
+  |  Branch (497:29): [True: 211, False: 1.52k]
+  |  Branch (497:45): [True: 518, False: 669]
+  |  Branch (497:61): [True: 211, False: 307]
+  ------------------
+  498|    211|                        {
+  499|    211|                            return OpCode::JALR;
+  500|    211|                        }
+  501|  1.52k|                        break;
+  502|       |
+  503|  3.15k|                    case 'M':
+  ------------------
+  |  Branch (503:21): [True: 3.15k, False: 105k]
+  ------------------
+  504|  5.22k|                    case 'm':
+  ------------------
+  |  Branch (504:21): [True: 2.07k, False: 106k]
+  ------------------
+  505|  5.22k|                        if (ice(c2, 'O') && ice(c3, 'V'))
+  ------------------
+  |  Branch (505:29): [True: 2.80k, False: 2.42k]
+  |  Branch (505:29): [True: 2.27k, False: 2.94k]
+  |  Branch (505:45): [True: 2.27k, False: 522]
+  ------------------
+  506|  2.27k|                        {
+  507|  2.27k|                            if (ice(c4, 'D'))
+  ------------------
+  |  Branch (507:33): [True: 317, False: 1.96k]
+  ------------------
+  508|    317|                            {
+  509|    317|                                return OpCode::MOVD;
+  510|    317|                            }
+  511|  1.96k|                            else if (ice(c4, 'F'))
+  ------------------
+  |  Branch (511:38): [True: 380, False: 1.58k]
+  ------------------
+  512|    380|                            {
+  513|    380|                                return OpCode::MOVF;
+  514|    380|                            }
+  515|  2.27k|                        }
+  516|  2.94k|                        else if (ice(c2, 'U') && ice(c3, 'L') && ice(c4, 'T'))
+  ------------------
+  |  Branch (516:34): [True: 1.25k, False: 1.69k]
+  |  Branch (516:34): [True: 454, False: 2.49k]
+  |  Branch (516:50): [True: 835, False: 424]
+  |  Branch (516:66): [True: 454, False: 381]
+  ------------------
+  517|    454|                        {
+  518|    454|                            return OpCode::MULT;
+  519|    454|                        }
+  520|  4.07k|                        break;
+  521|       |
+  522|  11.8k|                    case 'S':
+  ------------------
+  |  Branch (522:21): [True: 11.8k, False: 97.2k]
+  ------------------
+  523|  25.2k|                    case 's':
+  ------------------
+  |  Branch (523:21): [True: 13.4k, False: 95.6k]
+  ------------------
+  524|  25.2k|                        switch (c2)
+  ------------------
+  |  Branch (524:33): [True: 4.09k, False: 21.1k]
+  ------------------
+  525|  25.2k|                        {
+  526|  1.49k|                            case 'E':
+  ------------------
+  |  Branch (526:29): [True: 1.49k, False: 23.7k]
+  ------------------
+  527|  1.80k|                            case 'e':
+  ------------------
+  |  Branch (527:29): [True: 317, False: 24.9k]
+  ------------------
+  528|  1.80k|                                if (ice(c3, 'Q'))
+  ------------------
+  |  Branch (528:37): [True: 1.10k, False: 699]
+  ------------------
+  529|  1.10k|                                {
+  530|  1.10k|                                    if (ice(c4, 'I'))
+  ------------------
+  |  Branch (530:41): [True: 338, False: 770]
+  ------------------
+  531|    338|                                    {
+  532|    338|                                        return OpCode::SEQI;
+  533|    338|                                    }
+  534|    770|                                    else if (ice(c4, 'U'))
+  ------------------
+  |  Branch (534:46): [True: 334, False: 436]
+  ------------------
+  535|    334|                                    {
+  536|    334|                                        return OpCode::SEQU;
+  537|    334|                                    }
+  538|  1.10k|                                }
+  539|  1.13k|                                break;
+  540|       |
+  541|  1.13k|                            case 'G':
+  ------------------
+  |  Branch (541:29): [True: 1.04k, False: 24.1k]
+  ------------------
+  542|  4.26k|                            case 'g':
+  ------------------
+  |  Branch (542:29): [True: 3.22k, False: 22.0k]
+  ------------------
+  543|  4.26k|                                if (ice(c3, 'E'))
+  ------------------
+  |  Branch (543:37): [True: 2.42k, False: 1.83k]
+  ------------------
+  544|  2.42k|                                {
+  545|  2.42k|                                    if (ice(c4, 'I'))
+  ------------------
+  |  Branch (545:41): [True: 808, False: 1.61k]
+  ------------------
+  546|    808|                                    {
+  547|    808|                                        return OpCode::SGEI;
+  548|    808|                                    }
+  549|  1.61k|                                    else if (ice(c4, 'U'))
+  ------------------
+  |  Branch (549:46): [True: 466, False: 1.15k]
+  ------------------
+  550|    466|                                    {
+  551|    466|                                        return OpCode::SGEU;
+  552|    466|                                    }
+  553|  2.42k|                                }
+  554|  1.83k|                                else if (ice(c3, 'T'))
+  ------------------
+  |  Branch (554:42): [True: 1.54k, False: 292]
+  ------------------
+  555|  1.54k|                                {
+  556|  1.54k|                                    if (ice(c4, 'I'))
+  ------------------
+  |  Branch (556:41): [True: 251, False: 1.29k]
+  ------------------
+  557|    251|                                    {
+  558|    251|                                        return OpCode::SGTI;
+  559|    251|                                    }
+  560|  1.29k|                                    else if (ice(c4, 'U'))
+  ------------------
+  |  Branch (560:46): [True: 621, False: 671]
+  ------------------
+  561|    621|                                    {
+  562|    621|                                        return OpCode::SGTU;
+  563|    621|                                    }
+  564|  1.54k|                                }
+  565|  2.11k|                                break;
+  566|       |
+  567|  2.11k|                            case 'L':
+  ------------------
+  |  Branch (567:29): [True: 1.99k, False: 23.2k]
+  ------------------
+  568|  6.51k|                            case 'l':
+  ------------------
+  |  Branch (568:29): [True: 4.52k, False: 20.7k]
+  ------------------
+  569|  6.51k|                                switch (c3)
+  ------------------
+  |  Branch (569:41): [True: 693, False: 5.82k]
+  ------------------
+  570|  6.51k|                                {
+  571|    588|                                    case 'A':
+  ------------------
+  |  Branch (571:37): [True: 588, False: 5.93k]
+  ------------------
+  572|    871|                                    case 'a':
+  ------------------
+  |  Branch (572:37): [True: 283, False: 6.23k]
+  ------------------
+  573|    871|                                        if (ice(c4, 'I'))
+  ------------------
+  |  Branch (573:45): [True: 276, False: 595]
+  ------------------
+  574|    276|                                        {
+  575|    276|                                            return OpCode::SLAI;
+  576|    276|                                        }
+  577|    595|                                        break;
+  578|       |
+  579|  2.15k|                                    case 'E':
+  ------------------
+  |  Branch (579:37): [True: 2.15k, False: 4.36k]
+  ------------------
+  580|  2.40k|                                    case 'e':
+  ------------------
+  |  Branch (580:37): [True: 249, False: 6.26k]
+  ------------------
+  581|  2.40k|                                        if (ice(c4, 'I'))
+  ------------------
+  |  Branch (581:45): [True: 234, False: 2.17k]
+  ------------------
+  582|    234|                                        {
+  583|    234|                                            return OpCode::SLEI;
+  584|    234|                                        }
+  585|  2.17k|                                        else if (ice(c4, 'U'))
+  ------------------
+  |  Branch (585:50): [True: 1.17k, False: 1.00k]
+  ------------------
+  586|  1.17k|                                        {
+  587|  1.17k|                                            return OpCode::SLEU;
+  588|  1.17k|                                        }
+  589|  1.00k|                                        break;
+  590|       |
+  591|  1.00k|                                    case 'L':
+  ------------------
+  |  Branch (591:37): [True: 841, False: 5.67k]
+  ------------------
+  592|  1.28k|                                    case 'l':
+  ------------------
+  |  Branch (592:37): [True: 442, False: 6.07k]
+  ------------------
+  593|  1.28k|                                        if (ice(c4, 'I'))
+  ------------------
+  |  Branch (593:45): [True: 391, False: 892]
+  ------------------
+  594|    391|                                        {
+  595|    391|                                            return OpCode::SLLI;
+  596|    391|                                        }
+  597|    892|                                        break;
+  598|       |
+  599|    892|                                    case 'T':
+  ------------------
+  |  Branch (599:37): [True: 598, False: 5.92k]
+  ------------------
+  600|  1.26k|                                    case 't':
+  ------------------
+  |  Branch (600:37): [True: 668, False: 5.85k]
+  ------------------
+  601|  1.26k|                                        if (ice(c4, 'I'))
+  ------------------
+  |  Branch (601:45): [True: 202, False: 1.06k]
+  ------------------
+  602|    202|                                        {
+  603|    202|                                            return OpCode::SLTI;
+  604|    202|                                        }
+  605|  1.06k|                                        else if (ice(c4, 'U'))
+  ------------------
+  |  Branch (605:50): [True: 323, False: 741]
+  ------------------
+  606|    323|                                        {
+  607|    323|                                            return OpCode::SLTU;
+  608|    323|                                        }
+  609|    741|                                        break;
+  610|  6.51k|                                }
+  611|       |
+  612|  4.26k|                            case 'N':
+  ------------------
+  |  Branch (612:29): [True: 346, False: 24.8k]
+  ------------------
+  613|  6.44k|                            case 'n':
+  ------------------
+  |  Branch (613:29): [True: 2.17k, False: 23.0k]
+  ------------------
+  614|  6.44k|                                if (ice(c3, 'E'))
+  ------------------
+  |  Branch (614:37): [True: 1.99k, False: 4.44k]
+  ------------------
+  615|  1.99k|                                {
+  616|  1.99k|                                    if (ice(c4, 'I'))
+  ------------------
+  |  Branch (616:41): [True: 298, False: 1.69k]
+  ------------------
+  617|    298|                                    {
+  618|    298|                                        return OpCode::SNEI;
+  619|    298|                                    }
+  620|  1.69k|                                    else if (ice(c4, 'U'))
+  ------------------
+  |  Branch (620:46): [True: 369, False: 1.32k]
+  ------------------
+  621|    369|                                    {
+  622|    369|                                        return OpCode::SNEU;
+  623|    369|                                    }
+  624|  1.99k|                                }
+  625|  5.77k|                                break;
+  626|       |
+  627|  5.77k|                            case 'R':
+  ------------------
+  |  Branch (627:29): [True: 896, False: 24.3k]
+  ------------------
+  628|  1.76k|                            case 'r':
+  ------------------
+  |  Branch (628:29): [True: 870, False: 24.3k]
+  ------------------
+  629|  1.76k|                                if (ice(c3, 'A') && ice(c4, 'I'))
+  ------------------
+  |  Branch (629:37): [True: 904, False: 862]
+  |  Branch (629:37): [True: 589, False: 1.17k]
+  |  Branch (629:53): [True: 589, False: 315]
+  ------------------
+  630|    589|                                {
+  631|    589|                                    return OpCode::SRAI;
+  632|    589|                                }
+  633|  1.17k|                                else if (ice(c3, 'L') && ice(c4, 'I'))
+  ------------------
+  |  Branch (633:42): [True: 717, False: 460]
+  |  Branch (633:42): [True: 484, False: 693]
+  |  Branch (633:58): [True: 484, False: 233]
+  ------------------
+  634|    484|                                {
+  635|    484|                                    return OpCode::SRLI;
+  636|    484|                                }
+  637|    693|                                break;
+  638|       |
+  639|  2.25k|                            case 'U':
+  ------------------
+  |  Branch (639:29): [True: 2.25k, False: 22.9k]
+  ------------------
+  640|  4.26k|                            case 'u':
+  ------------------
+  |  Branch (640:29): [True: 2.01k, False: 23.2k]
+  ------------------
+  641|  4.26k|                                if (ice(c3, 'B'))
+  ------------------
+  |  Branch (641:37): [True: 1.93k, False: 2.32k]
+  ------------------
+  642|  1.93k|                                {
+  643|  1.93k|                                    switch (c4)
+  ------------------
+  |  Branch (643:45): [True: 569, False: 1.36k]
+  ------------------
+  644|  1.93k|                                    {
+  645|    163|                                        case 'D':
+  ------------------
+  |  Branch (645:41): [True: 163, False: 1.77k]
+  ------------------
+  646|    348|                                        case 'd':
+  ------------------
+  |  Branch (646:41): [True: 185, False: 1.75k]
+  ------------------
+  647|    348|                                            return OpCode::SUBD;
+  648|       |
+  649|    173|                                        case 'F':
+  ------------------
+  |  Branch (649:41): [True: 173, False: 1.76k]
+  ------------------
+  650|    306|                                        case 'f':
+  ------------------
+  |  Branch (650:41): [True: 133, False: 1.80k]
+  ------------------
+  651|    306|                                            return OpCode::SUBF;
+  652|       |
+  653|    122|                                        case 'I':
+  ------------------
+  |  Branch (653:41): [True: 122, False: 1.81k]
+  ------------------
+  654|    236|                                        case 'i':
+  ------------------
+  |  Branch (654:41): [True: 114, False: 1.82k]
+  ------------------
+  655|    236|                                            return OpCode::SUBI;
+  656|       |
+  657|    246|                                        case 'U':
+  ------------------
+  |  Branch (657:41): [True: 246, False: 1.69k]
+  ------------------
+  658|    478|                                        case 'u':
+  ------------------
+  |  Branch (658:41): [True: 232, False: 1.70k]
+  ------------------
+  659|    478|                                            return OpCode::SUBU;
+  660|  1.93k|                                    }
+  661|  1.93k|                                }
+  662|  2.89k|                                break;
+  663|  25.2k|                        }
+  664|  16.7k|                        break;
+  665|       |
+  666|  16.7k|                    case 'T':
+  ------------------
+  |  Branch (666:21): [True: 1.16k, False: 107k]
+  ------------------
+  667|  2.27k|                    case 't':
+  ------------------
+  |  Branch (667:21): [True: 1.10k, False: 107k]
+  ------------------
+  668|  2.27k|                        if (ice(c2, 'R') && ice(c3, 'A') && ice(c4, 'P'))
+  ------------------
+  |  Branch (668:29): [True: 1.12k, False: 1.14k]
+  |  Branch (668:29): [True: 148, False: 2.12k]
+  |  Branch (668:45): [True: 477, False: 652]
+  |  Branch (668:61): [True: 148, False: 329]
+  ------------------
+  669|    148|                        {
+  670|    148|                            return OpCode::TRAP;
+  671|    148|                        }
+  672|  2.12k|                        break;
+  673|  2.12k|                    case 'X':
+  ------------------
+  |  Branch (673:21): [True: 636, False: 108k]
+  ------------------
+  674|  1.84k|                    case 'x':
+  ------------------
+  |  Branch (674:21): [True: 1.21k, False: 107k]
+  ------------------
+  675|  1.84k|                        if (ice(c2, 'O') && ice(c3, 'R') && ice(c4, 'I'))
+  ------------------
+  |  Branch (675:29): [True: 1.28k, False: 567]
+  |  Branch (675:29): [True: 129, False: 1.71k]
+  |  Branch (675:45): [True: 476, False: 805]
+  |  Branch (675:61): [True: 129, False: 347]
+  ------------------
+  676|    129|                        {
+  677|    129|                            return OpCode::XORI;
+  678|    129|                        }
+  679|  1.71k|                        break;
+  680|   109k|                }
+  681|  92.0k|                break;
+  682|   109k|            }
+  683|       |
+  684|       |            // 5 character OpCodes
+  685|  92.0k|            case 5: {
+  ------------------
+  |  Branch (685:13): [True: 66.7k, False: 614k]
+  ------------------
+  686|  66.7k|                char c1 = token[0];
+  687|  66.7k|                char c2 = token[1];
+  688|  66.7k|                char c3 = token[2];
+  689|  66.7k|                char c4 = token[3];
+  690|  66.7k|                char c5 = token[4];
+  691|       |
+  692|  66.7k|                switch (c1)
+  ------------------
+  |  Branch (692:25): [True: 37.5k, False: 29.2k]
+  ------------------
+  693|  66.7k|                {
+  694|  2.38k|                    case 'A':
+  ------------------
+  |  Branch (694:21): [True: 2.38k, False: 64.3k]
+  ------------------
+  695|  4.11k|                    case 'a':
+  ------------------
+  |  Branch (695:21): [True: 1.73k, False: 65.0k]
+  ------------------
+  696|  4.11k|                        if (ice(c2, 'D') && ice(c3, 'D') && ice(c4, 'U') && ice(c5, 'I'))
+  ------------------
+  |  Branch (696:29): [True: 1.69k, False: 2.41k]
+  |  Branch (696:29): [True: 573, False: 3.54k]
+  |  Branch (696:45): [True: 1.49k, False: 201]
+  |  Branch (696:61): [True: 1.03k, False: 466]
+  |  Branch (696:77): [True: 573, False: 458]
+  ------------------
+  697|    573|                        {
+  698|    573|                            return OpCode::ADDUI;
+  699|    573|                        }
+  700|  3.54k|                        break;
+  701|       |
+  702|  3.54k|                    case 'D':
+  ------------------
+  |  Branch (702:21): [True: 831, False: 65.9k]
+  ------------------
+  703|  3.47k|                    case 'd':
+  ------------------
+  |  Branch (703:21): [True: 2.63k, False: 64.1k]
+  ------------------
+  704|  3.47k|                        if (ice(c2, 'I') && ice(c3, 'V') && ice(c4, 'U') && ice(c5, 'I'))
+  ------------------
+  |  Branch (704:29): [True: 2.65k, False: 819]
+  |  Branch (704:29): [True: 206, False: 3.26k]
+  |  Branch (704:45): [True: 2.27k, False: 378]
+  |  Branch (704:61): [True: 1.29k, False: 977]
+  |  Branch (704:77): [True: 206, False: 1.09k]
+  ------------------
+  705|    206|                        {
+  706|    206|                            return OpCode::DIVUI;
+  707|    206|                        }
+  708|  3.26k|                        break;
+  709|       |
+  710|  3.26k|                    case 'M':
+  ------------------
+  |  Branch (710:21): [True: 2.09k, False: 64.6k]
+  ------------------
+  711|  4.91k|                    case 'm':
+  ------------------
+  |  Branch (711:21): [True: 2.82k, False: 63.9k]
+  ------------------
+  712|  4.91k|                        if (ice(c2, 'U') && ice(c3, 'L') && ice(c4, 'T'))
+  ------------------
+  |  Branch (712:29): [True: 2.68k, False: 2.23k]
+  |  Branch (712:29): [True: 1.74k, False: 3.17k]
+  |  Branch (712:45): [True: 2.05k, False: 631]
+  |  Branch (712:61): [True: 1.74k, False: 309]
+  ------------------
+  713|  1.74k|                        {
+  714|  1.74k|                            switch (c5)
+  ------------------
+  |  Branch (714:37): [True: 330, False: 1.41k]
+  ------------------
+  715|  1.74k|                            {
+  716|    142|                                case 'D':
+  ------------------
+  |  Branch (716:33): [True: 142, False: 1.60k]
+  ------------------
+  717|    239|                                case 'd':
+  ------------------
+  |  Branch (717:33): [True: 97, False: 1.64k]
+  ------------------
+  718|    239|                                    return OpCode::MULTD;
+  719|       |
+  720|    199|                                case 'F':
+  ------------------
+  |  Branch (720:33): [True: 199, False: 1.54k]
+  ------------------
+  721|    437|                                case 'f':
+  ------------------
+  |  Branch (721:33): [True: 238, False: 1.50k]
+  ------------------
+  722|    437|                                    return OpCode::MULTF;
+  723|       |
+  724|    215|                                case 'I':
+  ------------------
+  |  Branch (724:33): [True: 215, False: 1.52k]
+  ------------------
+  725|    430|                                case 'i':
+  ------------------
+  |  Branch (725:33): [True: 215, False: 1.52k]
+  ------------------
+  726|    430|                                    return OpCode::MULTI;
+  727|       |
+  728|    109|                                case 'U':
+  ------------------
+  |  Branch (728:33): [True: 109, False: 1.63k]
+  ------------------
+  729|    306|                                case 'u':
+  ------------------
+  |  Branch (729:33): [True: 197, False: 1.54k]
+  ------------------
+  730|    306|                                    return OpCode::MULTU;
+  731|  1.74k|                            }
+  732|  1.74k|                        }
+  733|  3.50k|                        break;
+  734|       |
+  735|  7.35k|                    case 'S':
+  ------------------
+  |  Branch (735:21): [True: 7.35k, False: 59.3k]
+  ------------------
+  736|  16.7k|                    case 's':
+  ------------------
+  |  Branch (736:21): [True: 9.35k, False: 57.3k]
+  ------------------
+  737|  16.7k|                        switch (c2)
+  ------------------
+  |  Branch (737:33): [True: 2.30k, False: 14.3k]
+  ------------------
+  738|  16.7k|                        {
+  739|  1.98k|                            case 'E':
+  ------------------
+  |  Branch (739:29): [True: 1.98k, False: 14.7k]
+  ------------------
+  740|  2.20k|                            case 'e':
+  ------------------
+  |  Branch (740:29): [True: 227, False: 16.4k]
+  ------------------
+  741|  2.20k|                                if (ice(c3, 'Q') && ice(c4, 'U') && ice(c5, 'I'))
+  ------------------
+  |  Branch (741:37): [True: 1.68k, False: 526]
+  |  Branch (741:37): [True: 202, False: 2.00k]
+  |  Branch (741:53): [True: 1.14k, False: 533]
+  |  Branch (741:69): [True: 202, False: 946]
+  ------------------
+  742|    202|                                {
+  743|    202|                                    return OpCode::SEQUI;
+  744|    202|                                }
+  745|  2.00k|                                break;
+  746|       |
+  747|  2.00k|                            case 'G':
+  ------------------
+  |  Branch (747:29): [True: 881, False: 15.8k]
+  ------------------
+  748|  3.21k|                            case 'g':
+  ------------------
+  |  Branch (748:29): [True: 2.33k, False: 14.3k]
+  ------------------
+  749|  3.21k|                                if (ice(c3, 'E') && ice(c4, 'U') && ice(c5, 'I'))
+  ------------------
+  |  Branch (749:37): [True: 1.61k, False: 1.59k]
+  |  Branch (749:37): [True: 620, False: 2.59k]
+  |  Branch (749:53): [True: 919, False: 700]
+  |  Branch (749:69): [True: 620, False: 299]
+  ------------------
+  750|    620|                                {
+  751|    620|                                    return OpCode::SGEUI;
+  752|    620|                                }
+  753|  2.59k|                                else if (ice(c3, 'T') && ice(c4, 'U') && ice(c5, 'I'))
+  ------------------
+  |  Branch (753:42): [True: 1.32k, False: 1.26k]
+  |  Branch (753:42): [True: 250, False: 2.34k]
+  |  Branch (753:58): [True: 690, False: 638]
+  |  Branch (753:74): [True: 250, False: 440]
+  ------------------
+  754|    250|                                {
+  755|    250|                                    return OpCode::SGTUI;
+  756|    250|                                }
+  757|  2.34k|                                break;
+  758|       |
+  759|  2.34k|                            case 'L':
+  ------------------
+  |  Branch (759:29): [True: 1.70k, False: 14.9k]
+  ------------------
+  760|  4.85k|                            case 'l':
+  ------------------
+  |  Branch (760:29): [True: 3.15k, False: 13.5k]
+  ------------------
+  761|  4.85k|                                if (ice(c3, 'E') && ice(c4, 'U') && ice(c5, 'I'))
+  ------------------
+  |  Branch (761:37): [True: 2.39k, False: 2.46k]
+  |  Branch (761:37): [True: 298, False: 4.56k]
+  |  Branch (761:53): [True: 1.65k, False: 746]
+  |  Branch (761:69): [True: 298, False: 1.35k]
+  ------------------
+  762|    298|                                {
+  763|    298|                                    return OpCode::SLEUI;
+  764|    298|                                }
+  765|  4.56k|                                else if (ice(c3, 'T') && ice(c4, 'U') && ice(c5, 'I'))
+  ------------------
+  |  Branch (765:42): [True: 916, False: 3.64k]
+  |  Branch (765:42): [True: 275, False: 4.28k]
+  |  Branch (765:58): [True: 615, False: 301]
+  |  Branch (765:74): [True: 275, False: 340]
+  ------------------
+  766|    275|                                {
+  767|    275|                                    return OpCode::SLTUI;
+  768|    275|                                }
+  769|  4.28k|                                break;
+  770|       |
+  771|  4.28k|                            case 'N':
+  ------------------
+  |  Branch (771:29): [True: 248, False: 16.4k]
+  ------------------
+  772|  2.14k|                            case 'n':
+  ------------------
+  |  Branch (772:29): [True: 1.89k, False: 14.8k]
+  ------------------
+  773|  2.14k|                                if (ice(c3, 'E') && ice(c4, 'U') && ice(c5, 'I'))
+  ------------------
+  |  Branch (773:37): [True: 950, False: 1.19k]
+  |  Branch (773:37): [True: 276, False: 1.86k]
+  |  Branch (773:53): [True: 628, False: 322]
+  |  Branch (773:69): [True: 276, False: 352]
+  ------------------
+  774|    276|                                {
+  775|    276|                                    return OpCode::SNEUI;
+  776|    276|                                }
+  777|  1.86k|                                break;
+  778|       |
+  779|  1.86k|                            case 'U':
+  ------------------
+  |  Branch (779:29): [True: 1.00k, False: 15.7k]
+  ------------------
+  780|  1.97k|                            case 'u':
+  ------------------
+  |  Branch (780:29): [True: 974, False: 15.7k]
+  ------------------
+  781|  1.97k|                                if (ice(c3, 'B') && ice(c4, 'U') && ice(c5, 'I'))
+  ------------------
+  |  Branch (781:37): [True: 1.23k, False: 741]
+  |  Branch (781:37): [True: 344, False: 1.63k]
+  |  Branch (781:53): [True: 829, False: 405]
+  |  Branch (781:69): [True: 344, False: 485]
+  ------------------
+  782|    344|                                {
+  783|    344|                                    return OpCode::SUBUI;
+  784|    344|                                }
+  785|  1.63k|                                break;
+  786|  16.7k|                        }
+  787|       |
+  788|  14.4k|                        break;
+  789|  66.7k|                }
+  790|       |
+  791|  62.2k|                break;
+  792|  66.7k|            }
+  793|       |
+  794|       |            // 6 character OpCodes
+  795|  62.2k|            case 6: {
+  ------------------
+  |  Branch (795:13): [True: 36.8k, False: 644k]
+  ------------------
+  796|  36.8k|                char c1 = token[0];
+  797|  36.8k|                char c2 = token[1];
+  798|  36.8k|                char c3 = token[2];
+  799|  36.8k|                char c4 = token[3];
+  800|  36.8k|                char c5 = token[4];
+  801|  36.8k|                char c6 = token[5];
+  802|       |
+  803|  36.8k|                if (ice(c1, 'C') && ice(c2, 'V') && ice(c3, 'T'))
+  ------------------
+  |  Branch (803:21): [True: 4.27k, False: 32.6k]
+  |  Branch (803:21): [True: 3.48k, False: 33.3k]
+  |  Branch (803:37): [True: 3.79k, False: 482]
+  |  Branch (803:53): [True: 3.48k, False: 311]
+  ------------------
+  804|  3.48k|                {
+  805|  3.48k|                    switch (c4)
+  ------------------
+  |  Branch (805:29): [True: 517, False: 2.96k]
+  ------------------
+  806|  3.48k|                    {
+  807|    850|                        case 'D':
+  ------------------
+  |  Branch (807:25): [True: 850, False: 2.63k]
+  ------------------
+  808|  1.49k|                        case 'd':
+  ------------------
+  |  Branch (808:25): [True: 645, False: 2.83k]
+  ------------------
+  809|  1.49k|                            if (c5 == '2')
+  ------------------
+  |  Branch (809:33): [True: 622, False: 873]
+  ------------------
+  810|    622|                            {
+  811|    622|                                if (ice(c6, 'F'))
+  ------------------
+  |  Branch (811:37): [True: 144, False: 478]
+  ------------------
+  812|    144|                                {
+  813|    144|                                    return OpCode::CVTD2F;
+  814|    144|                                }
+  815|    478|                                else if (ice(c6, 'I'))
+  ------------------
+  |  Branch (815:42): [True: 135, False: 343]
+  ------------------
+  816|    135|                                {
+  817|    135|                                    return OpCode::CVTD2I;
+  818|    135|                                }
+  819|    622|                            }
+  820|  1.21k|                            break;
+  821|       |
+  822|  1.21k|                        case 'F':
+  ------------------
+  |  Branch (822:25): [True: 307, False: 3.17k]
+  ------------------
+  823|    932|                        case 'f':
+  ------------------
+  |  Branch (823:25): [True: 625, False: 2.85k]
+  ------------------
+  824|    932|                            if (c5 == '2')
+  ------------------
+  |  Branch (824:33): [True: 519, False: 413]
+  ------------------
+  825|    519|                            {
+  826|    519|                                if (ice(c6, 'D'))
+  ------------------
+  |  Branch (826:37): [True: 141, False: 378]
+  ------------------
+  827|    141|                                {
+  828|    141|                                    return OpCode::CVTF2D;
+  829|    141|                                }
+  830|    378|                                else if (ice(c6, 'I'))
+  ------------------
+  |  Branch (830:42): [True: 264, False: 114]
+  ------------------
+  831|    264|                                {
+  832|    264|                                    return OpCode::CVTF2I;
+  833|    264|                                }
+  834|    519|                            }
+  835|    527|                            break;
+  836|       |
+  837|    527|                        case 'I':
+  ------------------
+  |  Branch (837:25): [True: 468, False: 3.01k]
+  ------------------
+  838|    537|                        case 'i':
+  ------------------
+  |  Branch (838:25): [True: 69, False: 3.41k]
+  ------------------
+  839|    537|                            if (c5 == '2')
+  ------------------
+  |  Branch (839:33): [True: 367, False: 170]
+  ------------------
+  840|    367|                            {
+  841|    367|                                if (ice(c6, 'D'))
+  ------------------
+  |  Branch (841:37): [True: 135, False: 232]
+  ------------------
+  842|    135|                                {
+  843|    135|                                    return OpCode::CVTI2D;
+  844|    135|                                }
+  845|    232|                                else if (ice(c6, 'F'))
+  ------------------
+  |  Branch (845:42): [True: 164, False: 68]
+  ------------------
+  846|    164|                                {
+  847|    164|                                    return OpCode::CVTI2F;
+  848|    164|                                }
+  849|    367|                            }
+  850|  3.48k|                    }
+  851|  3.48k|                }
+  852|  33.3k|                else if (ice(c1, 'M') && ice(c2, 'U') && ice(c3, 'L') && ice(c4, 'T') &&
+  ------------------
+  |  Branch (852:26): [True: 3.54k, False: 29.8k]
+  |  Branch (852:26): [True: 218, False: 33.1k]
+  |  Branch (852:42): [True: 2.13k, False: 1.40k]
+  |  Branch (852:58): [True: 1.67k, False: 463]
+  |  Branch (852:74): [True: 866, False: 807]
+  ------------------
+  853|  33.3k|                         ice(c5, 'U') && ice(c6, 'I'))
+  ------------------
+  |  Branch (853:26): [True: 470, False: 396]
+  |  Branch (853:42): [True: 218, False: 252]
+  ------------------
+  854|    218|                {
+  855|    218|                    return OpCode::MULTUI;
+  856|    218|                }
+  857|  35.6k|                break;
+  858|  36.8k|            }
+  859|       |
+  860|       |            // 7 character OpCodes
+  861|  35.6k|            case 7: {
+  ------------------
+  |  Branch (861:13): [True: 26.5k, False: 654k]
+  ------------------
+  862|  26.5k|                char c1 = token[0];
+  863|  26.5k|                char c2 = token[1];
+  864|  26.5k|                char c3 = token[2];
+  865|  26.5k|                char c4 = token[3];
+  866|  26.5k|                char c5 = token[4];
+  867|  26.5k|                char c6 = token[5];
+  868|  26.5k|                char c7 = token[6];
+  869|       |
+  870|  26.5k|                if (ice(c1, 'M') && ice(c2, 'O') && ice(c3, 'V'))
+  ------------------
+  |  Branch (870:21): [True: 3.12k, False: 23.4k]
+  |  Branch (870:21): [True: 1.96k, False: 24.5k]
+  |  Branch (870:37): [True: 2.31k, False: 815]
+  |  Branch (870:53): [True: 1.96k, False: 344]
+  ------------------
+  871|  1.96k|                {
+  872|  1.96k|                    if (ice(c4, 'I') && c5 == '2' && ice(c6, 'F') && ice(c7, 'P'))
+  ------------------
+  |  Branch (872:25): [True: 541, False: 1.42k]
+  |  Branch (872:25): [True: 155, False: 1.81k]
+  |  Branch (872:41): [True: 338, False: 203]
+  |  Branch (872:54): [True: 288, False: 50]
+  |  Branch (872:70): [True: 155, False: 133]
+  ------------------
+  873|    155|                    {
+  874|    155|                        return OpCode::MOVI2FP;
+  875|    155|                    }
+  876|  1.81k|                    else if (ice(c4, 'F') && ice(c5, 'P') && c6 == '2' && ice(c7, 'I'))
+  ------------------
+  |  Branch (876:30): [True: 1.12k, False: 691]
+  |  Branch (876:30): [True: 154, False: 1.65k]
+  |  Branch (876:46): [True: 719, False: 401]
+  |  Branch (876:62): [True: 403, False: 316]
+  |  Branch (876:75): [True: 154, False: 249]
+  ------------------
+  877|    154|                    {
+  878|    154|                        return OpCode::MOVFP2I;
+  879|    154|                    }
+  880|  1.96k|                }
+  881|  26.2k|                break;
+  882|  26.5k|            }
+  883|       |
+  884|   127k|            default: {
+  ------------------
+  |  Branch (884:13): [True: 127k, False: 553k]
+  ------------------
+  885|   127k|                break;
+  886|  26.5k|            }
+  887|   681k|        }
+  888|       |
+  889|       |        // None found
+  890|   618k|        return OpCode::NONE;
+  891|   681k|    }
+_ZN3dlx3iceEcc:
+   17|   488k|    {
+   18|   488k|        constexpr const char diff = 'a' - 'A';
+   19|   488k|        return (c == t) || (c == t + diff);
+  ------------------
+  |  Branch (19:16): [True: 76.7k, False: 411k]
+  |  Branch (19:28): [True: 84.4k, False: 327k]
+  ------------------
+   20|   488k|    }
+
+_ZN3dlx10ParseErrorC2Ev:
+   20|  1.14M|    {}
+_ZN3dlx41ConstructUnexpectedArgumentTypeParseErrorEmmNS_12ArgumentTypeES0_:
+  192|  6.00k|    {
+  193|  6.00k|        ParseError err;
+  194|       |
+  195|  6.00k|        err.m_Type                                 = ParseError::Type::UnexpectedArgumentType;
+  196|  6.00k|        err.m_LineNumber                           = line_number;
+  197|  6.00k|        err.m_Column                               = column;
+  198|  6.00k|        err.unexpected_argument_type.expected_type = expected_type;
+  199|  6.00k|        err.unexpected_argument_type.actual_type   = actual_type;
+  200|       |
+  201|  6.00k|        return err;
+  202|  6.00k|    }
+_ZN3dlx41ConstructUnexpectedArgumentTypeParseErrorERKNS_5TokenENS_12ArgumentTypeES3_:
+  206|  6.00k|    {
+  207|  6.00k|        return ConstructUnexpectedArgumentTypeParseError(token.GetLineNumber().unsafe(),
+  208|  6.00k|                                                         token.GetColumn().unsafe(), expected_type,
+  209|  6.00k|                                                         actual_type);
+  210|  6.00k|    }
+_ZN3dlx32ConstructInvalidNumberParseErrorEmmNSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+  215|    635|    {
+  216|    635|        ParseError err;
+  217|       |
+  218|    635|        err.m_Type              = ParseError::Type::InvalidNumber;
+  219|    635|        err.m_LineNumber        = line_number;
+  220|    635|        err.m_Column            = column;
+  221|    635|        err.invalid_number.text = text;
+  222|       |
+  223|    635|        return err;
+  224|    635|    }
+_ZN3dlx32ConstructInvalidNumberParseErrorERKNS_5TokenE:
+  227|    635|    {
+  228|    635|        return ConstructInvalidNumberParseError(token.GetLineNumber().unsafe(),
+  229|    635|                                                token.GetColumn().unsafe(), token.GetText());
+  230|    635|    }
+_ZN3dlx53ConstructTooFewArgumentsAddressDisplacementParseErrorEmm:
+  234|      8|    {
+  235|      8|        ParseError err;
+  236|       |
+  237|      8|        err.m_Type       = ParseError::Type::TooFewArgumentsAddressDisplacement;
+  238|      8|        err.m_LineNumber = line_number;
+  239|      8|        err.m_Column     = column;
+  240|       |
+  241|      8|        return err;
+  242|      8|    }
+_ZN3dlx53ConstructTooFewArgumentsAddressDisplacementParseErrorERKNS_5TokenE:
+  246|      8|    {
+  247|      8|        return ConstructTooFewArgumentsAddressDisplacementParseError(token.GetLineNumber().unsafe(),
+  248|      8|                                                                     token.GetColumn().unsafe());
+  249|      8|    }
+_ZN3dlx34ConstructUnexpectedTokenParseErrorEmmNS_5Token4TypeES1_:
+  254|   736k|    {
+  255|   736k|        ParseError err;
+  256|       |
+  257|   736k|        err.m_Type                         = ParseError::Type::UnexpectedToken;
+  258|   736k|        err.m_LineNumber                   = line_number;
+  259|   736k|        err.m_Column                       = column;
+  260|   736k|        err.unexpected_token.expected_type = expected_type;
+  261|   736k|        err.unexpected_token.actual_type   = actual_type;
+  262|       |
+  263|   736k|        return err;
+  264|   736k|    }
+_ZN3dlx34ConstructUnexpectedTokenParseErrorERKNS_5TokenENS0_4TypeE:
+  268|   736k|    {
+  269|   736k|        return ConstructUnexpectedTokenParseError(token.GetLineNumber().unsafe(),
+  270|   736k|                                                  token.GetColumn().unsafe(), expected_type,
+  271|   736k|                                                  token.GetType());
+  272|   736k|    }
+_ZN3dlx36ConstructReservedIdentiferParseErrorEmmNSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+  276|  24.8k|    {
+  277|  24.8k|        ParseError err;
+  278|       |
+  279|  24.8k|        err.m_Type                         = ParseError::Type::ReserverdIdentifier;
+  280|  24.8k|        err.m_LineNumber                   = line_number;
+  281|  24.8k|        err.m_Column                       = column;
+  282|  24.8k|        err.reserved_identifier.identifier = identifier;
+  283|       |
+  284|  24.8k|        return err;
+  285|  24.8k|    }
+_ZN3dlx36ConstructReservedIdentiferParseErrorERKNS_5TokenE:
+  288|     35|    {
+  289|     35|        return ConstructReservedIdentiferParseError(token.GetLineNumber().unsafe(),
+  290|     35|                                                    token.GetColumn().unsafe(), token.GetText());
+  291|     35|    }
+_ZN3dlx41ConstructInvalidLabelIdentifierParseErrorEmmNSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+  295|   276k|    {
+  296|   276k|        ParseError err;
+  297|       |
+  298|   276k|        err.m_Type                             = ParseError::Type::InvalidLabelIdentifier;
+  299|   276k|        err.m_LineNumber                       = line_number;
+  300|   276k|        err.m_Column                           = column;
+  301|   276k|        err.invalid_label_identifier.identifer = identifier;
+  302|       |
+  303|   276k|        return err;
+  304|   276k|    }
+_ZN3dlx41ConstructInvalidLabelIdentifierParseErrorERKNS_5TokenE:
+  308|   276k|    {
+  309|   276k|        return ConstructInvalidLabelIdentifierParseError(
+  310|   276k|                token.GetLineNumber().unsafe(), token.GetColumn().unsafe(), token.GetText());
+  311|   276k|    }
+_ZN3dlx38ConstructLabelAlreadyDefinedParseErrorEmmNSt3__117basic_string_viewIcNS0_11char_traitsIcEEEEmm:
+  316|  36.9k|    {
+  317|  36.9k|        ParseError err;
+  318|       |
+  319|  36.9k|        err.m_Type                           = ParseError::Type::LabelAlreadyDefined;
+  320|  36.9k|        err.m_LineNumber                     = line_number;
+  321|  36.9k|        err.m_Column                         = column;
+  322|  36.9k|        err.label_already_defined.label_name = label_name;
+  323|  36.9k|        err.label_already_defined.at_line    = at_line;
+  324|  36.9k|        err.label_already_defined.at_column  = at_column;
+  325|       |
+  326|  36.9k|        return err;
+  327|  36.9k|    }
+_ZN3dlx38ConstructLabelAlreadyDefinedParseErrorERKNS_5TokenES2_:
+  331|  36.9k|    {
+  332|  36.9k|        return ConstructLabelAlreadyDefinedParseError(
+  333|  36.9k|                token.GetLineNumber().unsafe(), token.GetColumn().unsafe(), token.GetText(),
+  334|  36.9k|                first_definition.GetLineNumber().unsafe(), first_definition.GetColumn().unsafe());
+  335|  36.9k|    }
+_ZN3dlx40ConstructOneInstructionPerLineParseErrorEmm:
+  339|  20.8k|    {
+  340|  20.8k|        ParseError err;
+  341|       |
+  342|  20.8k|        err.m_Type       = ParseError::Type::OneInstructionPerLine;
+  343|  20.8k|        err.m_LineNumber = line_number;
+  344|  20.8k|        err.m_Column     = column;
+  345|       |
+  346|  20.8k|        return err;
+  347|  20.8k|    }
+_ZN3dlx40ConstructOneInstructionPerLineParseErrorERKNS_5TokenE:
+  351|  20.8k|    {
+  352|  20.8k|        return ConstructOneInstructionPerLineParseError(token.GetLineNumber().unsafe(),
+  353|  20.8k|                                                        token.GetColumn().unsafe());
+  354|  20.8k|    }
+_ZN3dlx34ConstructTooFewArgumentsParseErrorEmmhh:
+  359|  5.49k|    {
+  360|  5.49k|        ParseError err;
+  361|       |
+  362|  5.49k|        err.m_Type                     = ParseError::Type::TooFewArgument;
+  363|  5.49k|        err.m_LineNumber               = line_number;
+  364|  5.49k|        err.m_Column                   = column;
+  365|  5.49k|        err.too_few_arguments.required = required;
+  366|  5.49k|        err.too_few_arguments.provided = provided;
+  367|       |
+  368|  5.49k|        return err;
+  369|  5.49k|    }
+_ZN3dlx34ConstructTooFewArgumentsParseErrorERKNS_5TokenEhh:
+  373|  5.49k|    {
+  374|  5.49k|        return ConstructTooFewArgumentsParseError(token.GetLineNumber().unsafe(),
+  375|  5.49k|                                                  token.GetColumn().unsafe(), required, provided);
+  376|  5.49k|    }
+_ZN3dlx29ConstructEmptyLabelParseErrorEmmNSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+  380|  7.43k|    {
+  381|  7.43k|        ParseError err;
+  382|       |
+  383|  7.43k|        err.m_Type                 = ParseError::Type::EmptyLabel;
+  384|  7.43k|        err.m_LineNumber           = line_number;
+  385|  7.43k|        err.m_Column               = column;
+  386|  7.43k|        err.empty_label.label_name = label_name;
+  387|       |
+  388|  7.43k|        return err;
+  389|  7.43k|    }
+_ZN3dlx29ConstructEmptyLabelParseErrorERKNS_5TokenE:
+  392|  7.43k|    {
+  393|  7.43k|        return ConstructEmptyLabelParseError(
+  394|  7.43k|                token.GetLineNumber().unsafe(), token.GetColumn().unsafe(),
+  395|  7.43k|                (token.GetText().back() == ':') ?
+  ------------------
+  |  Branch (395:17): [True: 4.40k, False: 3.03k]
+  ------------------
+  396|  4.40k|                        token.GetText().substr(0, token.GetText().size() - 1) :
+  397|  7.43k|                        token.GetText());
+  398|  7.43k|    }
+_ZN3dlx31ConstructTooManyCommaParseErrorEmm:
+  402|  24.3k|    {
+  403|  24.3k|        ParseError err;
+  404|       |
+  405|  24.3k|        err.m_Type       = ParseError::Type::TooManyComma;
+  406|  24.3k|        err.m_LineNumber = line_number;
+  407|  24.3k|        err.m_Column     = column;
+  408|       |
+  409|  24.3k|        return err;
+  410|  24.3k|    }
+_ZN3dlx31ConstructTooManyCommaParseErrorERKNS_5TokenE:
+  413|  24.3k|    {
+  414|  24.3k|        return ConstructTooManyCommaParseError(token.GetLineNumber().unsafe(),
+  415|  24.3k|                                               token.GetColumn().unsafe());
+  416|  24.3k|    }
+
+_ZN3dlx13ParsedProgram13AddParseErrorEONS_10ParseErrorE:
+   18|  1.14M|    {
+   19|  1.14M|        m_ParseErrors.emplace_back(phi::move(error));
+   20|  1.14M|    }
+
+_ZN3dlx6Parser5ParseERNS_11TokenStreamE:
+  181|  8.29k|    {
+  182|  8.29k|        ParsedProgram program;
+  183|       |
+  184|  8.29k|        program.m_Tokens = tokens;
+  185|       |
+  186|  8.29k|        phi::boolean line_has_instruction{false};
+  187|  8.29k|        phi::usize   label_count{0u};
+  188|       |
+  189|  1.23M|        while (tokens.has_more())
+  ------------------
+  |  Branch (189:16): [True: 1.22M, False: 8.29k]
+  ------------------
+  190|  1.22M|        {
+  191|  1.22M|            const Token& current_token = tokens.consume();
+  192|       |
+  193|       |            //DLX_INFO("Parsing '{}'", current_token.DebugInfo());
+  194|       |
+  195|  1.22M|            switch (current_token.GetType())
+  196|  1.22M|            {
+  197|       |                // Ignore comments
+  198|  3.28k|                case Token::Type::Comment:
+  ------------------
+  |  Branch (198:17): [True: 3.28k, False: 1.22M]
+  ------------------
+  199|       |                    //DLX_DEBUG("Ignoring comment");
+  200|  3.28k|                    break;
+  201|       |
+  202|   100k|                case Token::Type::NewLine:
+  ------------------
+  |  Branch (202:17): [True: 100k, False: 1.12M]
+  ------------------
+  203|       |                    //DLX_DEBUG("Ignoring newline");
+  204|   100k|                    line_has_instruction = false;
+  205|   100k|                    break;
+  206|       |
+  207|   450k|                case Token::Type::LabelIdentifier: {
+  ------------------
+  |  Branch (207:17): [True: 450k, False: 772k]
+  ------------------
+  208|   450k|                    if (line_has_instruction)
+  ------------------
+  |  Branch (208:25): [True: 105k, False: 344k]
+  ------------------
+  209|   105k|                    {
+  210|   105k|                        program.AddParseError(ConstructUnexpectedTokenParseError(
+  211|   105k|                                current_token, Token::Type::NewLine));
+  212|   105k|                        break;
+  213|   105k|                    }
+  214|       |
+  215|       |                    // Handle jump labels
+  216|       |                    // Check if the last character of the identifier is a colon
+  217|   344k|                    if (current_token.GetText().back() != ':')
+  ------------------
+  |  Branch (217:25): [True: 166k, False: 178k]
+  ------------------
+  218|   166k|                    {
+  219|   166k|                        program.AddParseError(
+  220|   166k|                                ConstructInvalidLabelIdentifierParseError(current_token));
+  221|   166k|                        break;
+  222|   166k|                    }
+  223|       |
+  224|   178k|                    std::string_view label_name = current_token.GetText();
+  225|   178k|                    label_name.remove_suffix(1);
+  226|       |
+  227|   178k|                    if (IsReservedIdentifier(label_name))
+  ------------------
+  |  Branch (227:25): [True: 24.7k, False: 153k]
+  ------------------
+  228|  24.7k|                    {
+  229|  24.7k|                        program.AddParseError(ConstructReservedIdentiferParseError(
+  230|  24.7k|                                current_token.GetLineNumber().unsafe(),
+  231|  24.7k|                                current_token.GetColumn().unsafe(), label_name));
+  232|  24.7k|                        break;
+  233|  24.7k|                    }
+  234|       |
+  235|   153k|                    if (!IsValidIdentifier(label_name))
+  ------------------
+  |  Branch (235:25): [True: 106k, False: 46.6k]
+  ------------------
+  236|   106k|                    {
+  237|   106k|                        program.AddParseError(
+  238|   106k|                                ConstructInvalidLabelIdentifierParseError(current_token));
+  239|   106k|                        break;
+  240|   106k|                    }
+  241|       |
+  242|       |                    // Check if label was already defined
+  243|  46.6k|                    if (program.m_JumpData.find(label_name) != program.m_JumpData.end())
+  ------------------
+  |  Branch (243:25): [True: 36.9k, False: 9.62k]
+  ------------------
+  244|  36.9k|                    {
+  245|       |                        // Find first defintions of label
+  246|  36.9k|                        const Token* first_label_definition =
+  247|  36.9k|                                tokens.find_first_token_if([&](const Token& t) {
+  248|  36.9k|                                    if (t.GetType() == Token::Type::LabelIdentifier)
+  249|  36.9k|                                    {
+  250|  36.9k|                                        std::string_view token_label_name = t.GetText();
+  251|  36.9k|                                        token_label_name.remove_suffix(1);
+  252|       |
+  253|  36.9k|                                        if (token_label_name == label_name)
+  254|  36.9k|                                        {
+  255|  36.9k|                                            return true;
+  256|  36.9k|                                        }
+  257|  36.9k|                                    }
+  258|       |
+  259|  36.9k|                                    return false;
+  260|  36.9k|                                });
+  261|       |
+  262|  36.9k|                        PHI_ASSERT(first_label_definition);
+  263|       |
+  264|  36.9k|                        program.AddParseError(ConstructLabelAlreadyDefinedParseError(
+  265|  36.9k|                                current_token, *first_label_definition));
+  266|  36.9k|                        break;
+  267|  36.9k|                    }
+  268|       |
+  269|  9.62k|                    program.m_JumpData[label_name] =
+  270|  9.62k|                            static_cast<std::uint32_t>(program.m_Instructions.size());
+  271|  9.62k|                    label_count += 1u;
+  272|       |
+  273|       |                    //DLX_INFO("Added jump label {} -> {}", label_name,
+  274|       |                    //             program.m_Instructions.size());
+  275|       |
+  276|  9.62k|                    break;
+  277|  46.6k|                }
+  278|       |
+  279|  42.2k|                case Token::Type::OpCode: {
+  ------------------
+  |  Branch (279:17): [True: 42.2k, False: 1.18M]
+  ------------------
+  280|  42.2k|                    if (line_has_instruction)
+  ------------------
+  |  Branch (280:25): [True: 20.8k, False: 21.4k]
+  ------------------
+  281|  20.8k|                    {
+  282|  20.8k|                        program.AddParseError(
+  283|  20.8k|                                ConstructOneInstructionPerLineParseError(current_token));
+  284|  20.8k|                        break;
+  285|  20.8k|                    }
+  286|       |
+  287|  21.4k|                    label_count = 0u;
+  288|       |
+  289|       |                    // Handle normal instructions
+  290|  21.4k|                    PHI_ASSERT(current_token.HasHint());
+  291|  21.4k|                    OpCode opcode = static_cast<OpCode>(current_token.GetHint());
+  292|       |
+  293|       |                    //DLX_INFO("Instruction opcode: {}", dlx::enum_name(opcode));
+  294|       |
+  295|  21.4k|                    const InstructionInfo& info = LookUpIntructionInfo(opcode);
+  296|       |
+  297|       |                    // Make sure we got no problems here
+  298|  21.4k|                    PHI_ASSERT(info.GetArgumentType(0_u8) != ArgumentType::Unknown);
+  299|  21.4k|                    PHI_ASSERT(info.GetArgumentType(1_u8) != ArgumentType::Unknown);
+  300|  21.4k|                    PHI_ASSERT(info.GetArgumentType(2_u8) != ArgumentType::Unknown);
+  301|  21.4k|                    PHI_ASSERT(info.GetExecutor());
+  302|       |
+  303|  21.4k|                    const phi::u8 number_of_argument_required = info.GetNumberOfRequiredArguments();
+  304|       |                    //DLX_INFO("Instruction requires {} arguments",
+  305|       |                    //             number_of_argument_required.unsafe());
+  306|       |
+  307|       |                    // Create instruction
+  308|  21.4k|                    Instruction  instruction(info, current_token.GetLineNumber());
+  309|  21.4k|                    phi::boolean consumed_comma{false};
+  310|       |
+  311|       |                    // Parse arguments
+  312|  58.2k|                    for (phi::u8 argument_num{0_u8}; argument_num < number_of_argument_required;)
+  ------------------
+  |  Branch (312:54): [True: 56.9k, False: 1.27k]
+  ------------------
+  313|  56.9k|                    {
+  314|       |                        // Get next token
+  315|  56.9k|                        if (!tokens.has_more())
+  ------------------
+  |  Branch (315:29): [True: 507, False: 56.4k]
+  ------------------
+  316|    507|                        {
+  317|    507|                            program.AddParseError(ConstructTooFewArgumentsParseError(
+  318|    507|                                    current_token, number_of_argument_required.unsafe(),
+  319|    507|                                    argument_num.unsafe()));
+  320|    507|                            break;
+  321|    507|                        }
+  322|       |
+  323|  56.4k|                        const Token& token = tokens.consume();
+  324|       |
+  325|       |                        // Skip commas
+  326|  56.4k|                        if (token.GetType() == Token::Type::Comma)
+  ------------------
+  |  Branch (326:29): [True: 34.8k, False: 21.6k]
+  ------------------
+  327|  34.8k|                        {
+  328|  34.8k|                            if (consumed_comma)
+  ------------------
+  |  Branch (328:33): [True: 24.3k, False: 10.4k]
+  ------------------
+  329|  24.3k|                            {
+  330|  24.3k|                                program.AddParseError(ConstructTooManyCommaParseError(token));
+  331|  24.3k|                            }
+  332|       |
+  333|  34.8k|                            consumed_comma = true;
+  334|       |                            //DLX_DEBUG("Skipping comma");
+  335|  34.8k|                            continue;
+  336|  34.8k|                        }
+  337|       |
+  338|  21.6k|                        if (token.GetType() == Token::Type::NewLine)
+  ------------------
+  |  Branch (338:29): [True: 4.98k, False: 16.6k]
+  ------------------
+  339|  4.98k|                        {
+  340|  4.98k|                            program.AddParseError(ConstructTooFewArgumentsParseError(
+  341|  4.98k|                                    token, number_of_argument_required.unsafe(),
+  342|  4.98k|                                    argument_num.unsafe()));
+  343|  4.98k|                            break;
+  344|  4.98k|                        }
+  345|       |
+  346|  16.6k|                        phi::optional<InstructionArgument> optional_parsed_argument =
+  347|  16.6k|                                parse_instruction_argument(
+  348|  16.6k|                                        token, info.GetArgumentType(argument_num), tokens, program);
+  349|  16.6k|                        if (!optional_parsed_argument.has_value())
+  ------------------
+  |  Branch (349:29): [True: 14.6k, False: 1.98k]
+  ------------------
+  350|  14.6k|                        {
+  351|       |                            // The parse_instruction_argument function should already have added a parse error with more detail
+  352|  14.6k|                            break;
+  353|  14.6k|                        }
+  354|       |
+  355|       |                        // Successfully parsed one argument
+  356|  1.98k|                        InstructionArgument parsed_argument = optional_parsed_argument.value();
+  357|       |
+  358|  1.98k|                        instruction.SetArgument(argument_num, parsed_argument);
+  359|  1.98k|                        argument_num++;
+  360|  1.98k|                        consumed_comma = false;
+  361|       |
+  362|       |                        //DLX_INFO("Successfully parsed argument {}", argument_num.unsafe());
+  363|  1.98k|                    }
+  364|       |
+  365|       |                    //DLX_INFO("Successfully parsed instruction '{}'",
+  366|       |                    //            instruction.DebugInfo());
+  367|  21.4k|                    program.m_Instructions.emplace_back(instruction);
+  368|  21.4k|                    line_has_instruction = true;
+  369|  21.4k|                    break;
+  370|  42.2k|                }
+  371|       |
+  372|   626k|                default:
+  ------------------
+  |  Branch (372:17): [True: 626k, False: 596k]
+  ------------------
+  373|   626k|                    Token::Type expected_token_type = Token::Type::Unknown;
+  374|   626k|                    if (line_has_instruction)
+  ------------------
+  |  Branch (374:25): [True: 246k, False: 380k]
+  ------------------
+  375|   246k|                    {
+  376|   246k|                        expected_token_type = Token::Type::NewLine;
+  377|   246k|                    }
+  378|       |
+  379|   626k|                    program.AddParseError(
+  380|   626k|                            ConstructUnexpectedTokenParseError(current_token, expected_token_type));
+  381|   626k|                    break;
+  382|  1.22M|            }
+  383|  1.22M|        }
+  384|       |
+  385|       |        // Check for empty labels
+  386|  8.29k|        if (label_count > 0u)
+  ------------------
+  |  Branch (386:13): [True: 2.05k, False: 6.24k]
+  ------------------
+  387|  2.05k|        {
+  388|  15.2k|            for (auto it = tokens.rbegin(); label_count > 0u; ++it)
+  ------------------
+  |  Branch (388:45): [True: 13.2k, False: 2.05k]
+  ------------------
+  389|  13.2k|            {
+  390|  13.2k|                PHI_ASSERT(it != tokens.rend(), "Iterator should never reach the end");
+  391|       |
+  392|  13.2k|                const Token& token = *it;
+  393|  13.2k|                if (token.GetType() == Token::Type::LabelIdentifier)
+  ------------------
+  |  Branch (393:21): [True: 7.43k, False: 5.76k]
+  ------------------
+  394|  7.43k|                {
+  395|  7.43k|                    program.AddParseError(ConstructEmptyLabelParseError(token));
+  396|  7.43k|                    --label_count;
+  397|  7.43k|                }
+  398|  13.2k|            }
+  399|  2.05k|        }
+  400|       |
+  401|  8.29k|        return program;
+  402|  8.29k|    }
+_ZN3dlx6Parser5ParseENSt3__117basic_string_viewIcNS1_11char_traitsIcEEEE:
+  405|  8.29k|    {
+  406|  8.29k|        TokenStream tokens = Tokenize(source);
+  407|  8.29k|        return Parse(tokens);
+  408|  8.29k|    }
+Parser.cpp:_ZN3dlxL26parse_instruction_argumentERKNS_5TokenENS_12ArgumentTypeERNS_11TokenStreamERNS_13ParsedProgramE:
+   33|  16.6k|    {
+   34|       |        // DLX_INFO("Parsing argument with token '{}' and expected type '{}'", token.DebugInfo(),
+   35|       |        //              dlx::enum_name(expected_argument_type));
+   36|       |
+   37|  16.6k|        switch (token.GetType())
+   38|  16.6k|        {
+   39|  1.05k|            case Token::Type::IntegerLiteral: {
+  ------------------
+  |  Branch (39:13): [True: 1.05k, False: 15.5k]
+  ------------------
+   40|  1.05k|                if (!ArgumentTypeIncludes(expected_argument_type,
+  ------------------
+  |  Branch (40:21): [True: 309, False: 749]
+  ------------------
+   41|  1.05k|                                          ArgumentType::AddressDisplacement))
+   42|    309|                {
+   43|    309|                    program.AddParseError(ConstructUnexpectedArgumentTypeParseError(
+   44|    309|                            token, expected_argument_type, ArgumentType::AddressDisplacement));
+   45|       |
+   46|    309|                    return {};
+   47|    309|                }
+   48|       |
+   49|       |                // Get address displacement
+   50|    749|                PHI_ASSERT(token.HasHint());
+   51|       |
+   52|    749|                std::int16_t value = static_cast<std::int16_t>(token.GetHint());
+   53|       |
+   54|    749|                if (!tokens.has_x_more(3u))
+  ------------------
+  |  Branch (54:21): [True: 8, False: 741]
+  ------------------
+   55|      8|                {
+   56|      8|                    program.AddParseError(
+   57|      8|                            ConstructTooFewArgumentsAddressDisplacementParseError(token));
+   58|      8|                    return {};
+   59|      8|                }
+   60|       |
+   61|    741|                auto         it           = tokens.current_position();
+   62|    741|                const Token& first_token  = tokens.consume();
+   63|    741|                const Token& second_token = tokens.consume();
+   64|    741|                const Token& third_token  = tokens.consume();
+   65|       |
+   66|    741|                if (first_token.GetType() != Token::Type::OpenBracket)
+  ------------------
+  |  Branch (66:21): [True: 346, False: 395]
+  ------------------
+   67|    346|                {
+   68|    346|                    program.AddParseError(ConstructUnexpectedTokenParseError(
+   69|    346|                            first_token, Token::Type::OpenBracket));
+   70|    346|                    return {};
+   71|    346|                }
+   72|       |
+   73|       |                // Second token is the register
+   74|    395|                if (second_token.GetType() != Token::Type::RegisterInt)
+  ------------------
+  |  Branch (74:21): [True: 206, False: 189]
+  ------------------
+   75|    206|                {
+   76|    206|                    program.AddParseError(ConstructUnexpectedTokenParseError(
+   77|    206|                            second_token, Token::Type::RegisterInt));
+   78|    206|                    return {};
+   79|    206|                }
+   80|       |
+   81|    189|                if (third_token.GetType() != Token::Type::ClosingBracket)
+  ------------------
+  |  Branch (81:21): [True: 66, False: 123]
+  ------------------
+   82|     66|                {
+   83|     66|                    program.AddParseError(ConstructUnexpectedTokenParseError(
+   84|     66|                            third_token, Token::Type::ClosingBracket));
+   85|     66|                    return {};
+   86|     66|                }
+   87|       |
+   88|       |                // Consume the 3 tokens
+   89|    123|                tokens.set_position(it + 3u);
+   90|       |
+   91|       |                //DLX_INFO("Parsed address displacement with '{}' displacement and Register '{}'",
+   92|       |                //             value, dlx::enum_name(reg_id));
+   93|       |
+   94|    123|                return ConstructInstructionArgumentAddressDisplacement(
+   95|    123|                        static_cast<IntRegisterID>(second_token.GetHint()), value);
+   96|    189|            }
+   97|    482|            case Token::Type::RegisterInt: {
+  ------------------
+  |  Branch (97:13): [True: 482, False: 16.1k]
+  ------------------
+   98|    482|                if (!ArgumentTypeIncludes(expected_argument_type, ArgumentType::IntRegister))
+  ------------------
+  |  Branch (98:21): [True: 143, False: 339]
+  ------------------
+   99|    143|                {
+  100|    143|                    program.AddParseError(ConstructUnexpectedArgumentTypeParseError(
+  101|    143|                            token, expected_argument_type, ArgumentType::IntRegister));
+  102|    143|                    return {};
+  103|    143|                }
+  104|       |
+  105|       |                //DLX_INFO("Parsed identifier as int register {}",
+  106|       |                //             dlx::enum_name(reg_id));
+  107|       |
+  108|    339|                return ConstructInstructionArgumentRegisterInt(
+  109|    339|                        static_cast<IntRegisterID>(token.GetHint()));
+  110|    482|            }
+  111|    507|            case Token::Type::RegisterFloat: {
+  ------------------
+  |  Branch (111:13): [True: 507, False: 16.1k]
+  ------------------
+  112|    507|                if (!ArgumentTypeIncludes(expected_argument_type, ArgumentType::FloatRegister))
+  ------------------
+  |  Branch (112:21): [True: 62, False: 445]
+  ------------------
+  113|     62|                {
+  114|     62|                    program.AddParseError(ConstructUnexpectedArgumentTypeParseError(
+  115|     62|                            token, expected_argument_type, ArgumentType::FloatRegister));
+  116|     62|                    return {};
+  117|     62|                }
+  118|       |
+  119|       |                //DLX_INFO("Parsed identifier as float register {}",
+  120|       |                //             dlx::enum_name(float_reg_id));
+  121|       |
+  122|    445|                return ConstructInstructionArgumentRegisterFloat(
+  123|    445|                        static_cast<FloatRegisterID>(token.GetHint()));
+  124|    507|            }
+  125|     35|            case Token::Type::RegisterStatus: {
+  ------------------
+  |  Branch (125:13): [True: 35, False: 16.5k]
+  ------------------
+  126|     35|                program.AddParseError(ConstructReservedIdentiferParseError(token));
+  127|       |
+  128|     35|                return {};
+  129|    507|            }
+  130|  9.58k|            case Token::Type::LabelIdentifier: {
+  ------------------
+  |  Branch (130:13): [True: 9.58k, False: 7.03k]
+  ------------------
+  131|       |                // Parse as Label
+  132|  9.58k|                if (!ArgumentTypeIncludes(expected_argument_type, ArgumentType::Label))
+  ------------------
+  |  Branch (132:21): [True: 5.31k, False: 4.26k]
+  ------------------
+  133|  5.31k|                {
+  134|  5.31k|                    program.AddParseError(ConstructUnexpectedArgumentTypeParseError(
+  135|  5.31k|                            token, expected_argument_type, ArgumentType::Label));
+  136|  5.31k|                    return {};
+  137|  5.31k|                }
+  138|       |
+  139|  4.26k|                if (IsReservedIdentifier(token.GetText()))
+  ------------------
+  |  Branch (139:21): [True: 0, False: 4.26k]
+  ------------------
+  140|      0|                {
+  141|      0|                    program.AddParseError(ConstructReservedIdentiferParseError(token));
+  142|      0|                    return {};
+  143|      0|                }
+  144|       |
+  145|  4.26k|                if (!IsValidIdentifier(token.GetText()))
+  ------------------
+  |  Branch (145:21): [True: 3.52k, False: 742]
+  ------------------
+  146|  3.52k|                {
+  147|  3.52k|                    program.AddParseError(ConstructInvalidLabelIdentifierParseError(token));
+  148|  3.52k|                    return {};
+  149|  3.52k|                }
+  150|       |
+  151|       |                //DLX_INFO("Parsed Label identifier as '{}'", token.GetText());
+  152|       |
+  153|    742|                return ConstructInstructionArgumentLabel(token.GetText());
+  154|  4.26k|            }
+  155|  1.13k|            case Token::Type::ImmediateInteger: {
+  ------------------
+  |  Branch (155:13): [True: 1.13k, False: 15.4k]
+  ------------------
+  156|  1.13k|                if (!ArgumentTypeIncludes(expected_argument_type, ArgumentType::ImmediateInteger))
+  ------------------
+  |  Branch (156:21): [True: 170, False: 969]
+  ------------------
+  157|    170|                {
+  158|    170|                    program.AddParseError(ConstructUnexpectedArgumentTypeParseError(
+  159|    170|                            token, expected_argument_type, ArgumentType::ImmediateInteger));
+  160|    170|                    return {};
+  161|    170|                }
+  162|       |
+  163|    969|                if (token.HasHint())
+  ------------------
+  |  Branch (163:21): [True: 334, False: 635]
+  ------------------
+  164|    334|                {
+  165|    334|                    return ConstructInstructionArgumentImmediateValue(
+  166|    334|                            static_cast<std::int16_t>(token.GetHint()));
+  167|    334|                }
+  168|       |
+  169|    635|                program.AddParseError(ConstructInvalidNumberParseError(token));
+  170|    635|                return {};
+  171|    969|            }
+  172|       |
+  173|  3.81k|            default:
+  ------------------
+  |  Branch (173:13): [True: 3.81k, False: 12.8k]
+  ------------------
+  174|  3.81k|                program.AddParseError(
+  175|  3.81k|                        ConstructUnexpectedTokenParseError(token, Token::Type::Unknown));
+  176|  3.81k|                return {};
+  177|  16.6k|        }
+  178|  16.6k|    }
+Parser.cpp:_ZZN3dlx6Parser5ParseERNS_11TokenStreamEENK3$_0clERKNS_5TokenE:
+  247|  1.18M|                                tokens.find_first_token_if([&](const Token& t) {
+  248|  1.18M|                                    if (t.GetType() == Token::Type::LabelIdentifier)
+  ------------------
+  |  Branch (248:41): [True: 614k, False: 566k]
+  ------------------
+  249|   614k|                                    {
+  250|   614k|                                        std::string_view token_label_name = t.GetText();
+  251|   614k|                                        token_label_name.remove_suffix(1);
+  252|       |
+  253|   614k|                                        if (token_label_name == label_name)
+  ------------------
+  |  Branch (253:45): [True: 36.9k, False: 577k]
+  ------------------
+  254|  36.9k|                                        {
+  255|  36.9k|                                            return true;
+  256|  36.9k|                                        }
+  257|   614k|                                    }
+  258|       |
+  259|  1.14M|                                    return false;
+  260|  1.18M|                                });
+
+_ZN3dlx19StringToIntRegisterENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+   13|   689k|    {
+   14|   689k|        if (token.length() == 2)
+  ------------------
+  |  Branch (14:13): [True: 110k, False: 578k]
+  ------------------
+   15|   110k|        {
+   16|   110k|            char first_char = token[0];
+   17|   110k|            if (first_char == 'R' || first_char == 'r')
+  ------------------
+  |  Branch (17:17): [True: 467, False: 110k]
+  |  Branch (17:38): [True: 5.95k, False: 104k]
+  ------------------
+   18|  6.41k|            {
+   19|  6.41k|                char second_char = token[1];
+   20|  6.41k|                if (second_char >= '0' && second_char <= '9')
+  ------------------
+  |  Branch (20:21): [True: 5.68k, False: 739]
+  |  Branch (20:43): [True: 2.64k, False: 3.04k]
+  ------------------
+   21|  2.64k|                {
+   22|  2.64k|                    return static_cast<IntRegisterID>(second_char - '0');
+   23|  2.64k|                }
+   24|  6.41k|            }
+   25|   110k|        }
+   26|   578k|        else if (token.length() == 3)
+  ------------------
+  |  Branch (26:18): [True: 114k, False: 463k]
+  ------------------
+   27|   114k|        {
+   28|   114k|            char first_char = token[0];
+   29|   114k|            if (first_char == 'R' || first_char == 'r')
+  ------------------
+  |  Branch (29:17): [True: 362, False: 114k]
+  |  Branch (29:38): [True: 8.04k, False: 106k]
+  ------------------
+   30|  8.40k|            {
+   31|  8.40k|                char second_char = token[1];
+   32|  8.40k|                char third_char  = token[2];
+   33|       |
+   34|  8.40k|                switch (second_char)
+   35|  8.40k|                {
+   36|    514|                    case '1': {
+  ------------------
+  |  Branch (36:21): [True: 514, False: 7.89k]
+  ------------------
+   37|    514|                        if (third_char >= '0' && third_char <= '9')
+  ------------------
+  |  Branch (37:29): [True: 374, False: 140]
+  |  Branch (37:50): [True: 163, False: 211]
+  ------------------
+   38|    163|                        {
+   39|    163|                            return static_cast<IntRegisterID>(third_char - '0' + 10);
+   40|    163|                        }
+   41|    351|                        break;
+   42|    514|                    }
+   43|  1.04k|                    case '2': {
+  ------------------
+  |  Branch (43:21): [True: 1.04k, False: 7.35k]
+  ------------------
+   44|  1.04k|                        if (third_char >= '0' && third_char <= '9')
+  ------------------
+  |  Branch (44:29): [True: 867, False: 182]
+  |  Branch (44:50): [True: 175, False: 692]
+  ------------------
+   45|    175|                        {
+   46|    175|                            return static_cast<IntRegisterID>(third_char - '0' + 20);
+   47|    175|                        }
+   48|    874|                        break;
+   49|  1.04k|                    }
+   50|  2.62k|                    case '3': {
+  ------------------
+  |  Branch (50:21): [True: 2.62k, False: 5.78k]
+  ------------------
+   51|  2.62k|                        if (third_char == '0' || third_char == '1')
+  ------------------
+  |  Branch (51:29): [True: 196, False: 2.42k]
+  |  Branch (51:50): [True: 1.31k, False: 1.11k]
+  ------------------
+   52|  1.51k|                        {
+   53|  1.51k|                            return static_cast<IntRegisterID>(third_char - '0' + 30);
+   54|  1.51k|                        }
+   55|  1.11k|                        break;
+   56|  2.62k|                    }
+   57|  4.21k|                    default: {
+  ------------------
+  |  Branch (57:21): [True: 4.21k, False: 4.18k]
+  ------------------
+   58|  4.21k|                        break;
+   59|  2.62k|                    }
+   60|  8.40k|                }
+   61|  8.40k|            }
+   62|   114k|        }
+   63|       |
+   64|   684k|        return IntRegisterID::None;
+   65|   689k|    }
+_ZN3dlx21StringToFloatRegisterENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+   68|   684k|    {
+   69|   684k|        if (token.length() == 2)
+  ------------------
+  |  Branch (69:13): [True: 108k, False: 576k]
+  ------------------
+   70|   108k|        {
+   71|   108k|            char first_char = token[0];
+   72|   108k|            if (first_char == 'F' || first_char == 'f')
+  ------------------
+  |  Branch (72:17): [True: 3.03k, False: 105k]
+  |  Branch (72:38): [True: 2.55k, False: 102k]
+  ------------------
+   73|  5.59k|            {
+   74|  5.59k|                char second_char = token[1];
+   75|  5.59k|                if (second_char >= '0' && second_char <= '9')
+  ------------------
+  |  Branch (75:21): [True: 4.16k, False: 1.42k]
+  |  Branch (75:43): [True: 1.91k, False: 2.25k]
+  ------------------
+   76|  1.91k|                {
+   77|  1.91k|                    return static_cast<FloatRegisterID>(second_char - '0');
+   78|  1.91k|                }
+   79|  5.59k|            }
+   80|   108k|        }
+   81|   576k|        else if (token.length() == 3)
+  ------------------
+  |  Branch (81:18): [True: 112k, False: 463k]
+  ------------------
+   82|   112k|        {
+   83|   112k|            char first_char = token[0];
+   84|   112k|            if (first_char == 'F' || first_char == 'f')
+  ------------------
+  |  Branch (84:17): [True: 2.96k, False: 109k]
+  |  Branch (84:38): [True: 3.06k, False: 106k]
+  ------------------
+   85|  6.02k|            {
+   86|  6.02k|                char second_char = token[1];
+   87|  6.02k|                char third_char  = token[2];
+   88|       |
+   89|  6.02k|                switch (second_char)
+   90|  6.02k|                {
+   91|  1.23k|                    case '1': {
+  ------------------
+  |  Branch (91:21): [True: 1.23k, False: 4.79k]
+  ------------------
+   92|  1.23k|                        if (third_char >= '0' && third_char <= '9')
+  ------------------
+  |  Branch (92:29): [True: 1.09k, False: 140]
+  |  Branch (92:50): [True: 858, False: 233]
+  ------------------
+   93|    858|                        {
+   94|    858|                            return static_cast<FloatRegisterID>(third_char - '0' + 10);
+   95|    858|                        }
+   96|    373|                        break;
+   97|  1.23k|                    }
+   98|  1.10k|                    case '2': {
+  ------------------
+  |  Branch (98:21): [True: 1.10k, False: 4.91k]
+  ------------------
+   99|  1.10k|                        if (third_char >= '0' && third_char <= '9')
+  ------------------
+  |  Branch (99:29): [True: 303, False: 805]
+  |  Branch (99:50): [True: 171, False: 132]
+  ------------------
+  100|    171|                        {
+  101|    171|                            return static_cast<FloatRegisterID>(third_char - '0' + 20);
+  102|    171|                        }
+  103|    937|                        break;
+  104|  1.10k|                    }
+  105|    937|                    case '3': {
+  ------------------
+  |  Branch (105:21): [True: 634, False: 5.39k]
+  ------------------
+  106|    634|                        if (third_char == '0' || third_char == '1')
+  ------------------
+  |  Branch (106:29): [True: 295, False: 339]
+  |  Branch (106:50): [True: 192, False: 147]
+  ------------------
+  107|    487|                        {
+  108|    487|                            return static_cast<FloatRegisterID>(third_char - '0' + 30);
+  109|    487|                        }
+  110|    147|                        break;
+  111|    634|                    }
+  112|  3.05k|                    default: {
+  ------------------
+  |  Branch (112:21): [True: 3.05k, False: 2.97k]
+  ------------------
+  113|  3.05k|                        break;
+  114|    634|                    }
+  115|  6.02k|                }
+  116|  6.02k|            }
+  117|   112k|        }
+  118|       |
+  119|   681k|        return FloatRegisterID::None;
+  120|   684k|    }
+_ZN3dlx6IsFPSRENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+  123|   665k|    {
+  124|   665k|        if (token.length() == 4)
+  ------------------
+  |  Branch (124:13): [True: 103k, False: 561k]
+  ------------------
+  125|   103k|        {
+  126|   103k|            char c1 = token[0];
+  127|   103k|            char c2 = token[1];
+  128|   103k|            char c3 = token[2];
+  129|   103k|            char c4 = token[3];
+  130|       |
+  131|   103k|            return (c1 == 'F' || c1 == 'f') && (c2 == 'P' || c2 == 'p') &&
+  ------------------
+  |  Branch (131:21): [True: 2.29k, False: 101k]
+  |  Branch (131:34): [True: 5.17k, False: 96.2k]
+  |  Branch (131:49): [True: 1.31k, False: 6.14k]
+  |  Branch (131:62): [True: 106, False: 6.04k]
+  ------------------
+  132|   103k|                   (c3 == 'S' || c3 == 's') && (c4 == 'R' || c4 == 'r');
+  ------------------
+  |  Branch (132:21): [True: 480, False: 945]
+  |  Branch (132:34): [True: 607, False: 338]
+  |  Branch (132:49): [True: 66, False: 1.02k]
+  |  Branch (132:62): [True: 502, False: 519]
+  ------------------
+  133|   103k|        }
+  134|       |
+  135|   561k|        return false;
+  136|   665k|    }
+
+_ZN3dlx5TokenC2ENS0_4TypeENSt3__117basic_string_viewIcNS2_11char_traitsIcEEEEN3phi7integerImEES9_:
+   27|  1.22M|    {}
+_ZN3dlx5TokenC2ENS0_4TypeENSt3__117basic_string_viewIcNS2_11char_traitsIcEEEEN3phi7integerImEES9_j:
+   37|  56.9k|    {}
+_ZNK3dlx5Token7GetTypeEv:
+   40|  3.25M|    {
+   41|  3.25M|        return m_Type;
+   42|  3.25M|    }
+_ZNK3dlx5Token13GetLineNumberEv:
+   50|  1.19M|    {
+   51|  1.19M|        return m_LineNumber;
+   52|  1.19M|    }
+_ZNK3dlx5Token9GetColumnEv:
+   55|  1.17M|    {
+   56|  1.17M|        return m_Column;
+   57|  1.17M|    }
+_ZNK3dlx5Token7GetTextEv:
+   65|  1.48M|    {
+   66|  1.48M|        return m_Text;
+   67|  1.48M|    }
+_ZNK3dlx5Token7HasHintEv:
+   79|  23.1k|    {
+   80|  23.1k|        return m_HasHint;
+   81|  23.1k|    }
+_ZNK3dlx5Token7GetHintEv:
+   84|  23.3k|    {
+   85|  23.3k|        PHI_ASSERT(m_Type == Type::RegisterInt || m_Type == Type::RegisterFloat ||
+   86|  23.3k|                   m_Type == Type::IntegerLiteral || m_Type == Type::OpCode ||
+   87|  23.3k|                   m_Type == Type::ImmediateInteger);
+   88|  23.3k|        PHI_ASSERT(m_HasHint);
+   89|       |
+   90|  23.3k|        return m_Hint;
+   91|  23.3k|    }
+
+_ZN3dlx11TokenStream8finalizeEv:
+   29|  8.29k|    {
+   30|       |#if defined(PHI_DEBUG)
+   31|       |        PHI_ASSERT(!m_Finialized);
+   32|       |#endif
+   33|       |
+   34|  8.29k|        m_Iterator = m_Tokens.begin();
+   35|       |#if defined(PHI_DEBUG)
+   36|       |        m_Finialized = true;
+   37|       |#endif
+   38|  8.29k|    }
+_ZNK3dlx11TokenStream10has_x_moreEN3phi7integerImEE:
+   50|    749|    {
+   51|    749|        auto it = m_Iterator;
+   52|  2.97k|        for (; x > 0u; ++it, --x)
+  ------------------
+  |  Branch (52:16): [True: 2.23k, False: 741]
+  ------------------
+   53|  2.23k|        {
+   54|  2.23k|            if (it == m_Tokens.end())
+  ------------------
+  |  Branch (54:17): [True: 8, False: 2.23k]
+  ------------------
+   55|      8|            {
+   56|      8|                return false;
+   57|      8|            }
+   58|  2.23k|        }
+   59|       |
+   60|    741|        return true;
+   61|    749|    }
+_ZNK3dlx11TokenStream8has_moreEv:
+   64|  1.28M|    {
+   65|  1.28M|        return m_Iterator != m_Tokens.end();
+   66|  1.28M|    }
+_ZNK3dlx11TokenStream11reached_endEv:
+   69|  1.28M|    {
+   70|  1.28M|        return m_Iterator == m_Tokens.end();
+   71|  1.28M|    }
+_ZN3dlx11TokenStream7consumeEv:
+   84|  1.28M|    {
+   85|  1.28M|        PHI_ASSERT(!reached_end());
+   86|       |#if defined(PHI_DEBUG)
+   87|       |        PHI_ASSERT(m_Finialized);
+   88|       |#endif
+   89|       |
+   90|  1.28M|        return *m_Iterator++;
+   91|  1.28M|    }
+_ZN3dlx11TokenStream16current_positionEv:
+  163|    741|    {
+  164|    741|        return m_Iterator;
+  165|    741|    }
+_ZN3dlx11TokenStream12set_positionENSt3__111__wrap_iterIPNS_5TokenEEE:
+  173|    123|    {
+  174|       |#if defined(PHI_DEBUG)
+  175|       |        PHI_ASSERT(m_Finialized);
+  176|       |#endif
+  177|       |
+  178|    123|        m_Iterator = it;
+  179|    123|    }
+_ZNK3dlx11TokenStream6rbeginEv:
+  218|  2.05k|    {
+  219|       |#if defined(PHI_DEBUG)
+  220|       |        //PHI_ASSERT(m_Finialized);
+  221|       |#endif
+  222|       |
+  223|  2.05k|        return m_Tokens.rbegin();
+  224|  2.05k|    }
+_ZNK3dlx11TokenStream4rendEv:
+  227|  13.2k|    {
+  228|       |#if defined(PHI_DEBUG)
+  229|       |        //PHI_ASSERT(m_Finialized);
+  230|       |#endif
+  231|       |
+  232|  13.2k|        return m_Tokens.rend();
+  233|  13.2k|    }
+
+_ZN3dlx8TokenizeENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEE:
+   62|  8.29k|    {
+   63|  8.29k|        TokenStream tokens;
+   64|       |
+   65|  8.29k|        std::string_view current_token;
+   66|       |
+   67|  8.29k|        phi::u64 current_line_number{1u};
+   68|  8.29k|        phi::u64 current_column{1u};
+   69|  8.29k|        phi::u64 token_begin{0u};
+   70|       |
+   71|  8.29k|        phi::boolean parsing_comment{false};
+   72|       |
+   73|  4.20M|        for (phi::usize i{0u}; i < source.length(); ++i)
+  ------------------
+  |  Branch (73:32): [True: 4.19M, False: 8.29k]
+  ------------------
+   74|  4.19M|        {
+   75|  4.19M|            const char c{source.at(i.unsafe())};
+   76|       |
+   77|  4.19M|            if (c == '\n')
+  ------------------
+  |  Branch (77:17): [True: 106k, False: 4.09M]
+  ------------------
+   78|   106k|            {
+   79|   106k|                if (current_token.empty())
+  ------------------
+  |  Branch (79:21): [True: 33.1k, False: 72.8k]
+  ------------------
+   80|  33.1k|                {
+   81|       |                    // Skip empty lines
+   82|  33.1k|                    tokens.emplace_back(Token::Type::NewLine, source.substr(i.unsafe(), 1u),
+   83|  33.1k|                                        current_line_number, current_column);
+   84|       |
+   85|  33.1k|                    parsing_comment = false;
+   86|  33.1k|                    current_line_number += 1u;
+   87|  33.1k|                    current_column = 1u;
+   88|  33.1k|                    continue;
+   89|  33.1k|                }
+   90|       |
+   91|       |                // Otherwise a new line separates tokens
+   92|  72.8k|                tokens.emplace_back(
+   93|  72.8k|                        ParseToken(source.substr(token_begin.unsafe(), current_token.length()),
+   94|  72.8k|                                   current_line_number, current_column - current_token.length()));
+   95|       |
+   96|  72.8k|                tokens.emplace_back(Token::Type::NewLine, source.substr(i.unsafe(), 1),
+   97|  72.8k|                                    current_line_number, current_column);
+   98|       |
+   99|  72.8k|                current_token   = std::string_view{};
+  100|  72.8k|                parsing_comment = false;
+  101|  72.8k|                current_line_number += 1u;
+  102|  72.8k|                current_column = 0u;
+  103|  72.8k|            }
+  104|       |            // Comments begin with an '/' or ';' and after that the entire line is treated as part of the comment
+  105|  4.09M|            else if (c == '/' || c == ';')
+  ------------------
+  |  Branch (105:22): [True: 7.56k, False: 4.08M]
+  |  Branch (105:34): [True: 4.50k, False: 4.08M]
+  ------------------
+  106|  12.0k|            {
+  107|  12.0k|                if (current_token.empty())
+  ------------------
+  |  Branch (107:21): [True: 629, False: 11.4k]
+  ------------------
+  108|    629|                {
+  109|    629|                    token_begin = i;
+  110|    629|                }
+  111|  11.4k|                else if (!parsing_comment)
+  ------------------
+  |  Branch (111:26): [True: 3.23k, False: 8.21k]
+  ------------------
+  112|  3.23k|                {
+  113|  3.23k|                    tokens.emplace_back(ParseToken(
+  114|  3.23k|                            source.substr(token_begin.unsafe(), current_token.length()),
+  115|  3.23k|                            current_line_number, current_column - current_token.length()));
+  116|  3.23k|                    token_begin   = i;
+  117|  3.23k|                    current_token = std::string_view{};
+  118|  3.23k|                }
+  119|       |
+  120|  12.0k|                parsing_comment = true;
+  121|  12.0k|                current_token   = source.substr(token_begin.unsafe(), current_token.length() + 1);
+  122|  12.0k|            }
+  123|  4.08M|            else if (parsing_comment)
+  ------------------
+  |  Branch (123:22): [True: 70.7k, False: 4.01M]
+  ------------------
+  124|  70.7k|            {
+  125|       |                // simply append the character
+  126|  70.7k|                current_token = source.substr(token_begin.unsafe(), current_token.length() + 1);
+  127|  70.7k|            }
+  128|  4.01M|            else
+  129|  4.01M|            {
+  130|       |                // Not parsing a comment
+  131|  4.01M|                switch (c)
+  132|  4.01M|                {
+  133|  39.8k|                    case ' ':
+  ------------------
+  |  Branch (133:21): [True: 39.8k, False: 3.97M]
+  ------------------
+  134|  88.5k|                    case '\t':
+  ------------------
+  |  Branch (134:21): [True: 48.6k, False: 3.96M]
+  ------------------
+  135|   109k|                    case '\v':
+  ------------------
+  |  Branch (135:21): [True: 20.6k, False: 3.99M]
+  ------------------
+  136|   109k|                        if (current_token.empty())
+  ------------------
+  |  Branch (136:29): [True: 49.3k, False: 59.8k]
+  ------------------
+  137|  49.3k|                        {
+  138|  49.3k|                            current_column += 1u;
+  139|       |                            // We haven't found any usable character for the current token so just skip the whitespace.
+  140|  49.3k|                            continue;
+  141|  49.3k|                        }
+  142|       |
+  143|       |                        // Otherwise a whitespace separates tokens
+  144|  59.8k|                        tokens.emplace_back(ParseToken(
+  145|  59.8k|                                source.substr(token_begin.unsafe(), current_token.length()),
+  146|  59.8k|                                current_line_number, current_column - current_token.length()));
+  147|  59.8k|                        current_token = std::string_view{};
+  148|  59.8k|                        break;
+  149|   294k|                    case ':':
+  ------------------
+  |  Branch (149:21): [True: 294k, False: 3.71M]
+  ------------------
+  150|       |                        // Need to parse label names together with their colon
+  151|   294k|                        if (!current_token.empty())
+  ------------------
+  |  Branch (151:29): [True: 211k, False: 83.3k]
+  ------------------
+  152|   211k|                        {
+  153|   211k|                            current_token =
+  154|   211k|                                    source.substr(token_begin.unsafe(), current_token.length() + 1);
+  155|   211k|                            tokens.emplace_back(ParseToken(
+  156|   211k|                                    source.substr(token_begin.unsafe(), current_token.length()),
+  157|   211k|                                    current_line_number,
+  158|   211k|                                    current_column + 1u - current_token.length()));
+  159|       |
+  160|   211k|                            current_token = std::string_view{};
+  161|   211k|                        }
+  162|  83.3k|                        else
+  163|  83.3k|                        {
+  164|       |                            // Orphan colon
+  165|  83.3k|                            token_begin = i;
+  166|       |
+  167|  83.3k|                            tokens.emplace_back(Token::Type::Colon,
+  168|  83.3k|                                                source.substr(token_begin.unsafe(), 1),
+  169|  83.3k|                                                current_line_number, current_column);
+  170|  83.3k|                        }
+  171|   294k|                        break;
+  172|   327k|                    case ',':
+  ------------------
+  |  Branch (172:21): [True: 327k, False: 3.68M]
+  ------------------
+  173|   559k|                    case '(':
+  ------------------
+  |  Branch (173:21): [True: 231k, False: 3.77M]
+  ------------------
+  174|   569k|                    case ')':
+  ------------------
+  |  Branch (174:21): [True: 10.2k, False: 4.00M]
+  ------------------
+  175|   569k|                        if (!current_token.empty())
+  ------------------
+  |  Branch (175:29): [True: 169k, False: 399k]
+  ------------------
+  176|   169k|                        {
+  177|   169k|                            tokens.emplace_back(ParseToken(
+  178|   169k|                                    source.substr(token_begin.unsafe(), current_token.length()),
+  179|   169k|                                    current_line_number, current_column - current_token.length()));
+  180|       |
+  181|   169k|                            current_token = std::string_view{};
+  182|   169k|                        }
+  183|       |
+  184|   569k|                        Token::Type type;
+  185|   569k|                        switch (c)
+  186|   569k|                        {
+  187|   327k|                            case ',':
+  ------------------
+  |  Branch (187:29): [True: 327k, False: 242k]
+  ------------------
+  188|   327k|                                type = Token::Type::Comma;
+  189|   327k|                                break;
+  190|   231k|                            case '(':
+  ------------------
+  |  Branch (190:29): [True: 231k, False: 337k]
+  ------------------
+  191|   231k|                                type = Token::Type::OpenBracket;
+  192|   231k|                                break;
+  193|  10.2k|                            case ')':
+  ------------------
+  |  Branch (193:29): [True: 10.2k, False: 559k]
+  ------------------
+  194|  10.2k|                                type = Token::Type::ClosingBracket;
+  195|  10.2k|                                break;
+  196|      0|#if !defined(DLXEMU_COVERAGE_BUILD)
+  197|      0|                            default:
+  ------------------
+  |  Branch (197:29): [True: 0, False: 569k]
+  ------------------
+  198|      0|                                PHI_ASSERT_NOT_REACHED();
+  199|      0|                                break;
+  200|   569k|#endif
+  201|   569k|                        }
+  202|       |
+  203|   569k|                        token_begin = i;
+  204|       |
+  205|   569k|                        tokens.emplace_back(type, source.substr(token_begin.unsafe(), 1),
+  206|   569k|                                            current_line_number, current_column);
+  207|   569k|                        break;
+  208|       |
+  209|  3.03M|                    default:
+  ------------------
+  |  Branch (209:21): [True: 3.03M, False: 973k]
+  ------------------
+  210|  3.03M|                        if (current_token.empty())
+  ------------------
+  |  Branch (210:29): [True: 519k, False: 2.51M]
+  ------------------
+  211|   519k|                        {
+  212|   519k|                            token_begin = i;
+  213|   519k|                        }
+  214|       |
+  215|       |                        // simply append the character
+  216|  3.03M|                        current_token =
+  217|  3.03M|                                source.substr(token_begin.unsafe(), current_token.length() + 1);
+  218|  4.01M|                }
+  219|  4.01M|            }
+  220|       |
+  221|  4.11M|            current_column += 1u;
+  222|  4.11M|        }
+  223|       |
+  224|       |        // Checked the entire string. Parse whats left if anything
+  225|  8.29k|        if (!current_token.empty())
+  ------------------
+  |  Branch (225:13): [True: 6.33k, False: 1.96k]
+  ------------------
+  226|  6.33k|        {
+  227|  6.33k|            tokens.emplace_back(
+  228|  6.33k|                    ParseToken(source.substr(token_begin.unsafe(), current_token.length()),
+  229|  6.33k|                               current_line_number, current_column - current_token.length()));
+  230|  6.33k|        }
+  231|       |
+  232|       |        // Finialize token stream
+  233|  8.29k|        tokens.finalize();
+  234|       |
+  235|  8.29k|        return tokens;
+  236|  8.29k|    }
+Tokenize.cpp:_ZN3dlxL10ParseTokenENSt3__117basic_string_viewIcNS0_11char_traitsIcEEEEN3phi7integerImEES7_:
+   10|   523k|    {
+   11|   523k|        if (token.at(0) == '#' && token.size() > 1)
+  ------------------
+  |  Branch (11:13): [True: 2.60k, False: 520k]
+  |  Branch (11:35): [True: 2.11k, False: 494]
+  ------------------
+   12|  2.11k|        {
+   13|  2.11k|            auto number = ParseNumber(token.substr(1u));
+   14|       |
+   15|  2.11k|            if (number)
+  ------------------
+  |  Branch (15:17): [True: 525, False: 1.58k]
+  ------------------
+   16|    525|            {
+   17|    525|                return {Token::Type::ImmediateInteger, token, line_number, column,
+   18|    525|                        static_cast<std::uint32_t>(number.value().unsafe())};
+   19|    525|            }
+   20|       |
+   21|  1.58k|            return {Token::Type::ImmediateInteger, token, line_number, column};
+   22|  2.11k|        }
+   23|       |
+   24|   521k|        if (token.at(0) == '/' || token.at(0) == ';')
+  ------------------
+  |  Branch (24:13): [True: 2.03k, False: 519k]
+  |  Branch (24:35): [True: 1.82k, False: 517k]
+  ------------------
+   25|  3.85k|        {
+   26|  3.85k|            return {Token::Type::Comment, token, line_number, column};
+   27|  3.85k|        }
+   28|       |
+   29|   517k|        if (phi::optional<phi::i16> number = ParseNumber(token); number.has_value())
+  ------------------
+  |  Branch (29:66): [True: 9.81k, False: 507k]
+  ------------------
+   30|  9.81k|        {
+   31|  9.81k|            return {Token::Type::IntegerLiteral, token, line_number, column,
+   32|  9.81k|                    static_cast<std::uint32_t>(number->unsafe())};
+   33|  9.81k|        }
+   34|       |
+   35|   507k|        if (IsFPSR(token))
+  ------------------
+  |  Branch (35:13): [True: 470, False: 507k]
+  ------------------
+   36|    470|        {
+   37|    470|            return {Token::Type::RegisterStatus, token, line_number, column};
+   38|    470|        }
+   39|       |
+   40|   507k|        if (IntRegisterID id = StringToIntRegister(token); id != IntRegisterID::None)
+  ------------------
+  |  Branch (40:60): [True: 1.29k, False: 505k]
+  ------------------
+   41|  1.29k|        {
+   42|  1.29k|            return {Token::Type::RegisterInt, token, line_number, column,
+   43|  1.29k|                    static_cast<std::uint32_t>(id)};
+   44|  1.29k|        }
+   45|       |
+   46|   505k|        if (FloatRegisterID id = StringToFloatRegister(token); id != FloatRegisterID::None)
+  ------------------
+  |  Branch (46:64): [True: 1.94k, False: 503k]
+  ------------------
+   47|  1.94k|        {
+   48|  1.94k|            return {Token::Type::RegisterFloat, token, line_number, column,
+   49|  1.94k|                    static_cast<std::uint32_t>(id)};
+   50|  1.94k|        }
+   51|       |
+   52|   503k|        if (OpCode opcode = StringToOpCode(token); opcode != OpCode::NONE)
+  ------------------
+  |  Branch (52:52): [True: 43.3k, False: 460k]
+  ------------------
+   53|  43.3k|        {
+   54|  43.3k|            return {Token::Type::OpCode, token, line_number, column,
+   55|  43.3k|                    static_cast<std::uint32_t>(opcode)};
+   56|  43.3k|        }
+   57|       |
+   58|   460k|        return {Token::Type::LabelIdentifier, token, line_number, column};
+   59|   503k|    }
+
+LLVMFuzzerTestOneInput:
+    8|  8.29k|{
+    9|  8.29k|    std::string_view source = std::string_view(reinterpret_cast<const char*>(data), size);
+   10|       |
+   11|       |    // Parse it
+   12|  8.29k|    dlx::Parser::Parse(source);
+   13|       |
+   14|  8.29k|    return 0;
+   15|  8.29k|}
+
