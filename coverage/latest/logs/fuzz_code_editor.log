@@ -1,30 +1,420 @@
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 3455667730
+INFO: Seed: 2609701067
 INFO: Loaded 1 modules   (550 inline 8-bit counters): 550 [0x894cb0, 0x894ed6), 
 INFO: Loaded 1 PC tables (550 PCs): 550 [0x793130,0x795390), 
-MERGE-OUTER: 3434 files, 0 in the initial corpus, 0 processed earlier
+MERGE-OUTER: 5036 files, 0 in the initial corpus, 0 processed earlier
 MERGE-OUTER: attempt 1
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 3455693604
+INFO: Seed: 2609735037
 INFO: Loaded 1 modules   (550 inline 8-bit counters): 550 [0x894cb0, 0x894ed6), 
 INFO: Loaded 1 PC tables (550 PCs): 550 [0x793130,0x795390), 
 INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge620.txt'
-MERGE-INNER: 3434 total files; 0 processed earlier; will process 3434 files now
-#1	pulse  cov: 25 ft: 26 exec/s: 0 rss: 29Mb
-#2	pulse  cov: 27 ft: 28 exec/s: 0 rss: 29Mb
-#4	pulse  cov: 30 ft: 31 exec/s: 0 rss: 29Mb
-#8	pulse  cov: 34 ft: 35 exec/s: 0 rss: 29Mb
-#16	pulse  cov: 54 ft: 56 exec/s: 0 rss: 29Mb
-#32	pulse  cov: 70 ft: 72 exec/s: 0 rss: 29Mb
-#64	pulse  cov: 101 ft: 108 exec/s: 0 rss: 29Mb
-#128	pulse  cov: 173 ft: 214 exec/s: 0 rss: 29Mb
-#256	pulse  cov: 240 ft: 374 exec/s: 0 rss: 30Mb
-#512	pulse  cov: 283 ft: 589 exec/s: 0 rss: 30Mb
-#1024	pulse  cov: 292 ft: 761 exec/s: 0 rss: 30Mb
-#2048	pulse  cov: 302 ft: 971 exec/s: 0 rss: 30Mb
-#3434	DONE   cov: 306 ft: 1176 exec/s: 0 rss: 30Mb
-MERGE-OUTER: successful in 1 attempt(s)
-MERGE-OUTER: the control file has 429725 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge592.txt'
+MERGE-INNER: 5036 total files; 0 processed earlier; will process 5036 files now
+#1	pulse  cov: 25 ft: 26 exec/s: 0 rss: 30Mb
+#2	pulse  cov: 27 ft: 28 exec/s: 0 rss: 30Mb
+#4	pulse  cov: 30 ft: 31 exec/s: 0 rss: 30Mb
+#8	pulse  cov: 44 ft: 46 exec/s: 0 rss: 30Mb
+#16	pulse  cov: 52 ft: 54 exec/s: 0 rss: 30Mb
+#32	pulse  cov: 70 ft: 72 exec/s: 0 rss: 30Mb
+#64	pulse  cov: 100 ft: 107 exec/s: 0 rss: 30Mb
+#128	pulse  cov: 159 ft: 198 exec/s: 0 rss: 30Mb
+#256	pulse  cov: 231 ft: 341 exec/s: 0 rss: 30Mb
+#512	pulse  cov: 276 ft: 500 exec/s: 0 rss: 30Mb
+#1024	pulse  cov: 293 ft: 691 exec/s: 0 rss: 30Mb
+#2048	pulse  cov: 296 ft: 862 exec/s: 0 rss: 30Mb
+#4096	pulse  cov: 305 ft: 1112 exec/s: 0 rss: 31Mb
+ASSERTION VIOLATION
+condition: !line.empty()
+file:      /src/DLXEmu/DLXEmu/src/CodeEditor.cpp (2782)
+function:  void dlxemu::CodeEditor::EnterCharacterImpl(ImWchar, phi::boolean)
+==596== ERROR: libFuzzer: deadly signal
+    #0 0x4bfea4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441048 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d23 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7f4f31f5c41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7f4f31d7e00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7f4f31d5d858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61f9ce in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x4def97 in dlxemu::CodeEditor::EnterCharacterImpl(unsigned short, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:2782:25
+    #8 0x4d471e in dlxemu::CodeEditor::HandleKeyboardInputs() /src/DLXEmu/DLXEmu/src/CodeEditor.cpp
+    #9 0x4d290e in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:470:13
+    #10 0x4c7b29 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:1009:24
+    #11 0x4272c3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #12 0x4300b4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #13 0x418159 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #14 0x441802 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #15 0x7f4f31d5f082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #16 0x408bed in _start (build-out/fuzz_code_editor+0x408bed)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-8445a2f653dae620adce4bc10c1896dd05d5da25
+MERGE-OUTER: attempt 2
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2611026675
+INFO: Loaded 1 modules   (550 inline 8-bit counters): 550 [0x894cb0, 0x894ed6), 
+INFO: Loaded 1 PC tables (550 PCs): 550 [0x793130,0x795390), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge592.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/8445a2f653dae620adce4bc10c1896dd05d5da25' caused a failure at the previous merge step
+MERGE-INNER: 5036 total files; 4422 processed earlier; will process 614 files now
+#1	pulse  cov: 54 ft: 55 exec/s: 0 rss: 30Mb
+#2	pulse  cov: 56 ft: 74 exec/s: 0 rss: 30Mb
+#4	pulse  cov: 66 ft: 125 exec/s: 0 rss: 30Mb
+#8	pulse  cov: 73 ft: 169 exec/s: 0 rss: 30Mb
+#16	pulse  cov: 90 ft: 282 exec/s: 0 rss: 30Mb
+#32	pulse  cov: 145 ft: 392 exec/s: 0 rss: 30Mb
+#64	pulse  cov: 148 ft: 470 exec/s: 0 rss: 30Mb
+ASSERTION VIOLATION
+condition: !line.empty()
+file:      /src/DLXEmu/DLXEmu/src/CodeEditor.cpp (2782)
+function:  void dlxemu::CodeEditor::EnterCharacterImpl(ImWchar, phi::boolean)
+==600== ERROR: libFuzzer: deadly signal
+    #0 0x4bfea4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441048 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d23 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7f27f5bc141f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7f27f59e300a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7f27f59c2858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61f9ce in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x4def97 in dlxemu::CodeEditor::EnterCharacterImpl(unsigned short, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:2782:25
+    #8 0x4d471e in dlxemu::CodeEditor::HandleKeyboardInputs() /src/DLXEmu/DLXEmu/src/CodeEditor.cpp
+    #9 0x4d290e in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:470:13
+    #10 0x4c7b29 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:1009:24
+    #11 0x4272c3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #12 0x4300b4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #13 0x418159 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #14 0x441802 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #15 0x7f27f59c4082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #16 0x408bed in _start (build-out/fuzz_code_editor+0x408bed)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-b59d418027db095960332b1ba2f1ec63a25dbb3c
+MERGE-OUTER: attempt 3
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2611671722
+INFO: Loaded 1 modules   (550 inline 8-bit counters): 550 [0x894cb0, 0x894ed6), 
+INFO: Loaded 1 PC tables (550 PCs): 550 [0x793130,0x795390), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge592.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/b59d418027db095960332b1ba2f1ec63a25dbb3c' caused a failure at the previous merge step
+MERGE-INNER: 5036 total files; 4523 processed earlier; will process 513 files now
+#1	pulse  cov: 51 ft: 52 exec/s: 0 rss: 30Mb
+#2	pulse  cov: 59 ft: 85 exec/s: 0 rss: 30Mb
+#4	pulse  cov: 68 ft: 136 exec/s: 0 rss: 30Mb
+#8	pulse  cov: 71 ft: 184 exec/s: 0 rss: 30Mb
+#16	pulse  cov: 85 ft: 267 exec/s: 0 rss: 30Mb
+ASSERTION VIOLATION
+condition: !line.empty()
+file:      /src/DLXEmu/DLXEmu/src/CodeEditor.cpp (2782)
+function:  void dlxemu::CodeEditor::EnterCharacterImpl(ImWchar, phi::boolean)
+==604== ERROR: libFuzzer: deadly signal
+    #0 0x4bfea4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441048 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d23 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7fd8327dc41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7fd8325fe00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7fd8325dd858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61f9ce in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x4def97 in dlxemu::CodeEditor::EnterCharacterImpl(unsigned short, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:2782:25
+    #8 0x4d471e in dlxemu::CodeEditor::HandleKeyboardInputs() /src/DLXEmu/DLXEmu/src/CodeEditor.cpp
+    #9 0x4d290e in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:470:13
+    #10 0x4c7b29 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:1009:24
+    #11 0x4272c3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #12 0x4300b4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #13 0x418159 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #14 0x441802 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #15 0x7fd8325df082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #16 0x408bed in _start (build-out/fuzz_code_editor+0x408bed)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-2f50b4733aecffb505b2665f0eb679c16a900bf2
+MERGE-OUTER: attempt 4
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2612284493
+INFO: Loaded 1 modules   (550 inline 8-bit counters): 550 [0x894cb0, 0x894ed6), 
+INFO: Loaded 1 PC tables (550 PCs): 550 [0x793130,0x795390), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge592.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/2f50b4733aecffb505b2665f0eb679c16a900bf2' caused a failure at the previous merge step
+MERGE-INNER: 5036 total files; 4548 processed earlier; will process 488 files now
+#1	pulse  cov: 37 ft: 38 exec/s: 0 rss: 30Mb
+#2	pulse  cov: 71 ft: 96 exec/s: 0 rss: 30Mb
+#4	pulse  cov: 74 ft: 129 exec/s: 0 rss: 30Mb
+#8	pulse  cov: 80 ft: 172 exec/s: 0 rss: 30Mb
+#16	pulse  cov: 88 ft: 264 exec/s: 0 rss: 30Mb
+#32	pulse  cov: 143 ft: 435 exec/s: 0 rss: 31Mb
+#64	pulse  cov: 145 ft: 490 exec/s: 0 rss: 31Mb
+ASSERTION VIOLATION
+condition: !line.empty()
+file:      /src/DLXEmu/DLXEmu/src/CodeEditor.cpp (2782)
+function:  void dlxemu::CodeEditor::EnterCharacterImpl(ImWchar, phi::boolean)
+==635== ERROR: libFuzzer: deadly signal
+    #0 0x4bfea4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441048 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d23 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7f1c3763941f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7f1c3745b00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7f1c3743a858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61f9ce in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x4def97 in dlxemu::CodeEditor::EnterCharacterImpl(unsigned short, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:2782:25
+    #8 0x4d471e in dlxemu::CodeEditor::HandleKeyboardInputs() /src/DLXEmu/DLXEmu/src/CodeEditor.cpp
+    #9 0x4d290e in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:470:13
+    #10 0x4c7b29 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:1009:24
+    #11 0x4272c3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #12 0x4300b4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #13 0x418159 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #14 0x441802 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #15 0x7f1c3743c082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #16 0x408bed in _start (build-out/fuzz_code_editor+0x408bed)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-21743930895cd179a4aa48daa7d62fbb1345ff4a
+MERGE-OUTER: attempt 5
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2612920084
+INFO: Loaded 1 modules   (550 inline 8-bit counters): 550 [0x894cb0, 0x894ed6), 
+INFO: Loaded 1 PC tables (550 PCs): 550 [0x793130,0x795390), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge592.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/21743930895cd179a4aa48daa7d62fbb1345ff4a' caused a failure at the previous merge step
+MERGE-INNER: 5036 total files; 4629 processed earlier; will process 407 files now
+#1	pulse  cov: 46 ft: 47 exec/s: 0 rss: 30Mb
+#2	pulse  cov: 116 ft: 145 exec/s: 0 rss: 30Mb
+#4	pulse  cov: 121 ft: 233 exec/s: 0 rss: 30Mb
+#8	pulse  cov: 125 ft: 280 exec/s: 0 rss: 30Mb
+#16	pulse  cov: 137 ft: 378 exec/s: 0 rss: 30Mb
+ASSERTION VIOLATION
+condition: !line.empty()
+file:      /src/DLXEmu/DLXEmu/src/CodeEditor.cpp (2782)
+function:  void dlxemu::CodeEditor::EnterCharacterImpl(ImWchar, phi::boolean)
+==639== ERROR: libFuzzer: deadly signal
+    #0 0x4bfea4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441048 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d23 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7f2c8847241f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7f2c8829400a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7f2c88273858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61f9ce in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x4def97 in dlxemu::CodeEditor::EnterCharacterImpl(unsigned short, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:2782:25
+    #8 0x4d471e in dlxemu::CodeEditor::HandleKeyboardInputs() /src/DLXEmu/DLXEmu/src/CodeEditor.cpp
+    #9 0x4d290e in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:470:13
+    #10 0x4c7b29 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:1009:24
+    #11 0x4272c3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #12 0x4300b4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #13 0x418159 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #14 0x441802 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #15 0x7f2c88275082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #16 0x408bed in _start (build-out/fuzz_code_editor+0x408bed)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-bd357b85fef9da23c81eeb1ed9e0b9cddb2eca96
+MERGE-OUTER: attempt 6
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2613530186
+INFO: Loaded 1 modules   (550 inline 8-bit counters): 550 [0x894cb0, 0x894ed6), 
+INFO: Loaded 1 PC tables (550 PCs): 550 [0x793130,0x795390), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge592.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/bd357b85fef9da23c81eeb1ed9e0b9cddb2eca96' caused a failure at the previous merge step
+MERGE-INNER: 5036 total files; 4646 processed earlier; will process 390 files now
+#1	pulse  cov: 54 ft: 55 exec/s: 0 rss: 30Mb
+#2	pulse  cov: 100 ft: 137 exec/s: 0 rss: 30Mb
+#4	pulse  cov: 103 ft: 176 exec/s: 0 rss: 30Mb
+#8	pulse  cov: 107 ft: 217 exec/s: 0 rss: 30Mb
+ASSERTION VIOLATION
+condition: !line.empty()
+file:      /src/DLXEmu/DLXEmu/src/CodeEditor.cpp (2782)
+function:  void dlxemu::CodeEditor::EnterCharacterImpl(ImWchar, phi::boolean)
+==643== ERROR: libFuzzer: deadly signal
+    #0 0x4bfea4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441048 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d23 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7fbca055241f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7fbca037400a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7fbca0353858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61f9ce in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x4def97 in dlxemu::CodeEditor::EnterCharacterImpl(unsigned short, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:2782:25
+    #8 0x4d471e in dlxemu::CodeEditor::HandleKeyboardInputs() /src/DLXEmu/DLXEmu/src/CodeEditor.cpp
+    #9 0x4d290e in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:470:13
+    #10 0x4c7b29 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:1009:24
+    #11 0x4272c3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #12 0x4300b4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #13 0x418159 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #14 0x441802 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #15 0x7fbca0355082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #16 0x408bed in _start (build-out/fuzz_code_editor+0x408bed)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-94ec811d9bd78437c5a6fddb288fd702275e8078
+MERGE-OUTER: attempt 7
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2614138738
+INFO: Loaded 1 modules   (550 inline 8-bit counters): 550 [0x894cb0, 0x894ed6), 
+INFO: Loaded 1 PC tables (550 PCs): 550 [0x793130,0x795390), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge592.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/94ec811d9bd78437c5a6fddb288fd702275e8078' caused a failure at the previous merge step
+MERGE-INNER: 5036 total files; 4658 processed earlier; will process 378 files now
+ASSERTION VIOLATION
+condition: !line.empty()
+file:      /src/DLXEmu/DLXEmu/src/CodeEditor.cpp (2782)
+function:  void dlxemu::CodeEditor::EnterCharacterImpl(ImWchar, phi::boolean)
+==664== ERROR: libFuzzer: deadly signal
+    #0 0x4bfea4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441048 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d23 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7f6d20e5241f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7f6d20c7400a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7f6d20c53858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61f9ce in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x4def97 in dlxemu::CodeEditor::EnterCharacterImpl(unsigned short, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:2782:25
+    #8 0x4d471e in dlxemu::CodeEditor::HandleKeyboardInputs() /src/DLXEmu/DLXEmu/src/CodeEditor.cpp
+    #9 0x4d290e in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:470:13
+    #10 0x4c7b29 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:1009:24
+    #11 0x4272c3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #12 0x4300b4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #13 0x418159 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #14 0x441802 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #15 0x7f6d20c55082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #16 0x408bed in _start (build-out/fuzz_code_editor+0x408bed)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-9998df48c1b842b6f10a4b6ca1ed866d1af149bb
+MERGE-OUTER: attempt 8
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2614756812
+INFO: Loaded 1 modules   (550 inline 8-bit counters): 550 [0x894cb0, 0x894ed6), 
+INFO: Loaded 1 PC tables (550 PCs): 550 [0x793130,0x795390), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge592.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/9998df48c1b842b6f10a4b6ca1ed866d1af149bb' caused a failure at the previous merge step
+MERGE-INNER: 5036 total files; 4659 processed earlier; will process 377 files now
+#1	pulse  cov: 66 ft: 67 exec/s: 0 rss: 30Mb
+#2	pulse  cov: 69 ft: 103 exec/s: 0 rss: 30Mb
+#4	pulse  cov: 69 ft: 116 exec/s: 0 rss: 30Mb
+#8	pulse  cov: 143 ft: 260 exec/s: 0 rss: 30Mb
+#16	pulse  cov: 153 ft: 433 exec/s: 0 rss: 30Mb
+#32	pulse  cov: 161 ft: 551 exec/s: 0 rss: 31Mb
+#64	pulse  cov: 163 ft: 615 exec/s: 0 rss: 31Mb
+#128	pulse  cov: 168 ft: 685 exec/s: 0 rss: 31Mb
+#256	pulse  cov: 180 ft: 740 exec/s: 0 rss: 31Mb
+ASSERTION VIOLATION
+condition: !line.empty()
+file:      /src/DLXEmu/DLXEmu/src/CodeEditor.cpp (2782)
+function:  void dlxemu::CodeEditor::EnterCharacterImpl(ImWchar, phi::boolean)
+==668== ERROR: libFuzzer: deadly signal
+    #0 0x4bfea4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441048 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d23 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7fcd4de4941f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7fcd4dc6b00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7fcd4dc4a858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61f9ce in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x4def97 in dlxemu::CodeEditor::EnterCharacterImpl(unsigned short, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:2782:25
+    #8 0x4d471e in dlxemu::CodeEditor::HandleKeyboardInputs() /src/DLXEmu/DLXEmu/src/CodeEditor.cpp
+    #9 0x4d290e in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:470:13
+    #10 0x4c7b29 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:1009:24
+    #11 0x4272c3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #12 0x4300b4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #13 0x418159 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #14 0x441802 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #15 0x7fcd4dc4c082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #16 0x408bed in _start (build-out/fuzz_code_editor+0x408bed)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-50784e47a005492f8d1e19bdcf340ca42747c8ce
+MERGE-OUTER: attempt 9
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2615499566
+INFO: Loaded 1 modules   (550 inline 8-bit counters): 550 [0x894cb0, 0x894ed6), 
+INFO: Loaded 1 PC tables (550 PCs): 550 [0x793130,0x795390), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge592.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/50784e47a005492f8d1e19bdcf340ca42747c8ce' caused a failure at the previous merge step
+MERGE-INNER: 5036 total files; 4932 processed earlier; will process 104 files now
+#1	pulse  cov: 32 ft: 33 exec/s: 0 rss: 30Mb
+#2	pulse  cov: 33 ft: 34 exec/s: 0 rss: 30Mb
+#4	pulse  cov: 67 ft: 96 exec/s: 0 rss: 30Mb
+ASSERTION VIOLATION
+condition: !line.empty()
+file:      /src/DLXEmu/DLXEmu/src/CodeEditor.cpp (2782)
+function:  void dlxemu::CodeEditor::EnterCharacterImpl(ImWchar, phi::boolean)
+==672== ERROR: libFuzzer: deadly signal
+    #0 0x4bfea4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441048 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d23 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7fc9489c241f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7fc9487e400a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7fc9487c3858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61f9ce in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x4def97 in dlxemu::CodeEditor::EnterCharacterImpl(unsigned short, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:2782:25
+    #8 0x4d471e in dlxemu::CodeEditor::HandleKeyboardInputs() /src/DLXEmu/DLXEmu/src/CodeEditor.cpp
+    #9 0x4d290e in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:470:13
+    #10 0x4c7b29 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:1009:24
+    #11 0x4272c3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #12 0x4300b4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #13 0x418159 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #14 0x441802 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #15 0x7fc9487c5082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #16 0x408bed in _start (build-out/fuzz_code_editor+0x408bed)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-5a76e817c1d3f750f9fe1ce47a6c161e1e41829b
+MERGE-OUTER: attempt 10
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2616203526
+INFO: Loaded 1 modules   (550 inline 8-bit counters): 550 [0x894cb0, 0x894ed6), 
+INFO: Loaded 1 PC tables (550 PCs): 550 [0x793130,0x795390), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge592.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/5a76e817c1d3f750f9fe1ce47a6c161e1e41829b' caused a failure at the previous merge step
+MERGE-INNER: 5036 total files; 4939 processed earlier; will process 97 files now
+#1	pulse  cov: 58 ft: 59 exec/s: 0 rss: 30Mb
+#2	pulse  cov: 59 ft: 60 exec/s: 0 rss: 30Mb
+#4	pulse  cov: 64 ft: 94 exec/s: 0 rss: 30Mb
+#8	pulse  cov: 131 ft: 242 exec/s: 0 rss: 30Mb
+#16	pulse  cov: 133 ft: 359 exec/s: 0 rss: 30Mb
+#32	pulse  cov: 140 ft: 427 exec/s: 0 rss: 31Mb
+#64	pulse  cov: 151 ft: 481 exec/s: 0 rss: 31Mb
+#97	DONE   cov: 151 ft: 534 exec/s: 0 rss: 31Mb
+MERGE-OUTER: successful in 10 attempt(s)
+MERGE-OUTER: the control file has 650053 bytes
 MERGE-OUTER: consumed 0Mb (29Mb rss) to parse the control file
-MERGE-OUTER: 487 new files with 1176 new features added; 306 new coverage edges
+MERGE-OUTER: 530 new files with 1276 new features added; 307 new coverage edges
