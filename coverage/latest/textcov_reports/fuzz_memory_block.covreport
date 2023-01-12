@@ -1,80 +1,80 @@
 _ZN3dlx11MemoryBlock10MemoryByteC2Ev:
-   17|   334k|            {}
+   17|   441k|            {}
 
 _ZN3dlx11MemoryBlockC2EN3phi7integerImEES3_:
-   16|  1.22k|    {
-   17|  1.22k|        m_Values.resize(starting_size.unsafe());
-   18|  1.22k|    }
+   16|  1.24k|    {
+   17|  1.24k|        m_Values.resize(starting_size.unsafe());
+   18|  1.24k|    }
 _ZNK3dlx11MemoryBlock8LoadByteEN3phi7integerImEE:
-   21|  3.84k|    {
-   22|  3.84k|        if (!IsAddressValid(address, 1u))
+   21|  1.98k|    {
+   22|  1.98k|        if (!IsAddressValid(address, 1u))
   ------------------
-  |  Branch (22:13): [True: 3.65k, False: 194]
+  |  Branch (22:13): [True: 1.78k, False: 194]
   ------------------
-   23|  3.65k|        {
-   24|  3.65k|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
+   23|  1.78k|        {
+   24|  1.78k|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
   ------------------
-  |  |    9|  3.65k|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|  1.78k|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-   25|  3.65k|            return {};
-   26|  3.65k|        }
+   25|  1.78k|            return {};
+   26|  1.78k|        }
    27|       |
    28|    194|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
    29|       |
    30|    194|        return m_Values[raw_address].signed_value;
-   31|  3.84k|    }
+   31|  1.98k|    }
 _ZNK3dlx11MemoryBlock16LoadUnsignedByteEN3phi7integerImEE:
-   34|    724|    {
-   35|    724|        if (!IsAddressValid(address, 1u))
+   34|    899|    {
+   35|    899|        if (!IsAddressValid(address, 1u))
   ------------------
-  |  Branch (35:13): [True: 530, False: 194]
+  |  Branch (35:13): [True: 577, False: 322]
   ------------------
-   36|    530|        {
-   37|    530|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
+   36|    577|        {
+   37|    577|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
   ------------------
-  |  |    9|    530|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|    577|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-   38|    530|            return {};
-   39|    530|        }
+   38|    577|            return {};
+   39|    577|        }
    40|       |
-   41|    194|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
-   42|    194|        return m_Values[raw_address].unsigned_value;
-   43|    724|    }
+   41|    322|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
+   42|    322|        return m_Values[raw_address].unsigned_value;
+   43|    899|    }
 _ZNK3dlx11MemoryBlock12LoadHalfWordEN3phi7integerImEE:
-   46|  2.58k|    {
-   47|  2.58k|        if (!IsAddressValid(address, 2u))
+   46|  1.93k|    {
+   47|  1.93k|        if (!IsAddressValid(address, 2u))
   ------------------
-  |  Branch (47:13): [True: 1.30k, False: 1.28k]
+  |  Branch (47:13): [True: 1.03k, False: 900]
   ------------------
-   48|  1.30k|        {
-   49|  1.30k|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
+   48|  1.03k|        {
+   49|  1.03k|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
   ------------------
-  |  |    9|  1.30k|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|  1.03k|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-   50|  1.30k|            return {};
-   51|  1.30k|        }
+   50|  1.03k|            return {};
+   51|  1.03k|        }
    52|       |
-   53|  1.28k|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
+   53|    900|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
    54|       |
-   55|  1.28k|        if (!IsAddressAlignedCorrectly(raw_address, 2u))
+   55|    900|        if (!IsAddressAlignedCorrectly(raw_address, 2u))
   ------------------
-  |  Branch (55:13): [True: 450, False: 835]
+  |  Branch (55:13): [True: 578, False: 322]
   ------------------
-   56|    450|        {
-   57|    450|            DLX_ERROR("Address {} is misaligned", address.unsafe());
+   56|    578|        {
+   57|    578|            DLX_ERROR("Address {} is misaligned", address.unsafe());
   ------------------
-  |  |    9|    450|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|    578|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-   58|    450|            return {};
-   59|    450|        }
+   58|    578|            return {};
+   59|    578|        }
    60|       |
-   61|    835|        return *reinterpret_cast<const std::int16_t*>(&m_Values[raw_address].signed_value);
-   62|  1.28k|    }
+   61|    322|        return *reinterpret_cast<const std::int16_t*>(&m_Values[raw_address].signed_value);
+   62|    900|    }
 _ZNK3dlx11MemoryBlock20LoadUnsignedHalfWordEN3phi7integerImEE:
-   65|  1.54k|    {
-   66|  1.54k|        if (!IsAddressValid(address, 2u))
+   65|  1.80k|    {
+   66|  1.80k|        if (!IsAddressValid(address, 2u))
   ------------------
-  |  Branch (66:13): [True: 904, False: 644]
+  |  Branch (66:13): [True: 904, False: 901]
   ------------------
    67|    904|        {
    68|    904|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
@@ -84,41 +84,41 @@ _ZNK3dlx11MemoryBlock20LoadUnsignedHalfWordEN3phi7integerImEE:
    69|    904|            return {};
    70|    904|        }
    71|       |
-   72|    644|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
+   72|    901|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
    73|       |
-   74|    644|        if (!IsAddressAlignedCorrectly(raw_address, 2u))
+   74|    901|        if (!IsAddressAlignedCorrectly(raw_address, 2u))
   ------------------
-  |  Branch (74:13): [True: 450, False: 194]
+  |  Branch (74:13): [True: 579, False: 322]
   ------------------
-   75|    450|        {
-   76|    450|            DLX_ERROR("Address {} is misaligned", address.unsafe());
+   75|    579|        {
+   76|    579|            DLX_ERROR("Address {} is misaligned", address.unsafe());
   ------------------
-  |  |    9|    450|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|    579|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-   77|    450|            return {};
-   78|    450|        }
+   77|    579|            return {};
+   78|    579|        }
    79|       |
-   80|    194|        return *reinterpret_cast<const std::uint16_t*>(&m_Values[raw_address].unsigned_value);
-   81|    644|    }
+   80|    322|        return *reinterpret_cast<const std::uint16_t*>(&m_Values[raw_address].unsigned_value);
+   81|    901|    }
 _ZNK3dlx11MemoryBlock8LoadWordEN3phi7integerImEE:
-   84|  1.67k|    {
-   85|  1.67k|        if (!IsAddressValid(address, 4u))
+   84|  1.42k|    {
+   85|  1.42k|        if (!IsAddressValid(address, 4u))
   ------------------
-  |  Branch (85:13): [True: 1.16k, False: 516]
+  |  Branch (85:13): [True: 1.03k, False: 388]
   ------------------
-   86|  1.16k|        {
-   87|  1.16k|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
+   86|  1.03k|        {
+   87|  1.03k|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
   ------------------
-  |  |    9|  1.16k|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|  1.03k|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-   88|  1.16k|            return {};
-   89|  1.16k|        }
+   88|  1.03k|            return {};
+   89|  1.03k|        }
    90|       |
-   91|    516|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
+   91|    388|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
    92|       |
-   93|    516|        if (!IsAddressAlignedCorrectly(raw_address, 4u))
+   93|    388|        if (!IsAddressAlignedCorrectly(raw_address, 4u))
   ------------------
-  |  Branch (93:13): [True: 66, False: 450]
+  |  Branch (93:13): [True: 66, False: 322]
   ------------------
    94|     66|        {
    95|     66|            DLX_ERROR("Address {} is misaligned", address.unsafe());
@@ -128,27 +128,27 @@ _ZNK3dlx11MemoryBlock8LoadWordEN3phi7integerImEE:
    96|     66|            return {};
    97|     66|        }
    98|       |
-   99|    450|        return *reinterpret_cast<const std::int32_t*>(&m_Values[raw_address].signed_value);
-  100|    516|    }
+   99|    322|        return *reinterpret_cast<const std::int32_t*>(&m_Values[raw_address].signed_value);
+  100|    388|    }
 _ZNK3dlx11MemoryBlock16LoadUnsignedWordEN3phi7integerImEE:
-  103|    941|    {
-  104|    941|        if (!IsAddressValid(address, 4u))
+  103|  1.03k|    {
+  104|  1.03k|        if (!IsAddressValid(address, 4u))
   ------------------
-  |  Branch (104:13): [True: 681, False: 260]
+  |  Branch (104:13): [True: 648, False: 388]
   ------------------
-  105|    681|        {
-  106|    681|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
+  105|    648|        {
+  106|    648|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
   ------------------
-  |  |    9|    681|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|    648|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-  107|    681|            return {};
-  108|    681|        }
+  107|    648|            return {};
+  108|    648|        }
   109|       |
-  110|    260|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
+  110|    388|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
   111|       |
-  112|    260|        if (!IsAddressAlignedCorrectly(raw_address, 4u))
+  112|    388|        if (!IsAddressAlignedCorrectly(raw_address, 4u))
   ------------------
-  |  Branch (112:13): [True: 66, False: 194]
+  |  Branch (112:13): [True: 66, False: 322]
   ------------------
   113|     66|        {
   114|     66|            DLX_ERROR("Address {} is misaligned", address.unsafe());
@@ -158,27 +158,27 @@ _ZNK3dlx11MemoryBlock16LoadUnsignedWordEN3phi7integerImEE:
   115|     66|            return {};
   116|     66|        }
   117|       |
-  118|    194|        return *reinterpret_cast<const std::uint32_t*>(&m_Values[raw_address].unsigned_value);
-  119|    260|    }
+  118|    322|        return *reinterpret_cast<const std::uint32_t*>(&m_Values[raw_address].unsigned_value);
+  119|    388|    }
 _ZNK3dlx11MemoryBlock9LoadFloatEN3phi7integerImEE:
-  122|  1.57k|    {
-  123|  1.57k|        if (!IsAddressValid(address, 4u))
+  122|  1.41k|    {
+  123|  1.41k|        if (!IsAddressValid(address, 4u))
   ------------------
-  |  Branch (123:13): [True: 1.18k, False: 388]
+  |  Branch (123:13): [True: 900, False: 516]
   ------------------
-  124|  1.18k|        {
-  125|  1.18k|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
+  124|    900|        {
+  125|    900|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
   ------------------
-  |  |    9|  1.18k|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|    900|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-  126|  1.18k|            return {};
-  127|  1.18k|        }
+  126|    900|            return {};
+  127|    900|        }
   128|       |
-  129|    388|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
+  129|    516|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
   130|       |
-  131|    388|        if (!IsAddressAlignedCorrectly(raw_address, sizeof(phi::f32)))
+  131|    516|        if (!IsAddressAlignedCorrectly(raw_address, sizeof(phi::f32)))
   ------------------
-  |  Branch (131:13): [True: 66, False: 322]
+  |  Branch (131:13): [True: 66, False: 450]
   ------------------
   132|     66|        {
   133|     66|            DLX_ERROR("Address {} is misaligned", address.unsafe());
@@ -188,13 +188,13 @@ _ZNK3dlx11MemoryBlock9LoadFloatEN3phi7integerImEE:
   134|     66|            return {};
   135|     66|        }
   136|       |
-  137|    322|        return *reinterpret_cast<const float*>(&m_Values[raw_address].signed_value);
-  138|    388|    }
+  137|    450|        return *reinterpret_cast<const float*>(&m_Values[raw_address].signed_value);
+  138|    516|    }
 _ZNK3dlx11MemoryBlock10LoadDoubleEN3phi7integerImEE:
-  141|  1.54k|    {
-  142|  1.54k|        if (!IsAddressValid(address, 8u))
+  141|  1.42k|    {
+  142|  1.42k|        if (!IsAddressValid(address, 8u))
   ------------------
-  |  Branch (142:13): [True: 904, False: 644]
+  |  Branch (142:13): [True: 904, False: 516]
   ------------------
   143|    904|        {
   144|    904|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
@@ -204,11 +204,11 @@ _ZNK3dlx11MemoryBlock10LoadDoubleEN3phi7integerImEE:
   145|    904|            return {};
   146|    904|        }
   147|       |
-  148|    644|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
+  148|    516|        const phi::size_t raw_address = (address - m_StartingAddress).unsafe();
   149|       |
-  150|    644|        if (!IsAddressAlignedCorrectly(raw_address, sizeof(phi::f64)))
+  150|    516|        if (!IsAddressAlignedCorrectly(raw_address, sizeof(phi::f64)))
   ------------------
-  |  Branch (150:13): [True: 194, False: 450]
+  |  Branch (150:13): [True: 194, False: 322]
   ------------------
   151|    194|        {
   152|    194|            DLX_ERROR("Address {} is misaligned", address.unsafe());
@@ -218,61 +218,61 @@ _ZNK3dlx11MemoryBlock10LoadDoubleEN3phi7integerImEE:
   153|    194|            return {};
   154|    194|        }
   155|       |
-  156|    450|        return *reinterpret_cast<const double*>(&m_Values[(raw_address)].signed_value);
-  157|    644|    }
+  156|    322|        return *reinterpret_cast<const double*>(&m_Values[(raw_address)].signed_value);
+  157|    516|    }
 _ZN3dlx11MemoryBlock9StoreByteEN3phi7integerImEENS2_IaEE:
-  160|  3.44k|    {
-  161|  3.44k|        if (!IsAddressValid(address, 1u))
+  160|  1.48k|    {
+  161|  1.48k|        if (!IsAddressValid(address, 1u))
   ------------------
-  |  Branch (161:13): [True: 1.96k, False: 1.47k]
+  |  Branch (161:13): [True: 906, False: 578]
   ------------------
-  162|  1.96k|        {
-  163|  1.96k|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
+  162|    906|        {
+  163|    906|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
   ------------------
-  |  |    9|  1.96k|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|    906|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-  164|  1.96k|            return false;
-  165|  1.96k|        }
+  164|    906|            return false;
+  165|    906|        }
   166|       |
-  167|  1.47k|        m_Values[(address - m_StartingAddress).unsafe()].signed_value = value.unsafe();
-  168|  1.47k|        return true;
-  169|  3.44k|    }
+  167|    578|        m_Values[(address - m_StartingAddress).unsafe()].signed_value = value.unsafe();
+  168|    578|        return true;
+  169|  1.48k|    }
 _ZN3dlx11MemoryBlock17StoreUnsignedByteEN3phi7integerImEENS2_IhEE:
-  172|    330|    {
-  173|    330|        if (!IsAddressValid(address, 1u))
+  172|    362|    {
+  173|    362|        if (!IsAddressValid(address, 1u))
   ------------------
-  |  Branch (173:13): [True: 264, False: 66]
+  |  Branch (173:13): [True: 296, False: 66]
   ------------------
-  174|    264|        {
-  175|    264|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
+  174|    296|        {
+  175|    296|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
   ------------------
-  |  |    9|    264|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|    296|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-  176|    264|            return false;
-  177|    264|        }
+  176|    296|            return false;
+  177|    296|        }
   178|       |
   179|     66|        m_Values[(address - m_StartingAddress).unsafe()].unsigned_value = value.unsafe();
   180|     66|        return true;
-  181|    330|    }
+  181|    362|    }
 _ZN3dlx11MemoryBlock13StoreHalfWordEN3phi7integerImEENS2_IsEE:
-  184|    490|    {
-  185|    490|        if (!IsAddressValid(address, 2u))
+  184|    576|    {
+  185|    576|        if (!IsAddressValid(address, 2u))
   ------------------
-  |  Branch (185:13): [True: 424, False: 66]
+  |  Branch (185:13): [True: 510, False: 66]
   ------------------
-  186|    424|        {
-  187|    424|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
+  186|    510|        {
+  187|    510|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
   ------------------
-  |  |    9|    424|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|    510|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-  188|    424|            return false;
-  189|    424|        }
+  188|    510|            return false;
+  189|    510|        }
   190|       |
   191|     66|        phi::size_t index = (address - m_StartingAddress).unsafe();
   192|     66|        *reinterpret_cast<std::int16_t*>(&m_Values[index].signed_value) = value.unsafe();
   193|       |
   194|     66|        return true;
-  195|    490|    }
+  195|    576|    }
 _ZN3dlx11MemoryBlock21StoreUnsignedHalfWordEN3phi7integerImEENS2_ItEE:
   198|    586|    {
   199|    586|        if (!IsAddressValid(address, 2u))
@@ -293,10 +293,10 @@ _ZN3dlx11MemoryBlock21StoreUnsignedHalfWordEN3phi7integerImEENS2_ItEE:
   208|     66|        return true;
   209|    586|    }
 _ZN3dlx11MemoryBlock9StoreWordEN3phi7integerImEENS2_IiEE:
-  212|    970|    {
-  213|    970|        if (!IsAddressValid(address, 4u))
+  212|  1.09k|    {
+  213|  1.09k|        if (!IsAddressValid(address, 4u))
   ------------------
-  |  Branch (213:13): [True: 520, False: 450]
+  |  Branch (213:13): [True: 520, False: 578]
   ------------------
   214|    520|        {
   215|    520|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
@@ -306,49 +306,49 @@ _ZN3dlx11MemoryBlock9StoreWordEN3phi7integerImEENS2_IiEE:
   216|    520|            return false;
   217|    520|        }
   218|       |
-  219|    450|        phi::size_t index = (address - m_StartingAddress).unsafe();
-  220|    450|        *reinterpret_cast<std::int32_t*>(&m_Values[index].signed_value) = value.unsafe();
+  219|    578|        phi::size_t index = (address - m_StartingAddress).unsafe();
+  220|    578|        *reinterpret_cast<std::int32_t*>(&m_Values[index].signed_value) = value.unsafe();
   221|       |
-  222|    450|        return true;
-  223|    970|    }
+  222|    578|        return true;
+  223|  1.09k|    }
 _ZN3dlx11MemoryBlock17StoreUnsignedWordEN3phi7integerImEENS2_IjEE:
-  226|  1.35k|    {
-  227|  1.35k|        if (!IsAddressValid(address, 4u))
+  226|  2.38k|    {
+  227|  2.38k|        if (!IsAddressValid(address, 4u))
   ------------------
-  |  Branch (227:13): [True: 1.29k, False: 66]
+  |  Branch (227:13): [True: 2.31k, False: 66]
   ------------------
-  228|  1.29k|        {
-  229|  1.29k|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
+  228|  2.31k|        {
+  229|  2.31k|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
   ------------------
-  |  |    9|  1.29k|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|  2.31k|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-  230|  1.29k|            return false;
-  231|  1.29k|        }
+  230|  2.31k|            return false;
+  231|  2.31k|        }
   232|       |
   233|     66|        phi::size_t index = (address - m_StartingAddress).unsafe();
   234|     66|        *reinterpret_cast<std::uint32_t*>(&m_Values[index].unsigned_value) = value.unsafe();
   235|       |
   236|     66|        return true;
-  237|  1.35k|    }
+  237|  2.38k|    }
 _ZN3dlx11MemoryBlock10StoreFloatEN3phi7integerImEENS1_14floating_pointIfEE:
-  240|  1.61k|    {
-  241|  1.61k|        if (!IsAddressValid(address, 4u))
+  240|  1.09k|    {
+  241|  1.09k|        if (!IsAddressValid(address, 4u))
   ------------------
-  |  Branch (241:13): [True: 1.41k, False: 194]
+  |  Branch (241:13): [True: 904, False: 194]
   ------------------
-  242|  1.41k|        {
-  243|  1.41k|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
+  242|    904|        {
+  243|    904|            DLX_ERROR("Address {} is out of bounds", address.unsafe());
   ------------------
-  |  |    9|  1.41k|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
+  |  |    9|    904|#define DLX_ERROR(...)    PHI_EMPTY_MACRO()
   ------------------
-  244|  1.41k|            return false;
-  245|  1.41k|        }
+  244|    904|            return false;
+  245|    904|        }
   246|       |
   247|    194|        phi::size_t index = (address - m_StartingAddress).unsafe();
   248|    194|        *reinterpret_cast<float*>(&m_Values[index].signed_value) = value.unsafe();
   249|       |
   250|    194|        return true;
-  251|  1.61k|    }
+  251|  1.09k|    }
 _ZN3dlx11MemoryBlock11StoreDoubleEN3phi7integerImEENS1_14floating_pointIdEE:
   254|    330|    {
   255|    330|        if (!IsAddressValid(address, 8u))
@@ -369,449 +369,449 @@ _ZN3dlx11MemoryBlock11StoreDoubleEN3phi7integerImEENS1_14floating_pointIdEE:
   264|     66|        return true;
   265|    330|    }
 _ZNK3dlx11MemoryBlock14IsAddressValidEN3phi7integerImEES3_:
-  268|  24.3k|    {
+  268|  20.4k|    {
   269|       |        // Cannot access anything before the starting address
-  270|  24.3k|        if (address < m_StartingAddress)
+  270|  20.4k|        if (address < m_StartingAddress)
   ------------------
-  |  Branch (270:13): [True: 3.91k, False: 20.3k]
+  |  Branch (270:13): [True: 3.96k, False: 16.4k]
   ------------------
-  271|  3.91k|        {
-  272|  3.91k|            return false;
-  273|  3.91k|        }
+  271|  3.96k|        {
+  272|  3.96k|            return false;
+  273|  3.96k|        }
   274|       |
   275|       |        // Check if addres + size will overflow
-  276|  20.3k|        if (phi::detail::will_addition_error(phi::detail::arithmetic_tag_for<phi::size_t>{},
+  276|  16.4k|        if (phi::detail::will_addition_error(phi::detail::arithmetic_tag_for<phi::size_t>{},
   ------------------
-  |  Branch (276:13): [True: 4.99k, False: 15.3k]
+  |  Branch (276:13): [True: 3.07k, False: 13.3k]
   ------------------
-  277|  20.3k|                                             address.unsafe(), size.unsafe()))
-  278|  4.99k|        {
-  279|  4.99k|            return false;
-  280|  4.99k|        }
+  277|  16.4k|                                             address.unsafe(), size.unsafe()))
+  278|  3.07k|        {
+  279|  3.07k|            return false;
+  280|  3.07k|        }
   281|       |
   282|       |        // Check if m_StartingAddress + m_Values.size() will overflow
-  283|  15.3k|        if (phi::detail::will_addition_error(phi::detail::arithmetic_tag_for<phi::size_t>{},
+  283|  13.3k|        if (phi::detail::will_addition_error(phi::detail::arithmetic_tag_for<phi::size_t>{},
   ------------------
-  |  Branch (283:13): [True: 4.25k, False: 11.1k]
+  |  Branch (283:13): [True: 2.40k, False: 10.9k]
   ------------------
-  284|  15.3k|                                             m_StartingAddress.unsafe(), m_Values.size()))
-  285|  4.25k|        {
-  286|  4.25k|            return false;
-  287|  4.25k|        }
+  284|  13.3k|                                             m_StartingAddress.unsafe(), m_Values.size()))
+  285|  2.40k|        {
+  286|  2.40k|            return false;
+  287|  2.40k|        }
   288|       |
   289|       |        // Check if address is out of bounds
-  290|  11.1k|        if ((address + size) > (m_StartingAddress + m_Values.size()))
+  290|  10.9k|        if ((address + size) > (m_StartingAddress + m_Values.size()))
   ------------------
-  |  Branch (290:13): [True: 4.36k, False: 6.76k]
+  |  Branch (290:13): [True: 4.98k, False: 5.99k]
   ------------------
-  291|  4.36k|        {
-  292|  4.36k|            return false;
-  293|  4.36k|        }
+  291|  4.98k|        {
+  292|  4.98k|            return false;
+  293|  4.98k|        }
   294|       |
   295|       |        // Otherwise this is a valid address
-  296|  6.76k|        return true;
-  297|  11.1k|    }
+  296|  5.99k|        return true;
+  297|  10.9k|    }
 _ZN3dlx11MemoryBlock25IsAddressAlignedCorrectlyEN3phi7integerImEES3_:
-  301|  3.99k|    {
-  302|  3.99k|        return size != 0u && (address % size) == 0u;
+  301|  3.86k|    {
+  302|  3.86k|        return size != 0u && (address % size) == 0u;
   ------------------
-  |  Branch (302:16): [True: 3.93k, False: 66]
-  |  Branch (302:30): [True: 2.44k, False: 1.48k]
+  |  Branch (302:16): [True: 3.80k, False: 66]
+  |  Branch (302:30): [True: 2.06k, False: 1.74k]
   ------------------
-  303|  3.99k|    }
+  303|  3.86k|    }
 _ZN3dlx11MemoryBlock5ClearEv:
-  306|  3.36k|    {
-  307|  3.36k|        for (auto& val : m_Values)
+  306|    713|    {
+  307|    713|        for (auto& val : m_Values)
   ------------------
-  |  Branch (307:24): [True: 388k, False: 3.36k]
+  |  Branch (307:24): [True: 59.4k, False: 713]
   ------------------
-  308|   388k|        {
-  309|   388k|            val.signed_value = 0;
-  310|   388k|        }
-  311|  3.36k|    }
+  308|  59.4k|        {
+  309|  59.4k|            val.signed_value = 0;
+  310|  59.4k|        }
+  311|    713|    }
 _ZNK3dlx11MemoryBlock18GetStartingAddressEv:
   314|    194|    {
   315|    194|        return m_StartingAddress;
   316|    194|    }
 _ZN3dlx11MemoryBlock18SetStartingAddressEN3phi7integerImEE:
-  319|    409|    {
-  320|    409|        m_StartingAddress = new_starting_address;
-  321|    409|    }
+  319|    388|    {
+  320|    388|        m_StartingAddress = new_starting_address;
+  321|    388|    }
 _ZNK3dlx11MemoryBlock7GetSizeEv:
   324|    194|    {
   325|    194|        return m_Values.size();
   326|    194|    }
 _ZN3dlx11MemoryBlock6ResizeEN3phi7integerImEE:
-  329|  19.7k|    {
-  330|  19.7k|        m_Values.resize(new_size.unsafe());
-  331|  19.7k|    }
+  329|  31.9k|    {
+  330|  31.9k|        m_Values.resize(new_size.unsafe());
+  331|  31.9k|    }
 _ZN3dlx11MemoryBlock12GetRawMemoryEv:
   334|    194|    {
   335|    194|        return m_Values;
   336|    194|    }
 _ZNK3dlx11MemoryBlock12GetRawMemoryEv:
-  339|    197|    {
-  340|    197|        return m_Values;
-  341|    197|    }
+  339|    194|    {
+  340|    194|        return m_Values;
+  341|    194|    }
 
 LLVMFuzzerTestOneInput:
-   76|  1.22k|{
-   77|  1.22k|    dlx::MemoryBlock memory_block{1000u, max_size};
+   76|  1.24k|{
+   77|  1.24k|    dlx::MemoryBlock memory_block{1000u, max_size};
    78|       |
-   79|  1.22k|    FUZZ_LOG("Beginning execution");
+   79|  1.24k|    FUZZ_LOG("Beginning execution");
   ------------------
-  |  |   24|  1.22k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  1.24k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
    80|       |
-   81|  57.2k|    for (std::size_t index{0u}; index < size;)
+   81|  61.5k|    for (std::size_t index{0u}; index < size;)
   ------------------
-  |  Branch (81:33): [True: 56.8k, False: 421]
+  |  Branch (81:33): [True: 61.1k, False: 388]
   ------------------
-   82|  56.8k|    {
-   83|  56.8k|        GET_T(phi::uint32_t, function_index);
+   82|  61.1k|    {
+   83|  61.1k|        GET_T(phi::uint32_t, function_index);
   ------------------
-  |  |   11|  56.8k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  56.8k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  61.1k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  61.1k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 701, False: 56.1k]
+  |  |  |  Branch (12:9): [True: 654, False: 60.5k]
   |  |  ------------------
-  |  |   13|  56.8k|    {                                                                                              \
-  |  |   14|    701|        return 0;                                                                                  \
-  |  |   15|    701|    }                                                                                              \
-  |  |   16|  56.8k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   13|  61.1k|    {                                                                                              \
+  |  |   14|    654|        return 0;                                                                                  \
+  |  |   15|    654|    }                                                                                              \
+  |  |   16|  61.1k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
    84|       |
-   85|  56.1k|        switch (function_index)
+   85|  60.5k|        switch (function_index)
   ------------------
-  |  Branch (85:17): [True: 7.17k, False: 48.9k]
+  |  Branch (85:17): [True: 5.84k, False: 54.7k]
   ------------------
-   86|  56.1k|        {
+   86|  60.5k|        {
    87|       |            // LoadByte
-   88|  3.87k|            case 0: {
+   88|  2.00k|            case 0: {
   ------------------
-  |  Branch (88:13): [True: 3.87k, False: 52.2k]
+  |  Branch (88:13): [True: 2.00k, False: 58.5k]
   ------------------
-   89|  3.87k|                GET_T(phi::size_t, address);
+   89|  2.00k|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|  3.87k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  3.87k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  2.00k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  2.00k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 30, False: 3.84k]
+  |  |  |  Branch (12:9): [True: 21, False: 1.98k]
   |  |  ------------------
-  |  |   13|  3.87k|    {                                                                                              \
-  |  |   14|     30|        return 0;                                                                                  \
-  |  |   15|     30|    }                                                                                              \
-  |  |   16|  3.87k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   13|  2.00k|    {                                                                                              \
+  |  |   14|     21|        return 0;                                                                                  \
+  |  |   15|     21|    }                                                                                              \
+  |  |   16|  2.00k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
    90|       |
-   91|  3.84k|                FUZZ_LOG("LoadByte({:s})", print_int(address));
+   91|  1.98k|                FUZZ_LOG("LoadByte({:s})", print_int(address));
   ------------------
-  |  |   24|  3.84k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  1.98k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-   92|  3.84k|                (void)memory_block.LoadByte(address);
-   93|  3.84k|                break;
-   94|  3.87k|            }
+   92|  1.98k|                (void)memory_block.LoadByte(address);
+   93|  1.98k|                break;
+   94|  2.00k|            }
    95|       |
    96|       |            // LoadUnsignedByte
-   97|    725|            case 1: {
+   97|    900|            case 1: {
   ------------------
-  |  Branch (97:13): [True: 725, False: 55.4k]
+  |  Branch (97:13): [True: 900, False: 59.6k]
   ------------------
-   98|    725|                GET_T(phi::size_t, address);
+   98|    900|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|    725|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|    725|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|    900|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|    900|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 724]
+  |  |  |  Branch (12:9): [True: 1, False: 899]
   |  |  ------------------
-  |  |   13|    725|    {                                                                                              \
+  |  |   13|    900|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|    725|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|    900|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
    99|       |
-  100|    724|                FUZZ_LOG("LoadUnsignedByte({:s})", print_int(address));
+  100|    899|                FUZZ_LOG("LoadUnsignedByte({:s})", print_int(address));
   ------------------
-  |  |   24|    724|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|    899|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  101|    724|                (void)memory_block.LoadUnsignedByte(address);
-  102|    724|                break;
-  103|    725|            }
+  101|    899|                (void)memory_block.LoadUnsignedByte(address);
+  102|    899|                break;
+  103|    900|            }
   104|       |
   105|       |            // LoadHalfWord
-  106|  2.58k|            case 2: {
+  106|  1.93k|            case 2: {
   ------------------
-  |  Branch (106:13): [True: 2.58k, False: 53.5k]
+  |  Branch (106:13): [True: 1.93k, False: 58.6k]
   ------------------
-  107|  2.58k|                GET_T(phi::size_t, address);
+  107|  1.93k|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|  2.58k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  2.58k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  1.93k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  1.93k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 2.58k]
+  |  |  |  Branch (12:9): [True: 1, False: 1.93k]
   |  |  ------------------
-  |  |   13|  2.58k|    {                                                                                              \
+  |  |   13|  1.93k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|  2.58k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  1.93k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   108|       |
-  109|  2.58k|                FUZZ_LOG("LoadHalfWord({:s})", print_int(address));
+  109|  1.93k|                FUZZ_LOG("LoadHalfWord({:s})", print_int(address));
   ------------------
-  |  |   24|  2.58k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  1.93k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  110|  2.58k|                (void)memory_block.LoadHalfWord(address);
-  111|  2.58k|                break;
-  112|  2.58k|            }
+  110|  1.93k|                (void)memory_block.LoadHalfWord(address);
+  111|  1.93k|                break;
+  112|  1.93k|            }
   113|       |
   114|       |                // LoadUnsignedHalfWord
-  115|  1.54k|            case 3: {
+  115|  1.80k|            case 3: {
   ------------------
-  |  Branch (115:13): [True: 1.54k, False: 54.5k]
+  |  Branch (115:13): [True: 1.80k, False: 58.7k]
   ------------------
-  116|  1.54k|                GET_T(phi::size_t, address);
+  116|  1.80k|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|  1.54k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  1.54k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  1.80k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  1.80k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 1.54k]
+  |  |  |  Branch (12:9): [True: 1, False: 1.80k]
   |  |  ------------------
-  |  |   13|  1.54k|    {                                                                                              \
+  |  |   13|  1.80k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|  1.54k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  1.80k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   117|       |
-  118|  1.54k|                FUZZ_LOG("LoadUnsignedHalfWord({:s})", print_int(address));
+  118|  1.80k|                FUZZ_LOG("LoadUnsignedHalfWord({:s})", print_int(address));
   ------------------
-  |  |   24|  1.54k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  1.80k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  119|  1.54k|                (void)memory_block.LoadUnsignedHalfWord(address);
-  120|  1.54k|                break;
-  121|  1.54k|            }
+  119|  1.80k|                (void)memory_block.LoadUnsignedHalfWord(address);
+  120|  1.80k|                break;
+  121|  1.80k|            }
   122|       |
   123|       |            // LoadWord
-  124|  1.68k|            case 4: {
+  124|  1.42k|            case 4: {
   ------------------
-  |  Branch (124:13): [True: 1.68k, False: 54.4k]
+  |  Branch (124:13): [True: 1.42k, False: 59.1k]
   ------------------
-  125|  1.68k|                GET_T(phi::size_t, address);
+  125|  1.42k|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|  1.68k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  1.68k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  1.42k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  1.42k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 1.67k]
+  |  |  |  Branch (12:9): [True: 1, False: 1.42k]
   |  |  ------------------
-  |  |   13|  1.68k|    {                                                                                              \
+  |  |   13|  1.42k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|  1.68k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  1.42k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   126|       |
-  127|  1.67k|                FUZZ_LOG("LoadWord({:s})", print_int(address));
+  127|  1.42k|                FUZZ_LOG("LoadWord({:s})", print_int(address));
   ------------------
-  |  |   24|  1.67k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  1.42k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  128|  1.67k|                (void)memory_block.LoadWord(address);
-  129|  1.67k|                break;
-  130|  1.68k|            }
+  128|  1.42k|                (void)memory_block.LoadWord(address);
+  129|  1.42k|                break;
+  130|  1.42k|            }
   131|       |
   132|       |            // LoadUnsignedWord
-  133|    942|            case 5: {
+  133|  1.03k|            case 5: {
   ------------------
-  |  Branch (133:13): [True: 942, False: 55.2k]
+  |  Branch (133:13): [True: 1.03k, False: 59.5k]
   ------------------
-  134|    942|                GET_T(phi::size_t, address);
+  134|  1.03k|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|    942|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|    942|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  1.03k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  1.03k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 941]
+  |  |  |  Branch (12:9): [True: 1, False: 1.03k]
   |  |  ------------------
-  |  |   13|    942|    {                                                                                              \
+  |  |   13|  1.03k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|    942|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  1.03k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   135|       |
-  136|    941|                FUZZ_LOG("LoadUnsignedWord({:s})", print_int(address));
+  136|  1.03k|                FUZZ_LOG("LoadUnsignedWord({:s})", print_int(address));
   ------------------
-  |  |   24|    941|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  1.03k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  137|    941|                (void)memory_block.LoadUnsignedWord(address);
-  138|    941|                break;
-  139|    942|            }
+  137|  1.03k|                (void)memory_block.LoadUnsignedWord(address);
+  138|  1.03k|                break;
+  139|  1.03k|            }
   140|       |
   141|       |            // LoadFloat
-  142|  1.57k|            case 6: {
+  142|  1.41k|            case 6: {
   ------------------
-  |  Branch (142:13): [True: 1.57k, False: 54.5k]
+  |  Branch (142:13): [True: 1.41k, False: 59.1k]
   ------------------
-  143|  1.57k|                GET_T(phi::size_t, address);
+  143|  1.41k|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|  1.57k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  1.57k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  1.41k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  1.41k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 1.57k]
+  |  |  |  Branch (12:9): [True: 1, False: 1.41k]
   |  |  ------------------
-  |  |   13|  1.57k|    {                                                                                              \
+  |  |   13|  1.41k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|  1.57k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  1.41k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   144|       |
-  145|  1.57k|                FUZZ_LOG("LoadFloat({:s})", print_int(address));
+  145|  1.41k|                FUZZ_LOG("LoadFloat({:s})", print_int(address));
   ------------------
-  |  |   24|  1.57k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  1.41k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  146|  1.57k|                (void)memory_block.LoadFloat(address);
-  147|  1.57k|                break;
-  148|  1.57k|            }
+  146|  1.41k|                (void)memory_block.LoadFloat(address);
+  147|  1.41k|                break;
+  148|  1.41k|            }
   149|       |
   150|       |            // LoadDouble
-  151|  1.54k|            case 7: {
+  151|  1.42k|            case 7: {
   ------------------
-  |  Branch (151:13): [True: 1.54k, False: 54.5k]
+  |  Branch (151:13): [True: 1.42k, False: 59.1k]
   ------------------
-  152|  1.54k|                GET_T(phi::size_t, address);
+  152|  1.42k|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|  1.54k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  1.54k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  1.42k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  1.42k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 1.54k]
+  |  |  |  Branch (12:9): [True: 1, False: 1.42k]
   |  |  ------------------
-  |  |   13|  1.54k|    {                                                                                              \
+  |  |   13|  1.42k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|  1.54k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  1.42k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   153|       |
-  154|  1.54k|                FUZZ_LOG("LoadDouble({:s})", print_int(address));
+  154|  1.42k|                FUZZ_LOG("LoadDouble({:s})", print_int(address));
   ------------------
-  |  |   24|  1.54k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  1.42k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  155|  1.54k|                (void)memory_block.LoadDouble(address);
-  156|  1.54k|                break;
-  157|  1.54k|            }
+  155|  1.42k|                (void)memory_block.LoadDouble(address);
+  156|  1.42k|                break;
+  157|  1.42k|            }
   158|       |
   159|       |            // StoreByte
-  160|  3.44k|            case 8: {
+  160|  1.48k|            case 8: {
   ------------------
-  |  Branch (160:13): [True: 3.44k, False: 52.7k]
+  |  Branch (160:13): [True: 1.48k, False: 59.0k]
   ------------------
-  161|  3.44k|                GET_T(phi::size_t, address);
+  161|  1.48k|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|  3.44k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  3.44k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  1.48k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  1.48k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 3.44k]
+  |  |  |  Branch (12:9): [True: 1, False: 1.48k]
   |  |  ------------------
-  |  |   13|  3.44k|    {                                                                                              \
+  |  |   13|  1.48k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|  3.44k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  1.48k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
-  162|  3.44k|                GET_T(phi::int8_t, value);
+  162|  1.48k|                GET_T(phi::int8_t, value);
   ------------------
-  |  |   11|  3.44k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  3.44k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  1.48k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  1.48k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 3.44k]
+  |  |  |  Branch (12:9): [True: 1, False: 1.48k]
   |  |  ------------------
-  |  |   13|  3.44k|    {                                                                                              \
+  |  |   13|  1.48k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|  3.44k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  1.48k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   163|       |
-  164|  3.44k|                FUZZ_LOG("StoreByte({:s}, {:s})", print_int(address), print_int(value));
+  164|  1.48k|                FUZZ_LOG("StoreByte({:s}, {:s})", print_int(address), print_int(value));
   ------------------
-  |  |   24|  3.44k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  1.48k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  165|  3.44k|                (void)memory_block.StoreByte(address, value);
-  166|  3.44k|                break;
-  167|  3.44k|            }
+  165|  1.48k|                (void)memory_block.StoreByte(address, value);
+  166|  1.48k|                break;
+  167|  1.48k|            }
   168|       |
   169|       |            // StoreUnsignedByte
-  170|    332|            case 9: {
+  170|    364|            case 9: {
   ------------------
-  |  Branch (170:13): [True: 332, False: 55.8k]
+  |  Branch (170:13): [True: 364, False: 60.1k]
   ------------------
-  171|    332|                GET_T(phi::size_t, address);
+  171|    364|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|    332|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|    332|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|    364|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|    364|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 331]
+  |  |  |  Branch (12:9): [True: 1, False: 363]
   |  |  ------------------
-  |  |   13|    332|    {                                                                                              \
+  |  |   13|    364|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|    332|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|    364|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
-  172|    331|                GET_T(phi::uint8_t, value);
+  172|    363|                GET_T(phi::uint8_t, value);
   ------------------
-  |  |   11|    331|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|    331|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|    363|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|    363|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 330]
+  |  |  |  Branch (12:9): [True: 1, False: 362]
   |  |  ------------------
-  |  |   13|    331|    {                                                                                              \
+  |  |   13|    363|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|    331|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|    363|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   173|       |
-  174|    330|                FUZZ_LOG("StoreUnsignedByte({:s}, {:s})", print_int(address), print_int(value));
+  174|    362|                FUZZ_LOG("StoreUnsignedByte({:s}, {:s})", print_int(address), print_int(value));
   ------------------
-  |  |   24|    330|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|    362|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  175|    330|                (void)memory_block.StoreUnsignedByte(address, value);
-  176|    330|                break;
-  177|    331|            }
+  175|    362|                (void)memory_block.StoreUnsignedByte(address, value);
+  176|    362|                break;
+  177|    363|            }
   178|       |
   179|       |            // StoreHalfWord
-  180|    492|            case 10: {
+  180|    579|            case 10: {
   ------------------
-  |  Branch (180:13): [True: 492, False: 55.6k]
+  |  Branch (180:13): [True: 579, False: 59.9k]
   ------------------
-  181|    492|                GET_T(phi::size_t, address);
+  181|    579|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|    492|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|    492|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|    579|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|    579|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 491]
+  |  |  |  Branch (12:9): [True: 1, False: 578]
   |  |  ------------------
-  |  |   13|    492|    {                                                                                              \
+  |  |   13|    579|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|    492|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|    579|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
-  182|    491|                GET_T(phi::int16_t, value);
+  182|    578|                GET_T(phi::int16_t, value);
   ------------------
-  |  |   11|    491|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|    491|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|    578|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|    578|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 490]
+  |  |  |  Branch (12:9): [True: 2, False: 576]
   |  |  ------------------
-  |  |   13|    491|    {                                                                                              \
-  |  |   14|      1|        return 0;                                                                                  \
-  |  |   15|      1|    }                                                                                              \
-  |  |   16|    491|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   13|    578|    {                                                                                              \
+  |  |   14|      2|        return 0;                                                                                  \
+  |  |   15|      2|    }                                                                                              \
+  |  |   16|    578|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   183|       |
-  184|    490|                FUZZ_LOG("StoreHalfWord({:s}, {:s})", print_int(address), print_int(value));
+  184|    576|                FUZZ_LOG("StoreHalfWord({:s}, {:s})", print_int(address), print_int(value));
   ------------------
-  |  |   24|    490|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|    576|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  185|    490|                (void)memory_block.StoreHalfWord(address, value);
-  186|    490|                break;
-  187|    491|            }
+  185|    576|                (void)memory_block.StoreHalfWord(address, value);
+  186|    576|                break;
+  187|    578|            }
   188|       |
   189|       |            // StoreUnsignedHalfWord
   190|    588|            case 11: {
   ------------------
-  |  Branch (190:13): [True: 588, False: 55.5k]
+  |  Branch (190:13): [True: 588, False: 59.9k]
   ------------------
   191|    588|                GET_T(phi::size_t, address);
   ------------------
@@ -847,123 +847,123 @@ LLVMFuzzerTestOneInput:
   197|    587|            }
   198|       |
   199|       |            // StoreWord
-  200|    972|            case 12: {
+  200|  1.10k|            case 12: {
   ------------------
-  |  Branch (200:13): [True: 972, False: 55.1k]
+  |  Branch (200:13): [True: 1.10k, False: 59.4k]
   ------------------
-  201|    972|                GET_T(phi::size_t, address);
+  201|  1.10k|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|    972|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|    972|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  1.10k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  1.10k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 971]
+  |  |  |  Branch (12:9): [True: 1, False: 1.09k]
   |  |  ------------------
-  |  |   13|    972|    {                                                                                              \
+  |  |   13|  1.10k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|    972|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  1.10k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
-  202|    971|                GET_T(phi::int32_t, value);
+  202|  1.09k|                GET_T(phi::int32_t, value);
   ------------------
-  |  |   11|    971|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|    971|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  1.09k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  1.09k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 970]
+  |  |  |  Branch (12:9): [True: 1, False: 1.09k]
   |  |  ------------------
-  |  |   13|    971|    {                                                                                              \
+  |  |   13|  1.09k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|    971|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  1.09k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   203|       |
-  204|    970|                FUZZ_LOG("StoreWord({:s}, {:s})", print_int(address), print_int(value));
+  204|  1.09k|                FUZZ_LOG("StoreWord({:s}, {:s})", print_int(address), print_int(value));
   ------------------
-  |  |   24|    970|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  1.09k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  205|    970|                (void)memory_block.StoreWord(address, value);
-  206|    970|                break;
-  207|    971|            }
+  205|  1.09k|                (void)memory_block.StoreWord(address, value);
+  206|  1.09k|                break;
+  207|  1.09k|            }
   208|       |
   209|       |            // StoreUnsignedWord
-  210|  1.36k|            case 13: {
+  210|  2.38k|            case 13: {
   ------------------
-  |  Branch (210:13): [True: 1.36k, False: 54.7k]
+  |  Branch (210:13): [True: 2.38k, False: 58.1k]
   ------------------
-  211|  1.36k|                GET_T(phi::size_t, address);
+  211|  2.38k|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|  1.36k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  1.36k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  2.38k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  2.38k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 1.35k]
+  |  |  |  Branch (12:9): [True: 1, False: 2.38k]
   |  |  ------------------
-  |  |   13|  1.36k|    {                                                                                              \
+  |  |   13|  2.38k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|  1.36k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  2.38k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
-  212|  1.35k|                GET_T(phi::uint32_t, value);
+  212|  2.38k|                GET_T(phi::uint32_t, value);
   ------------------
-  |  |   11|  1.35k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  1.35k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  2.38k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  2.38k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 1.35k]
+  |  |  |  Branch (12:9): [True: 1, False: 2.38k]
   |  |  ------------------
-  |  |   13|  1.35k|    {                                                                                              \
+  |  |   13|  2.38k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|  1.35k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  2.38k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   213|       |
-  214|  1.35k|                FUZZ_LOG("StoreUnsignedWord({:s}, {:s})", print_int(address), print_int(value));
+  214|  2.38k|                FUZZ_LOG("StoreUnsignedWord({:s}, {:s})", print_int(address), print_int(value));
   ------------------
-  |  |   24|  1.35k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  2.38k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  215|  1.35k|                (void)memory_block.StoreUnsignedWord(address, value);
-  216|  1.35k|                break;
-  217|  1.35k|            }
+  215|  2.38k|                (void)memory_block.StoreUnsignedWord(address, value);
+  216|  2.38k|                break;
+  217|  2.38k|            }
   218|       |
   219|       |            // StoreFloat
-  220|  1.61k|            case 14: {
+  220|  1.10k|            case 14: {
   ------------------
-  |  Branch (220:13): [True: 1.61k, False: 54.5k]
+  |  Branch (220:13): [True: 1.10k, False: 59.4k]
   ------------------
-  221|  1.61k|                GET_T(phi::size_t, address);
+  221|  1.10k|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|  1.61k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  1.61k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  1.10k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  1.10k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 1.61k]
+  |  |  |  Branch (12:9): [True: 1, False: 1.09k]
   |  |  ------------------
-  |  |   13|  1.61k|    {                                                                                              \
+  |  |   13|  1.10k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|  1.61k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  1.10k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
-  222|  1.61k|                GET_T(phi::float32, value);
+  222|  1.09k|                GET_T(phi::float32, value);
   ------------------
-  |  |   11|  1.61k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  1.61k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  1.09k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  1.09k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 1.61k]
+  |  |  |  Branch (12:9): [True: 1, False: 1.09k]
   |  |  ------------------
-  |  |   13|  1.61k|    {                                                                                              \
+  |  |   13|  1.09k|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|  1.61k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|  1.09k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   223|       |
-  224|  1.61k|                FUZZ_LOG("StoreFloat({:s}, {:f})", print_int(address), value);
+  224|  1.09k|                FUZZ_LOG("StoreFloat({:s}, {:f})", print_int(address), value);
   ------------------
-  |  |   24|  1.61k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  1.09k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  225|  1.61k|                (void)memory_block.StoreFloat(address, value);
-  226|  1.61k|                break;
-  227|  1.61k|            }
+  225|  1.09k|                (void)memory_block.StoreFloat(address, value);
+  226|  1.09k|                break;
+  227|  1.09k|            }
   228|       |
   229|       |            // StoreDouble
   230|    332|            case 15: {
   ------------------
-  |  Branch (230:13): [True: 332, False: 55.8k]
+  |  Branch (230:13): [True: 332, False: 60.2k]
   ------------------
   231|    332|                GET_T(phi::size_t, address);
   ------------------
@@ -999,61 +999,49 @@ LLVMFuzzerTestOneInput:
   237|    331|            }
   238|       |
   239|       |            // IsAddressValid
-  240|    748|            case 16: {
+  240|    588|            case 16: {
   ------------------
-  |  Branch (240:13): [True: 748, False: 55.4k]
+  |  Branch (240:13): [True: 588, False: 59.9k]
   ------------------
-  241|    748|                GET_T(phi::size_t, address);
+  241|    588|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|    748|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|    748|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|    588|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|    588|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 747]
+  |  |  |  Branch (12:9): [True: 1, False: 587]
   |  |  ------------------
-  |  |   13|    748|    {                                                                                              \
+  |  |   13|    588|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|    748|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|    588|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
-  242|    747|                GET_T(phi::size_t, arg_size);
+  242|    587|                GET_T(phi::size_t, arg_size);
   ------------------
-  |  |   11|    747|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|    747|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|    587|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|    587|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 746]
+  |  |  |  Branch (12:9): [True: 1, False: 586]
   |  |  ------------------
-  |  |   13|    747|    {                                                                                              \
+  |  |   13|    587|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|    747|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|    587|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   243|       |
-  244|    746|                FUZZ_LOG("IsAddressValid({:s}, {:s})", print_int(address), print_int(arg_size));
+  244|    586|                FUZZ_LOG("IsAddressValid({:s}, {:s})", print_int(address), print_int(arg_size));
   ------------------
-  |  |   24|    746|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|    586|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  245|    746|                (void)memory_block.IsAddressValid(address, arg_size);
-  246|    746|                break;
-  247|    747|            }
+  245|    586|                (void)memory_block.IsAddressValid(address, arg_size);
+  246|    586|                break;
+  247|    587|            }
   248|       |
   249|       |            // IsAddressAlignedCorrectly
-  250|    264|            case 17: {
+  250|    262|            case 17: {
   ------------------
-  |  Branch (250:13): [True: 264, False: 55.8k]
+  |  Branch (250:13): [True: 262, False: 60.2k]
   ------------------
-  251|    264|                GET_T(phi::size_t, address);
-  ------------------
-  |  |   11|    264|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|    264|    if (!PHI_GLUE(name, _opt))                                                                     \
-  |  |  ------------------
-  |  |  |  Branch (12:9): [True: 2, False: 262]
-  |  |  ------------------
-  |  |   13|    264|    {                                                                                              \
-  |  |   14|      2|        return 0;                                                                                  \
-  |  |   15|      2|    }                                                                                              \
-  |  |   16|    264|    const type name = PHI_GLUE(name, _opt).value()
-  ------------------
-  252|    262|                GET_T(phi::size_t, arg_size);
+  251|    262|                GET_T(phi::size_t, address);
   ------------------
   |  |   11|    262|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
   |  |   12|    262|    if (!PHI_GLUE(name, _opt))                                                                     \
@@ -1065,20 +1053,32 @@ LLVMFuzzerTestOneInput:
   |  |   15|      1|    }                                                                                              \
   |  |   16|    262|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
+  252|    261|                GET_T(phi::size_t, arg_size);
+  ------------------
+  |  |   11|    261|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|    261|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |  ------------------
+  |  |  |  Branch (12:9): [True: 1, False: 260]
+  |  |  ------------------
+  |  |   13|    261|    {                                                                                              \
+  |  |   14|      1|        return 0;                                                                                  \
+  |  |   15|      1|    }                                                                                              \
+  |  |   16|    261|    const type name = PHI_GLUE(name, _opt).value()
+  ------------------
   253|       |
-  254|    261|                FUZZ_LOG("IsAddressAlignedCorrectly({:s}, {:s})", print_int(address),
+  254|    260|                FUZZ_LOG("IsAddressAlignedCorrectly({:s}, {:s})", print_int(address),
   ------------------
-  |  |   24|    261|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|    260|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  255|    261|                         print_int(arg_size));
-  256|    261|                (void)dlx::MemoryBlock::IsAddressAlignedCorrectly(address, arg_size);
-  257|    261|                break;
-  258|    262|            }
+  255|    260|                         print_int(arg_size));
+  256|    260|                (void)dlx::MemoryBlock::IsAddressAlignedCorrectly(address, arg_size);
+  257|    260|                break;
+  258|    261|            }
   259|       |
   260|       |            // GetStartingAddress
   261|    194|            case 18: {
   ------------------
-  |  Branch (261:13): [True: 194, False: 55.9k]
+  |  Branch (261:13): [True: 194, False: 60.3k]
   ------------------
   262|    194|                FUZZ_LOG("GetStartingAddress()");
   ------------------
@@ -1086,38 +1086,38 @@ LLVMFuzzerTestOneInput:
   ------------------
   263|    194|                (void)memory_block.GetStartingAddress();
   264|    194|                break;
-  265|    262|            }
+  265|    261|            }
   266|       |
   267|       |            // SetStartingAddress
-  268|    410|            case 19: {
+  268|    389|            case 19: {
   ------------------
-  |  Branch (268:13): [True: 410, False: 55.7k]
+  |  Branch (268:13): [True: 389, False: 60.1k]
   ------------------
-  269|    410|                GET_T(phi::size_t, address);
+  269|    389|                GET_T(phi::size_t, address);
   ------------------
-  |  |   11|    410|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|    410|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|    389|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|    389|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 1, False: 409]
+  |  |  |  Branch (12:9): [True: 1, False: 388]
   |  |  ------------------
-  |  |   13|    410|    {                                                                                              \
+  |  |   13|    389|    {                                                                                              \
   |  |   14|      1|        return 0;                                                                                  \
   |  |   15|      1|    }                                                                                              \
-  |  |   16|    410|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   16|    389|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   270|       |
-  271|    409|                FUZZ_LOG("SetStartingAddress({:s})", print_int(address));
+  271|    388|                FUZZ_LOG("SetStartingAddress({:s})", print_int(address));
   ------------------
-  |  |   24|    409|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|    388|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  272|    409|                memory_block.SetStartingAddress(address);
-  273|    409|                break;
-  274|    410|            }
+  272|    388|                memory_block.SetStartingAddress(address);
+  273|    388|                break;
+  274|    389|            }
   275|       |
   276|       |            // GetSize
   277|    194|            case 20: {
   ------------------
-  |  Branch (277:13): [True: 194, False: 55.9k]
+  |  Branch (277:13): [True: 194, False: 60.3k]
   ------------------
   278|    194|                FUZZ_LOG("GetSize()");
   ------------------
@@ -1125,47 +1125,47 @@ LLVMFuzzerTestOneInput:
   ------------------
   279|    194|                (void)memory_block.GetSize();
   280|    194|                break;
-  281|    410|            }
+  281|    389|            }
   282|       |
   283|       |            // Resize
-  284|  19.7k|            case 21: {
+  284|  32.1k|            case 21: {
   ------------------
-  |  Branch (284:13): [True: 19.7k, False: 36.3k]
+  |  Branch (284:13): [True: 32.1k, False: 28.4k]
   ------------------
-  285|  19.7k|                GET_T(phi::size_t, new_size);
+  285|  32.1k|                GET_T(phi::size_t, new_size);
   ------------------
-  |  |   11|  19.7k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
-  |  |   12|  19.7k|    if (!PHI_GLUE(name, _opt))                                                                     \
+  |  |   11|  32.1k|    auto PHI_GLUE(name, _opt) = consume_t<type>(data, size, index);                                \
+  |  |   12|  32.1k|    if (!PHI_GLUE(name, _opt))                                                                     \
   |  |  ------------------
-  |  |  |  Branch (12:9): [True: 18, False: 19.7k]
+  |  |  |  Branch (12:9): [True: 105, False: 31.9k]
   |  |  ------------------
-  |  |   13|  19.7k|    {                                                                                              \
-  |  |   14|     18|        return 0;                                                                                  \
-  |  |   15|     18|    }                                                                                              \
-  |  |   16|  19.7k|    const type name = PHI_GLUE(name, _opt).value()
+  |  |   13|  32.1k|    {                                                                                              \
+  |  |   14|    105|        return 0;                                                                                  \
+  |  |   15|    105|    }                                                                                              \
+  |  |   16|  32.1k|    const type name = PHI_GLUE(name, _opt).value()
   ------------------
   286|       |
   287|       |                // Reject too big resizes
-  288|  19.7k|                if (new_size > max_size)
+  288|  31.9k|                if (new_size > max_size)
   ------------------
-  |  Branch (288:21): [True: 25, False: 19.7k]
+  |  Branch (288:21): [True: 43, False: 31.9k]
   ------------------
-  289|     25|                {
-  290|     25|                    return 0;
-  291|     25|                }
+  289|     43|                {
+  290|     43|                    return 0;
+  291|     43|                }
   292|       |
-  293|  19.7k|                FUZZ_LOG("Resize({:s})", print_int(new_size));
+  293|  31.9k|                FUZZ_LOG("Resize({:s})", print_int(new_size));
   ------------------
-  |  |   24|  19.7k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|  31.9k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  294|  19.7k|                memory_block.Resize(new_size);
-  295|  19.7k|                break;
-  296|  19.7k|            }
+  294|  31.9k|                memory_block.Resize(new_size);
+  295|  31.9k|                break;
+  296|  31.9k|            }
   297|       |
   298|       |            // GetRawMemory
   299|    194|            case 22: {
   ------------------
-  |  Branch (299:13): [True: 194, False: 55.9k]
+  |  Branch (299:13): [True: 194, False: 60.3k]
   ------------------
   300|    194|                FUZZ_LOG("GetRawMemory()");
   ------------------
@@ -1173,207 +1173,207 @@ LLVMFuzzerTestOneInput:
   ------------------
   301|    194|                (void)memory_block.GetRawMemory();
   302|    194|                break;
-  303|  19.7k|            }
+  303|  31.9k|            }
   304|       |
   305|       |            // GetRawMemory const
-  306|    197|            case 23: {
+  306|    194|            case 23: {
   ------------------
-  |  Branch (306:13): [True: 197, False: 55.9k]
+  |  Branch (306:13): [True: 194, False: 60.3k]
   ------------------
-  307|    197|                const dlx::MemoryBlock& const_memory_block = memory_block;
-  308|    197|                FUZZ_LOG("const GetRawMemory()");
+  307|    194|                const dlx::MemoryBlock& const_memory_block = memory_block;
+  308|    194|                FUZZ_LOG("const GetRawMemory()");
   ------------------
-  |  |   24|    197|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|    194|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  309|    197|                (void)const_memory_block.GetRawMemory();
-  310|    197|                break;
-  311|  19.7k|            }
+  309|    194|                (void)const_memory_block.GetRawMemory();
+  310|    194|                break;
+  311|  31.9k|            }
   312|       |
   313|       |            // Clear
-  314|  3.36k|            case 24: {
+  314|    713|            case 24: {
   ------------------
-  |  Branch (314:13): [True: 3.36k, False: 52.7k]
+  |  Branch (314:13): [True: 713, False: 59.8k]
   ------------------
-  315|  3.36k|                FUZZ_LOG("Clear()");
+  315|    713|                FUZZ_LOG("Clear()");
   ------------------
-  |  |   24|  3.36k|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|    713|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
-  316|  3.36k|                memory_block.Clear();
-  317|  3.36k|            }
-  318|  56.1k|        }
-  319|  56.1k|    }
+  316|    713|                memory_block.Clear();
+  317|    713|            }
+  318|  60.5k|        }
+  319|  60.5k|    }
   320|       |
-  321|    421|    FUZZ_LOG("Finished execution");
+  321|    388|    FUZZ_LOG("Finished execution");
   ------------------
-  |  |   24|    421|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
+  |  |   24|    388|#    define FUZZ_LOG(...) PHI_EMPTY_MACRO()
   ------------------
   322|       |
-  323|    421|    return 0;
-  324|  1.22k|}
+  323|    388|    return 0;
+  324|  1.24k|}
 _Z9consume_tIjEN3phi8optionalIT_EEPKhmRm:
-   44|  58.2k|{
-   45|  58.2k|    if (!has_x_more(index, sizeof(T), size))
+   44|  63.5k|{
+   45|  63.5k|    if (!has_x_more(index, sizeof(T), size))
   ------------------
-  |  Branch (45:9): [True: 702, False: 57.5k]
+  |  Branch (45:9): [True: 655, False: 62.9k]
   ------------------
-   46|    702|    {
-   47|    702|        return {};
-   48|    702|    }
+   46|    655|    {
+   47|    655|        return {};
+   48|    655|    }
    49|       |
-   50|  57.5k|    PHI_ASSUME(index % sizeof(void*) == 0);
+   50|  62.9k|    PHI_ASSUME(index % sizeof(void*) == 0);
    51|       |
-   52|  57.5k|    const phi::size_t old_index = index;
-   53|  57.5k|    index += aligned_size<T>();
+   52|  62.9k|    const phi::size_t old_index = index;
+   53|  62.9k|    index += aligned_size<T>();
    54|       |
-   55|  57.5k|    if constexpr (phi::is_bool_v<T>)
+   55|  62.9k|    if constexpr (phi::is_bool_v<T>)
   ------------------
   |  Branch (55:19): [Folded - Ignored]
   ------------------
    56|      0|    {
-   57|  57.5k|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
-   58|  57.5k|        return static_cast<bool>(value);
-   59|  57.5k|    }
-   60|  57.5k|    else
-   61|  57.5k|    {
-   62|  57.5k|        return *reinterpret_cast<const T*>(data + old_index);
-   63|  57.5k|    }
-   64|  57.5k|}
+   57|  62.9k|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
+   58|  62.9k|        return static_cast<bool>(value);
+   59|  62.9k|    }
+   60|  62.9k|    else
+   61|  62.9k|    {
+   62|  62.9k|        return *reinterpret_cast<const T*>(data + old_index);
+   63|  62.9k|    }
+   64|  62.9k|}
 _Z10has_x_moremmm:
-   29|   111k|{
-   30|   111k|    return index + x < size;
-   31|   111k|}
+   29|   123k|{
+   30|   123k|    return index + x < size;
+   31|   123k|}
 _Z12aligned_sizeIjEmv:
-   37|  57.5k|{
-   38|  57.5k|    return sizeof(T) + (sizeof(void*) - sizeof(T));
-   39|  57.5k|}
+   37|  62.9k|{
+   38|  62.9k|    return sizeof(T) + (sizeof(void*) - sizeof(T));
+   39|  62.9k|}
 _Z9consume_tImEN3phi8optionalIT_EEPKhmRm:
-   44|  45.8k|{
-   45|  45.8k|    if (!has_x_more(index, sizeof(T), size))
+   44|  54.0k|{
+   45|  54.0k|    if (!has_x_more(index, sizeof(T), size))
   ------------------
-  |  Branch (45:9): [True: 69, False: 45.7k]
+  |  Branch (45:9): [True: 146, False: 53.9k]
   ------------------
-   46|     69|    {
-   47|     69|        return {};
-   48|     69|    }
+   46|    146|    {
+   47|    146|        return {};
+   48|    146|    }
    49|       |
-   50|  45.7k|    PHI_ASSUME(index % sizeof(void*) == 0);
+   50|  53.9k|    PHI_ASSUME(index % sizeof(void*) == 0);
    51|       |
-   52|  45.7k|    const phi::size_t old_index = index;
-   53|  45.7k|    index += aligned_size<T>();
+   52|  53.9k|    const phi::size_t old_index = index;
+   53|  53.9k|    index += aligned_size<T>();
    54|       |
-   55|  45.7k|    if constexpr (phi::is_bool_v<T>)
+   55|  53.9k|    if constexpr (phi::is_bool_v<T>)
   ------------------
   |  Branch (55:19): [Folded - Ignored]
   ------------------
    56|      0|    {
-   57|  45.7k|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
-   58|  45.7k|        return static_cast<bool>(value);
-   59|  45.7k|    }
-   60|  45.7k|    else
-   61|  45.7k|    {
-   62|  45.7k|        return *reinterpret_cast<const T*>(data + old_index);
-   63|  45.7k|    }
-   64|  45.7k|}
+   57|  53.9k|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
+   58|  53.9k|        return static_cast<bool>(value);
+   59|  53.9k|    }
+   60|  53.9k|    else
+   61|  53.9k|    {
+   62|  53.9k|        return *reinterpret_cast<const T*>(data + old_index);
+   63|  53.9k|    }
+   64|  53.9k|}
 _Z12aligned_sizeImEmv:
-   37|  45.7k|{
-   38|  45.7k|    return sizeof(T) + (sizeof(void*) - sizeof(T));
-   39|  45.7k|}
+   37|  53.9k|{
+   38|  53.9k|    return sizeof(T) + (sizeof(void*) - sizeof(T));
+   39|  53.9k|}
 _Z9consume_tIaEN3phi8optionalIT_EEPKhmRm:
-   44|  3.44k|{
-   45|  3.44k|    if (!has_x_more(index, sizeof(T), size))
+   44|  1.48k|{
+   45|  1.48k|    if (!has_x_more(index, sizeof(T), size))
   ------------------
-  |  Branch (45:9): [True: 1, False: 3.44k]
+  |  Branch (45:9): [True: 1, False: 1.48k]
   ------------------
    46|      1|    {
    47|      1|        return {};
    48|      1|    }
    49|       |
-   50|  3.44k|    PHI_ASSUME(index % sizeof(void*) == 0);
+   50|  1.48k|    PHI_ASSUME(index % sizeof(void*) == 0);
    51|       |
-   52|  3.44k|    const phi::size_t old_index = index;
-   53|  3.44k|    index += aligned_size<T>();
+   52|  1.48k|    const phi::size_t old_index = index;
+   53|  1.48k|    index += aligned_size<T>();
    54|       |
-   55|  3.44k|    if constexpr (phi::is_bool_v<T>)
+   55|  1.48k|    if constexpr (phi::is_bool_v<T>)
   ------------------
   |  Branch (55:19): [Folded - Ignored]
   ------------------
    56|      0|    {
-   57|  3.44k|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
-   58|  3.44k|        return static_cast<bool>(value);
-   59|  3.44k|    }
-   60|  3.44k|    else
-   61|  3.44k|    {
-   62|  3.44k|        return *reinterpret_cast<const T*>(data + old_index);
-   63|  3.44k|    }
-   64|  3.44k|}
+   57|  1.48k|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
+   58|  1.48k|        return static_cast<bool>(value);
+   59|  1.48k|    }
+   60|  1.48k|    else
+   61|  1.48k|    {
+   62|  1.48k|        return *reinterpret_cast<const T*>(data + old_index);
+   63|  1.48k|    }
+   64|  1.48k|}
 _Z12aligned_sizeIaEmv:
-   37|  3.44k|{
-   38|  3.44k|    return sizeof(T) + (sizeof(void*) - sizeof(T));
-   39|  3.44k|}
+   37|  1.48k|{
+   38|  1.48k|    return sizeof(T) + (sizeof(void*) - sizeof(T));
+   39|  1.48k|}
 _Z9consume_tIhEN3phi8optionalIT_EEPKhmRm:
-   44|    331|{
-   45|    331|    if (!has_x_more(index, sizeof(T), size))
+   44|    363|{
+   45|    363|    if (!has_x_more(index, sizeof(T), size))
   ------------------
-  |  Branch (45:9): [True: 1, False: 330]
+  |  Branch (45:9): [True: 1, False: 362]
   ------------------
    46|      1|    {
    47|      1|        return {};
    48|      1|    }
    49|       |
-   50|    330|    PHI_ASSUME(index % sizeof(void*) == 0);
+   50|    362|    PHI_ASSUME(index % sizeof(void*) == 0);
    51|       |
-   52|    330|    const phi::size_t old_index = index;
-   53|    330|    index += aligned_size<T>();
+   52|    362|    const phi::size_t old_index = index;
+   53|    362|    index += aligned_size<T>();
    54|       |
-   55|    330|    if constexpr (phi::is_bool_v<T>)
+   55|    362|    if constexpr (phi::is_bool_v<T>)
   ------------------
   |  Branch (55:19): [Folded - Ignored]
   ------------------
    56|      0|    {
-   57|    330|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
-   58|    330|        return static_cast<bool>(value);
-   59|    330|    }
-   60|    330|    else
-   61|    330|    {
-   62|    330|        return *reinterpret_cast<const T*>(data + old_index);
-   63|    330|    }
-   64|    330|}
+   57|    362|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
+   58|    362|        return static_cast<bool>(value);
+   59|    362|    }
+   60|    362|    else
+   61|    362|    {
+   62|    362|        return *reinterpret_cast<const T*>(data + old_index);
+   63|    362|    }
+   64|    362|}
 _Z12aligned_sizeIhEmv:
-   37|    330|{
-   38|    330|    return sizeof(T) + (sizeof(void*) - sizeof(T));
-   39|    330|}
+   37|    362|{
+   38|    362|    return sizeof(T) + (sizeof(void*) - sizeof(T));
+   39|    362|}
 _Z9consume_tIsEN3phi8optionalIT_EEPKhmRm:
-   44|    491|{
-   45|    491|    if (!has_x_more(index, sizeof(T), size))
+   44|    578|{
+   45|    578|    if (!has_x_more(index, sizeof(T), size))
   ------------------
-  |  Branch (45:9): [True: 1, False: 490]
+  |  Branch (45:9): [True: 2, False: 576]
   ------------------
-   46|      1|    {
-   47|      1|        return {};
-   48|      1|    }
+   46|      2|    {
+   47|      2|        return {};
+   48|      2|    }
    49|       |
-   50|    490|    PHI_ASSUME(index % sizeof(void*) == 0);
+   50|    576|    PHI_ASSUME(index % sizeof(void*) == 0);
    51|       |
-   52|    490|    const phi::size_t old_index = index;
-   53|    490|    index += aligned_size<T>();
+   52|    576|    const phi::size_t old_index = index;
+   53|    576|    index += aligned_size<T>();
    54|       |
-   55|    490|    if constexpr (phi::is_bool_v<T>)
+   55|    576|    if constexpr (phi::is_bool_v<T>)
   ------------------
   |  Branch (55:19): [Folded - Ignored]
   ------------------
    56|      0|    {
-   57|    490|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
-   58|    490|        return static_cast<bool>(value);
-   59|    490|    }
-   60|    490|    else
-   61|    490|    {
-   62|    490|        return *reinterpret_cast<const T*>(data + old_index);
-   63|    490|    }
-   64|    490|}
+   57|    576|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
+   58|    576|        return static_cast<bool>(value);
+   59|    576|    }
+   60|    576|    else
+   61|    576|    {
+   62|    576|        return *reinterpret_cast<const T*>(data + old_index);
+   63|    576|    }
+   64|    576|}
 _Z12aligned_sizeIsEmv:
-   37|    490|{
-   38|    490|    return sizeof(T) + (sizeof(void*) - sizeof(T));
-   39|    490|}
+   37|    576|{
+   38|    576|    return sizeof(T) + (sizeof(void*) - sizeof(T));
+   39|    576|}
 _Z9consume_tItEN3phi8optionalIT_EEPKhmRm:
    44|    587|{
    45|    587|    if (!has_x_more(index, sizeof(T), size))
@@ -1407,69 +1407,69 @@ _Z12aligned_sizeItEmv:
    38|    586|    return sizeof(T) + (sizeof(void*) - sizeof(T));
    39|    586|}
 _Z9consume_tIiEN3phi8optionalIT_EEPKhmRm:
-   44|    971|{
-   45|    971|    if (!has_x_more(index, sizeof(T), size))
+   44|  1.09k|{
+   45|  1.09k|    if (!has_x_more(index, sizeof(T), size))
   ------------------
-  |  Branch (45:9): [True: 1, False: 970]
+  |  Branch (45:9): [True: 1, False: 1.09k]
   ------------------
    46|      1|    {
    47|      1|        return {};
    48|      1|    }
    49|       |
-   50|    970|    PHI_ASSUME(index % sizeof(void*) == 0);
+   50|  1.09k|    PHI_ASSUME(index % sizeof(void*) == 0);
    51|       |
-   52|    970|    const phi::size_t old_index = index;
-   53|    970|    index += aligned_size<T>();
+   52|  1.09k|    const phi::size_t old_index = index;
+   53|  1.09k|    index += aligned_size<T>();
    54|       |
-   55|    970|    if constexpr (phi::is_bool_v<T>)
+   55|  1.09k|    if constexpr (phi::is_bool_v<T>)
   ------------------
   |  Branch (55:19): [Folded - Ignored]
   ------------------
    56|      0|    {
-   57|    970|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
-   58|    970|        return static_cast<bool>(value);
-   59|    970|    }
-   60|    970|    else
-   61|    970|    {
-   62|    970|        return *reinterpret_cast<const T*>(data + old_index);
-   63|    970|    }
-   64|    970|}
+   57|  1.09k|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
+   58|  1.09k|        return static_cast<bool>(value);
+   59|  1.09k|    }
+   60|  1.09k|    else
+   61|  1.09k|    {
+   62|  1.09k|        return *reinterpret_cast<const T*>(data + old_index);
+   63|  1.09k|    }
+   64|  1.09k|}
 _Z12aligned_sizeIiEmv:
-   37|    970|{
-   38|    970|    return sizeof(T) + (sizeof(void*) - sizeof(T));
-   39|    970|}
+   37|  1.09k|{
+   38|  1.09k|    return sizeof(T) + (sizeof(void*) - sizeof(T));
+   39|  1.09k|}
 _Z9consume_tIfEN3phi8optionalIT_EEPKhmRm:
-   44|  1.61k|{
-   45|  1.61k|    if (!has_x_more(index, sizeof(T), size))
+   44|  1.09k|{
+   45|  1.09k|    if (!has_x_more(index, sizeof(T), size))
   ------------------
-  |  Branch (45:9): [True: 1, False: 1.61k]
+  |  Branch (45:9): [True: 1, False: 1.09k]
   ------------------
    46|      1|    {
    47|      1|        return {};
    48|      1|    }
    49|       |
-   50|  1.61k|    PHI_ASSUME(index % sizeof(void*) == 0);
+   50|  1.09k|    PHI_ASSUME(index % sizeof(void*) == 0);
    51|       |
-   52|  1.61k|    const phi::size_t old_index = index;
-   53|  1.61k|    index += aligned_size<T>();
+   52|  1.09k|    const phi::size_t old_index = index;
+   53|  1.09k|    index += aligned_size<T>();
    54|       |
-   55|  1.61k|    if constexpr (phi::is_bool_v<T>)
+   55|  1.09k|    if constexpr (phi::is_bool_v<T>)
   ------------------
   |  Branch (55:19): [Folded - Ignored]
   ------------------
    56|      0|    {
-   57|  1.61k|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
-   58|  1.61k|        return static_cast<bool>(value);
-   59|  1.61k|    }
-   60|  1.61k|    else
-   61|  1.61k|    {
-   62|  1.61k|        return *reinterpret_cast<const T*>(data + old_index);
-   63|  1.61k|    }
-   64|  1.61k|}
+   57|  1.09k|        phi::int8_t value = *reinterpret_cast<const phi::int8_t*>(data + old_index);
+   58|  1.09k|        return static_cast<bool>(value);
+   59|  1.09k|    }
+   60|  1.09k|    else
+   61|  1.09k|    {
+   62|  1.09k|        return *reinterpret_cast<const T*>(data + old_index);
+   63|  1.09k|    }
+   64|  1.09k|}
 _Z12aligned_sizeIfEmv:
-   37|  1.61k|{
-   38|  1.61k|    return sizeof(T) + (sizeof(void*) - sizeof(T));
-   39|  1.61k|}
+   37|  1.09k|{
+   38|  1.09k|    return sizeof(T) + (sizeof(void*) - sizeof(T));
+   39|  1.09k|}
 _Z9consume_tIdEN3phi8optionalIT_EEPKhmRm:
    44|    331|{
    45|    331|    if (!has_x_more(index, sizeof(T), size))
