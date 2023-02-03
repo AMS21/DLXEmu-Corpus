@@ -1,15 +1,15 @@
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2037865756
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
+INFO: Seed: 2665522427
+INFO: Loaded 1 modules   (523 inline 8-bit counters): 523 [0x895438, 0x895643), 
+INFO: Loaded 1 PC tables (523 PCs): 523 [0x793048,0x7950f8), 
 MERGE-OUTER: 28400 files, 0 in the initial corpus, 0 processed earlier
 MERGE-OUTER: attempt 1
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2037975621
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
+INFO: Seed: 2665631745
+INFO: Loaded 1 modules   (523 inline 8-bit counters): 523 [0x895438, 0x895643), 
+INFO: Loaded 1 PC tables (523 PCs): 523 [0x793048,0x7950f8), 
 INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge830.txt'
 MERGE-INNER: 28400 total files; 0 processed earlier; will process 28400 files now
 #1	pulse  cov: 27 ft: 28 exec/s: 0 rss: 36Mb
 #2	pulse  cov: 29 ft: 30 exec/s: 0 rss: 36Mb
@@ -19,36 +19,37 @@ MERGE-INNER: 28400 total files; 0 processed earlier; will process 28400 files no
 #32	pulse  cov: 64 ft: 65 exec/s: 0 rss: 36Mb
 #64	pulse  cov: 109 ft: 113 exec/s: 0 rss: 36Mb
 #128	pulse  cov: 147 ft: 175 exec/s: 0 rss: 36Mb
-#256	pulse  cov: 236 ft: 348 exec/s: 0 rss: 36Mb
-#512	pulse  cov: 278 ft: 511 exec/s: 0 rss: 37Mb
-#1024	pulse  cov: 310 ft: 760 exec/s: 0 rss: 37Mb
-#2048	pulse  cov: 315 ft: 943 exec/s: 0 rss: 37Mb
+#256	pulse  cov: 239 ft: 351 exec/s: 0 rss: 36Mb
+#512	pulse  cov: 282 ft: 514 exec/s: 0 rss: 37Mb
+#1024	pulse  cov: 314 ft: 761 exec/s: 0 rss: 37Mb
+#2048	pulse  cov: 319 ft: 943 exec/s: 0 rss: 37Mb
+#4096	pulse  cov: 323 ft: 1125 exec/s: 0 rss: 37Mb
 ASSERTION VIOLATION
 condition: idx_count >= 0 && vtx_count >= 0
 file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
 function:  void ImDrawList::PrimReserve(int, int)
-==941== ERROR: libFuzzer: deadly signal
+==833== ERROR: libFuzzer: deadly signal
     #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
     #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
     #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f2c4a6c641f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f2c4a4e800a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f2c4a4c7858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
+    #3 0x7f8ff114b41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7f8ff0f6d00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7f8ff0f4c858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61efde in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x5b7652 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
+    #8 0x5bc24b in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
+    #9 0x5bbf10 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
+    #10 0x55413a in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
+    #11 0x554395 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
+    #12 0x56e6b1 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
+    #13 0x56e6b1 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
+    #14 0x4d21bf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
+    #15 0x4c7cd0 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:793:24
     #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
     #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
     #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
     #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f2c4a4c9082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #20 0x7f8ff0f4e082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
     #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
 
 DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
@@ -56,56 +57,50 @@ NOTE: libFuzzer has rudimentary signal handlers.
       Combine libFuzzer with AddressSanitizer or similar for better crash reports.
 SUMMARY: libFuzzer: deadly signal
 MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-414cf88d4350e5198416122eea581e828723a337
+artifact_prefix='./'; Test unit written to ./crash-8ff0ea2bcfe8002ec22c2b8f99e583d0639d3fdb
 MERGE-OUTER: attempt 2
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2038875532
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
+INFO: Seed: 2666676137
+INFO: Loaded 1 modules   (523 inline 8-bit counters): 523 [0x895438, 0x895643), 
+INFO: Loaded 1 PC tables (523 PCs): 523 [0x793048,0x7950f8), 
 INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/414cf88d4350e5198416122eea581e828723a337' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 3885 processed earlier; will process 24515 files now
-#1	pulse  cov: 48 ft: 49 exec/s: 0 rss: 36Mb
-#2	pulse  cov: 52 ft: 59 exec/s: 0 rss: 36Mb
-#4	pulse  cov: 54 ft: 62 exec/s: 0 rss: 36Mb
-#8	pulse  cov: 75 ft: 132 exec/s: 0 rss: 36Mb
-#16	pulse  cov: 102 ft: 209 exec/s: 0 rss: 37Mb
-#32	pulse  cov: 111 ft: 242 exec/s: 0 rss: 37Mb
-#64	pulse  cov: 125 ft: 303 exec/s: 0 rss: 37Mb
-#128	pulse  cov: 184 ft: 417 exec/s: 0 rss: 37Mb
-#256	pulse  cov: 207 ft: 541 exec/s: 0 rss: 37Mb
-#512	pulse  cov: 227 ft: 636 exec/s: 0 rss: 37Mb
-#1024	pulse  cov: 256 ft: 794 exec/s: 0 rss: 37Mb
-#2048	pulse  cov: 263 ft: 872 exec/s: 0 rss: 37Mb
-#4096	pulse  cov: 273 ft: 986 exec/s: 0 rss: 37Mb
-#8192	pulse  cov: 286 ft: 1203 exec/s: 0 rss: 37Mb
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge830.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/8ff0ea2bcfe8002ec22c2b8f99e583d0639d3fdb' caused a failure at the previous merge step
+MERGE-INNER: 28400 total files; 6630 processed earlier; will process 21770 files now
+#1	pulse  cov: 54 ft: 55 exec/s: 0 rss: 37Mb
+#2	pulse  cov: 57 ft: 87 exec/s: 0 rss: 37Mb
+#4	pulse  cov: 64 ft: 124 exec/s: 0 rss: 37Mb
+#8	pulse  cov: 71 ft: 146 exec/s: 0 rss: 37Mb
+#16	pulse  cov: 75 ft: 150 exec/s: 0 rss: 37Mb
+#32	pulse  cov: 119 ft: 250 exec/s: 0 rss: 37Mb
+#64	pulse  cov: 133 ft: 344 exec/s: 0 rss: 37Mb
+#128	pulse  cov: 155 ft: 407 exec/s: 0 rss: 37Mb
 ASSERTION VIOLATION
 condition: idx_count >= 0 && vtx_count >= 0
 file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
 function:  void ImDrawList::PrimReserve(int, int)
-==945== ERROR: libFuzzer: deadly signal
+==837== ERROR: libFuzzer: deadly signal
     #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
     #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
     #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f9f92f5541f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f9f92d7700a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f9f92d56858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
+    #3 0x7fc1f708d41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7fc1f6eaf00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7fc1f6e8e858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61efde in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x5b7652 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
+    #8 0x5bc24b in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
+    #9 0x5bbf10 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
+    #10 0x55413a in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
+    #11 0x554395 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
+    #12 0x56e6b1 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
+    #13 0x56e6b1 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
+    #14 0x4d21bf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
+    #15 0x4c7cd0 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:793:24
     #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
     #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
     #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
     #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f9f92d58082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #20 0x7fc1f6e90082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
     #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
 
 DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
@@ -113,52 +108,158 @@ NOTE: libFuzzer has rudimentary signal handlers.
       Combine libFuzzer with AddressSanitizer or similar for better crash reports.
 SUMMARY: libFuzzer: deadly signal
 MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-4ec20d202630cab6e040359a1b8a56c77dbd6244
+artifact_prefix='./'; Test unit written to ./crash-9b7fa3fd57a003107a13bb6471c5b4dff394b81a
 MERGE-OUTER: attempt 3
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2041115918
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
+INFO: Seed: 2667392380
+INFO: Loaded 1 modules   (523 inline 8-bit counters): 523 [0x895438, 0x895643), 
+INFO: Loaded 1 PC tables (523 PCs): 523 [0x793048,0x7950f8), 
 INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/4ec20d202630cab6e040359a1b8a56c77dbd6244' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 16137 processed earlier; will process 12263 files now
-#1	pulse  cov: 51 ft: 52 exec/s: 0 rss: 36Mb
-#2	pulse  cov: 52 ft: 55 exec/s: 0 rss: 36Mb
-#4	pulse  cov: 52 ft: 55 exec/s: 0 rss: 36Mb
-#8	pulse  cov: 89 ft: 137 exec/s: 0 rss: 37Mb
-#16	pulse  cov: 90 ft: 193 exec/s: 0 rss: 38Mb
-#32	pulse  cov: 110 ft: 283 exec/s: 0 rss: 38Mb
-#64	pulse  cov: 182 ft: 467 exec/s: 0 rss: 38Mb
-#128	pulse  cov: 207 ft: 636 exec/s: 0 rss: 38Mb
-#256	pulse  cov: 219 ft: 737 exec/s: 0 rss: 38Mb
-#512	pulse  cov: 237 ft: 850 exec/s: 0 rss: 38Mb
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge830.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/9b7fa3fd57a003107a13bb6471c5b4dff394b81a' caused a failure at the previous merge step
+MERGE-INNER: 28400 total files; 6839 processed earlier; will process 21561 files now
+#1	pulse  cov: 59 ft: 60 exec/s: 0 rss: 37Mb
+#2	pulse  cov: 67 ft: 87 exec/s: 0 rss: 37Mb
+#4	pulse  cov: 68 ft: 90 exec/s: 0 rss: 37Mb
+#8	pulse  cov: 75 ft: 113 exec/s: 0 rss: 37Mb
+#16	pulse  cov: 94 ft: 190 exec/s: 0 rss: 37Mb
+#32	pulse  cov: 104 ft: 249 exec/s: 0 rss: 37Mb
+#64	pulse  cov: 127 ft: 356 exec/s: 0 rss: 37Mb
 ASSERTION VIOLATION
 condition: idx_count >= 0 && vtx_count >= 0
 file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
 function:  void ImDrawList::PrimReserve(int, int)
-==949== ERROR: libFuzzer: deadly signal
+==841== ERROR: libFuzzer: deadly signal
     #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
     #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
     #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7fe772bc441f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7fe7729e600a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7fe7729c5858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
+    #3 0x7fbe78ee141f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7fbe78d0300a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7fbe78ce2858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61efde in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x5b7652 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
+    #8 0x5bc24b in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
+    #9 0x5bbf10 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
+    #10 0x55413a in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
+    #11 0x554395 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
+    #12 0x56e6b1 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
+    #13 0x56e6b1 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
+    #14 0x4d21bf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
+    #15 0x4c7cd0 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:793:24
     #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
     #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
     #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
     #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7fe7729c7082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #20 0x7fbe78ce4082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-2f8561f09069508f9ba3c99bfa6fa125e689f141
+MERGE-OUTER: attempt 4
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2668087640
+INFO: Loaded 1 modules   (523 inline 8-bit counters): 523 [0x895438, 0x895643), 
+INFO: Loaded 1 PC tables (523 PCs): 523 [0x793048,0x7950f8), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge830.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/2f8561f09069508f9ba3c99bfa6fa125e689f141' caused a failure at the previous merge step
+MERGE-INNER: 28400 total files; 6929 processed earlier; will process 21471 files now
+#1	pulse  cov: 37 ft: 38 exec/s: 0 rss: 36Mb
+#2	pulse  cov: 53 ft: 62 exec/s: 0 rss: 36Mb
+#4	pulse  cov: 75 ft: 115 exec/s: 0 rss: 37Mb
+#8	pulse  cov: 87 ft: 161 exec/s: 0 rss: 37Mb
+#16	pulse  cov: 90 ft: 199 exec/s: 0 rss: 37Mb
+#32	pulse  cov: 105 ft: 238 exec/s: 0 rss: 37Mb
+#64	pulse  cov: 106 ft: 248 exec/s: 0 rss: 37Mb
+#128	pulse  cov: 155 ft: 389 exec/s: 0 rss: 37Mb
+#256	pulse  cov: 227 ft: 525 exec/s: 0 rss: 37Mb
+ASSERTION VIOLATION
+condition: idx_count >= 0 && vtx_count >= 0
+file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
+function:  void ImDrawList::PrimReserve(int, int)
+==845== ERROR: libFuzzer: deadly signal
+    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7f934b58141f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7f934b3a300a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7f934b382858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61efde in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x5b7652 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
+    #8 0x5bc24b in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
+    #9 0x5bbf10 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
+    #10 0x55413a in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
+    #11 0x554395 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
+    #12 0x56e6b1 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
+    #13 0x56e6b1 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
+    #14 0x4d21bf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
+    #15 0x4c7cd0 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:793:24
+    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #20 0x7f934b384082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-987692491b35d7bc5b1cfaaa603790018fdf0dd8
+MERGE-OUTER: attempt 5
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2668792836
+INFO: Loaded 1 modules   (523 inline 8-bit counters): 523 [0x895438, 0x895643), 
+INFO: Loaded 1 PC tables (523 PCs): 523 [0x793048,0x7950f8), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge830.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/987692491b35d7bc5b1cfaaa603790018fdf0dd8' caused a failure at the previous merge step
+MERGE-INNER: 28400 total files; 7261 processed earlier; will process 21139 files now
+#1	pulse  cov: 49 ft: 50 exec/s: 0 rss: 36Mb
+#2	pulse  cov: 50 ft: 58 exec/s: 0 rss: 36Mb
+#4	pulse  cov: 54 ft: 77 exec/s: 0 rss: 36Mb
+#8	pulse  cov: 80 ft: 146 exec/s: 0 rss: 36Mb
+#16	pulse  cov: 90 ft: 226 exec/s: 0 rss: 37Mb
+#32	pulse  cov: 106 ft: 279 exec/s: 0 rss: 37Mb
+#64	pulse  cov: 133 ft: 383 exec/s: 0 rss: 37Mb
+#128	pulse  cov: 159 ft: 456 exec/s: 0 rss: 37Mb
+#256	pulse  cov: 177 ft: 529 exec/s: 0 rss: 37Mb
+#512	pulse  cov: 230 ft: 682 exec/s: 0 rss: 37Mb
+#1024	pulse  cov: 243 ft: 763 exec/s: 0 rss: 37Mb
+#2048	pulse  cov: 261 ft: 912 exec/s: 0 rss: 37Mb
+#4096	pulse  cov: 279 ft: 1092 exec/s: 0 rss: 37Mb
+#8192	pulse  cov: 291 ft: 1325 exec/s: 8192 rss: 61Mb
+ASSERTION VIOLATION
+condition: idx_count >= 0 && vtx_count >= 0
+file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
+function:  void ImDrawList::PrimReserve(int, int)
+==849== ERROR: libFuzzer: deadly signal
+    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7f96073de41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7f960720000a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7f96071df858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61efde in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x5b7652 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
+    #8 0x5bc24b in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
+    #9 0x5bbf10 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
+    #10 0x55413a in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
+    #11 0x554395 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
+    #12 0x56e6b1 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
+    #13 0x56e6b1 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
+    #14 0x4d21bf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
+    #15 0x4c7cd0 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:793:24
+    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #20 0x7f96071e1082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
     #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
 
 DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
@@ -167,53 +268,52 @@ NOTE: libFuzzer has rudimentary signal handlers.
 SUMMARY: libFuzzer: deadly signal
 MS: 0 ; base unit: 0000000000000000000000000000000000000000
 artifact_prefix='./'; Test unit written to ./crash-93a89134e26a0b72ec1c97512c4604f78d5357d7
-MERGE-OUTER: attempt 4
+MERGE-OUTER: attempt 6
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2042104698
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
+INFO: Seed: 2671387535
+INFO: Loaded 1 modules   (523 inline 8-bit counters): 523 [0x895438, 0x895643), 
+INFO: Loaded 1 PC tables (523 PCs): 523 [0x793048,0x7950f8), 
 INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge830.txt'
 MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/93a89134e26a0b72ec1c97512c4604f78d5357d7' caused a failure at the previous merge step
 MERGE-INNER: 28400 total files; 16983 processed earlier; will process 11417 files now
 #1	pulse  cov: 64 ft: 65 exec/s: 0 rss: 37Mb
 #2	pulse  cov: 65 ft: 66 exec/s: 0 rss: 37Mb
 #4	pulse  cov: 67 ft: 107 exec/s: 0 rss: 37Mb
 #8	pulse  cov: 67 ft: 107 exec/s: 0 rss: 37Mb
-#16	pulse  cov: 80 ft: 181 exec/s: 0 rss: 37Mb
-#32	pulse  cov: 148 ft: 391 exec/s: 0 rss: 37Mb
-#64	pulse  cov: 184 ft: 534 exec/s: 0 rss: 38Mb
-#128	pulse  cov: 205 ft: 644 exec/s: 0 rss: 39Mb
-#256	pulse  cov: 222 ft: 751 exec/s: 0 rss: 39Mb
-#512	pulse  cov: 240 ft: 902 exec/s: 0 rss: 39Mb
-#1024	pulse  cov: 249 ft: 1021 exec/s: 128 rss: 39Mb
-#2048	pulse  cov: 262 ft: 1210 exec/s: 227 rss: 39Mb
+#16	pulse  cov: 77 ft: 147 exec/s: 0 rss: 37Mb
+#32	pulse  cov: 140 ft: 349 exec/s: 0 rss: 37Mb
+#64	pulse  cov: 177 ft: 495 exec/s: 0 rss: 38Mb
+#128	pulse  cov: 203 ft: 611 exec/s: 128 rss: 81Mb
+#256	pulse  cov: 224 ft: 728 exec/s: 256 rss: 81Mb
+#512	pulse  cov: 240 ft: 897 exec/s: 512 rss: 81Mb
+#1024	pulse  cov: 249 ft: 1033 exec/s: 56 rss: 358Mb
 ASSERTION VIOLATION
 condition: idx_count >= 0 && vtx_count >= 0
 file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
 function:  void ImDrawList::PrimReserve(int, int)
-==957== ERROR: libFuzzer: deadly signal
+==857== ERROR: libFuzzer: deadly signal
     #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
     #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
     #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f382fb8641f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f382f9a800a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f382f987858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
+    #3 0x7f8a6338a41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
+    #4 0x7f8a631ac00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #5 0x7f8a6318b858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #6 0x61efde in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
+    #7 0x5b7652 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
+    #8 0x5bc24b in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
+    #9 0x5bbf10 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
+    #10 0x55413a in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
+    #11 0x554395 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
+    #12 0x56e6b1 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
+    #13 0x56e6b1 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
+    #14 0x4d21bf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
+    #15 0x4c7cd0 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:793:24
     #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
     #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
     #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
     #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f382f989082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #20 0x7f8a6318d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
     #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
 
 DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
@@ -221,1406 +321,57 @@ NOTE: libFuzzer has rudimentary signal handlers.
       Combine libFuzzer with AddressSanitizer or similar for better crash reports.
 SUMMARY: libFuzzer: deadly signal
 MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-41b8b1bb1b19f43f767efd003a268ab653da1fc5
-MERGE-OUTER: attempt 5
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2052877865
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/41b8b1bb1b19f43f767efd003a268ab653da1fc5' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 19395 processed earlier; will process 9005 files now
-#1	pulse  cov: 57 ft: 58 exec/s: 0 rss: 37Mb
-#2	pulse  cov: 75 ft: 103 exec/s: 0 rss: 37Mb
-#4	pulse  cov: 89 ft: 158 exec/s: 0 rss: 37Mb
-#8	pulse  cov: 144 ft: 266 exec/s: 0 rss: 37Mb
-#16	pulse  cov: 144 ft: 301 exec/s: 0 rss: 37Mb
-#32	pulse  cov: 172 ft: 474 exec/s: 0 rss: 38Mb
-#64	pulse  cov: 184 ft: 549 exec/s: 0 rss: 38Mb
-#128	pulse  cov: 202 ft: 718 exec/s: 0 rss: 38Mb
-#256	pulse  cov: 224 ft: 844 exec/s: 0 rss: 38Mb
-#512	pulse  cov: 244 ft: 1026 exec/s: 0 rss: 38Mb
-#1024	pulse  cov: 254 ft: 1117 exec/s: 1024 rss: 38Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==969== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f8df3b9941f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f8df39bb00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f8df399a858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f8df399c082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-b3c04fdcc1c1de7a22b5ba3edc4f9613142ebe05
-MERGE-OUTER: attempt 6
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2065108807
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/b3c04fdcc1c1de7a22b5ba3edc4f9613142ebe05' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21108 processed earlier; will process 7292 files now
-#1	pulse  cov: 49 ft: 50 exec/s: 0 rss: 36Mb
-#2	pulse  cov: 73 ft: 100 exec/s: 0 rss: 36Mb
-#4	pulse  cov: 107 ft: 195 exec/s: 0 rss: 37Mb
-#8	pulse  cov: 108 ft: 223 exec/s: 0 rss: 37Mb
-#16	pulse  cov: 116 ft: 280 exec/s: 0 rss: 37Mb
-#32	pulse  cov: 123 ft: 324 exec/s: 0 rss: 37Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==985== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f621742441f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f621724600a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f6217225858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f6217227082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-10f0695fb213f6d9818eb5af586282d2ef612ce1
+artifact_prefix='./'; Test unit written to ./crash-5915a494a29aa5cd9f4ebe1645f4dc176fde7e87
 MERGE-OUTER: attempt 7
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2065839715
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
+INFO: Seed: 2695528523
+INFO: Loaded 1 modules   (523 inline 8-bit counters): 523 [0x895438, 0x895643), 
+INFO: Loaded 1 PC tables (523 PCs): 523 [0x793048,0x7950f8), 
 INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/10f0695fb213f6d9818eb5af586282d2ef612ce1' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21155 processed earlier; will process 7245 files now
-#1	pulse  cov: 71 ft: 72 exec/s: 0 rss: 37Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==989== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f17d5a2341f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f17d584500a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f17d5824858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f17d5826082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge830.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/5915a494a29aa5cd9f4ebe1645f4dc176fde7e87' caused a failure at the previous merge step
+MERGE-INNER: 28400 total files; 18508 processed earlier; will process 9892 files now
+#1	pulse  cov: 64 ft: 65 exec/s: 0 rss: 37Mb
+#2	pulse  cov: 69 ft: 97 exec/s: 0 rss: 37Mb
+#4	pulse  cov: 76 ft: 159 exec/s: 0 rss: 37Mb
+#8	pulse  cov: 89 ft: 235 exec/s: 0 rss: 37Mb
+#16	pulse  cov: 104 ft: 300 exec/s: 0 rss: 37Mb
+#32	pulse  cov: 189 ft: 446 exec/s: 0 rss: 38Mb
+#64	pulse  cov: 201 ft: 499 exec/s: 0 rss: 38Mb
+#128	pulse  cov: 212 ft: 718 exec/s: 0 rss: 38Mb
+#256	pulse  cov: 230 ft: 875 exec/s: 0 rss: 45Mb
+#512	pulse  cov: 250 ft: 1059 exec/s: 512 rss: 252Mb
+==888== ERROR: libFuzzer: out-of-memory (used: 2732Mb; limit: 2048Mb)
+   To change the out-of-memory limit use -rss_limit_mb=<N>
 
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
 MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-a191466461067dc95baf218b4d9bb3e7d09f03a1
+artifact_prefix='./'; Test unit written to ./oom-8bd5fbb2f6463dd6e495a56059779e9400c90280
+SUMMARY: libFuzzer: out-of-memory
 MERGE-OUTER: attempt 8
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2066550893
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
+INFO: Seed: 2708602411
+INFO: Loaded 1 modules   (523 inline 8-bit counters): 523 [0x895438, 0x895643), 
+INFO: Loaded 1 PC tables (523 PCs): 523 [0x793048,0x7950f8), 
 INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/a191466461067dc95baf218b4d9bb3e7d09f03a1' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21157 processed earlier; will process 7243 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==997== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7fb6f532941f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7fb6f514b00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7fb6f512a858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7fb6f512c082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-9c83341621a8fde022218bb55cf759043e5fd796
-MERGE-OUTER: attempt 9
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2067259674
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/9c83341621a8fde022218bb55cf759043e5fd796' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21158 processed earlier; will process 7242 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1001== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f261532e41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f261515000a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f261512f858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f2615131082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-1ce570e2d1beccd87b22bc4a2be3f93c610e42bd
-MERGE-OUTER: attempt 10
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2067973790
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/1ce570e2d1beccd87b22bc4a2be3f93c610e42bd' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21159 processed earlier; will process 7241 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1005== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7fc7d3eed41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7fc7d3d0f00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7fc7d3cee858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7fc7d3cf0082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-74e668802ca55abaa37206102b76e74344a75137
-MERGE-OUTER: attempt 11
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2068693492
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/74e668802ca55abaa37206102b76e74344a75137' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21160 processed earlier; will process 7240 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1009== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f461306241f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f4612e8400a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f4612e63858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f4612e65082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-668f8e352af8c73e26d14af00d48a552c3751e81
-MERGE-OUTER: attempt 12
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2069404476
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/668f8e352af8c73e26d14af00d48a552c3751e81' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21161 processed earlier; will process 7239 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1013== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7faca112041f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7faca0f4200a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7faca0f21858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7faca0f23082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-61efaf1db6b3c5459857cdb3d086cb8b105d1dbc
-MERGE-OUTER: attempt 13
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2070116581
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/61efaf1db6b3c5459857cdb3d086cb8b105d1dbc' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21162 processed earlier; will process 7238 files now
-#1	pulse  cov: 109 ft: 110 exec/s: 0 rss: 37Mb
-#2	pulse  cov: 137 ft: 179 exec/s: 0 rss: 37Mb
-#4	pulse  cov: 144 ft: 241 exec/s: 0 rss: 37Mb
-#8	pulse  cov: 152 ft: 330 exec/s: 0 rss: 37Mb
-#16	pulse  cov: 153 ft: 335 exec/s: 0 rss: 37Mb
-#32	pulse  cov: 161 ft: 349 exec/s: 0 rss: 37Mb
-#64	pulse  cov: 178 ft: 455 exec/s: 0 rss: 37Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1021== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f388b2e441f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f388b10600a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f388b0e5858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f388b0e7082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-2bd0b2dcc004393d8c4acebb225a212117063dfc
-MERGE-OUTER: attempt 14
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2070849996
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/2bd0b2dcc004393d8c4acebb225a212117063dfc' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21259 processed earlier; will process 7141 files now
-#1	pulse  cov: 59 ft: 60 exec/s: 0 rss: 37Mb
-#2	pulse  cov: 72 ft: 94 exec/s: 0 rss: 37Mb
-#4	pulse  cov: 90 ft: 165 exec/s: 0 rss: 37Mb
-#8	pulse  cov: 101 ft: 233 exec/s: 0 rss: 38Mb
-#16	pulse  cov: 106 ft: 268 exec/s: 0 rss: 39Mb
-#32	pulse  cov: 108 ft: 289 exec/s: 0 rss: 39Mb
-#64	pulse  cov: 139 ft: 408 exec/s: 0 rss: 39Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1025== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f24cb51441f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f24cb33600a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f24cb315858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f24cb317082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-c620c0baabb665a3324a5eebc0ccf8fe26569a37
-MERGE-OUTER: attempt 15
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2071905642
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/c620c0baabb665a3324a5eebc0ccf8fe26569a37' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21335 processed earlier; will process 7065 files now
-#1	pulse  cov: 67 ft: 68 exec/s: 0 rss: 37Mb
-#2	pulse  cov: 75 ft: 100 exec/s: 0 rss: 37Mb
-#4	pulse  cov: 102 ft: 175 exec/s: 0 rss: 37Mb
-#8	pulse  cov: 102 ft: 175 exec/s: 0 rss: 37Mb
-#16	pulse  cov: 116 ft: 288 exec/s: 0 rss: 37Mb
-#32	pulse  cov: 167 ft: 382 exec/s: 0 rss: 37Mb
-#64	pulse  cov: 187 ft: 499 exec/s: 0 rss: 39Mb
-#128	pulse  cov: 204 ft: 593 exec/s: 0 rss: 39Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1029== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f60b3e1d41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f60b3c3f00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f60b3c1e858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f60b3c20082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-ca026dd6fc31a15ec8fcd676a4866a6edb064dff
-MERGE-OUTER: attempt 16
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2072763107
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/ca026dd6fc31a15ec8fcd676a4866a6edb064dff' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21506 processed earlier; will process 6894 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1033== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7fc254a0941f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7fc25482b00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7fc25480a858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7fc25480c082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-31a4fbe1a3f28395499a7c6cfe1a41cf2c33c0d3
-MERGE-OUTER: attempt 17
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2073473770
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/31a4fbe1a3f28395499a7c6cfe1a41cf2c33c0d3' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21507 processed earlier; will process 6893 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1037== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f21b0f1b41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f21b0d3d00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f21b0d1c858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f21b0d1e082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-1b3aebc1cda21838a2d56cfc509077bcecb58a81
-MERGE-OUTER: attempt 18
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2074183666
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/1b3aebc1cda21838a2d56cfc509077bcecb58a81' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21508 processed earlier; will process 6892 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1045== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f90f180e41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f90f163000a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f90f160f858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f90f1611082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-9dca7a58781adc9db4df901097b50b80db6e7137
-MERGE-OUTER: attempt 19
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2074893605
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/9dca7a58781adc9db4df901097b50b80db6e7137' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21509 processed earlier; will process 6891 files now
-#1	pulse  cov: 67 ft: 68 exec/s: 0 rss: 37Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1049== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7efc3247941f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7efc3229b00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7efc3227a858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7efc3227c082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-308459c97a3ee3b9573bc30c03b528254b0ed0e4
-MERGE-OUTER: attempt 20
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2075605701
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/308459c97a3ee3b9573bc30c03b528254b0ed0e4' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21511 processed earlier; will process 6889 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1053== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7fb2df5a041f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7fb2df3c200a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7fb2df3a1858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7fb2df3a3082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-a700a871cfad357b4a78b8f1686616a84dc52c51
-MERGE-OUTER: attempt 21
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2076321425
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/a700a871cfad357b4a78b8f1686616a84dc52c51' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21512 processed earlier; will process 6888 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1057== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f8ace5de41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f8ace40000a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f8ace3df858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f8ace3e1082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-2582a72465c30f92f0aa3337a03096734612ac83
-MERGE-OUTER: attempt 22
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2077030416
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/2582a72465c30f92f0aa3337a03096734612ac83' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21513 processed earlier; will process 6887 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1061== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7fdcf742c41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7fdcf724e00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7fdcf722d858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7fdcf722f082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-95157f5060b11fe6631c91907531f77f596f8f76
-MERGE-OUTER: attempt 23
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2077742928
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/95157f5060b11fe6631c91907531f77f596f8f76' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21514 processed earlier; will process 6886 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1065== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f2e9233c41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f2e9215e00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f2e9213d858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f2e9213f082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-779d962bf079883f1dcb0f2e3e241124671dfa8d
-MERGE-OUTER: attempt 24
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2078455459
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/779d962bf079883f1dcb0f2e3e241124671dfa8d' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21515 processed earlier; will process 6885 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1077== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f2a6465c41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f2a6447e00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f2a6445d858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f2a6445f082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-dbc57461793b89e757960498f84615f1fde46fa1
-MERGE-OUTER: attempt 25
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2079167312
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/dbc57461793b89e757960498f84615f1fde46fa1' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21516 processed earlier; will process 6884 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1082== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f50f575841f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f50f557a00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f50f5559858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f50f555b082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-707517bd8a921b9707e462dff26892a8364e91bc
-MERGE-OUTER: attempt 26
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2079886752
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/707517bd8a921b9707e462dff26892a8364e91bc' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21517 processed earlier; will process 6883 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1089== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7fc51bbb341f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7fc51b9d500a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7fc51b9b4858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7fc51b9b6082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-585da8080c8c49cb67046f9f5b4f210a8768048f
-MERGE-OUTER: attempt 27
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2080605497
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/585da8080c8c49cb67046f9f5b4f210a8768048f' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21518 processed earlier; will process 6882 files now
-#1	pulse  cov: 93 ft: 94 exec/s: 0 rss: 36Mb
-#2	pulse  cov: 103 ft: 131 exec/s: 0 rss: 36Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1093== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7fe04dde641f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7fe04dc0800a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7fe04dbe7858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7fe04dbe9082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-45c4fa77b6df3a3d1adf42876aba2eeb34da5a92
-MERGE-OUTER: attempt 28
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2081316687
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/45c4fa77b6df3a3d1adf42876aba2eeb34da5a92' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21521 processed earlier; will process 6879 files now
-#1	pulse  cov: 89 ft: 90 exec/s: 0 rss: 36Mb
-#2	pulse  cov: 133 ft: 151 exec/s: 0 rss: 37Mb
-#4	pulse  cov: 133 ft: 151 exec/s: 0 rss: 37Mb
-#8	pulse  cov: 142 ft: 194 exec/s: 0 rss: 37Mb
-#16	pulse  cov: 161 ft: 319 exec/s: 0 rss: 37Mb
-#32	pulse  cov: 186 ft: 382 exec/s: 0 rss: 37Mb
-#64	pulse  cov: 192 ft: 513 exec/s: 0 rss: 37Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1097== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f007161341f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f007143500a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f0071414858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f0071416082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-63b273222551e7be1b94298a34bfcd94dc56385a
-MERGE-OUTER: attempt 29
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2082089854
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/63b273222551e7be1b94298a34bfcd94dc56385a' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21622 processed earlier; will process 6778 files now
-#1	pulse  cov: 48 ft: 49 exec/s: 0 rss: 36Mb
-#2	pulse  cov: 62 ft: 79 exec/s: 0 rss: 36Mb
-#4	pulse  cov: 96 ft: 163 exec/s: 0 rss: 37Mb
-#8	pulse  cov: 112 ft: 251 exec/s: 0 rss: 37Mb
-#16	pulse  cov: 119 ft: 314 exec/s: 0 rss: 37Mb
-#32	pulse  cov: 184 ft: 517 exec/s: 0 rss: 37Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1101== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f3cbfc4741f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f3cbfa6900a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f3cbfa48858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f3cbfa4a082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-0757938a3d2371912a1b55a9ef0a9267aaaa612e
-MERGE-OUTER: attempt 30
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2082850362
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/0757938a3d2371912a1b55a9ef0a9267aaaa612e' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21662 processed earlier; will process 6738 files now
-#1	pulse  cov: 61 ft: 62 exec/s: 0 rss: 37Mb
-#2	pulse  cov: 71 ft: 94 exec/s: 0 rss: 37Mb
-#4	pulse  cov: 81 ft: 161 exec/s: 0 rss: 37Mb
-#8	pulse  cov: 87 ft: 199 exec/s: 0 rss: 37Mb
-#16	pulse  cov: 87 ft: 238 exec/s: 0 rss: 37Mb
-#32	pulse  cov: 115 ft: 371 exec/s: 0 rss: 37Mb
-#64	pulse  cov: 148 ft: 478 exec/s: 0 rss: 37Mb
-#128	pulse  cov: 198 ft: 678 exec/s: 0 rss: 37Mb
-#256	pulse  cov: 220 ft: 772 exec/s: 0 rss: 37Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1109== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f3bce4ff41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f3bce32100a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f3bce300858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f3bce302082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-fbe0d465c891d2ec5dd8ab71bb6b970c34bb3a78
-MERGE-OUTER: attempt 31
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2083672134
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/fbe0d465c891d2ec5dd8ab71bb6b970c34bb3a78' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 21945 processed earlier; will process 6455 files now
-#1	pulse  cov: 72 ft: 73 exec/s: 0 rss: 37Mb
-#2	pulse  cov: 79 ft: 113 exec/s: 0 rss: 37Mb
-#4	pulse  cov: 82 ft: 144 exec/s: 0 rss: 37Mb
-#8	pulse  cov: 82 ft: 150 exec/s: 0 rss: 37Mb
-#16	pulse  cov: 93 ft: 245 exec/s: 0 rss: 37Mb
-#32	pulse  cov: 173 ft: 452 exec/s: 0 rss: 37Mb
-#64	pulse  cov: 188 ft: 544 exec/s: 0 rss: 38Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1113== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f0da1e7641f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f0da1c9800a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f0da1c77858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f0da1c79082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-3765ff7849e1c7f4d1ec699b6b58def69fcf3a44
-MERGE-OUTER: attempt 32
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2084656445
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/3765ff7849e1c7f4d1ec699b6b58def69fcf3a44' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 22032 processed earlier; will process 6368 files now
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1117== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f11231e041f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f112300200a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f1122fe1858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f1122fe3082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-d6d05a0df2b8cb136d3361dfe8d2e66b76340225
-MERGE-OUTER: attempt 33
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2085378078
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/d6d05a0df2b8cb136d3361dfe8d2e66b76340225' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 22033 processed earlier; will process 6367 files now
-#1	pulse  cov: 57 ft: 58 exec/s: 0 rss: 36Mb
-#2	pulse  cov: 59 ft: 60 exec/s: 0 rss: 36Mb
-#4	pulse  cov: 117 ft: 165 exec/s: 0 rss: 37Mb
-#8	pulse  cov: 134 ft: 263 exec/s: 0 rss: 37Mb
-#16	pulse  cov: 135 ft: 285 exec/s: 0 rss: 37Mb
-#32	pulse  cov: 167 ft: 489 exec/s: 0 rss: 39Mb
-#64	pulse  cov: 198 ft: 602 exec/s: 0 rss: 39Mb
-#128	pulse  cov: 212 ft: 659 exec/s: 0 rss: 39Mb
-#256	pulse  cov: 228 ft: 837 exec/s: 0 rss: 39Mb
-#512	pulse  cov: 234 ft: 990 exec/s: 0 rss: 39Mb
-#1024	pulse  cov: 248 ft: 1083 exec/s: 0 rss: 39Mb
-#2048	pulse  cov: 257 ft: 1180 exec/s: 512 rss: 39Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1121== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7fccdb1e041f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7fccdb00200a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7fccdafe1858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7fccdafe3082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-d7543ca4b1c80606c6d07e378e7c5d110032b031
-MERGE-OUTER: attempt 34
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2099395751
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/d7543ca4b1c80606c6d07e378e7c5d110032b031' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 25931 processed earlier; will process 2469 files now
-#1	pulse  cov: 62 ft: 63 exec/s: 0 rss: 37Mb
-#2	pulse  cov: 65 ft: 88 exec/s: 0 rss: 37Mb
-ASSERTION VIOLATION
-condition: idx_count >= 0 && vtx_count >= 0
-file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (628)
-function:  void ImDrawList::PrimReserve(int, int)
-==1141== ERROR: libFuzzer: deadly signal
-    #0 0x4bff24 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
-    #1 0x4410c8 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
-    #2 0x425da3 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
-    #3 0x7f05eb93041f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: 7b4536f41cdaa5888408e82d0836e33dcf436466)
-    #4 0x7f05eb75200a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #5 0x7f05eb731858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #6 0x61cb7e in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:24:9
-    #7 0x5b51f2 in ImDrawList::PrimReserve(int, int) /src/DLXEmu/external/imgui/imgui_draw.cpp:628:5
-    #8 0x5b9deb in ImFont::RenderText(ImDrawList*, float, ImVec2 const&, unsigned int, ImVec4 const&, char const*, char const*, float, bool) const /src/DLXEmu/external/imgui/imgui_draw.cpp:3622:16
-    #9 0x5b9ab0 in ImDrawList::AddText(ImFont const*, float, ImVec2 const&, unsigned int, char const*, char const*, float, ImVec4 const*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1602:11
-    #10 0x551cda in ImGui::RenderTextClippedEx(ImDrawList*, ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp
-    #11 0x551f35 in ImGui::RenderTextClipped(ImVec2 const&, ImVec2 const&, char const*, char const*, ImVec2 const*, ImVec2 const&, ImRect const*) /src/DLXEmu/external/imgui/imgui.cpp:3296:5
-    #12 0x56c251 in ImGui::RenderWindowTitleBarContents(ImGuiWindow*, ImRect const&, char const*, bool*) /src/DLXEmu/external/imgui/imgui.cpp:6278:5
-    #13 0x56c251 in ImGui::Begin(char const*, bool*, int) /src/DLXEmu/external/imgui/imgui.cpp:7058:13
-    #14 0x4d1faf in dlxemu::CodeEditor::Render(ImVec2 const&, phi::boolean) /src/DLXEmu/DLXEmu/src/CodeEditor.cpp:445:13
-    #15 0x4c7c50 in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:783:24
-    #16 0x427343 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
-    #17 0x430134 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
-    #18 0x4181d9 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
-    #19 0x441882 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
-    #20 0x7f05eb733082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
-    #21 0x408c6d in _start (build-out/fuzz_code_editor_undo_redo+0x408c6d)
-
-DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
-NOTE: libFuzzer has rudimentary signal handlers.
-      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
-SUMMARY: libFuzzer: deadly signal
-MS: 0 ; base unit: 0000000000000000000000000000000000000000
-artifact_prefix='./'; Test unit written to ./crash-d607876ed3216a1adcb245f62e7aacec949aeb2e
-MERGE-OUTER: attempt 35
-INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2100116603
-INFO: Loaded 1 modules   (518 inline 8-bit counters): 518 [0x892e70, 0x893076), 
-INFO: Loaded 1 PC tables (518 PCs): 518 [0x790f08,0x792f68), 
-INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
-MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge938.txt'
-MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/d607876ed3216a1adcb245f62e7aacec949aeb2e' caused a failure at the previous merge step
-MERGE-INNER: 28400 total files; 25934 processed earlier; will process 2466 files now
-#1	pulse  cov: 62 ft: 63 exec/s: 0 rss: 37Mb
-#2	pulse  cov: 63 ft: 64 exec/s: 0 rss: 37Mb
-#4	pulse  cov: 72 ft: 116 exec/s: 0 rss: 37Mb
-#8	pulse  cov: 92 ft: 203 exec/s: 0 rss: 37Mb
-#16	pulse  cov: 114 ft: 290 exec/s: 0 rss: 37Mb
-#32	pulse  cov: 129 ft: 358 exec/s: 0 rss: 37Mb
-#64	pulse  cov: 133 ft: 397 exec/s: 0 rss: 37Mb
-#128	pulse  cov: 217 ft: 600 exec/s: 0 rss: 37Mb
-#256	pulse  cov: 233 ft: 717 exec/s: 0 rss: 39Mb
-#512	pulse  cov: 242 ft: 818 exec/s: 512 rss: 40Mb
-#1024	pulse  cov: 248 ft: 964 exec/s: 93 rss: 128Mb
-#2048	pulse  cov: 254 ft: 1052 exec/s: 62 rss: 128Mb
-#2466	DONE   cov: 258 ft: 1071 exec/s: 28 rss: 128Mb
-MERGE-OUTER: successful in 35 attempt(s)
-MERGE-OUTER: the control file has 3951092 bytes
-MERGE-OUTER: consumed 2Mb (40Mb rss) to parse the control file
-MERGE-OUTER: 757 new files with 1657 new features added; 328 new coverage edges
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge830.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor_undo_redo/8bd5fbb2f6463dd6e495a56059779e9400c90280' caused a failure at the previous merge step
+MERGE-INNER: 28400 total files; 19058 processed earlier; will process 9342 files now
+#1	pulse  cov: 92 ft: 93 exec/s: 0 rss: 36Mb
+#2	pulse  cov: 97 ft: 109 exec/s: 0 rss: 36Mb
+#4	pulse  cov: 137 ft: 203 exec/s: 0 rss: 37Mb
+#8	pulse  cov: 155 ft: 297 exec/s: 0 rss: 37Mb
+#16	pulse  cov: 163 ft: 410 exec/s: 0 rss: 37Mb
+#32	pulse  cov: 181 ft: 508 exec/s: 0 rss: 37Mb
+#64	pulse  cov: 198 ft: 714 exec/s: 0 rss: 37Mb
+#128	pulse  cov: 225 ft: 811 exec/s: 0 rss: 37Mb
+#256	pulse  cov: 233 ft: 847 exec/s: 0 rss: 37Mb
+#512	pulse  cov: 243 ft: 954 exec/s: 0 rss: 37Mb
+#1024	pulse  cov: 258 ft: 1091 exec/s: 0 rss: 38Mb
+#2048	pulse  cov: 263 ft: 1191 exec/s: 1024 rss: 38Mb
+#4096	pulse  cov: 272 ft: 1287 exec/s: 1365 rss: 38Mb
+#8192	pulse  cov: 284 ft: 1385 exec/s: 512 rss: 43Mb
+#9342	DONE   cov: 284 ft: 1396 exec/s: 227 rss: 77Mb
+MERGE-OUTER: successful in 8 attempt(s)
+MERGE-OUTER: the control file has 3917849 bytes
+MERGE-OUTER: consumed 2Mb (36Mb rss) to parse the control file
+MERGE-OUTER: 742 new files with 1646 new features added; 332 new coverage edges

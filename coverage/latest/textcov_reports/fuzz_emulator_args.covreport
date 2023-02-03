@@ -110,82 +110,82 @@ _ZN6dlxemu10CodeEditor8ColorizeEN3phi7integerIjEENS2_IlEE:
  1732|     50|    }
 
 _ZN6dlxemu8EmulatorC2Ev:
-   43|     50|    {}
+   42|     50|    {}
 _ZN6dlxemu8Emulator26HandleCommandLineArgumentsEN3phi7integerIiEEPPc:
-   49|     49|    {
-   50|       |        // No args
-   51|     49|        if (argc <= 1)
+   48|     49|    {
+   49|       |        // No args
+   50|     49|        if (argc <= 1)
   ------------------
-  |  Branch (51:13): [True: 8, False: 41]
+  |  Branch (50:13): [True: 8, False: 41]
   ------------------
-   52|      8|        {
-   53|      8|            return ShouldContinueInitilization::Yes;
-   54|      8|        }
-   55|       |
-   56|  2.04k|        for (phi::i32 arg_num{1}; arg_num < argc; ++arg_num)
+   51|      8|        {
+   52|      8|            return ShouldContinueInitilization::Yes;
+   53|      8|        }
+   54|       |
+   55|  2.04k|        for (phi::i32 arg_num{1}; arg_num < argc; ++arg_num)
   ------------------
-  |  Branch (56:35): [True: 2.01k, False: 29]
+  |  Branch (55:35): [True: 2.01k, False: 29]
   ------------------
-   57|  2.01k|        {
-   58|  2.01k|            std::string arg_value = argv[arg_num.unsafe()];
-   59|       |
-   60|       |            // Convert all characters to lower case
-   61|  2.01k|            phi::for_each(arg_value.begin(), arg_value.end(), phi::to_lower_case);
-   62|       |            //std::transform(arg_value.begin(), arg_value.end(), arg_value.begin(), ::tolower);
-   63|       |
-   64|  2.01k|            PHI_ASSERT(!arg_value.empty());
-   65|       |
-   66|  2.01k|            if (arg_value.front() == '-')
+   56|  2.01k|        {
+   57|  2.01k|            std::string arg_value = argv[arg_num.unsafe()];
+   58|       |
+   59|       |            // Convert all characters to lower case
+   60|  2.01k|            phi::for_each(arg_value.begin(), arg_value.end(), phi::to_lower_case);
+   61|       |            //std::transform(arg_value.begin(), arg_value.end(), arg_value.begin(), ::tolower);
+   62|       |
+   63|  2.01k|            PHI_ASSERT(!arg_value.empty());
+   64|       |
+   65|  2.01k|            if (arg_value.front() == '-')
   ------------------
-  |  Branch (66:17): [True: 12, False: 2.00k]
+  |  Branch (65:17): [True: 12, False: 2.00k]
   ------------------
-   67|     12|            {
-   68|       |                // Display help
-   69|     12|                if (arg_value == "-h" || arg_value == "-help" || arg_value == "-?" ||
+   66|     12|            {
+   67|       |                // Display help
+   68|     12|                if (arg_value == "-h" || arg_value == "-help" || arg_value == "-?" ||
   ------------------
-  |  Branch (69:21): [True: 1, False: 11]
-  |  Branch (69:42): [True: 1, False: 10]
-  |  Branch (69:66): [True: 1, False: 9]
+  |  Branch (68:21): [True: 1, False: 11]
+  |  Branch (68:42): [True: 1, False: 10]
+  |  Branch (68:66): [True: 1, False: 9]
   ------------------
-   70|     12|                    arg_value == "--help")
+   69|     12|                    arg_value == "--help")
   ------------------
-  |  Branch (70:21): [True: 1, False: 8]
+  |  Branch (69:21): [True: 1, False: 8]
   ------------------
-   71|      4|                {
-   72|      4|                    DLX_INFO("Help");
+   70|      4|                {
+   71|      4|                    DLX_INFO("Help");
   ------------------
   |  |    7|      4|#define DLX_INFO(...)     PHI_EMPTY_MACRO()
   ------------------
-   73|      4|                    return ShouldContinueInitilization::No;
-   74|      4|                }
-   75|       |                // Display version
-   76|      8|                if (arg_value == "-v" || arg_value == "--value")
+   72|      4|                    return ShouldContinueInitilization::No;
+   73|      4|                }
+   74|       |                // Display version
+   75|      8|                if (arg_value == "-v" || arg_value == "--value")
   ------------------
-  |  Branch (76:21): [True: 1, False: 7]
-  |  Branch (76:42): [True: 1, False: 6]
+  |  Branch (75:21): [True: 1, False: 7]
+  |  Branch (75:42): [True: 1, False: 6]
   ------------------
-   77|      2|                {
-   78|      2|                    fmt::print("DLXEmu version {:d}.{:d}.{:d} {:s}-{:s}\n", VersionMajor,
-   79|      2|                               VersionMinor, VersionPatch, GitBranch, GitShaFull);
-   80|      2|                    return ShouldContinueInitilization::No;
-   81|      2|                }
-   82|       |
-   83|       |                // Unknown option
-   84|      6|                DLX_WARN("Unknown option '{:s}' ignored", arg_value);
+   76|      2|                {
+   77|      2|                    fmt::print("DLXEmu version {:d}.{:d}.{:d} {:s}-{:s}\n", VersionMajor,
+   78|      2|                               VersionMinor, VersionPatch, GitBranch, GitShaFull);
+   79|      2|                    return ShouldContinueInitilization::No;
+   80|      2|                }
+   81|       |
+   82|       |                // Unknown option
+   83|      6|                DLX_WARN("Unknown option '{:s}' ignored", arg_value);
   ------------------
   |  |    8|      6|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
   ------------------
-   85|      6|                break;
-   86|      8|            }
-   87|       |
-   88|  2.00k|            DLX_WARN("Ignore command line argument '{:s}'", arg_value);
+   84|      6|                break;
+   85|      8|            }
+   86|       |
+   87|  2.00k|            DLX_WARN("Ignore command line argument '{:s}'", arg_value);
   ------------------
   |  |    8|  2.00k|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
   ------------------
-   89|  2.00k|        }
-   90|       |
-   91|     35|        return ShouldContinueInitilization::Yes;
-   92|     41|    }
+   88|  2.00k|        }
+   89|       |
+   90|     35|        return ShouldContinueInitilization::Yes;
+   91|     41|    }
 
 _ZN6dlxemu12MemoryViewerC2EPNS_8EmulatorE:
    13|     50|    {}
