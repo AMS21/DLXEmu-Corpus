@@ -1440,7 +1440,7 @@ _ZNK6dlxemu10CodeEditor23TextDistanceToLineStartERKNS0_11CoordinatesE:
  1742|   153k|                        ->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX, -1.0f, " ", nullptr, nullptr)
  1743|   153k|                        .x;
  1744|   153k|        const phi::u32 col_index = GetCharacterIndex(from);
- 1745|   107M|        for (phi::usize it{0u}; it < line.size() && it < col_index;)
+ 1745|   106M|        for (phi::usize it{0u}; it < line.size() && it < col_index;)
   ------------------
   |  Branch (1745:33): [True: 106M, False: 147k]
   |  Branch (1745:33): [True: 106M, False: 153k]
@@ -2293,7 +2293,7 @@ _ZNK6dlxemu10CodeEditor17GetCharacterIndexERKNS0_11CoordinatesE:
  2423|       |
  2424|   523k|        const Line& line  = m_Lines[coordinates.m_Line.unsafe()];
  2425|   523k|        phi::u32    index = 0u;
- 2426|   358M|        for (phi::u32 column{0u}; index < line.size() && column < coordinates.m_Column;)
+ 2426|   357M|        for (phi::u32 column{0u}; index < line.size() && column < coordinates.m_Column;)
   ------------------
   |  Branch (2426:35): [True: 357M, False: 348k]
   |  Branch (2426:35): [True: 357M, False: 523k]
@@ -3835,24 +3835,24 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3485|  13.9k|                    phi::uint64_t elapsed = time_end - m_StartTime;
  3486|  13.9k|                    if (elapsed > 400)
   ------------------
-  |  Branch (3486:25): [True: 130, False: 13.7k]
+  |  Branch (3486:25): [True: 126, False: 13.7k]
   ------------------
- 3487|    130|                    {
- 3488|    130|                        float    width  = 1.0f;
- 3489|    130|                        phi::u32 cindex = GetCharacterIndex(m_State.m_CursorPosition);
- 3490|    130|                        float    cx     = TextDistanceToLineStart(m_State.m_CursorPosition);
+ 3487|    126|                    {
+ 3488|    126|                        float    width  = 1.0f;
+ 3489|    126|                        phi::u32 cindex = GetCharacterIndex(m_State.m_CursorPosition);
+ 3490|    126|                        float    cx     = TextDistanceToLineStart(m_State.m_CursorPosition);
  3491|       |
- 3492|    130|                        if (m_Overwrite && cindex < line.size())
+ 3492|    126|                        if (m_Overwrite && cindex < line.size())
   ------------------
-  |  Branch (3492:29): [True: 38, False: 92]
-  |  Branch (3492:29): [True: 19, False: 111]
-  |  Branch (3492:44): [True: 19, False: 19]
+  |  Branch (3492:29): [True: 36, False: 90]
+  |  Branch (3492:29): [True: 17, False: 109]
+  |  Branch (3492:44): [True: 17, False: 19]
   ------------------
- 3493|     19|                        {
- 3494|     19|                            char character = static_cast<char>(line[cindex.unsafe()].m_Char);
- 3495|     19|                            if (character == '\t')
+ 3493|     17|                        {
+ 3494|     17|                            char character = static_cast<char>(line[cindex.unsafe()].m_Char);
+ 3495|     17|                            if (character == '\t')
   ------------------
-  |  Branch (3495:33): [True: 0, False: 19]
+  |  Branch (3495:33): [True: 0, False: 17]
   ------------------
  3496|      0|                            {
  3497|      0|                                float x = (1.0f +
@@ -3861,30 +3861,30 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3500|      0|                                          (float(m_TabSize.unsafe()) * space_size);
  3501|      0|                                width = x - cx;
  3502|      0|                            }
- 3503|     19|                            else
- 3504|     19|                            {
- 3505|     19|                                phi::array<char, 2u> buffer2;
- 3506|     19|                                buffer2[0u] = static_cast<char>(line[cindex.unsafe()].m_Char);
- 3507|     19|                                buffer2[1u] = '\0';
- 3508|     19|                                width       = ImGui::GetFont()
- 3509|     19|                                                ->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX,
- 3510|     19|                                                                -1.0f, buffer2.data())
- 3511|     19|                                                .x;
- 3512|     19|                            }
- 3513|     19|                        }
- 3514|    130|                        const ImVec2 cstart(text_screen_pos.x + cx, line_start_screen_pos.y);
- 3515|    130|                        const ImVec2 cend(text_screen_pos.x + cx + width,
- 3516|    130|                                          line_start_screen_pos.y + m_CharAdvance.y);
- 3517|    130|                        draw_list->AddRectFilled(cstart, cend,
- 3518|    130|                                                 GetPaletteForIndex(PaletteIndex::Cursor));
- 3519|    130|                        if (elapsed > 800)
+ 3503|     17|                            else
+ 3504|     17|                            {
+ 3505|     17|                                phi::array<char, 2u> buffer2;
+ 3506|     17|                                buffer2[0u] = static_cast<char>(line[cindex.unsafe()].m_Char);
+ 3507|     17|                                buffer2[1u] = '\0';
+ 3508|     17|                                width       = ImGui::GetFont()
+ 3509|     17|                                                ->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX,
+ 3510|     17|                                                                -1.0f, buffer2.data())
+ 3511|     17|                                                .x;
+ 3512|     17|                            }
+ 3513|     17|                        }
+ 3514|    126|                        const ImVec2 cstart(text_screen_pos.x + cx, line_start_screen_pos.y);
+ 3515|    126|                        const ImVec2 cend(text_screen_pos.x + cx + width,
+ 3516|    126|                                          line_start_screen_pos.y + m_CharAdvance.y);
+ 3517|    126|                        draw_list->AddRectFilled(cstart, cend,
+ 3518|    126|                                                 GetPaletteForIndex(PaletteIndex::Cursor));
+ 3519|    126|                        if (elapsed > 800)
   ------------------
-  |  Branch (3519:29): [True: 71, False: 59]
+  |  Branch (3519:29): [True: 88, False: 38]
   ------------------
- 3520|     71|                        {
- 3521|     71|                            m_StartTime = time_end;
- 3522|     71|                        }
- 3523|    130|                    }
+ 3520|     88|                        {
+ 3521|     88|                            m_StartTime = time_end;
+ 3522|     88|                        }
+ 3523|    126|                    }
  3524|  13.9k|                }
  3525|  21.6k|            }
  3526|       |
@@ -4228,9 +4228,9 @@ CodeEditor.cpp:_ZL13IsUTFSequencec:
    91|   205k|    return (character & 0xC0) == 0x80;
    92|   205k|}
 CodeEditor.cpp:_ZL14UTF8CharLengthh:
-  134|   495M|{
-  135|   495M|    return UTF8CharLength(static_cast<char>(characater));
-  136|   495M|}
+  134|   494M|{
+  135|   494M|    return UTF8CharLength(static_cast<char>(characater));
+  136|   494M|}
 CodeEditor.cpp:_ZL14UTF8CharLengthc:
   104|  1.64G|{
   105|  1.64G|    if ((characater & 0xFE) == 0xFC)
@@ -11128,7 +11128,7 @@ _Z18ImTextCharFromUtf8PjPKcS1_:
   ------------------
  2073|  50.8M|    s[3] = in_text + 3 < in_text_end ? in_text[3] : 0;
   ------------------
-  |  Branch (2073:12): [True: 18.0M, False: 32.8M]
+  |  Branch (2073:12): [True: 18.0M, False: 32.7M]
   ------------------
  2074|       |
  2075|       |    // Assume a four-byte character and load four bytes. Unused bits are shifted out.
@@ -11154,7 +11154,7 @@ _Z18ImTextCharFromUtf8PjPKcS1_:
  2092|       |
  2093|  50.8M|    if (e)
   ------------------
-  |  Branch (2093:9): [True: 13.7k, False: 50.8M]
+  |  Branch (2093:9): [True: 13.7k, False: 50.7M]
   ------------------
  2094|  13.7k|    {
  2095|       |        // No bytes are consumed when *in_text == 0 || in_text == in_text_end.
@@ -25922,7 +25922,7 @@ _ZNK6ImFont13CalcTextSizeAEfffPKcS1_PS1_:
  3480|   117M|    const char* word_wrap_eol = NULL;
  3481|       |
  3482|   117M|    const char* s = text_begin;
- 3483|   256M|    while (s < text_end)
+ 3483|   255M|    while (s < text_end)
   ------------------
   |  Branch (3483:12): [True: 138M, False: 117M]
   ------------------
@@ -25962,11 +25962,11 @@ _ZNK6ImFont13CalcTextSizeAEfffPKcS1_PS1_:
  3505|   138M|        unsigned int c = (unsigned int)*s;
  3506|   138M|        if (c < 0x80)
   ------------------
-  |  Branch (3506:13): [True: 94.7M, False: 43.6M]
+  |  Branch (3506:13): [True: 94.5M, False: 43.5M]
   ------------------
- 3507|  94.7M|            s += 1;
- 3508|  43.6M|        else
- 3509|  43.6M|            s += ImTextCharFromUtf8(&c, s, text_end);
+ 3507|  94.5M|            s += 1;
+ 3508|  43.5M|        else
+ 3509|  43.5M|            s += ImTextCharFromUtf8(&c, s, text_end);
  3510|       |
  3511|   138M|        if (c < 32)
   ------------------
@@ -25992,7 +25992,7 @@ _ZNK6ImFont13CalcTextSizeAEfffPKcS1_PS1_:
  3523|       |
  3524|   138M|        const float char_width = ((int)c < IndexAdvanceX.Size ? IndexAdvanceX.Data[c] : FallbackAdvanceX) * scale;
   ------------------
-  |  Branch (3524:35): [True: 94.7M, False: 43.6M]
+  |  Branch (3524:35): [True: 94.6M, False: 43.5M]
   ------------------
  3525|   138M|        if (line_width + char_width >= max_width)
   ------------------
