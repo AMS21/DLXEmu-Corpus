@@ -1440,7 +1440,7 @@ _ZNK6dlxemu10CodeEditor23TextDistanceToLineStartERKNS0_11CoordinatesE:
  1742|   153k|                        ->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX, -1.0f, " ", nullptr, nullptr)
  1743|   153k|                        .x;
  1744|   153k|        const phi::u32 col_index = GetCharacterIndex(from);
- 1745|   106M|        for (phi::usize it{0u}; it < line.size() && it < col_index;)
+ 1745|   107M|        for (phi::usize it{0u}; it < line.size() && it < col_index;)
   ------------------
   |  Branch (1745:33): [True: 106M, False: 147k]
   |  Branch (1745:33): [True: 106M, False: 153k]
@@ -1531,14 +1531,14 @@ _ZN6dlxemu10CodeEditor14ScrollToCursorEv:
  1815|     34|        }
  1816|  10.3k|        if (len + m_TextStart < static_cast<float>((left + 4u).unsafe()))
   ------------------
-  |  Branch (1816:13): [True: 215, False: 10.1k]
+  |  Branch (1816:13): [True: 213, False: 10.1k]
   ------------------
- 1817|    215|        {
- 1818|    215|            ImGui::SetScrollX(phi::max(0.0f, len + m_TextStart - 4.0f));
- 1819|    215|        }
+ 1817|    213|        {
+ 1818|    213|            ImGui::SetScrollX(phi::max(0.0f, len + m_TextStart - 4.0f));
+ 1819|    213|        }
  1820|  10.3k|        if (len + m_TextStart > static_cast<float>(right.unsafe()) - 4.0f)
   ------------------
-  |  Branch (1820:13): [True: 9.98k, False: 351]
+  |  Branch (1820:13): [True: 9.98k, False: 350]
   ------------------
  1821|  9.98k|        {
  1822|  9.98k|            ImGui::SetScrollX(phi::max(0.0f, len + m_TextStart + 4.0f - width));
@@ -2293,9 +2293,9 @@ _ZNK6dlxemu10CodeEditor17GetCharacterIndexERKNS0_11CoordinatesE:
  2423|       |
  2424|   523k|        const Line& line  = m_Lines[coordinates.m_Line.unsafe()];
  2425|   523k|        phi::u32    index = 0u;
- 2426|   357M|        for (phi::u32 column{0u}; index < line.size() && column < coordinates.m_Column;)
+ 2426|   358M|        for (phi::u32 column{0u}; index < line.size() && column < coordinates.m_Column;)
   ------------------
-  |  Branch (2426:35): [True: 357M, False: 348k]
+  |  Branch (2426:35): [True: 358M, False: 348k]
   |  Branch (2426:35): [True: 357M, False: 523k]
   |  Branch (2426:58): [True: 357M, False: 175k]
   ------------------
@@ -3683,16 +3683,16 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3374|       |
  3375|  96.2k|            if (m_State.m_SelectionEnd > line_start_coord)
   ------------------
-  |  Branch (3375:17): [True: 44.0k, False: 52.1k]
+  |  Branch (3375:17): [True: 44.1k, False: 52.1k]
   ------------------
- 3376|  44.0k|            {
- 3377|  44.0k|                ssend = TextDistanceToLineStart(m_State.m_SelectionEnd < line_end_coord ?
+ 3376|  44.1k|            {
+ 3377|  44.1k|                ssend = TextDistanceToLineStart(m_State.m_SelectionEnd < line_end_coord ?
   ------------------
   |  Branch (3377:49): [True: 1.18k, False: 42.9k]
   ------------------
  3378|  1.18k|                                                        m_State.m_SelectionEnd :
- 3379|  44.0k|                                                        line_end_coord);
- 3380|  44.0k|            }
+ 3379|  44.1k|                                                        line_end_coord);
+ 3380|  44.1k|            }
  3381|       |
  3382|  96.2k|            if (m_State.m_SelectionEnd.m_Line > line_no)
   ------------------
@@ -3798,13 +3798,13 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3460|       |
  3461|  96.2k|            if (m_State.m_CursorPosition.m_Line == line_no)
   ------------------
-  |  Branch (3461:17): [True: 21.6k, False: 74.6k]
+  |  Branch (3461:17): [True: 21.5k, False: 74.6k]
   ------------------
- 3462|  21.6k|            {
- 3463|  21.6k|                const phi::boolean focused = ImGui::IsWindowFocused();
+ 3462|  21.5k|            {
+ 3463|  21.5k|                const phi::boolean focused = ImGui::IsWindowFocused();
  3464|       |
  3465|       |                // Highlight the current line (where the cursor is)
- 3466|  21.6k|                if (!HasSelection())
+ 3466|  21.5k|                if (!HasSelection())
   ------------------
   |  Branch (3466:21): [True: 19.4k, False: 2.12k]
   ------------------
@@ -3815,7 +3815,7 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3471|  19.4k|                            start, end,
  3472|  19.4k|                            GetPaletteForIndex(focused ? PaletteIndex::CurrentLineFill :
   ------------------
-  |  Branch (3472:48): [True: 11.9k, False: 7.57k]
+  |  Branch (3472:48): [True: 11.9k, False: 7.55k]
   ------------------
  3473|  19.4k|                                                         PaletteIndex::CurrentLineFillInactive));
  3474|  19.4k|                    draw_list->AddRect(start, end,
@@ -3823,9 +3823,9 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3476|  19.4k|                }
  3477|       |
  3478|       |                // Render the cursor
- 3479|  21.6k|                if (focused)
+ 3479|  21.5k|                if (focused)
   ------------------
-  |  Branch (3479:21): [True: 13.9k, False: 7.69k]
+  |  Branch (3479:21): [True: 13.9k, False: 7.68k]
   ------------------
  3480|  13.9k|                {
  3481|  13.9k|                    phi::uint64_t time_end = static_cast<phi::uint64_t>(
@@ -3835,24 +3835,24 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3485|  13.9k|                    phi::uint64_t elapsed = time_end - m_StartTime;
  3486|  13.9k|                    if (elapsed > 400)
   ------------------
-  |  Branch (3486:25): [True: 126, False: 13.7k]
+  |  Branch (3486:25): [True: 132, False: 13.7k]
   ------------------
- 3487|    126|                    {
- 3488|    126|                        float    width  = 1.0f;
- 3489|    126|                        phi::u32 cindex = GetCharacterIndex(m_State.m_CursorPosition);
- 3490|    126|                        float    cx     = TextDistanceToLineStart(m_State.m_CursorPosition);
+ 3487|    132|                    {
+ 3488|    132|                        float    width  = 1.0f;
+ 3489|    132|                        phi::u32 cindex = GetCharacterIndex(m_State.m_CursorPosition);
+ 3490|    132|                        float    cx     = TextDistanceToLineStart(m_State.m_CursorPosition);
  3491|       |
- 3492|    126|                        if (m_Overwrite && cindex < line.size())
+ 3492|    132|                        if (m_Overwrite && cindex < line.size())
   ------------------
-  |  Branch (3492:29): [True: 36, False: 90]
-  |  Branch (3492:29): [True: 17, False: 109]
-  |  Branch (3492:44): [True: 17, False: 19]
+  |  Branch (3492:29): [True: 39, False: 93]
+  |  Branch (3492:29): [True: 20, False: 112]
+  |  Branch (3492:44): [True: 20, False: 19]
   ------------------
- 3493|     17|                        {
- 3494|     17|                            char character = static_cast<char>(line[cindex.unsafe()].m_Char);
- 3495|     17|                            if (character == '\t')
+ 3493|     20|                        {
+ 3494|     20|                            char character = static_cast<char>(line[cindex.unsafe()].m_Char);
+ 3495|     20|                            if (character == '\t')
   ------------------
-  |  Branch (3495:33): [True: 0, False: 17]
+  |  Branch (3495:33): [True: 0, False: 20]
   ------------------
  3496|      0|                            {
  3497|      0|                                float x = (1.0f +
@@ -3861,32 +3861,32 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3500|      0|                                          (float(m_TabSize.unsafe()) * space_size);
  3501|      0|                                width = x - cx;
  3502|      0|                            }
- 3503|     17|                            else
- 3504|     17|                            {
- 3505|     17|                                phi::array<char, 2u> buffer2;
- 3506|     17|                                buffer2[0u] = static_cast<char>(line[cindex.unsafe()].m_Char);
- 3507|     17|                                buffer2[1u] = '\0';
- 3508|     17|                                width       = ImGui::GetFont()
- 3509|     17|                                                ->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX,
- 3510|     17|                                                                -1.0f, buffer2.data())
- 3511|     17|                                                .x;
- 3512|     17|                            }
- 3513|     17|                        }
- 3514|    126|                        const ImVec2 cstart(text_screen_pos.x + cx, line_start_screen_pos.y);
- 3515|    126|                        const ImVec2 cend(text_screen_pos.x + cx + width,
- 3516|    126|                                          line_start_screen_pos.y + m_CharAdvance.y);
- 3517|    126|                        draw_list->AddRectFilled(cstart, cend,
- 3518|    126|                                                 GetPaletteForIndex(PaletteIndex::Cursor));
- 3519|    126|                        if (elapsed > 800)
+ 3503|     20|                            else
+ 3504|     20|                            {
+ 3505|     20|                                phi::array<char, 2u> buffer2;
+ 3506|     20|                                buffer2[0u] = static_cast<char>(line[cindex.unsafe()].m_Char);
+ 3507|     20|                                buffer2[1u] = '\0';
+ 3508|     20|                                width       = ImGui::GetFont()
+ 3509|     20|                                                ->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX,
+ 3510|     20|                                                                -1.0f, buffer2.data())
+ 3511|     20|                                                .x;
+ 3512|     20|                            }
+ 3513|     20|                        }
+ 3514|    132|                        const ImVec2 cstart(text_screen_pos.x + cx, line_start_screen_pos.y);
+ 3515|    132|                        const ImVec2 cend(text_screen_pos.x + cx + width,
+ 3516|    132|                                          line_start_screen_pos.y + m_CharAdvance.y);
+ 3517|    132|                        draw_list->AddRectFilled(cstart, cend,
+ 3518|    132|                                                 GetPaletteForIndex(PaletteIndex::Cursor));
+ 3519|    132|                        if (elapsed > 800)
   ------------------
-  |  Branch (3519:29): [True: 88, False: 38]
+  |  Branch (3519:29): [True: 71, False: 61]
   ------------------
- 3520|     88|                        {
- 3521|     88|                            m_StartTime = time_end;
- 3522|     88|                        }
- 3523|    126|                    }
+ 3520|     71|                        {
+ 3521|     71|                            m_StartTime = time_end;
+ 3522|     71|                        }
+ 3523|    132|                    }
  3524|  13.9k|                }
- 3525|  21.6k|            }
+ 3525|  21.5k|            }
  3526|       |
  3527|       |            // Render colorized text
  3528|  96.2k|            ImU32  prev_color = line.empty() ? GetPaletteForIndex(PaletteIndex::Default) :
@@ -4228,9 +4228,9 @@ CodeEditor.cpp:_ZL13IsUTFSequencec:
    91|   205k|    return (character & 0xC0) == 0x80;
    92|   205k|}
 CodeEditor.cpp:_ZL14UTF8CharLengthh:
-  134|   494M|{
-  135|   494M|    return UTF8CharLength(static_cast<char>(characater));
-  136|   494M|}
+  134|   495M|{
+  135|   495M|    return UTF8CharLength(static_cast<char>(characater));
+  136|   495M|}
 CodeEditor.cpp:_ZL14UTF8CharLengthc:
   104|  1.64G|{
   105|  1.64G|    if ((characater & 0xFE) == 0xFC)
@@ -4259,11 +4259,11 @@ CodeEditor.cpp:_ZL14UTF8CharLengthc:
   119|       |
   120|  1.64G|    if ((characater & 0xF0) == 0xE0)
   ------------------
-  |  Branch (120:9): [True: 473M, False: 1.17G]
+  |  Branch (120:9): [True: 474M, False: 1.17G]
   ------------------
-  121|   473M|    {
-  122|   473M|        return 3_u8;
-  123|   473M|    }
+  121|   474M|    {
+  122|   474M|        return 3_u8;
+  123|   474M|    }
   124|       |
   125|  1.17G|    if ((characater & 0xE0) == 0xC0)
   ------------------
@@ -7337,8 +7337,8 @@ _ZNK3dlx13ParsedProgram7IsValidEv:
    23|  96.2k|    {
    24|  96.2k|        return m_ParseErrors.empty() && !m_Instructions.empty();
   ------------------
-  |  Branch (24:16): [True: 15.8k, False: 80.3k]
-  |  Branch (24:41): [True: 0, False: 15.8k]
+  |  Branch (24:16): [True: 15.9k, False: 80.3k]
+  |  Branch (24:41): [True: 0, False: 15.9k]
   ------------------
    25|  96.2k|    }
 
@@ -11124,11 +11124,11 @@ _Z18ImTextCharFromUtf8PjPKcS1_:
   ------------------
  2072|  50.8M|    s[2] = in_text + 2 < in_text_end ? in_text[2] : 0;
   ------------------
-  |  Branch (2072:12): [True: 49.0M, False: 1.75M]
+  |  Branch (2072:12): [True: 49.1M, False: 1.75M]
   ------------------
  2073|  50.8M|    s[3] = in_text + 3 < in_text_end ? in_text[3] : 0;
   ------------------
-  |  Branch (2073:12): [True: 18.0M, False: 32.7M]
+  |  Branch (2073:12): [True: 18.0M, False: 32.8M]
   ------------------
  2074|       |
  2075|       |    // Assume a four-byte character and load four bytes. Unused bits are shifted out.
@@ -11154,7 +11154,7 @@ _Z18ImTextCharFromUtf8PjPKcS1_:
  2092|       |
  2093|  50.8M|    if (e)
   ------------------
-  |  Branch (2093:9): [True: 13.7k, False: 50.7M]
+  |  Branch (2093:9): [True: 13.7k, False: 50.8M]
   ------------------
  2094|  13.7k|    {
  2095|       |        // No bytes are consumed when *in_text == 0 || in_text == in_text_end.
@@ -11470,26 +11470,26 @@ _ZN5ImGui18RenderNavHighlightERK6ImRectji:
  3416|  19.3k|        return;
  3417|  16.0k|    if (g.NavDisableHighlight && !(flags & ImGuiNavHighlightFlags_AlwaysDraw))
   ------------------
-  |  Branch (3417:9): [True: 1.03k, False: 14.9k]
+  |  Branch (3417:9): [True: 1.03k, False: 15.0k]
   |  Branch (3417:34): [True: 1.03k, False: 0]
   ------------------
  3418|  1.03k|        return;
- 3419|  14.9k|    ImGuiWindow* window = g.CurrentWindow;
- 3420|  14.9k|    if (window->DC.NavHideHighlightOneFrame)
+ 3419|  15.0k|    ImGuiWindow* window = g.CurrentWindow;
+ 3420|  15.0k|    if (window->DC.NavHideHighlightOneFrame)
   ------------------
-  |  Branch (3420:9): [True: 0, False: 14.9k]
+  |  Branch (3420:9): [True: 0, False: 15.0k]
   ------------------
  3421|      0|        return;
  3422|       |
- 3423|  14.9k|    float rounding = (flags & ImGuiNavHighlightFlags_NoRounding) ? 0.0f : g.Style.FrameRounding;
+ 3423|  15.0k|    float rounding = (flags & ImGuiNavHighlightFlags_NoRounding) ? 0.0f : g.Style.FrameRounding;
   ------------------
-  |  Branch (3423:22): [True: 0, False: 14.9k]
+  |  Branch (3423:22): [True: 0, False: 15.0k]
   ------------------
- 3424|  14.9k|    ImRect display_rect = bb;
- 3425|  14.9k|    display_rect.ClipWith(window->ClipRect);
- 3426|  14.9k|    if (flags & ImGuiNavHighlightFlags_TypeDefault)
+ 3424|  15.0k|    ImRect display_rect = bb;
+ 3425|  15.0k|    display_rect.ClipWith(window->ClipRect);
+ 3426|  15.0k|    if (flags & ImGuiNavHighlightFlags_TypeDefault)
   ------------------
-  |  Branch (3426:9): [True: 0, False: 14.9k]
+  |  Branch (3426:9): [True: 0, False: 15.0k]
   ------------------
  3427|      0|    {
  3428|      0|        const float THICKNESS = 2.0f;
@@ -11508,14 +11508,14 @@ _ZN5ImGui18RenderNavHighlightERK6ImRectji:
   ------------------
  3436|      0|            window->DrawList->PopClipRect();
  3437|      0|    }
- 3438|  14.9k|    if (flags & ImGuiNavHighlightFlags_TypeThin)
+ 3438|  15.0k|    if (flags & ImGuiNavHighlightFlags_TypeThin)
   ------------------
-  |  Branch (3438:9): [True: 14.9k, False: 0]
+  |  Branch (3438:9): [True: 15.0k, False: 0]
   ------------------
- 3439|  14.9k|    {
- 3440|  14.9k|        window->DrawList->AddRect(display_rect.Min, display_rect.Max, GetColorU32(ImGuiCol_NavHighlight), rounding, 0, 1.0f);
- 3441|  14.9k|    }
- 3442|  14.9k|}
+ 3439|  15.0k|    {
+ 3440|  15.0k|        window->DrawList->AddRect(display_rect.Min, display_rect.Max, GetColorU32(ImGuiCol_NavHighlight), rounding, 0, 1.0f);
+ 3441|  15.0k|    }
+ 3442|  15.0k|}
 _ZN5ImGui17GetCurrentContextEv:
  3478|      1|{
  3479|      1|    return GImGui;
@@ -15048,30 +15048,30 @@ _ZN5ImGui11FocusWindowEP11ImGuiWindow:
  7362|       |
  7363|  14.4k|    if (g.NavWindow != window)
   ------------------
-  |  Branch (7363:9): [True: 3.25k, False: 11.1k]
+  |  Branch (7363:9): [True: 3.24k, False: 11.1k]
   ------------------
- 7364|  3.25k|    {
- 7365|  3.25k|        SetNavWindow(window);
- 7366|  3.25k|        if (window && g.NavDisableMouseHover)
+ 7364|  3.24k|    {
+ 7365|  3.24k|        SetNavWindow(window);
+ 7366|  3.24k|        if (window && g.NavDisableMouseHover)
   ------------------
   |  Branch (7366:13): [True: 1.70k, False: 1.54k]
-  |  Branch (7366:23): [True: 28, False: 1.68k]
+  |  Branch (7366:23): [True: 24, False: 1.68k]
   ------------------
- 7367|     28|            g.NavMousePosDirty = true;
- 7368|  3.25k|        g.NavId = window ? window->NavLastIds[0] : 0; // Restore NavId
+ 7367|     24|            g.NavMousePosDirty = true;
+ 7368|  3.24k|        g.NavId = window ? window->NavLastIds[0] : 0; // Restore NavId
   ------------------
   |  Branch (7368:19): [True: 1.70k, False: 1.54k]
   ------------------
- 7369|  3.25k|        g.NavLayer = ImGuiNavLayer_Main;
- 7370|  3.25k|        g.NavFocusScopeId = window ? window->NavRootFocusScopeId : 0;
+ 7369|  3.24k|        g.NavLayer = ImGuiNavLayer_Main;
+ 7370|  3.24k|        g.NavFocusScopeId = window ? window->NavRootFocusScopeId : 0;
   ------------------
   |  Branch (7370:29): [True: 1.70k, False: 1.54k]
   ------------------
- 7371|  3.25k|        g.NavIdIsAlive = false;
+ 7371|  3.24k|        g.NavIdIsAlive = false;
  7372|       |
  7373|       |        // Close popups if any
- 7374|  3.25k|        ClosePopupsOverWindow(window, false);
- 7375|  3.25k|    }
+ 7374|  3.24k|        ClosePopupsOverWindow(window, false);
+ 7375|  3.24k|    }
  7376|       |
  7377|       |    // Move the root window to the top of the pile
  7378|  14.4k|    IM_ASSERT(window == NULL || window->RootWindowDockTree != NULL);
@@ -15092,8 +15092,8 @@ _ZN5ImGui11FocusWindowEP11ImGuiWindow:
   ------------------
  7382|  14.4k|    bool active_id_window_is_dock_node_host = (g.ActiveIdWindow && dock_node && dock_node->HostWindow == g.ActiveIdWindow);
   ------------------
-  |  Branch (7382:48): [True: 176, False: 14.2k]
-  |  Branch (7382:68): [True: 0, False: 176]
+  |  Branch (7382:48): [True: 175, False: 14.2k]
+  |  Branch (7382:68): [True: 0, False: 175]
   |  Branch (7382:81): [True: 0, False: 0]
   ------------------
  7383|       |
@@ -15103,13 +15103,13 @@ _ZN5ImGui11FocusWindowEP11ImGuiWindow:
  7387|       |    // - Using dock host items (tab, collapse button) can trigger this before we redirect the ActiveIdWindow toward the child window.
  7388|  14.4k|    if (g.ActiveId != 0 && g.ActiveIdWindow && g.ActiveIdWindow->RootWindow != focus_front_window)
   ------------------
-  |  Branch (7388:9): [True: 176, False: 14.2k]
-  |  Branch (7388:28): [True: 176, False: 0]
-  |  Branch (7388:48): [True: 19, False: 157]
+  |  Branch (7388:9): [True: 175, False: 14.2k]
+  |  Branch (7388:28): [True: 175, False: 0]
+  |  Branch (7388:48): [True: 18, False: 157]
   ------------------
- 7389|     19|        if (!g.ActiveIdNoClearOnFocusLoss && !active_id_window_is_dock_node_host)
+ 7389|     18|        if (!g.ActiveIdNoClearOnFocusLoss && !active_id_window_is_dock_node_host)
   ------------------
-  |  Branch (7389:13): [True: 0, False: 19]
+  |  Branch (7389:13): [True: 0, False: 18]
   |  Branch (7389:46): [True: 0, False: 0]
   ------------------
  7390|      0|            ClearActiveID();
@@ -15361,7 +15361,7 @@ _ZN5ImGui13SetWindowSizeEP11ImGuiWindowRK6ImVec2i:
   |  Branch (7790:9): [True: 3.04k, False: 20.0k]
   |  Branch (7790:45): [True: 2.14k, False: 17.8k]
   ------------------
- 7791|  5.19k|        MarkIniSettingsDirty(window);
+ 7791|  5.18k|        MarkIniSettingsDirty(window);
  7792|  23.0k|}
 _ZN5ImGui14SetWindowFocusEv:
  7847|  10.3k|{
@@ -16397,7 +16397,7 @@ _ZN5ImGui7ItemAddERK6ImRectjPS1_i:
  9888|   118k|#ifndef IMGUI_DISABLE_DEBUG_TOOLS
  9889|   118k|    if (id != 0 && id == g.DebugLocateId)
   ------------------
-  |  Branch (9889:9): [True: 112k, False: 5.88k]
+  |  Branch (9889:9): [True: 112k, False: 5.87k]
   |  Branch (9889:20): [True: 0, False: 112k]
   ------------------
  9890|      0|        DebugLocateItemResolveWithLastItem();
@@ -16483,10 +16483,10 @@ _ZN5ImGui10SetScrollXEf:
 10431|  10.2k|    SetScrollX(g.CurrentWindow, scroll_x);
 10432|  10.2k|}
 _ZN5ImGui10SetScrollYEf:
-10435|  7.75k|{
-10436|  7.75k|    ImGuiContext& g = *GImGui;
-10437|  7.75k|    SetScrollY(g.CurrentWindow, scroll_y);
-10438|  7.75k|}
+10435|  7.76k|{
+10436|  7.76k|    ImGuiContext& g = *GImGui;
+10437|  7.76k|    SetScrollY(g.CurrentWindow, scroll_y);
+10438|  7.76k|}
 _ZN5ImGui20GetTopMostPopupModalEv:
 10612|  69.5k|{
 10613|  69.5k|    ImGuiContext& g = *GImGui;
@@ -16525,13 +16525,13 @@ _ZN5ImGui30GetTopMostAndVisiblePopupModalEv:
 10628|  23.0k|    return NULL;
 10629|  23.0k|}
 _ZN5ImGui21ClosePopupsOverWindowEP11ImGuiWindowb:
-10698|  3.25k|{
-10699|  3.25k|    ImGuiContext& g = *GImGui;
-10700|  3.25k|    if (g.OpenPopupStack.Size == 0)
+10698|  3.24k|{
+10699|  3.24k|    ImGuiContext& g = *GImGui;
+10700|  3.24k|    if (g.OpenPopupStack.Size == 0)
   ------------------
-  |  Branch (10700:9): [True: 3.25k, False: 0]
+  |  Branch (10700:9): [True: 3.24k, False: 0]
   ------------------
-10701|  3.25k|        return;
+10701|  3.24k|        return;
 10702|       |
 10703|       |    // Don't close our own child popup windows.
 10704|      0|    int popup_count_to_keep = 0;
@@ -16614,31 +16614,31 @@ _ZN5ImGui21ClosePopupsOverWindowEP11ImGuiWindowb:
 10739|      0|    }
 10740|      0|}
 _ZN5ImGui12SetNavWindowEP11ImGuiWindow:
-11127|  3.25k|{
-11128|  3.25k|    ImGuiContext& g = *GImGui;
-11129|  3.25k|    if (g.NavWindow != window)
+11127|  3.24k|{
+11128|  3.24k|    ImGuiContext& g = *GImGui;
+11129|  3.24k|    if (g.NavWindow != window)
   ------------------
-  |  Branch (11129:9): [True: 3.25k, False: 0]
+  |  Branch (11129:9): [True: 3.24k, False: 0]
   ------------------
-11130|  3.25k|    {
-11131|  3.25k|        IMGUI_DEBUG_LOG_FOCUS("[focus] SetNavWindow(\"%s\")\n", window ? window->Name : "<NULL>");
+11130|  3.24k|    {
+11131|  3.24k|        IMGUI_DEBUG_LOG_FOCUS("[focus] SetNavWindow(\"%s\")\n", window ? window->Name : "<NULL>");
   ------------------
-  |  |  230|  3.25k|#define IMGUI_DEBUG_LOG_FOCUS(...)      do { if (g.DebugLogFlags & ImGuiDebugLogFlags_EventFocus)    IMGUI_DEBUG_LOG(__VA_ARGS__); } while (0)
+  |  |  230|  3.24k|#define IMGUI_DEBUG_LOG_FOCUS(...)      do { if (g.DebugLogFlags & ImGuiDebugLogFlags_EventFocus)    IMGUI_DEBUG_LOG(__VA_ARGS__); } while (0)
   |  |  ------------------
   |  |  |  |  225|      0|#define IMGUI_DEBUG_LOG(...)            ImGui::DebugLog(__VA_ARGS__)
   |  |  |  |  ------------------
   |  |  |  |  |  Branch (225:57): [True: 0, False: 0]
   |  |  |  |  ------------------
   |  |  ------------------
-  |  |  |  Branch (230:50): [True: 0, False: 3.25k]
+  |  |  |  Branch (230:50): [True: 0, False: 3.24k]
   |  |  |  Branch (230:141): [Folded - Ignored]
   |  |  ------------------
   ------------------
-11132|  3.25k|        g.NavWindow = window;
-11133|  3.25k|    }
-11134|  3.25k|    g.NavInitRequest = g.NavMoveSubmitted = g.NavMoveScoringItems = false;
-11135|  3.25k|    NavUpdateAnyRequestFlag();
-11136|  3.25k|}
+11132|  3.24k|        g.NavWindow = window;
+11133|  3.24k|    }
+11134|  3.24k|    g.NavInitRequest = g.NavMoveSubmitted = g.NavMoveScoringItems = false;
+11135|  3.24k|    NavUpdateAnyRequestFlag();
+11136|  3.24k|}
 _ZN5ImGui8SetNavIDEj13ImGuiNavLayerjRK6ImRect:
 11139|      7|{
 11140|      7|    ImGuiContext& g = *GImGui;
@@ -17009,18 +17009,18 @@ _ZN5ImGui9LogFinishEv:
 13095|      0|    g.LogBuffer.clear();
 13096|      0|}
 _ZN5ImGui20MarkIniSettingsDirtyEP11ImGuiWindow:
-13183|  5.19k|{
-13184|  5.19k|    ImGuiContext& g = *GImGui;
-13185|  5.19k|    if (!(window->Flags & ImGuiWindowFlags_NoSavedSettings))
+13183|  5.18k|{
+13184|  5.18k|    ImGuiContext& g = *GImGui;
+13185|  5.18k|    if (!(window->Flags & ImGuiWindowFlags_NoSavedSettings))
   ------------------
-  |  Branch (13185:9): [True: 3, False: 5.19k]
+  |  Branch (13185:9): [True: 3, False: 5.18k]
   ------------------
 13186|      3|        if (g.SettingsDirtyTimer <= 0.0f)
   ------------------
   |  Branch (13186:13): [True: 1, False: 2]
   ------------------
 13187|      1|            g.SettingsDirtyTimer = g.IO.IniSavingRate;
-13188|  5.19k|}
+13188|  5.18k|}
 _ZN5ImGui18AddSettingsHandlerEPK20ImGuiSettingsHandler:
 13191|      2|{
 13192|      2|    ImGuiContext& g = *GImGui;
@@ -17579,29 +17579,29 @@ imgui.cpp:_ZL21AddDrawListToDrawDataP8ImVectorIP10ImDrawListES1_:
  4806|      0|        return;
  4807|  46.1k|    if (draw_list->CmdBuffer.Size == 1 && draw_list->CmdBuffer[0].ElemCount == 0 && draw_list->CmdBuffer[0].UserCallback == NULL)
   ------------------
-  |  Branch (4807:9): [True: 141, False: 46.0k]
-  |  Branch (4807:43): [True: 141, False: 0]
-  |  Branch (4807:85): [True: 141, False: 0]
+  |  Branch (4807:9): [True: 152, False: 45.9k]
+  |  Branch (4807:43): [True: 152, False: 0]
+  |  Branch (4807:85): [True: 152, False: 0]
   ------------------
- 4808|    141|        return;
+ 4808|    152|        return;
  4809|       |
  4810|       |    // Draw list sanity check. Detect mismatch between PrimReserve() calls and incrementing _VtxCurrentIdx, _VtxWritePtr etc.
  4811|       |    // May trigger for you if you are using PrimXXX functions incorrectly.
- 4812|  46.0k|    IM_ASSERT(draw_list->VtxBuffer.Size == 0 || draw_list->_VtxWritePtr == draw_list->VtxBuffer.Data + draw_list->VtxBuffer.Size);
+ 4812|  45.9k|    IM_ASSERT(draw_list->VtxBuffer.Size == 0 || draw_list->_VtxWritePtr == draw_list->VtxBuffer.Data + draw_list->VtxBuffer.Size);
   ------------------
-  |  |   23|  46.0k|#define IM_ASSERT(_EXPR) PHI_ASSERT(_EXPR)
+  |  |   23|  45.9k|#define IM_ASSERT(_EXPR) PHI_ASSERT(_EXPR)
   ------------------
- 4813|  46.0k|    IM_ASSERT(draw_list->IdxBuffer.Size == 0 || draw_list->_IdxWritePtr == draw_list->IdxBuffer.Data + draw_list->IdxBuffer.Size);
+ 4813|  45.9k|    IM_ASSERT(draw_list->IdxBuffer.Size == 0 || draw_list->_IdxWritePtr == draw_list->IdxBuffer.Data + draw_list->IdxBuffer.Size);
   ------------------
-  |  |   23|  46.0k|#define IM_ASSERT(_EXPR) PHI_ASSERT(_EXPR)
+  |  |   23|  45.9k|#define IM_ASSERT(_EXPR) PHI_ASSERT(_EXPR)
   ------------------
- 4814|  46.0k|    if (!(draw_list->Flags & ImDrawListFlags_AllowVtxOffset))
+ 4814|  45.9k|    if (!(draw_list->Flags & ImDrawListFlags_AllowVtxOffset))
   ------------------
-  |  Branch (4814:9): [True: 46.0k, False: 0]
+  |  Branch (4814:9): [True: 45.9k, False: 0]
   ------------------
- 4815|  46.0k|        IM_ASSERT((int)draw_list->_VtxCurrentIdx == draw_list->VtxBuffer.Size);
+ 4815|  45.9k|        IM_ASSERT((int)draw_list->_VtxCurrentIdx == draw_list->VtxBuffer.Size);
   ------------------
-  |  |   23|  46.0k|#define IM_ASSERT(_EXPR) PHI_ASSERT(_EXPR)
+  |  |   23|  45.9k|#define IM_ASSERT(_EXPR) PHI_ASSERT(_EXPR)
   ------------------
  4816|       |
  4817|       |    // Check that draw_list doesn't use more vertices than indexable (default ImDrawIdx = unsigned short = 2 bytes = 64K vertices per ImDrawList = per window)
@@ -17619,17 +17619,17 @@ imgui.cpp:_ZL21AddDrawListToDrawDataP8ImVectorIP10ImDrawListES1_:
  4829|       |    //       2 and 4 bytes indices are generally supported by most graphics API.
  4830|       |    // - If for some reason neither of those solutions works for you, a workaround is to call BeginChild()/EndChild() before reaching
  4831|       |    //   the 64K limit to split your draw commands in multiple draw lists.
- 4832|  46.0k|    if (sizeof(ImDrawIdx) == 2)
+ 4832|  45.9k|    if (sizeof(ImDrawIdx) == 2)
   ------------------
   |  Branch (4832:9): [Folded - Ignored]
   ------------------
- 4833|  46.0k|        IM_ASSERT(draw_list->_VtxCurrentIdx < (1 << 16) && "Too many vertices in ImDrawList using 16-bit indices. Read comment above");
+ 4833|  45.9k|        IM_ASSERT(draw_list->_VtxCurrentIdx < (1 << 16) && "Too many vertices in ImDrawList using 16-bit indices. Read comment above");
   ------------------
-  |  |   23|  46.0k|#define IM_ASSERT(_EXPR) PHI_ASSERT(_EXPR)
+  |  |   23|  45.9k|#define IM_ASSERT(_EXPR) PHI_ASSERT(_EXPR)
   ------------------
  4834|       |
- 4835|  46.0k|    out_list->push_back(draw_list);
- 4836|  46.0k|}
+ 4835|  45.9k|    out_list->push_back(draw_list);
+ 4836|  45.9k|}
 imgui.cpp:_ZL23AddRootWindowToDrawDataP11ImGuiWindow:
  4861|  23.0k|{
  4862|  23.0k|    AddWindowToDrawData(window, GetWindowDisplayLayer(window));
@@ -17790,14 +17790,14 @@ imgui.cpp:_ZL21SetupViewportDrawDataP14ImGuiViewportPP8ImVectorIP10ImDrawListE:
  4902|  23.0k|    draw_data->OwnerViewport = viewport;
  4903|  69.0k|    for (int n = 0; n < draw_lists->Size; n++)
   ------------------
-  |  Branch (4903:21): [True: 46.0k, False: 23.0k]
+  |  Branch (4903:21): [True: 45.9k, False: 23.0k]
   ------------------
- 4904|  46.0k|    {
- 4905|  46.0k|        ImDrawList* draw_list = draw_lists->Data[n];
- 4906|  46.0k|        draw_list->_PopUnusedDrawCmd();
- 4907|  46.0k|        draw_data->TotalVtxCount += draw_list->VtxBuffer.Size;
- 4908|  46.0k|        draw_data->TotalIdxCount += draw_list->IdxBuffer.Size;
- 4909|  46.0k|    }
+ 4904|  45.9k|    {
+ 4905|  45.9k|        ImDrawList* draw_list = draw_lists->Data[n];
+ 4906|  45.9k|        draw_list->_PopUnusedDrawCmd();
+ 4907|  45.9k|        draw_data->TotalVtxCount += draw_list->VtxBuffer.Size;
+ 4908|  45.9k|        draw_data->TotalIdxCount += draw_list->IdxBuffer.Size;
+ 4909|  45.9k|    }
  4910|  23.0k|}
 imgui.cpp:_ZL17FindHoveredWindowv:
  5246|  23.0k|{
@@ -19258,7 +19258,7 @@ imgui.cpp:_ZN5ImGuiL17UpdateMouseInputsEv:
  8966|  23.0k|    if (IsMousePosValid(&io.MousePos) && IsMousePosValid(&io.MousePosPrev))
   ------------------
   |  Branch (8966:9): [True: 6.74k, False: 16.3k]
-  |  Branch (8966:42): [True: 6.40k, False: 340]
+  |  Branch (8966:42): [True: 6.40k, False: 344]
   ------------------
  8967|  6.40k|        io.MouseDelta = io.MousePos - io.MousePosPrev;
  8968|  16.6k|    else
@@ -19267,10 +19267,10 @@ imgui.cpp:_ZN5ImGuiL17UpdateMouseInputsEv:
  8971|       |    // If mouse moved we re-enable mouse hovering in case it was disabled by gamepad/keyboard. In theory should use a >0.0f threshold but would need to reset in everywhere we set this to true.
  8972|  23.0k|    if (io.MouseDelta.x != 0.0f || io.MouseDelta.y != 0.0f)
   ------------------
-  |  Branch (8972:9): [True: 384, False: 22.6k]
+  |  Branch (8972:9): [True: 386, False: 22.6k]
   |  Branch (8972:36): [True: 11, False: 22.6k]
   ------------------
- 8973|    395|        g.NavDisableMouseHover = false;
+ 8973|    397|        g.NavDisableMouseHover = false;
  8974|       |
  8975|  23.0k|    io.MousePosPrev = io.MousePos;
  8976|   138k|    for (int i = 0; i < IM_ARRAYSIZE(io.MouseDown); i++)
@@ -19305,26 +19305,26 @@ imgui.cpp:_ZN5ImGuiL17UpdateMouseInputsEv:
  8985|  2.56k|            bool is_repeated_click = false;
  8986|  2.56k|            if ((float)(g.Time - io.MouseClickedTime[i]) < io.MouseDoubleClickTime)
   ------------------
-  |  Branch (8986:17): [True: 2.26k, False: 302]
+  |  Branch (8986:17): [True: 2.26k, False: 293]
   ------------------
  8987|  2.26k|            {
  8988|  2.26k|                ImVec2 delta_from_click_pos = IsMousePosValid(&io.MousePos) ? (io.MousePos - io.MouseClickedPos[i]) : ImVec2(0.0f, 0.0f);
   ------------------
-  |  Branch (8988:47): [True: 1.90k, False: 358]
+  |  Branch (8988:47): [True: 1.91k, False: 356]
   ------------------
  8989|  2.26k|                if (ImLengthSqr(delta_from_click_pos) < io.MouseDoubleClickMaxDist * io.MouseDoubleClickMaxDist)
   ------------------
-  |  Branch (8989:21): [True: 2.03k, False: 230]
+  |  Branch (8989:21): [True: 2.03k, False: 235]
   ------------------
  8990|  2.03k|                    is_repeated_click = true;
  8991|  2.26k|            }
  8992|  2.56k|            if (is_repeated_click)
   ------------------
-  |  Branch (8992:17): [True: 2.03k, False: 532]
+  |  Branch (8992:17): [True: 2.03k, False: 528]
   ------------------
  8993|  2.03k|                io.MouseClickedLastCount[i]++;
- 8994|    532|            else
- 8995|    532|                io.MouseClickedLastCount[i] = 1;
+ 8994|    528|            else
+ 8995|    528|                io.MouseClickedLastCount[i] = 1;
  8996|  2.56k|            io.MouseClickedTime[i] = g.Time;
  8997|  2.56k|            io.MouseClickedPos[i] = io.MousePos;
  8998|  2.56k|            io.MouseClickedCount[i] = io.MouseClickedLastCount[i];
@@ -20054,8 +20054,8 @@ imgui.cpp:_ZN5ImGuiL9NavUpdateEv:
 11717|  23.0k|    bool set_mouse_pos = false;
 11718|  23.0k|    if (g.NavMousePosDirty && g.NavIdIsAlive)
   ------------------
-  |  Branch (11718:9): [True: 27, False: 23.0k]
-  |  Branch (11718:31): [True: 0, False: 27]
+  |  Branch (11718:9): [True: 23, False: 23.0k]
+  |  Branch (11718:31): [True: 0, False: 23]
   ------------------
 11719|      0|        if (!g.NavDisableHighlight && g.NavDisableMouseHover && g.NavWindow)
   ------------------
@@ -20251,7 +20251,7 @@ imgui.cpp:_ZN5ImGuiL9NavUpdateEv:
 11795|  15.2k|        if (window->DC.NavLayersActiveMask == 0x00 && window->DC.NavHasScroll && move_dir != ImGuiDir_None)
   ------------------
   |  Branch (11795:13): [True: 15.1k, False: 20]
-  |  Branch (11795:55): [True: 14.5k, False: 671]
+  |  Branch (11795:55): [True: 14.5k, False: 663]
   |  Branch (11795:82): [True: 662, False: 13.8k]
   ------------------
 11796|    662|        {
@@ -22386,9 +22386,9 @@ _ZNK6ImFont8IsLoadedEv:
 _ZN10ImDrawData5ClearEv:
  2758|  23.0k|    void Clear()    { memset(this, 0, sizeof(*this)); }     // The ImDrawList are owned by ImGuiContext!
 _ZN8ImVectorIP10ImDrawListE9push_backERKS1_:
- 1886|  46.0k|    inline void         push_back(const T& v)               { if (Size == Capacity) reserve(_grow_capacity(Size + 1)); memcpy(&Data[Size], &v, sizeof(v)); Size++; }
+ 1886|  45.9k|    inline void         push_back(const T& v)               { if (Size == Capacity) reserve(_grow_capacity(Size + 1)); memcpy(&Data[Size], &v, sizeof(v)); Size++; }
   ------------------
-  |  Branch (1886:67): [True: 1, False: 46.0k]
+  |  Branch (1886:67): [True: 1, False: 45.9k]
   ------------------
 _ZN8ImVectorIP10ImDrawListE7reserveEi:
  1882|      1|    inline void         reserve(int new_capacity)           { if (new_capacity <= Capacity) return; T* new_data = (T*)IM_ALLOC((size_t)new_capacity * sizeof(T)); if (Data) { memcpy(new_data, Data, (size_t)Size * sizeof(T)); IM_FREE(Data); } Data = new_data; Capacity = new_capacity; }
@@ -23699,22 +23699,22 @@ _ZN10ImDrawList10AddDrawCmdEv:
   451|  92.1k|    CmdBuffer.push_back(draw_cmd);
   452|  92.1k|}
 _ZN10ImDrawList17_PopUnusedDrawCmdEv:
-  457|  46.0k|{
-  458|  92.0k|    while (CmdBuffer.Size > 0)
+  457|  45.9k|{
+  458|  91.9k|    while (CmdBuffer.Size > 0)
   ------------------
-  |  Branch (458:12): [True: 92.0k, False: 0]
+  |  Branch (458:12): [True: 91.9k, False: 0]
   ------------------
-  459|  92.0k|    {
-  460|  92.0k|        ImDrawCmd* curr_cmd = &CmdBuffer.Data[CmdBuffer.Size - 1];
-  461|  92.0k|        if (curr_cmd->ElemCount != 0 || curr_cmd->UserCallback != NULL)
+  459|  91.9k|    {
+  460|  91.9k|        ImDrawCmd* curr_cmd = &CmdBuffer.Data[CmdBuffer.Size - 1];
+  461|  91.9k|        if (curr_cmd->ElemCount != 0 || curr_cmd->UserCallback != NULL)
   ------------------
-  |  Branch (461:13): [True: 46.0k, False: 46.0k]
-  |  Branch (461:41): [True: 0, False: 46.0k]
+  |  Branch (461:13): [True: 45.9k, False: 45.9k]
+  |  Branch (461:41): [True: 0, False: 45.9k]
   ------------------
-  462|  46.0k|            return;// break;
-  463|  46.0k|        CmdBuffer.pop_back();
-  464|  46.0k|    }
-  465|  46.0k|}
+  462|  45.9k|            return;// break;
+  463|  45.9k|        CmdBuffer.pop_back();
+  464|  45.9k|    }
+  465|  45.9k|}
 _ZN10ImDrawList18_OnChangedClipRectEv:
   505|   207k|{
   506|       |    // If current command is used with different settings we need to add a new command
@@ -23828,16 +23828,16 @@ _ZN10ImDrawList19_OnChangedTextureIDEv:
   547|  69.2k|    curr_cmd->TextureId = _CmdHeader.TextureId;
   548|  69.2k|}
 _ZNK10ImDrawList27_CalcCircleAutoSegmentCountEf:
-  567|  94.9k|{
+  567|  94.8k|{
   568|       |    // Automatic segment count
-  569|  94.9k|    const int radius_idx = (int)(radius + 0.999999f); // ceil to never reduce accuracy
-  570|  94.9k|    if (radius_idx < IM_ARRAYSIZE(_Data->CircleSegmentCounts))
+  569|  94.8k|    const int radius_idx = (int)(radius + 0.999999f); // ceil to never reduce accuracy
+  570|  94.8k|    if (radius_idx < IM_ARRAYSIZE(_Data->CircleSegmentCounts))
   ------------------
-  |  |   87|  94.9k|#define IM_ARRAYSIZE(_ARR)          ((int)(sizeof(_ARR) / sizeof(*(_ARR))))     // Size of a static C-style array. Don't use on pointers!
+  |  |   87|  94.8k|#define IM_ARRAYSIZE(_ARR)          ((int)(sizeof(_ARR) / sizeof(*(_ARR))))     // Size of a static C-style array. Don't use on pointers!
   ------------------
-  |  Branch (570:9): [True: 94.9k, False: 0]
+  |  Branch (570:9): [True: 94.8k, False: 0]
   ------------------
-  571|  94.9k|        return _Data->CircleSegmentCounts[radius_idx]; // Use cached value
+  571|  94.8k|        return _Data->CircleSegmentCounts[radius_idx]; // Use cached value
   572|      0|    else
   573|      0|        return IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_CALC(radius, _Data->CircleSegmentMaxError);
   ------------------
@@ -23854,7 +23854,7 @@ _ZNK10ImDrawList27_CalcCircleAutoSegmentCountEf:
   |  |  |  |  757|      0|#define IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_MAX                     512
   |  |  ------------------
   ------------------
-  574|  94.9k|}
+  574|  94.8k|}
 _ZN10ImDrawList12PushClipRectERK6ImVec2S2_b:
   578|   138k|{
   579|   138k|    ImVec4 cr(cr_min.x, cr_min.y, cr_max.x, cr_max.y);
@@ -23967,7 +23967,7 @@ _ZN10ImDrawList11AddPolylineEPK6ImVec2ijif:
   721|   136k|    const ImVec2 opaque_uv = _Data->TexUvWhitePixel;
   722|   136k|    const int count = closed ? points_count : points_count - 1; // The number of line segments we need to draw
   ------------------
-  |  Branch (722:23): [True: 93.6k, False: 43.1k]
+  |  Branch (722:23): [True: 93.5k, False: 43.1k]
   ------------------
   723|   136k|    const bool thick_line = (thickness > _FringeScale);
   724|       |
@@ -24040,7 +24040,7 @@ _ZN10ImDrawList11AddPolylineEPK6ImVec2ijif:
   756|   466k|        {
   757|   466k|            const int i2 = (i1 + 1) == points_count ? 0 : i1 + 1;
   ------------------
-  |  Branch (757:28): [True: 93.6k, False: 372k]
+  |  Branch (757:28): [True: 93.5k, False: 372k]
   ------------------
   758|   466k|            float dx = points[i2].x - points[i1].x;
   759|   466k|            float dy = points[i2].y - points[i1].y;
@@ -24056,7 +24056,7 @@ _ZN10ImDrawList11AddPolylineEPK6ImVec2ijif:
   763|   466k|        }
   764|   136k|        if (!closed)
   ------------------
-  |  Branch (764:13): [True: 43.1k, False: 93.6k]
+  |  Branch (764:13): [True: 43.1k, False: 93.5k]
   ------------------
   765|  43.1k|            temp_normals[points_count - 1] = temp_normals[points_count - 2];
   766|       |
@@ -24083,7 +24083,7 @@ _ZN10ImDrawList11AddPolylineEPK6ImVec2ijif:
   780|       |            // If line is not closed, the first and last points need to be generated differently as there are no normals to blend
   781|   136k|            if (!closed)
   ------------------
-  |  Branch (781:17): [True: 43.1k, False: 93.6k]
+  |  Branch (781:17): [True: 43.1k, False: 93.5k]
   ------------------
   782|  43.1k|            {
   783|  43.1k|                temp_points[0] = points[0] + temp_normals[0] * half_draw_size;
@@ -24103,11 +24103,11 @@ _ZN10ImDrawList11AddPolylineEPK6ImVec2ijif:
   794|   466k|            {
   795|   466k|                const int i2 = (i1 + 1) == points_count ? 0 : i1 + 1; // i2 is the second point of the line segment
   ------------------
-  |  Branch (795:32): [True: 93.6k, False: 372k]
+  |  Branch (795:32): [True: 93.5k, False: 372k]
   ------------------
   796|   466k|                const unsigned int idx2 = ((i1 + 1) == points_count) ? _VtxCurrentIdx : (idx1 + (use_texture ? 2 : 3)); // Vertex index for end of segment
   ------------------
-  |  Branch (796:43): [True: 93.6k, False: 372k]
+  |  Branch (796:43): [True: 93.5k, False: 372k]
   |  Branch (796:98): [True: 372k, False: 0]
   ------------------
   797|       |
@@ -24393,61 +24393,61 @@ _ZN10ImDrawList19AddConvexPolyFilledEPK6ImVec2ij:
  1000|   114k|        ImVec2* temp_normals = _Data->TempBuffer.Data;
  1001|   634k|        for (int i0 = points_count - 1, i1 = 0; i1 < points_count; i0 = i1++)
   ------------------
-  |  Branch (1001:49): [True: 520k, False: 114k]
+  |  Branch (1001:49): [True: 519k, False: 114k]
   ------------------
- 1002|   520k|        {
- 1003|   520k|            const ImVec2& p0 = points[i0];
- 1004|   520k|            const ImVec2& p1 = points[i1];
- 1005|   520k|            float dx = p1.x - p0.x;
- 1006|   520k|            float dy = p1.y - p0.y;
- 1007|   520k|            IM_NORMALIZE2F_OVER_ZERO(dx, dy);
+ 1002|   519k|        {
+ 1003|   519k|            const ImVec2& p0 = points[i0];
+ 1004|   519k|            const ImVec2& p1 = points[i1];
+ 1005|   519k|            float dx = p1.x - p0.x;
+ 1006|   519k|            float dy = p1.y - p0.y;
+ 1007|   519k|            IM_NORMALIZE2F_OVER_ZERO(dx, dy);
   ------------------
-  |  |  709|   520k|#define IM_NORMALIZE2F_OVER_ZERO(VX,VY)     { float d2 = VX*VX + VY*VY; if (d2 > 0.0f) { float inv_len = ImRsqrt(d2); VX *= inv_len; VY *= inv_len; } } (void)0
+  |  |  709|   519k|#define IM_NORMALIZE2F_OVER_ZERO(VX,VY)     { float d2 = VX*VX + VY*VY; if (d2 > 0.0f) { float inv_len = ImRsqrt(d2); VX *= inv_len; VY *= inv_len; } } (void)0
   |  |  ------------------
-  |  |  |  Branch (709:77): [True: 520k, False: 0]
+  |  |  |  Branch (709:77): [True: 519k, False: 0]
   |  |  ------------------
   ------------------
- 1008|   520k|            temp_normals[i0].x = dy;
- 1009|   520k|            temp_normals[i0].y = -dx;
- 1010|   520k|        }
+ 1008|   519k|            temp_normals[i0].x = dy;
+ 1009|   519k|            temp_normals[i0].y = -dx;
+ 1010|   519k|        }
  1011|       |
  1012|   634k|        for (int i0 = points_count - 1, i1 = 0; i1 < points_count; i0 = i1++)
   ------------------
-  |  Branch (1012:49): [True: 520k, False: 114k]
+  |  Branch (1012:49): [True: 519k, False: 114k]
   ------------------
- 1013|   520k|        {
+ 1013|   519k|        {
  1014|       |            // Average normals
- 1015|   520k|            const ImVec2& n0 = temp_normals[i0];
- 1016|   520k|            const ImVec2& n1 = temp_normals[i1];
- 1017|   520k|            float dm_x = (n0.x + n1.x) * 0.5f;
- 1018|   520k|            float dm_y = (n0.y + n1.y) * 0.5f;
- 1019|   520k|            IM_FIXNORMAL2F(dm_x, dm_y);
+ 1015|   519k|            const ImVec2& n0 = temp_normals[i0];
+ 1016|   519k|            const ImVec2& n1 = temp_normals[i1];
+ 1017|   519k|            float dm_x = (n0.x + n1.x) * 0.5f;
+ 1018|   519k|            float dm_y = (n0.y + n1.y) * 0.5f;
+ 1019|   519k|            IM_FIXNORMAL2F(dm_x, dm_y);
   ------------------
-  |  |  711|   520k|#define IM_FIXNORMAL2F(VX,VY)               { float d2 = VX*VX + VY*VY; if (d2 > 0.000001f) { float inv_len2 = 1.0f / d2; if (inv_len2 > IM_FIXNORMAL2F_MAX_INVLEN2) inv_len2 = IM_FIXNORMAL2F_MAX_INVLEN2; VX *= inv_len2; VY *= inv_len2; } } (void)0
+  |  |  711|   519k|#define IM_FIXNORMAL2F(VX,VY)               { float d2 = VX*VX + VY*VY; if (d2 > 0.000001f) { float inv_len2 = 1.0f / d2; if (inv_len2 > IM_FIXNORMAL2F_MAX_INVLEN2) inv_len2 = IM_FIXNORMAL2F_MAX_INVLEN2; VX *= inv_len2; VY *= inv_len2; } } (void)0
   |  |  ------------------
-  |  |  |  |  710|   520k|#define IM_FIXNORMAL2F_MAX_INVLEN2          100.0f // 500.0f (see #4053, #3366)
+  |  |  |  |  710|   519k|#define IM_FIXNORMAL2F_MAX_INVLEN2          100.0f // 500.0f (see #4053, #3366)
   |  |  ------------------
   |  |               #define IM_FIXNORMAL2F(VX,VY)               { float d2 = VX*VX + VY*VY; if (d2 > 0.000001f) { float inv_len2 = 1.0f / d2; if (inv_len2 > IM_FIXNORMAL2F_MAX_INVLEN2) inv_len2 = IM_FIXNORMAL2F_MAX_INVLEN2; VX *= inv_len2; VY *= inv_len2; } } (void)0
   |  |  ------------------
   |  |  |  |  710|      0|#define IM_FIXNORMAL2F_MAX_INVLEN2          100.0f // 500.0f (see #4053, #3366)
   |  |  ------------------
-  |  |  |  Branch (711:77): [True: 520k, False: 0]
-  |  |  |  Branch (711:127): [True: 0, False: 520k]
+  |  |  |  Branch (711:77): [True: 519k, False: 0]
+  |  |  |  Branch (711:127): [True: 0, False: 519k]
   |  |  ------------------
   ------------------
- 1020|   520k|            dm_x *= AA_SIZE * 0.5f;
- 1021|   520k|            dm_y *= AA_SIZE * 0.5f;
+ 1020|   519k|            dm_x *= AA_SIZE * 0.5f;
+ 1021|   519k|            dm_y *= AA_SIZE * 0.5f;
  1022|       |
  1023|       |            // Add vertices
- 1024|   520k|            _VtxWritePtr[0].pos.x = (points[i1].x - dm_x); _VtxWritePtr[0].pos.y = (points[i1].y - dm_y); _VtxWritePtr[0].uv = uv; _VtxWritePtr[0].col = col;        // Inner
- 1025|   520k|            _VtxWritePtr[1].pos.x = (points[i1].x + dm_x); _VtxWritePtr[1].pos.y = (points[i1].y + dm_y); _VtxWritePtr[1].uv = uv; _VtxWritePtr[1].col = col_trans;  // Outer
- 1026|   520k|            _VtxWritePtr += 2;
+ 1024|   519k|            _VtxWritePtr[0].pos.x = (points[i1].x - dm_x); _VtxWritePtr[0].pos.y = (points[i1].y - dm_y); _VtxWritePtr[0].uv = uv; _VtxWritePtr[0].col = col;        // Inner
+ 1025|   519k|            _VtxWritePtr[1].pos.x = (points[i1].x + dm_x); _VtxWritePtr[1].pos.y = (points[i1].y + dm_y); _VtxWritePtr[1].uv = uv; _VtxWritePtr[1].col = col_trans;  // Outer
+ 1026|   519k|            _VtxWritePtr += 2;
  1027|       |
  1028|       |            // Add indexes for fringes
- 1029|   520k|            _IdxWritePtr[0] = (ImDrawIdx)(vtx_inner_idx + (i1 << 1)); _IdxWritePtr[1] = (ImDrawIdx)(vtx_inner_idx + (i0 << 1)); _IdxWritePtr[2] = (ImDrawIdx)(vtx_outer_idx + (i0 << 1));
- 1030|   520k|            _IdxWritePtr[3] = (ImDrawIdx)(vtx_outer_idx + (i0 << 1)); _IdxWritePtr[4] = (ImDrawIdx)(vtx_outer_idx + (i1 << 1)); _IdxWritePtr[5] = (ImDrawIdx)(vtx_inner_idx + (i1 << 1));
- 1031|   520k|            _IdxWritePtr += 6;
- 1032|   520k|        }
+ 1029|   519k|            _IdxWritePtr[0] = (ImDrawIdx)(vtx_inner_idx + (i1 << 1)); _IdxWritePtr[1] = (ImDrawIdx)(vtx_inner_idx + (i0 << 1)); _IdxWritePtr[2] = (ImDrawIdx)(vtx_outer_idx + (i0 << 1));
+ 1030|   519k|            _IdxWritePtr[3] = (ImDrawIdx)(vtx_outer_idx + (i0 << 1)); _IdxWritePtr[4] = (ImDrawIdx)(vtx_outer_idx + (i1 << 1)); _IdxWritePtr[5] = (ImDrawIdx)(vtx_inner_idx + (i1 << 1));
+ 1031|   519k|            _IdxWritePtr += 6;
+ 1032|   519k|        }
  1033|   114k|        _VtxCurrentIdx += (ImDrawIdx)vtx_count;
  1034|   114k|    }
  1035|      0|    else
@@ -24476,10 +24476,10 @@ _ZN10ImDrawList19AddConvexPolyFilledEPK6ImVec2ij:
  1052|      0|    }
  1053|   114k|}
 _ZN10ImDrawList16_PathArcToFastExERK6ImVec2fiii:
- 1056|  94.9k|{
- 1057|  94.9k|    if (radius < 0.5f)
+ 1056|  94.8k|{
+ 1057|  94.8k|    if (radius < 0.5f)
   ------------------
-  |  Branch (1057:9): [True: 0, False: 94.9k]
+  |  Branch (1057:9): [True: 0, False: 94.8k]
   ------------------
  1058|      0|    {
  1059|      0|        _Path.push_back(center);
@@ -24487,40 +24487,40 @@ _ZN10ImDrawList16_PathArcToFastExERK6ImVec2fiii:
  1061|      0|    }
  1062|       |
  1063|       |    // Calculate arc auto segment step size
- 1064|  94.9k|    if (a_step <= 0)
+ 1064|  94.8k|    if (a_step <= 0)
   ------------------
-  |  Branch (1064:9): [True: 94.9k, False: 0]
+  |  Branch (1064:9): [True: 94.8k, False: 0]
   ------------------
- 1065|  94.9k|        a_step = IM_DRAWLIST_ARCFAST_SAMPLE_MAX / _CalcCircleAutoSegmentCount(radius);
+ 1065|  94.8k|        a_step = IM_DRAWLIST_ARCFAST_SAMPLE_MAX / _CalcCircleAutoSegmentCount(radius);
   ------------------
-  |  |  768|  94.9k|#define IM_DRAWLIST_ARCFAST_SAMPLE_MAX                          IM_DRAWLIST_ARCFAST_TABLE_SIZE // Sample index _PathArcToFastEx() for 360 angle.
+  |  |  768|  94.8k|#define IM_DRAWLIST_ARCFAST_SAMPLE_MAX                          IM_DRAWLIST_ARCFAST_TABLE_SIZE // Sample index _PathArcToFastEx() for 360 angle.
   |  |  ------------------
-  |  |  |  |  766|  94.9k|#define IM_DRAWLIST_ARCFAST_TABLE_SIZE                          48 // Number of samples in lookup table.
+  |  |  |  |  766|  94.8k|#define IM_DRAWLIST_ARCFAST_TABLE_SIZE                          48 // Number of samples in lookup table.
   |  |  ------------------
   ------------------
  1066|       |
  1067|       |    // Make sure we never do steps larger than one quarter of the circle
- 1068|  94.9k|    a_step = ImClamp(a_step, 1, IM_DRAWLIST_ARCFAST_TABLE_SIZE / 4);
+ 1068|  94.8k|    a_step = ImClamp(a_step, 1, IM_DRAWLIST_ARCFAST_TABLE_SIZE / 4);
   ------------------
-  |  |  766|  94.9k|#define IM_DRAWLIST_ARCFAST_TABLE_SIZE                          48 // Number of samples in lookup table.
+  |  |  766|  94.8k|#define IM_DRAWLIST_ARCFAST_TABLE_SIZE                          48 // Number of samples in lookup table.
   ------------------
  1069|       |
- 1070|  94.9k|    const int sample_range = ImAbs(a_max_sample - a_min_sample);
- 1071|  94.9k|    const int a_next_step = a_step;
+ 1070|  94.8k|    const int sample_range = ImAbs(a_max_sample - a_min_sample);
+ 1071|  94.8k|    const int a_next_step = a_step;
  1072|       |
- 1073|  94.9k|    int samples = sample_range + 1;
- 1074|  94.9k|    bool extra_max_sample = false;
- 1075|  94.9k|    if (a_step > 1)
+ 1073|  94.8k|    int samples = sample_range + 1;
+ 1074|  94.8k|    bool extra_max_sample = false;
+ 1075|  94.8k|    if (a_step > 1)
   ------------------
-  |  Branch (1075:9): [True: 94.9k, False: 0]
+  |  Branch (1075:9): [True: 94.8k, False: 0]
   ------------------
- 1076|  94.9k|    {
- 1077|  94.9k|        samples            = sample_range / a_step + 1;
- 1078|  94.9k|        const int overstep = sample_range % a_step;
+ 1076|  94.8k|    {
+ 1077|  94.8k|        samples            = sample_range / a_step + 1;
+ 1078|  94.8k|        const int overstep = sample_range % a_step;
  1079|       |
- 1080|  94.9k|        if (overstep > 0)
+ 1080|  94.8k|        if (overstep > 0)
   ------------------
-  |  Branch (1080:13): [True: 16, False: 94.9k]
+  |  Branch (1080:13): [True: 16, False: 94.8k]
   ------------------
  1081|     16|        {
  1082|     16|            extra_max_sample = true;
@@ -24534,21 +24534,21 @@ _ZN10ImDrawList16_PathArcToFastExERK6ImVec2fiii:
   ------------------
  1088|     16|                a_step -= (a_step - overstep) / 2;
  1089|     16|        }
- 1090|  94.9k|    }
+ 1090|  94.8k|    }
  1091|       |
- 1092|  94.9k|    _Path.resize(_Path.Size + samples);
- 1093|  94.9k|    ImVec2* out_ptr = _Path.Data + (_Path.Size - samples);
+ 1092|  94.8k|    _Path.resize(_Path.Size + samples);
+ 1093|  94.8k|    ImVec2* out_ptr = _Path.Data + (_Path.Size - samples);
  1094|       |
- 1095|  94.9k|    int sample_index = a_min_sample;
- 1096|  94.9k|    if (sample_index < 0 || sample_index >= IM_DRAWLIST_ARCFAST_SAMPLE_MAX)
+ 1095|  94.8k|    int sample_index = a_min_sample;
+ 1096|  94.8k|    if (sample_index < 0 || sample_index >= IM_DRAWLIST_ARCFAST_SAMPLE_MAX)
   ------------------
-  |  |  768|  94.9k|#define IM_DRAWLIST_ARCFAST_SAMPLE_MAX                          IM_DRAWLIST_ARCFAST_TABLE_SIZE // Sample index _PathArcToFastEx() for 360 angle.
+  |  |  768|  94.8k|#define IM_DRAWLIST_ARCFAST_SAMPLE_MAX                          IM_DRAWLIST_ARCFAST_TABLE_SIZE // Sample index _PathArcToFastEx() for 360 angle.
   |  |  ------------------
-  |  |  |  |  766|  94.9k|#define IM_DRAWLIST_ARCFAST_TABLE_SIZE                          48 // Number of samples in lookup table.
+  |  |  |  |  766|  94.8k|#define IM_DRAWLIST_ARCFAST_TABLE_SIZE                          48 // Number of samples in lookup table.
   |  |  ------------------
   ------------------
-  |  Branch (1096:9): [True: 0, False: 94.9k]
-  |  Branch (1096:29): [True: 0, False: 94.9k]
+  |  Branch (1096:9): [True: 0, False: 94.8k]
+  |  Branch (1096:29): [True: 0, False: 94.8k]
   ------------------
  1097|      0|    {
  1098|      0|        sample_index = sample_index % IM_DRAWLIST_ARCFAST_SAMPLE_MAX;
@@ -24571,14 +24571,14 @@ _ZN10ImDrawList16_PathArcToFastExERK6ImVec2fiii:
   ------------------
  1101|      0|    }
  1102|       |
- 1103|  94.9k|    if (a_max_sample >= a_min_sample)
+ 1103|  94.8k|    if (a_max_sample >= a_min_sample)
   ------------------
-  |  Branch (1103:9): [True: 94.9k, False: 0]
+  |  Branch (1103:9): [True: 94.8k, False: 0]
   ------------------
- 1104|  94.9k|    {
+ 1104|  94.8k|    {
  1105|   370k|        for (int a = a_min_sample; a <= a_max_sample; a += a_step, sample_index += a_step, a_step = a_next_step)
   ------------------
-  |  Branch (1105:36): [True: 275k, False: 94.9k]
+  |  Branch (1105:36): [True: 275k, False: 94.8k]
   ------------------
  1106|   275k|        {
  1107|       |            // a_step is clamped to IM_DRAWLIST_ARCFAST_SAMPLE_MAX, so we have guaranteed that it will not wrap over range twice or more
@@ -24604,7 +24604,7 @@ _ZN10ImDrawList16_PathArcToFastExERK6ImVec2fiii:
  1113|   275k|            out_ptr->y = center.y + s.y * radius;
  1114|   275k|            out_ptr++;
  1115|   275k|        }
- 1116|  94.9k|    }
+ 1116|  94.8k|    }
  1117|      0|    else
  1118|      0|    {
  1119|      0|        for (int a = a_min_sample; a >= a_max_sample; a -= a_step, sample_index -= a_step, a_step = a_next_step)
@@ -24632,9 +24632,9 @@ _ZN10ImDrawList16_PathArcToFastExERK6ImVec2fiii:
  1129|      0|        }
  1130|      0|    }
  1131|       |
- 1132|  94.9k|    if (extra_max_sample)
+ 1132|  94.8k|    if (extra_max_sample)
   ------------------
-  |  Branch (1132:9): [True: 16, False: 94.9k]
+  |  Branch (1132:9): [True: 16, False: 94.8k]
   ------------------
  1133|     16|    {
  1134|     16|        int normalized_max_sample = a_max_sample % IM_DRAWLIST_ARCFAST_SAMPLE_MAX;
@@ -24662,14 +24662,14 @@ _ZN10ImDrawList16_PathArcToFastExERK6ImVec2fiii:
  1141|     16|        out_ptr++;
  1142|     16|    }
  1143|       |
- 1144|  94.9k|    IM_ASSERT_PARANOID(_Path.Data + _Path.Size == out_ptr);
+ 1144|  94.8k|    IM_ASSERT_PARANOID(_Path.Data + _Path.Size == out_ptr);
   ------------------
-  |  |  245|  94.9k|#define IM_ASSERT_PARANOID(_EXPR)       IM_ASSERT(_EXPR)
+  |  |  245|  94.8k|#define IM_ASSERT_PARANOID(_EXPR)       IM_ASSERT(_EXPR)
   |  |  ------------------
-  |  |  |  |   23|  94.9k|#define IM_ASSERT(_EXPR) PHI_ASSERT(_EXPR)
+  |  |  |  |   23|  94.8k|#define IM_ASSERT(_EXPR) PHI_ASSERT(_EXPR)
   |  |  ------------------
   ------------------
- 1145|  94.9k|}
+ 1145|  94.8k|}
 _ZN10ImDrawList11_PathArcToNERK6ImVec2fffi:
  1148|  16.2k|{
  1149|  16.2k|    if (radius < 0.5f)
@@ -24684,7 +24684,7 @@ _ZN10ImDrawList11_PathArcToNERK6ImVec2fffi:
  1155|       |    // Note that we are adding a point at both a_min and a_max.
  1156|       |    // If you are trying to draw a full closed circle you don't want the overlapping points!
  1157|  16.2k|    _Path.reserve(_Path.Size + (num_segments + 1));
- 1158|  81.4k|    for (int i = 0; i <= num_segments; i++)
+ 1158|  81.3k|    for (int i = 0; i <= num_segments; i++)
   ------------------
   |  Branch (1158:21): [True: 65.1k, False: 16.2k]
   ------------------
@@ -24704,27 +24704,27 @@ _ZN10ImDrawList13PathArcToFastERK6ImVec2fii:
  1167|   117k|{
  1168|   117k|    if (radius < 0.5f)
   ------------------
-  |  Branch (1168:9): [True: 23.0k, False: 94.9k]
+  |  Branch (1168:9): [True: 23.0k, False: 94.8k]
   ------------------
  1169|  23.0k|    {
  1170|  23.0k|        _Path.push_back(center);
  1171|  23.0k|        return;
  1172|  23.0k|    }
- 1173|  94.9k|    _PathArcToFastEx(center, radius, a_min_of_12 * IM_DRAWLIST_ARCFAST_SAMPLE_MAX / 12, a_max_of_12 * IM_DRAWLIST_ARCFAST_SAMPLE_MAX / 12, 0);
+ 1173|  94.8k|    _PathArcToFastEx(center, radius, a_min_of_12 * IM_DRAWLIST_ARCFAST_SAMPLE_MAX / 12, a_max_of_12 * IM_DRAWLIST_ARCFAST_SAMPLE_MAX / 12, 0);
   ------------------
-  |  |  768|  94.9k|#define IM_DRAWLIST_ARCFAST_SAMPLE_MAX                          IM_DRAWLIST_ARCFAST_TABLE_SIZE // Sample index _PathArcToFastEx() for 360 angle.
+  |  |  768|  94.8k|#define IM_DRAWLIST_ARCFAST_SAMPLE_MAX                          IM_DRAWLIST_ARCFAST_TABLE_SIZE // Sample index _PathArcToFastEx() for 360 angle.
   |  |  ------------------
-  |  |  |  |  766|  94.9k|#define IM_DRAWLIST_ARCFAST_TABLE_SIZE                          48 // Number of samples in lookup table.
+  |  |  |  |  766|  94.8k|#define IM_DRAWLIST_ARCFAST_TABLE_SIZE                          48 // Number of samples in lookup table.
   |  |  ------------------
   ------------------
                   _PathArcToFastEx(center, radius, a_min_of_12 * IM_DRAWLIST_ARCFAST_SAMPLE_MAX / 12, a_max_of_12 * IM_DRAWLIST_ARCFAST_SAMPLE_MAX / 12, 0);
   ------------------
-  |  |  768|  94.9k|#define IM_DRAWLIST_ARCFAST_SAMPLE_MAX                          IM_DRAWLIST_ARCFAST_TABLE_SIZE // Sample index _PathArcToFastEx() for 360 angle.
+  |  |  768|  94.8k|#define IM_DRAWLIST_ARCFAST_SAMPLE_MAX                          IM_DRAWLIST_ARCFAST_TABLE_SIZE // Sample index _PathArcToFastEx() for 360 angle.
   |  |  ------------------
-  |  |  |  |  766|  94.9k|#define IM_DRAWLIST_ARCFAST_TABLE_SIZE                          48 // Number of samples in lookup table.
+  |  |  |  |  766|  94.8k|#define IM_DRAWLIST_ARCFAST_TABLE_SIZE                          48 // Number of samples in lookup table.
   |  |  ------------------
   ------------------
- 1174|  94.9k|}
+ 1174|  94.8k|}
 _ZN10ImDrawList9PathArcToERK6ImVec2fffi:
  1177|  16.2k|{
  1178|  16.2k|    if (radius < 0.5f)
@@ -24937,23 +24937,23 @@ _ZN10ImDrawList7AddLineERK6ImVec2S2_jf:
  1388|  43.1k|    PathStroke(col, 0, thickness);
  1389|  43.1k|}
 _ZN10ImDrawList7AddRectERK6ImVec2S2_jfif:
- 1394|  93.6k|{
- 1395|  93.6k|    if ((col & IM_COL32_A_MASK) == 0)
+ 1394|  93.5k|{
+ 1395|  93.5k|    if ((col & IM_COL32_A_MASK) == 0)
   ------------------
-  |  | 2450|  93.6k|#define IM_COL32_A_MASK     0xFF000000
+  |  | 2450|  93.5k|#define IM_COL32_A_MASK     0xFF000000
   ------------------
-  |  Branch (1395:9): [True: 0, False: 93.6k]
+  |  Branch (1395:9): [True: 0, False: 93.5k]
   ------------------
  1396|      0|        return;
- 1397|  93.6k|    if (Flags & ImDrawListFlags_AntiAliasedLines)
+ 1397|  93.5k|    if (Flags & ImDrawListFlags_AntiAliasedLines)
   ------------------
-  |  Branch (1397:9): [True: 93.6k, False: 0]
+  |  Branch (1397:9): [True: 93.5k, False: 0]
   ------------------
- 1398|  93.6k|        PathRect(p_min + ImVec2(0.50f, 0.50f), p_max - ImVec2(0.50f, 0.50f), rounding, flags);
+ 1398|  93.5k|        PathRect(p_min + ImVec2(0.50f, 0.50f), p_max - ImVec2(0.50f, 0.50f), rounding, flags);
  1399|      0|    else
  1400|      0|        PathRect(p_min + ImVec2(0.50f, 0.50f), p_max - ImVec2(0.49f, 0.49f), rounding, flags); // Better looking lower-right corner and rounded non-AA shapes.
- 1401|  93.6k|    PathStroke(col, ImDrawFlags_Closed, thickness);
- 1402|  93.6k|}
+ 1401|  93.5k|    PathStroke(col, ImDrawFlags_Closed, thickness);
+ 1402|  93.5k|}
 _ZN10ImDrawList13AddRectFilledERK6ImVec2S2_jfi:
  1405|   270k|{
  1406|   270k|    if ((col & IM_COL32_A_MASK) == 0)
@@ -25922,7 +25922,7 @@ _ZNK6ImFont13CalcTextSizeAEfffPKcS1_PS1_:
  3480|   117M|    const char* word_wrap_eol = NULL;
  3481|       |
  3482|   117M|    const char* s = text_begin;
- 3483|   255M|    while (s < text_end)
+ 3483|   256M|    while (s < text_end)
   ------------------
   |  Branch (3483:12): [True: 138M, False: 117M]
   ------------------
@@ -25962,11 +25962,11 @@ _ZNK6ImFont13CalcTextSizeAEfffPKcS1_PS1_:
  3505|   138M|        unsigned int c = (unsigned int)*s;
  3506|   138M|        if (c < 0x80)
   ------------------
-  |  Branch (3506:13): [True: 94.5M, False: 43.5M]
+  |  Branch (3506:13): [True: 94.7M, False: 43.6M]
   ------------------
- 3507|  94.5M|            s += 1;
- 3508|  43.5M|        else
- 3509|  43.5M|            s += ImTextCharFromUtf8(&c, s, text_end);
+ 3507|  94.7M|            s += 1;
+ 3508|  43.6M|        else
+ 3509|  43.6M|            s += ImTextCharFromUtf8(&c, s, text_end);
  3510|       |
  3511|   138M|        if (c < 32)
   ------------------
@@ -25992,7 +25992,7 @@ _ZNK6ImFont13CalcTextSizeAEfffPKcS1_PS1_:
  3523|       |
  3524|   138M|        const float char_width = ((int)c < IndexAdvanceX.Size ? IndexAdvanceX.Data[c] : FallbackAdvanceX) * scale;
   ------------------
-  |  Branch (3524:35): [True: 94.6M, False: 43.5M]
+  |  Branch (3524:35): [True: 94.8M, False: 43.6M]
   ------------------
  3525|   138M|        if (line_width + char_width >= max_width)
   ------------------
@@ -26225,7 +26225,7 @@ _ZNK6ImFont10RenderTextEP10ImDrawListfRK6ImVec2jRK6ImVec4PKcS9_fb:
  3679|  20.3M|            if (x1 <= clip_rect.z && x2 >= clip_rect.x)
   ------------------
   |  Branch (3679:17): [True: 4.22M, False: 16.0M]
-  |  Branch (3679:38): [True: 164k, False: 4.05M]
+  |  Branch (3679:38): [True: 164k, False: 4.06M]
   ------------------
  3680|   164k|            {
  3681|       |                // Render a character
@@ -27440,7 +27440,7 @@ imgui.cpp:_ZL13ImFloorSignedf:
   |  Branch (483:109): [True: 1.85k, False: 1.75k]
   ------------------
 imgui.cpp:_ZL11ImLengthSqrRK6ImVec2:
-  479|  6.93k|static inline float  ImLengthSqr(const ImVec2& lhs)                             { return (lhs.x * lhs.x) + (lhs.y * lhs.y); }
+  479|  6.94k|static inline float  ImLengthSqr(const ImVec2& lhs)                             { return (lhs.x * lhs.x) + (lhs.y * lhs.y); }
 imgui.cpp:_ZmiRK6ImVec2S1_:
   395|   493k|static inline ImVec2 operator-(const ImVec2& lhs, const ImVec2& rhs)            { return ImVec2(lhs.x - rhs.x, lhs.y - rhs.y); }
 imgui.cpp:_ZplRK6ImVec2S1_:
@@ -27473,9 +27473,9 @@ _ZNK14ImGuiViewportP11GetMainRectEv:
 _ZNK6ImRect8OverlapsERKS_:
   549|   144k|    bool        Overlaps(const ImRect& r) const     { return r.Min.y <  Max.y && r.Max.y >  Min.y && r.Min.x <  Max.x && r.Max.x >  Min.x; }
   ------------------
-  |  Branch (549:62): [True: 144k, False: 40]
+  |  Branch (549:62): [True: 144k, False: 51]
   |  Branch (549:82): [True: 122k, False: 22.3k]
-  |  Branch (549:102): [True: 121k, False: 200]
+  |  Branch (549:102): [True: 122k, False: 194]
   |  Branch (549:122): [True: 118k, False: 3.62k]
   ------------------
 _ZN6ImRectC2ERK6ImVec2S2_:
@@ -27717,10 +27717,10 @@ _ZNK11ImGuiWindow12TitleBarRectEv:
 _ZNK6ImRect8ContainsERK6ImVec2:
   547|   233k|    bool        Contains(const ImVec2& p) const     { return p.x     >= Min.x && p.y     >= Min.y && p.x     <  Max.x && p.y     <  Max.y; }
   ------------------
-  |  Branch (547:62): [True: 2.03k, False: 231k]
-  |  Branch (547:82): [True: 1.61k, False: 415]
-  |  Branch (547:102): [True: 1.31k, False: 300]
-  |  Branch (547:122): [True: 512, False: 804]
+  |  Branch (547:62): [True: 2.02k, False: 231k]
+  |  Branch (547:82): [True: 1.61k, False: 412]
+  |  Branch (547:102): [True: 1.31k, False: 298]
+  |  Branch (547:122): [True: 512, False: 807]
   ------------------
 imgui.cpp:_ZL5ImMaxRK6ImVec2S1_:
   473|   456k|static inline ImVec2 ImMax(const ImVec2& lhs, const ImVec2& rhs)                { return ImVec2(lhs.x >= rhs.x ? lhs.x : rhs.x, lhs.y >= rhs.y ? lhs.y : rhs.y); }
@@ -27942,13 +27942,13 @@ imgui_draw.cpp:_ZL7ImRsqrtf:
 imgui_draw.cpp:_ZplRK6ImVec2S1_:
   394|   450k|static inline ImVec2 operator+(const ImVec2& lhs, const ImVec2& rhs)            { return ImVec2(lhs.x + rhs.x, lhs.y + rhs.y); }
 imgui_draw.cpp:_ZmlRK6ImVec2f:
-  392|   311k|static inline ImVec2 operator*(const ImVec2& lhs, const float rhs)              { return ImVec2(lhs.x * rhs, lhs.y * rhs); }
+  392|   310k|static inline ImVec2 operator*(const ImVec2& lhs, const float rhs)              { return ImVec2(lhs.x * rhs, lhs.y * rhs); }
 imgui_draw.cpp:_ZmiRK6ImVec2S1_:
   395|   179k|static inline ImVec2 operator-(const ImVec2& lhs, const ImVec2& rhs)            { return ImVec2(lhs.x - rhs.x, lhs.y - rhs.y); }
 imgui_draw.cpp:_ZL5ImAbsi:
-  450|  94.9k|static inline int    ImAbs(int x)               { return x < 0 ? -x : x; }
+  450|  94.8k|static inline int    ImAbs(int x)               { return x < 0 ? -x : x; }
   ------------------
-  |  Branch (450:58): [True: 0, False: 94.9k]
+  |  Branch (450:58): [True: 0, False: 94.8k]
   ------------------
 imgui_draw.cpp:_ZL13ImFloorSignedf:
   483|  1.28k|static inline float  ImFloorSigned(float f)                                     { return (float)((f >= 0 || (float)(int)f == f) ? (int)f : (int)f - 1); } // Decent replacement for floorf()
@@ -27970,7 +27970,7 @@ imgui_draw.cpp:_ZL7ImFloorf:
 imgui_draw.cpp:_ZL5ImMinIfET_S0_S0_:
   464|   291k|template<typename T> static inline T ImMin(T lhs, T rhs)                        { return lhs < rhs ? lhs : rhs; }
   ------------------
-  |  Branch (464:90): [True: 191k, False: 99.7k]
+  |  Branch (464:90): [True: 191k, False: 99.6k]
   ------------------
 imgui_draw.cpp:_ZL5ImMaxIfET_S0_S0_:
   465|   459k|template<typename T> static inline T ImMax(T lhs, T rhs)                        { return lhs >= rhs ? lhs : rhs; }
