@@ -4,19 +4,19 @@ _ZN6dlxemu6WindowC2Ev:
 _ZN6dlxemu10CodeEditor11CoordinatesC2Ev:
   194|      5|    {}
 _ZN6dlxemu10CodeEditor11CoordinatesC2EN3phi7integerIjEES4_:
-  199|  16.5k|    {}
+  199|  16.6k|    {}
 _ZNK6dlxemu10CodeEditor11CoordinatesleERKS1_:
-  232|  3.31k|    {
-  233|  3.31k|        if (m_Line != other.m_Line)
+  232|  3.32k|    {
+  233|  3.32k|        if (m_Line != other.m_Line)
   ------------------
-  |  Branch (233:13): [True: 2.09k, False: 1.22k]
+  |  Branch (233:13): [True: 2.10k, False: 1.22k]
   ------------------
-  234|  2.09k|        {
-  235|  2.09k|            return m_Line < other.m_Line;
-  236|  2.09k|        }
+  234|  2.10k|        {
+  235|  2.10k|            return m_Line < other.m_Line;
+  236|  2.10k|        }
   237|       |
   238|  1.22k|        return m_Column <= other.m_Column;
-  239|  3.31k|    }
+  239|  3.32k|    }
 _ZNK6dlxemu10CodeEditor11CoordinatesgeERKS1_:
   242|      1|    {
   243|      1|        if (m_Line != other.m_Line)
@@ -30,7 +30,7 @@ _ZNK6dlxemu10CodeEditor11CoordinatesgeERKS1_:
   248|      1|        return m_Column >= other.m_Column;
   249|      1|    }
 _ZN6dlxemu10CodeEditor5GlyphC2EhNS0_12PaletteIndexE:
-  256|   301k|    {}
+  256|   303k|    {}
 _ZN6dlxemu10CodeEditorC2EPNS_8EmulatorE:
   284|      1|    {
   285|      1|        Colorize();
@@ -41,65 +41,65 @@ _ZN6dlxemu10CodeEditorD2Ev:
   291|      1|        VerifyInternalState();
   292|      1|    }
 _ZN6dlxemu10CodeEditor17ClearErrorMarkersEv:
-  340|  3.31k|    {
-  341|  3.31k|        m_ErrorMarkers.clear();
-  342|  3.31k|    }
+  340|  3.32k|    {
+  341|  3.32k|        m_ErrorMarkers.clear();
+  342|  3.32k|    }
 _ZN6dlxemu10CodeEditor16ClearBreakPointsEv:
-  405|  3.31k|    {
-  406|  3.31k|        m_Breakpoints.clear();
-  407|  3.31k|    }
+  405|  3.32k|    {
+  406|  3.32k|        m_Breakpoints.clear();
+  407|  3.32k|    }
 _ZN6dlxemu10CodeEditor7SetTextERKNSt3__112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE:
-  485|  3.31k|    {
-  486|  3.31k|        m_Lines.clear();
-  487|  3.31k|        ResetState();
-  488|  3.31k|        m_Lines.emplace_back();
+  485|  3.32k|    {
+  486|  3.32k|        m_Lines.clear();
+  487|  3.32k|        ResetState();
+  488|  3.32k|        m_Lines.emplace_back();
   489|       |
-  490|  3.31k|        for (const char character : text)
+  490|  3.32k|        for (const char character : text)
   ------------------
-  |  Branch (490:35): [True: 375k, False: 3.31k]
+  |  Branch (490:35): [True: 378k, False: 3.32k]
   ------------------
-  491|   375k|        {
-  492|   375k|            if (character == '\r' ||
+  491|   378k|        {
+  492|   378k|            if (character == '\r' ||
   ------------------
-  |  Branch (492:17): [True: 255, False: 375k]
-  |  Branch (492:17): [True: 14.9k, False: 360k]
+  |  Branch (492:17): [True: 255, False: 378k]
+  |  Branch (492:17): [True: 15.0k, False: 363k]
   ------------------
-  493|   375k|                (phi::is_control(character) && character != '\n' && character != '\t'))
+  493|   378k|                (phi::is_control(character) && character != '\n' && character != '\t'))
   ------------------
-  |  Branch (493:18): [True: 74.4k, False: 301k]
-  |  Branch (493:48): [True: 15.2k, False: 59.1k]
+  |  Branch (493:18): [True: 74.8k, False: 303k]
+  |  Branch (493:48): [True: 15.2k, False: 59.5k]
   |  Branch (493:69): [True: 14.7k, False: 512]
   ------------------
-  494|  14.9k|            {
+  494|  15.0k|            {
   495|       |                // ignore the carriage return character and control characters
-  496|  14.9k|            }
-  497|   360k|            else if (character == '\n')
+  496|  15.0k|            }
+  497|   363k|            else if (character == '\n')
   ------------------
-  |  Branch (497:22): [True: 59.1k, False: 301k]
+  |  Branch (497:22): [True: 59.5k, False: 303k]
   ------------------
-  498|  59.1k|            {
-  499|  59.1k|                m_Lines.emplace_back();
-  500|  59.1k|            }
-  501|   301k|            else
-  502|   301k|            {
-  503|   301k|                m_Lines.back().emplace_back(static_cast<Char>(character), PaletteIndex::Default);
-  504|   301k|            }
-  505|   375k|        }
+  498|  59.5k|            {
+  499|  59.5k|                m_Lines.emplace_back();
+  500|  59.5k|            }
+  501|   303k|            else
+  502|   303k|            {
+  503|   303k|                m_Lines.back().emplace_back(static_cast<Char>(character), PaletteIndex::Default);
+  504|   303k|            }
+  505|   378k|        }
   506|       |
-  507|  3.31k|        m_TextChanged = true;
-  508|  3.31k|        m_ScrollToTop = true;
+  507|  3.32k|        m_TextChanged = true;
+  508|  3.32k|        m_ScrollToTop = true;
   509|       |
-  510|  3.31k|        m_UndoBuffer.clear();
-  511|  3.31k|        m_UndoIndex = 0u;
+  510|  3.32k|        m_UndoBuffer.clear();
+  511|  3.32k|        m_UndoIndex = 0u;
   512|       |
-  513|  3.31k|        Colorize();
-  514|  3.31k|    }
+  513|  3.32k|        Colorize();
+  514|  3.32k|    }
 _ZNK6dlxemu10CodeEditor7GetTextEv:
-  517|  3.31k|    {
-  518|  3.31k|        const phi::u32 max_line = GetMaxLineNumber();
+  517|  3.32k|    {
+  518|  3.32k|        const phi::u32 max_line = GetMaxLineNumber();
   519|       |
-  520|  3.31k|        return GetText(Coordinates(0u, 0u), Coordinates(max_line, GetLineMaxColumn(max_line)));
-  521|  3.31k|    }
+  520|  3.32k|        return GetText(Coordinates(0u, 0u), Coordinates(max_line, GetLineMaxColumn(max_line)));
+  521|  3.32k|    }
 _ZNK6dlxemu10CodeEditor19VerifyInternalStateEv:
  1484|      1|    {
  1485|       |        // Lines should never be empty
@@ -185,302 +185,302 @@ _ZN6dlxemu10CodeEditor8ColorizeEN3phi7integerIjEENS2_IlEE:
  1720|  3.32k|        m_ColorRangeMax = phi::max(m_ColorRangeMin, m_ColorRangeMax);
  1721|  3.32k|    }
 _ZNK6dlxemu10CodeEditor7GetTextERKNS0_11CoordinatesES3_:
- 1826|  3.31k|    {
- 1827|  3.31k|        PHI_ASSERT(start.m_Line < m_Lines.size());
- 1828|  3.31k|        PHI_ASSERT(end.m_Line < m_Lines.size());
- 1829|  3.31k|        PHI_ASSERT(start <= end);
+ 1826|  3.32k|    {
+ 1827|  3.32k|        PHI_ASSERT(start.m_Line < m_Lines.size());
+ 1828|  3.32k|        PHI_ASSERT(end.m_Line < m_Lines.size());
+ 1829|  3.32k|        PHI_ASSERT(start <= end);
  1830|       |
- 1831|  3.31k|        std::string result;
+ 1831|  3.32k|        std::string result;
  1832|       |
- 1833|  3.31k|        phi::u32   lstart = start.m_Line;
- 1834|  3.31k|        phi::u32   lend   = end.m_Line;
- 1835|  3.31k|        phi::u32   istart = GetCharacterIndex(start);
- 1836|  3.31k|        phi::u32   iend   = phi::min(GetCharacterIndex(end),
- 1837|  3.31k|                                     static_cast<phi::uint32_t>(m_Lines[end.m_Line.unsafe()].size()));
- 1838|  3.31k|        phi::usize size   = 0u;
+ 1833|  3.32k|        phi::u32   lstart = start.m_Line;
+ 1834|  3.32k|        phi::u32   lend   = end.m_Line;
+ 1835|  3.32k|        phi::u32   istart = GetCharacterIndex(start);
+ 1836|  3.32k|        phi::u32   iend   = phi::min(GetCharacterIndex(end),
+ 1837|  3.32k|                                     static_cast<phi::uint32_t>(m_Lines[end.m_Line.unsafe()].size()));
+ 1838|  3.32k|        phi::usize size   = 0u;
  1839|       |
- 1840|  65.7k|        for (phi::u32 i = lstart; i <= lend; ++i)
+ 1840|  66.2k|        for (phi::u32 i = lstart; i <= lend; ++i)
   ------------------
-  |  Branch (1840:35): [True: 62.4k, False: 3.31k]
+  |  Branch (1840:35): [True: 62.9k, False: 3.32k]
   ------------------
- 1841|  62.4k|        {
- 1842|  62.4k|            PHI_ASSERT(i < m_Lines.size());
- 1843|  62.4k|            size += m_Lines[i.unsafe()].size();
- 1844|  62.4k|        }
+ 1841|  62.9k|        {
+ 1842|  62.9k|            PHI_ASSERT(i < m_Lines.size());
+ 1843|  62.9k|            size += m_Lines[i.unsafe()].size();
+ 1844|  62.9k|        }
  1845|       |
- 1846|  3.31k|        result.reserve((size + size / 8u).unsafe());
+ 1846|  3.32k|        result.reserve((size + size / 8u).unsafe());
  1847|       |
- 1848|   364k|        while (istart < iend || lstart < lend)
+ 1848|   366k|        while (istart < iend || lstart < lend)
   ------------------
-  |  Branch (1848:16): [True: 141k, False: 222k]
-  |  Branch (1848:16): [True: 360k, False: 3.31k]
-  |  Branch (1848:33): [True: 219k, False: 3.31k]
+  |  Branch (1848:16): [True: 142k, False: 224k]
+  |  Branch (1848:16): [True: 363k, False: 3.32k]
+  |  Branch (1848:33): [True: 220k, False: 3.32k]
   ------------------
- 1849|   360k|        {
- 1850|   360k|            PHI_ASSERT(lstart < m_Lines.size());
+ 1849|   363k|        {
+ 1850|   363k|            PHI_ASSERT(lstart < m_Lines.size());
  1851|       |
- 1852|   360k|            const Line& line = m_Lines[lstart.unsafe()];
- 1853|   360k|            if (istart < line.size())
+ 1852|   363k|            const Line& line = m_Lines[lstart.unsafe()];
+ 1853|   363k|            if (istart < line.size())
   ------------------
-  |  Branch (1853:17): [True: 301k, False: 59.1k]
+  |  Branch (1853:17): [True: 303k, False: 59.5k]
   ------------------
- 1854|   301k|            {
- 1855|   301k|                result += static_cast<char>(line[istart.unsafe()].m_Char);
- 1856|   301k|                istart++;
- 1857|   301k|            }
- 1858|  59.1k|            else
- 1859|  59.1k|            {
- 1860|  59.1k|                istart = 0u;
- 1861|  59.1k|                ++lstart;
+ 1854|   303k|            {
+ 1855|   303k|                result += static_cast<char>(line[istart.unsafe()].m_Char);
+ 1856|   303k|                istart++;
+ 1857|   303k|            }
+ 1858|  59.5k|            else
+ 1859|  59.5k|            {
+ 1860|  59.5k|                istart = 0u;
+ 1861|  59.5k|                ++lstart;
  1862|       |
- 1863|  59.1k|                if (lstart != m_Lines.size())
+ 1863|  59.5k|                if (lstart != m_Lines.size())
   ------------------
-  |  Branch (1863:21): [True: 59.1k, False: 0]
+  |  Branch (1863:21): [True: 59.5k, False: 0]
   ------------------
- 1864|  59.1k|                {
- 1865|  59.1k|                    result += '\n';
- 1866|  59.1k|                }
- 1867|  59.1k|            }
- 1868|   360k|        }
+ 1864|  59.5k|                {
+ 1865|  59.5k|                    result += '\n';
+ 1866|  59.5k|                }
+ 1867|  59.5k|            }
+ 1868|   363k|        }
  1869|       |
- 1870|  3.31k|        return result;
- 1871|  3.31k|    }
+ 1870|  3.32k|        return result;
+ 1871|  3.32k|    }
 _ZNK6dlxemu10CodeEditor17GetCharacterIndexERKNS0_11CoordinatesE:
- 2403|  6.63k|    {
- 2404|  6.63k|        PHI_ASSERT(coordinates.m_Line < m_Lines.size());
+ 2403|  6.65k|    {
+ 2404|  6.65k|        PHI_ASSERT(coordinates.m_Line < m_Lines.size());
  2405|       |
- 2406|  6.63k|        const Line& line  = m_Lines[coordinates.m_Line.unsafe()];
- 2407|  6.63k|        phi::u32    index = 0u;
- 2408|   121k|        for (phi::u32 column{0u}; index < line.size() && column < coordinates.m_Column;)
+ 2406|  6.65k|        const Line& line  = m_Lines[coordinates.m_Line.unsafe()];
+ 2407|  6.65k|        phi::u32    index = 0u;
+ 2408|   122k|        for (phi::u32 column{0u}; index < line.size() && column < coordinates.m_Column;)
   ------------------
-  |  Branch (2408:35): [True: 118k, False: 3.40k]
-  |  Branch (2408:35): [True: 115k, False: 6.63k]
-  |  Branch (2408:58): [True: 115k, False: 3.23k]
+  |  Branch (2408:35): [True: 119k, False: 3.41k]
+  |  Branch (2408:35): [True: 116k, False: 6.65k]
+  |  Branch (2408:58): [True: 116k, False: 3.23k]
   ------------------
- 2409|   115k|        {
- 2410|   115k|            PHI_ASSERT(index < line.size());
- 2411|   115k|            const Char character = line[index.unsafe()].m_Char;
+ 2409|   116k|        {
+ 2410|   116k|            PHI_ASSERT(index < line.size());
+ 2411|   116k|            const Char character = line[index.unsafe()].m_Char;
  2412|       |
- 2413|   115k|            if (character == '\t')
+ 2413|   116k|            if (character == '\t')
   ------------------
-  |  Branch (2413:17): [True: 0, False: 115k]
+  |  Branch (2413:17): [True: 0, False: 116k]
   ------------------
  2414|      0|            {
  2415|      0|                column = (column / m_TabSize) * m_TabSize + m_TabSize;
  2416|      0|            }
- 2417|   115k|            else
- 2418|   115k|            {
- 2419|   115k|                ++column;
- 2420|   115k|            }
+ 2417|   116k|            else
+ 2418|   116k|            {
+ 2419|   116k|                ++column;
+ 2420|   116k|            }
  2421|       |
- 2422|   115k|            index += UTF8CharLength(character);
- 2423|   115k|        }
+ 2422|   116k|            index += UTF8CharLength(character);
+ 2423|   116k|        }
  2424|       |
- 2425|  6.63k|        return index;
- 2426|  6.63k|    }
+ 2425|  6.65k|        return index;
+ 2426|  6.65k|    }
 _ZNK6dlxemu10CodeEditor16GetLineMaxColumnEN3phi7integerIjEE:
- 2473|  3.31k|    {
- 2474|  3.31k|        if (line_number >= m_Lines.size())
+ 2473|  3.32k|    {
+ 2474|  3.32k|        if (line_number >= m_Lines.size())
   ------------------
-  |  Branch (2474:13): [True: 0, False: 3.31k]
+  |  Branch (2474:13): [True: 0, False: 3.32k]
   ------------------
  2475|      0|        {
  2476|      0|            return 0u;
  2477|      0|        }
  2478|       |
- 2479|  3.31k|        const Line& line = m_Lines[line_number.unsafe()];
- 2480|  3.31k|        phi::u32    col  = 0u;
+ 2479|  3.32k|        const Line& line = m_Lines[line_number.unsafe()];
+ 2480|  3.32k|        phi::u32    col  = 0u;
  2481|       |
- 2482|   118k|        for (phi::usize i{0u}; i < line.size();)
+ 2482|   119k|        for (phi::usize i{0u}; i < line.size();)
   ------------------
-  |  Branch (2482:32): [True: 115k, False: 3.31k]
+  |  Branch (2482:32): [True: 116k, False: 3.32k]
   ------------------
- 2483|   115k|        {
- 2484|   115k|            char character = static_cast<char>(line[i.unsafe()].m_Char);
- 2485|   115k|            if (character == '\t')
+ 2483|   116k|        {
+ 2484|   116k|            char character = static_cast<char>(line[i.unsafe()].m_Char);
+ 2485|   116k|            if (character == '\t')
   ------------------
-  |  Branch (2485:17): [True: 0, False: 115k]
+  |  Branch (2485:17): [True: 0, False: 116k]
   ------------------
  2486|      0|            {
  2487|      0|                col = (col / m_TabSize) * m_TabSize + m_TabSize;
  2488|      0|            }
- 2489|   115k|            else
- 2490|   115k|            {
- 2491|   115k|                col++;
- 2492|   115k|            }
+ 2489|   116k|            else
+ 2490|   116k|            {
+ 2491|   116k|                col++;
+ 2492|   116k|            }
  2493|       |
- 2494|   115k|            i += UTF8CharLength(character);
- 2495|   115k|        }
+ 2494|   116k|            i += UTF8CharLength(character);
+ 2495|   116k|        }
  2496|       |
- 2497|  3.31k|        return col;
- 2498|  3.31k|    }
+ 2497|  3.32k|        return col;
+ 2498|  3.32k|    }
 _ZNK6dlxemu10CodeEditor16GetMaxLineNumberEv:
- 2501|  3.31k|    {
- 2502|  3.31k|        PHI_ASSERT(!m_Lines.empty());
+ 2501|  3.32k|    {
+ 2502|  3.32k|        PHI_ASSERT(!m_Lines.empty());
  2503|       |
- 2504|  3.31k|        return static_cast<phi::uint32_t>(m_Lines.size() - 1u);
- 2505|  3.31k|    }
+ 2504|  3.32k|        return static_cast<phi::uint32_t>(m_Lines.size() - 1u);
+ 2505|  3.32k|    }
 _ZN6dlxemu10CodeEditor13ColorizeTokenERKN3dlx5TokenE:
- 3639|   158k|    {
- 3640|   158k|        PaletteIndex palette_index{PaletteIndex::Default};
+ 3639|   159k|    {
+ 3640|   159k|        PaletteIndex palette_index{PaletteIndex::Default};
  3641|       |
  3642|       |        // Determine palette color
- 3643|   158k|        switch (token.GetType())
- 3644|   158k|        {
- 3645|  28.3k|            case dlx::Token::Type::Comment:
+ 3643|   159k|        switch (token.GetType())
+ 3644|   159k|        {
+ 3645|  28.4k|            case dlx::Token::Type::Comment:
   ------------------
-  |  Branch (3645:13): [True: 28.3k, False: 129k]
+  |  Branch (3645:13): [True: 28.4k, False: 130k]
   ------------------
- 3646|  28.3k|                palette_index = PaletteIndex::Comment;
- 3647|  28.3k|                break;
+ 3646|  28.4k|                palette_index = PaletteIndex::Comment;
+ 3647|  28.4k|                break;
  3648|  1.09k|            case dlx::Token::Type::ImmediateInteger:
   ------------------
-  |  Branch (3648:13): [True: 1.09k, False: 156k]
+  |  Branch (3648:13): [True: 1.09k, False: 157k]
   ------------------
- 3649|  3.34k|            case dlx::Token::Type::IntegerLiteral:
+ 3649|  3.42k|            case dlx::Token::Type::IntegerLiteral:
   ------------------
-  |  Branch (3649:13): [True: 2.25k, False: 155k]
+  |  Branch (3649:13): [True: 2.33k, False: 156k]
   ------------------
- 3650|  3.34k|                palette_index = PaletteIndex::IntegerLiteral;
- 3651|  3.34k|                break;
- 3652|  30.0k|            case dlx::Token::Type::OpCode:
+ 3650|  3.42k|                palette_index = PaletteIndex::IntegerLiteral;
+ 3651|  3.42k|                break;
+ 3652|  30.1k|            case dlx::Token::Type::OpCode:
   ------------------
-  |  Branch (3652:13): [True: 30.0k, False: 127k]
+  |  Branch (3652:13): [True: 30.1k, False: 128k]
   ------------------
- 3653|  30.0k|                palette_index = PaletteIndex::OpCode;
- 3654|  30.0k|                break;
+ 3653|  30.1k|                palette_index = PaletteIndex::OpCode;
+ 3654|  30.1k|                break;
  3655|  1.55k|            case dlx::Token::Type::RegisterFloat:
   ------------------
-  |  Branch (3655:13): [True: 1.55k, False: 156k]
+  |  Branch (3655:13): [True: 1.55k, False: 157k]
   ------------------
  3656|  3.88k|            case dlx::Token::Type::RegisterInt:
   ------------------
-  |  Branch (3656:13): [True: 2.32k, False: 155k]
+  |  Branch (3656:13): [True: 2.32k, False: 156k]
   ------------------
  3657|  5.60k|            case dlx::Token::Type::RegisterStatus:
   ------------------
-  |  Branch (3657:13): [True: 1.71k, False: 156k]
+  |  Branch (3657:13): [True: 1.71k, False: 157k]
   ------------------
  3658|  5.60k|                palette_index = PaletteIndex::Register;
  3659|  5.60k|                break;
- 3660|  59.1k|            case dlx::Token::Type::NewLine:
+ 3660|  59.5k|            case dlx::Token::Type::NewLine:
   ------------------
-  |  Branch (3660:13): [True: 59.1k, False: 98.8k]
+  |  Branch (3660:13): [True: 59.5k, False: 99.4k]
   ------------------
- 3661|  59.1k|                return;
- 3662|  31.5k|            default:
+ 3661|  59.5k|                return;
+ 3662|  31.7k|            default:
   ------------------
-  |  Branch (3662:13): [True: 31.5k, False: 126k]
+  |  Branch (3662:13): [True: 31.7k, False: 127k]
   ------------------
- 3663|  31.5k|                break;
- 3664|   158k|        }
+ 3663|  31.7k|                break;
+ 3664|   159k|        }
  3665|       |
- 3666|  98.8k|        PHI_ASSERT(token.GetLineNumber() - 1u < m_Lines.size());
- 3667|  98.8k|        Line& line = m_Lines[(token.GetLineNumber() - 1u).unsafe()];
+ 3666|  99.4k|        PHI_ASSERT(token.GetLineNumber() - 1u < m_Lines.size());
+ 3667|  99.4k|        Line& line = m_Lines[(token.GetLineNumber() - 1u).unsafe()];
  3668|       |
- 3669|  98.8k|        for (phi::u64 index{token.GetColumn() - 1u};
- 3670|   380k|             index < token.GetColumn() + token.GetLength() - 1u; ++index)
+ 3669|  99.4k|        for (phi::u64 index{token.GetColumn() - 1u};
+ 3670|   383k|             index < token.GetColumn() + token.GetLength() - 1u; ++index)
   ------------------
-  |  Branch (3670:14): [True: 281k, False: 98.8k]
+  |  Branch (3670:14): [True: 283k, False: 99.4k]
   ------------------
- 3671|   281k|        {
- 3672|   281k|            PHI_ASSERT(index < line.size());
- 3673|   281k|            line[index.unsafe()].m_ColorIndex = palette_index;
- 3674|   281k|        }
- 3675|  98.8k|    }
+ 3671|   283k|        {
+ 3672|   283k|            PHI_ASSERT(index < line.size());
+ 3673|   283k|            line[index.unsafe()].m_ColorIndex = palette_index;
+ 3674|   283k|        }
+ 3675|  99.4k|    }
 _ZN6dlxemu10CodeEditor16ColorizeInternalEv:
- 3678|  3.31k|    {
- 3679|  3.31k|        const dlx::ParsedProgram& program = m_Emulator->GetProgram();
+ 3678|  3.32k|    {
+ 3679|  3.32k|        const dlx::ParsedProgram& program = m_Emulator->GetProgram();
  3680|       |
- 3681|  3.31k|        for (const dlx::Token& token : program.m_Tokens)
+ 3681|  3.32k|        for (const dlx::Token& token : program.m_Tokens)
   ------------------
-  |  Branch (3681:38): [True: 158k, False: 3.31k]
+  |  Branch (3681:38): [True: 159k, False: 3.32k]
   ------------------
- 3682|   158k|        {
- 3683|   158k|            ColorizeToken(token);
- 3684|   158k|        }
- 3685|  3.31k|    }
+ 3682|   159k|        {
+ 3683|   159k|            ColorizeToken(token);
+ 3684|   159k|        }
+ 3685|  3.32k|    }
 _ZN6dlxemu10CodeEditor10ResetStateEv:
- 3688|  3.31k|    {
- 3689|  3.31k|        m_State.m_CursorPosition = Coordinates(0u, 0u);
- 3690|  3.31k|        m_State.m_SelectionStart = Coordinates(0u, 0u);
- 3691|  3.31k|        m_State.m_SelectionEnd   = Coordinates(0u, 0u);
+ 3688|  3.32k|    {
+ 3689|  3.32k|        m_State.m_CursorPosition = Coordinates(0u, 0u);
+ 3690|  3.32k|        m_State.m_SelectionStart = Coordinates(0u, 0u);
+ 3691|  3.32k|        m_State.m_SelectionEnd   = Coordinates(0u, 0u);
  3692|       |
  3693|       |        // Clear breakpoints and markers
- 3694|  3.31k|        ClearBreakPoints();
- 3695|  3.31k|        ClearErrorMarkers();
- 3696|  3.31k|    }
+ 3694|  3.32k|        ClearBreakPoints();
+ 3695|  3.32k|        ClearErrorMarkers();
+ 3696|  3.32k|    }
 CodeEditor.cpp:_ZL14UTF8CharLengthh:
-  132|   115k|{
-  133|   115k|    return UTF8CharLength(static_cast<char>(character));
-  134|   115k|}
+  132|   116k|{
+  133|   116k|    return UTF8CharLength(static_cast<char>(character));
+  134|   116k|}
 CodeEditor.cpp:_ZL14UTF8CharLengthc:
-  102|   230k|{
-  103|   230k|    if ((character & 0xFE) == 0xFC)
+  102|   232k|{
+  103|   232k|    if ((character & 0xFE) == 0xFC)
   ------------------
-  |  Branch (103:9): [True: 0, False: 230k]
+  |  Branch (103:9): [True: 0, False: 232k]
   ------------------
   104|      0|    {
   105|      0|        return 6_u8;
   106|      0|    }
   107|       |
-  108|   230k|    if ((character & 0xFC) == 0xF8)
+  108|   232k|    if ((character & 0xFC) == 0xF8)
   ------------------
-  |  Branch (108:9): [True: 0, False: 230k]
+  |  Branch (108:9): [True: 0, False: 232k]
   ------------------
   109|      0|    {
   110|      0|        return 5_u8;
   111|      0|    }
   112|       |
-  113|   230k|    if ((character & 0xF8) == 0xF0)
+  113|   232k|    if ((character & 0xF8) == 0xF0)
   ------------------
-  |  Branch (113:9): [True: 0, False: 230k]
+  |  Branch (113:9): [True: 0, False: 232k]
   ------------------
   114|      0|    {
   115|      0|        return 4_u8;
   116|      0|    }
   117|       |
-  118|   230k|    if ((character & 0xF0) == 0xE0)
+  118|   232k|    if ((character & 0xF0) == 0xE0)
   ------------------
-  |  Branch (118:9): [True: 0, False: 230k]
+  |  Branch (118:9): [True: 0, False: 232k]
   ------------------
   119|      0|    {
   120|      0|        return 3_u8;
   121|      0|    }
   122|       |
-  123|   230k|    if ((character & 0xE0) == 0xC0)
+  123|   232k|    if ((character & 0xE0) == 0xC0)
   ------------------
-  |  Branch (123:9): [True: 0, False: 230k]
+  |  Branch (123:9): [True: 0, False: 232k]
   ------------------
   124|      0|    {
   125|      0|        return 2_u8;
   126|      0|    }
   127|       |
-  128|   230k|    return 1_u8;
-  129|   230k|}
+  128|   232k|    return 1_u8;
+  129|   232k|}
 
 _ZN6dlxemu8EmulatorC2Ev:
    43|      1|    {}
 _ZNK6dlxemu8Emulator10GetProgramEv:
-  183|  3.31k|    {
-  184|  3.31k|        return m_DLXProgram;
-  185|  3.31k|    }
+  183|  3.32k|    {
+  184|  3.32k|        return m_DLXProgram;
+  185|  3.32k|    }
 _ZN6dlxemu8Emulator12ParseProgramEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-  188|  3.31k|    {
-  189|  3.31k|        m_DLXProgram = dlx::Parser::Parse(source);
+  188|  3.32k|    {
+  189|  3.32k|        m_DLXProgram = dlx::Parser::Parse(source);
   190|       |
-  191|  3.31k|        if (m_DLXProgram.m_ParseErrors.empty())
+  191|  3.32k|        if (m_DLXProgram.m_ParseErrors.empty())
   ------------------
-  |  Branch (191:13): [True: 173, False: 3.14k]
+  |  Branch (191:13): [True: 174, False: 3.15k]
   ------------------
-  192|    173|        {
-  193|    173|            m_Processor.LoadProgram(m_DLXProgram);
-  194|    173|        }
-  195|  3.31k|    }
+  192|    174|        {
+  193|    174|            m_Processor.LoadProgram(m_DLXProgram);
+  194|    174|        }
+  195|  3.32k|    }
 _ZN6dlxemu8Emulator9GetEditorEv:
-  208|  3.31k|    {
-  209|  3.31k|        return m_CodeEditor;
-  210|  3.31k|    }
+  208|  3.32k|    {
+  209|  3.32k|        return m_CodeEditor;
+  210|  3.32k|    }
 
 _ZN6dlxemu12MemoryViewerC2EPNS_8EmulatorE:
    13|      1|    {}
@@ -604,28 +604,28 @@ _ZN3dlx11MemoryBlock10MemoryByteC2Ev:
    17|  1.00k|            {}
 
 _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEET_:
-  205|  20.6k|    {
-  206|  20.6k|        switch (value)
-  207|  20.6k|        {
+  205|  20.8k|    {
+  206|  20.8k|        switch (value)
+  207|  20.8k|        {
   208|      0|#define DLX_ENUM_OPCODE_IMPL(name)                                                                 \
   209|      0|    case OpCode::name:                                                                             \
   210|      0|        return #name;
   211|       |
   212|      0|            DLX_ENUM_OPCODE
   ------------------
-  |  |   15|    934|    DLX_ENUM_OPCODE_IMPL(ADD)                                                                      \
+  |  |   15|    963|    DLX_ENUM_OPCODE_IMPL(ADD)                                                                      \
   |  |  ------------------
-  |  |  |  |  209|    934|    case OpCode::name:                                                                             \
+  |  |  |  |  209|    963|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 934, False: 19.7k]
+  |  |  |  |  |  Branch (209:5): [True: 963, False: 19.8k]
   |  |  |  |  ------------------
-  |  |  |  |  210|    934|        return #name;
+  |  |  |  |  210|    963|        return #name;
   |  |  ------------------
-  |  |   16|    934|    DLX_ENUM_OPCODE_IMPL(ADDI)                                                                     \
+  |  |   16|    963|    DLX_ENUM_OPCODE_IMPL(ADDI)                                                                     \
   |  |  ------------------
   |  |  |  |  209|    227|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 227, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 227, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    227|        return #name;
   |  |  ------------------
@@ -633,7 +633,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    275|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 275, False: 20.3k]
+  |  |  |  |  |  Branch (209:5): [True: 275, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    275|        return #name;
   |  |  ------------------
@@ -641,7 +641,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    287|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 287, False: 20.3k]
+  |  |  |  |  |  Branch (209:5): [True: 287, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    287|        return #name;
   |  |  ------------------
@@ -649,7 +649,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    300|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 300, False: 20.3k]
+  |  |  |  |  |  Branch (209:5): [True: 300, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    300|        return #name;
   |  |  ------------------
@@ -657,7 +657,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    231|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 231, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 231, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    231|        return #name;
   |  |  ------------------
@@ -667,7 +667,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    200|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 200, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 200, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    200|        return #name;
   |  |  ------------------
@@ -675,7 +675,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    216|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 216, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 216, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    216|        return #name;
   |  |  ------------------
@@ -683,7 +683,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    244|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 244, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 244, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    244|        return #name;
   |  |  ------------------
@@ -691,7 +691,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    206|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 206, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 206, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    206|        return #name;
   |  |  ------------------
@@ -699,7 +699,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    196|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    196|        return #name;
   |  |  ------------------
@@ -707,7 +707,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     67|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     67|        return #name;
   |  |  ------------------
@@ -717,7 +717,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     67|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     67|        return #name;
   |  |  ------------------
@@ -725,7 +725,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     69|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 69, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 69, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     69|        return #name;
   |  |  ------------------
@@ -733,7 +733,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -741,7 +741,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    206|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 206, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 206, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    206|        return #name;
   |  |  ------------------
@@ -749,7 +749,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    196|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    196|        return #name;
   |  |  ------------------
@@ -757,7 +757,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -767,7 +767,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -775,7 +775,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -783,7 +783,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -791,7 +791,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    204|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 204, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 204, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    204|        return #name;
   |  |  ------------------
@@ -799,7 +799,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -807,7 +807,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -817,7 +817,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    196|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    196|        return #name;
   |  |  ------------------
@@ -825,7 +825,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    210|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 210, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 210, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    210|        return #name;
   |  |  ------------------
@@ -835,7 +835,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     67|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     67|        return #name;
   |  |  ------------------
@@ -843,7 +843,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     67|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     67|        return #name;
   |  |  ------------------
@@ -853,7 +853,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -861,7 +861,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -871,7 +871,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    451|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 451, False: 20.1k]
+  |  |  |  |  |  Branch (209:5): [True: 451, False: 20.3k]
   |  |  |  |  ------------------
   |  |  |  |  210|    451|        return #name;
   |  |  ------------------
@@ -879,7 +879,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    198|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 198, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 198, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    198|        return #name;
   |  |  ------------------
@@ -891,7 +891,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    253|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 253, False: 20.3k]
+  |  |  |  |  |  Branch (209:5): [True: 253, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    253|        return #name;
   |  |  ------------------
@@ -899,7 +899,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     68|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 68, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 68, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     68|        return #name;
   |  |  ------------------
@@ -909,7 +909,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -917,7 +917,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -927,7 +927,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    263|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 263, False: 20.3k]
+  |  |  |  |  |  Branch (209:5): [True: 263, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    263|        return #name;
   |  |  ------------------
@@ -935,7 +935,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    195|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 195, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 195, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    195|        return #name;
   |  |  ------------------
@@ -947,7 +947,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     72|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 72, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 72, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     72|        return #name;
   |  |  ------------------
@@ -955,7 +955,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    198|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 198, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 198, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    198|        return #name;
   |  |  ------------------
@@ -963,7 +963,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     68|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 68, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 68, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     68|        return #name;
   |  |  ------------------
@@ -971,7 +971,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    196|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    196|        return #name;
   |  |  ------------------
@@ -979,7 +979,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    225|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 225, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 225, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    225|        return #name;
   |  |  ------------------
@@ -987,7 +987,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     67|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     67|        return #name;
   |  |  ------------------
@@ -997,7 +997,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     68|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 68, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 68, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     68|        return #name;
   |  |  ------------------
@@ -1005,7 +1005,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    197|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 197, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 197, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    197|        return #name;
   |  |  ------------------
@@ -1013,7 +1013,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
@@ -1021,7 +1021,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    348|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 348, False: 20.2k]
+  |  |  |  |  |  Branch (209:5): [True: 348, False: 20.4k]
   |  |  |  |  ------------------
   |  |  |  |  210|    348|        return #name;
   |  |  ------------------
@@ -1029,7 +1029,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    196|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    196|        return #name;
   |  |  ------------------
@@ -1037,7 +1037,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    199|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 199, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 199, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    199|        return #name;
   |  |  ------------------
@@ -1047,7 +1047,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -1055,7 +1055,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -1063,7 +1063,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
@@ -1071,7 +1071,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     69|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 69, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 69, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     69|        return #name;
   |  |  ------------------
@@ -1079,7 +1079,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    201|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 201, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 201, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    201|        return #name;
   |  |  ------------------
@@ -1087,7 +1087,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -1097,7 +1097,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -1105,23 +1105,23 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
-  |  |  105|    199|    DLX_ENUM_OPCODE_IMPL(SGEU)                                                                     \
+  |  |  105|    200|    DLX_ENUM_OPCODE_IMPL(SGEU)                                                                     \
   |  |  ------------------
-  |  |  |  |  209|    199|    case OpCode::name:                                                                             \
+  |  |  |  |  209|    200|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 199, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 200, False: 20.6k]
   |  |  |  |  ------------------
-  |  |  |  |  210|    199|        return #name;
+  |  |  |  |  210|    200|        return #name;
   |  |  ------------------
   |  |  106|    293|    DLX_ENUM_OPCODE_IMPL(SGEUI)                                                                    \
   |  |  ------------------
   |  |  |  |  209|    293|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 293, False: 20.3k]
+  |  |  |  |  |  Branch (209:5): [True: 293, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    293|        return #name;
   |  |  ------------------
@@ -1129,7 +1129,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
@@ -1137,7 +1137,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    198|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 198, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 198, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    198|        return #name;
   |  |  ------------------
@@ -1147,7 +1147,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     79|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 79, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 79, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     79|        return #name;
   |  |  ------------------
@@ -1155,7 +1155,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    208|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 208, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 208, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    208|        return #name;
   |  |  ------------------
@@ -1163,7 +1163,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     67|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     67|        return #name;
   |  |  ------------------
@@ -1171,7 +1171,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    430|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 430, False: 20.2k]
+  |  |  |  |  |  Branch (209:5): [True: 430, False: 20.3k]
   |  |  |  |  ------------------
   |  |  |  |  210|    430|        return #name;
   |  |  ------------------
@@ -1179,7 +1179,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -1187,7 +1187,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
@@ -1197,7 +1197,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     68|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 68, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 68, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     68|        return #name;
   |  |  ------------------
@@ -1205,7 +1205,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    228|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 228, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 228, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    228|        return #name;
   |  |  ------------------
@@ -1213,7 +1213,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -1221,7 +1221,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
@@ -1229,7 +1229,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
@@ -1237,7 +1237,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     72|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 72, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 72, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     72|        return #name;
   |  |  ------------------
@@ -1247,7 +1247,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
@@ -1255,7 +1255,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    204|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 204, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 204, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    204|        return #name;
   |  |  ------------------
@@ -1263,7 +1263,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    357|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 357, False: 20.2k]
+  |  |  |  |  |  Branch (209:5): [True: 357, False: 20.4k]
   |  |  |  |  ------------------
   |  |  |  |  210|    357|        return #name;
   |  |  ------------------
@@ -1271,7 +1271,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|  1.19k|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 1.19k, False: 19.4k]
+  |  |  |  |  |  Branch (209:5): [True: 1.19k, False: 19.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|  1.19k|        return #name;
   |  |  ------------------
@@ -1281,7 +1281,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     13|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 13, False: 20.6k]
+  |  |  |  |  |  Branch (209:5): [True: 13, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     13|        return #name;
   |  |  ------------------
@@ -1289,7 +1289,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     67|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     67|        return #name;
   |  |  ------------------
@@ -1297,7 +1297,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    198|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 198, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 198, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    198|        return #name;
   |  |  ------------------
@@ -1305,7 +1305,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
@@ -1315,7 +1315,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    195|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 195, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 195, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    195|        return #name;
   |  |  ------------------
@@ -1323,7 +1323,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -1331,7 +1331,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
@@ -1339,7 +1339,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -1347,7 +1347,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -1355,7 +1355,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
@@ -1363,7 +1363,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
@@ -1371,7 +1371,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     66|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     66|        return #name;
   |  |  ------------------
@@ -1379,7 +1379,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -1389,7 +1389,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    196|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    196|        return #name;
   |  |  ------------------
@@ -1397,7 +1397,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    210|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 210, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 210, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    210|        return #name;
   |  |  ------------------
@@ -1405,7 +1405,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    644|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 644, False: 20.0k]
+  |  |  |  |  |  Branch (209:5): [True: 644, False: 20.1k]
   |  |  |  |  ------------------
   |  |  |  |  210|    644|        return #name;
   |  |  ------------------
@@ -1413,7 +1413,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    230|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 230, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 230, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    230|        return #name;
   |  |  ------------------
@@ -1421,7 +1421,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     67|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     67|        return #name;
   |  |  ------------------
@@ -1429,7 +1429,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    198|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 198, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 198, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    198|        return #name;
   |  |  ------------------
@@ -1437,7 +1437,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     71|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 71, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 71, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     71|        return #name;
   |  |  ------------------
@@ -1445,7 +1445,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     67|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     67|        return #name;
   |  |  ------------------
@@ -1455,7 +1455,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    194|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 194, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    194|        return #name;
   |  |  ------------------
@@ -1463,7 +1463,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    207|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 207, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 207, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    207|        return #name;
   |  |  ------------------
@@ -1471,7 +1471,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     86|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 86, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 86, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     86|        return #name;
   |  |  ------------------
@@ -1479,7 +1479,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     89|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 89, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 89, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     89|        return #name;
   |  |  ------------------
@@ -1487,17 +1487,17 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  165|     89|    /* Converting data */                                                                          \
   |  |  166|     89|    DLX_ENUM_OPCODE_IMPL(CVTF2D)                                                                   \
   |  |  ------------------
-  |  |  |  |  209|     66|    case OpCode::name:                                                                             \
+  |  |  |  |  209|     67|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 66, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.7k]
   |  |  |  |  ------------------
-  |  |  |  |  210|     66|        return #name;
+  |  |  |  |  210|     67|        return #name;
   |  |  ------------------
   |  |  167|    196|    DLX_ENUM_OPCODE_IMPL(CVTF2I)                                                                   \
   |  |  ------------------
   |  |  |  |  209|    196|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 196, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    196|        return #name;
   |  |  ------------------
@@ -1505,7 +1505,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    204|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 204, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 204, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    204|        return #name;
   |  |  ------------------
@@ -1513,23 +1513,23 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     68|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 68, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 68, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     68|        return #name;
   |  |  ------------------
-  |  |  170|     68|    DLX_ENUM_OPCODE_IMPL(CVTI2F)                                                                   \
+  |  |  170|    195|    DLX_ENUM_OPCODE_IMPL(CVTI2F)                                                                   \
   |  |  ------------------
-  |  |  |  |  209|     67|    case OpCode::name:                                                                             \
+  |  |  |  |  209|    195|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 67, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 195, False: 20.6k]
   |  |  |  |  ------------------
-  |  |  |  |  210|     67|        return #name;
+  |  |  |  |  210|    195|        return #name;
   |  |  ------------------
   |  |  171|    195|    DLX_ENUM_OPCODE_IMPL(CVTI2D)                                                                   \
   |  |  ------------------
   |  |  |  |  209|    195|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 195, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 195, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    195|        return #name;
   |  |  ------------------
@@ -1539,7 +1539,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    108|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 108, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 108, False: 20.6k]
   |  |  |  |  ------------------
   |  |  |  |  210|    108|        return #name;
   |  |  ------------------
@@ -1547,7 +1547,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|     74|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 74, False: 20.5k]
+  |  |  |  |  |  Branch (209:5): [True: 74, False: 20.7k]
   |  |  |  |  ------------------
   |  |  |  |  210|     74|        return #name;
   |  |  ------------------
@@ -1555,7 +1555,7 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   |  |  ------------------
   |  |  |  |  209|    205|    case OpCode::name:                                                                             \
   |  |  |  |  ------------------
-  |  |  |  |  |  Branch (209:5): [True: 205, False: 20.4k]
+  |  |  |  |  |  Branch (209:5): [True: 205, False: 20.5k]
   |  |  |  |  ------------------
   |  |  |  |  210|    205|        return #name;
   |  |  ------------------
@@ -1565,11 +1565,11 @@ _ZN3dlx9enum_nameINS_6OpCodeEEEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   215|       |
   216|      0|            default:
   ------------------
-  |  Branch (216:13): [True: 0, False: 20.6k]
+  |  Branch (216:13): [True: 0, False: 20.8k]
   ------------------
   217|      0|                PHI_ASSERT_NOT_REACHED();
-  218|  20.6k|        }
-  219|  20.6k|    }
+  218|  20.8k|        }
+  219|  20.8k|    }
 
 _ZN3dlx20IsReservedIdentifierEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
    30|  9.99k|    {
@@ -1621,11 +1621,11 @@ _ZN3dlx17IsValidIdentifierEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
    62|       |
    63|  8.89k|        if (token.length() == 1u)
   ------------------
-  |  Branch (63:13): [True: 2.95k, False: 5.93k]
+  |  Branch (63:13): [True: 2.96k, False: 5.93k]
   ------------------
-   64|  2.95k|        {
-   65|  2.95k|            return phi::is_alpha(first_char);
-   66|  2.95k|        }
+   64|  2.96k|        {
+   65|  2.96k|            return phi::is_alpha(first_char);
+   66|  2.96k|        }
    67|       |
    68|  5.93k|        phi::boolean just_under_scores = (first_char == '_');
    69|  5.93k|        if (!phi::is_alpha(first_char) && (first_char != '_'))
@@ -1668,115 +1668,115 @@ _ZN3dlx17IsValidIdentifierEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
    92|  3.64k|        return !just_under_scores;
    93|  5.08k|    }
 _ZN3dlx11ParseNumberEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-   98|  60.4k|    {
-   99|  60.4k|        if (token.is_empty())
+   98|  60.8k|    {
+   99|  60.8k|        if (token.is_empty())
   ------------------
-  |  Branch (99:13): [True: 0, False: 60.4k]
+  |  Branch (99:13): [True: 0, False: 60.8k]
   ------------------
   100|      0|        {
   101|      0|            return {};
   102|      0|        }
   103|       |
-  104|  60.4k|        if (token.length() == 1u)
+  104|  60.8k|        if (token.length() == 1u)
   ------------------
-  |  Branch (104:13): [True: 5.33k, False: 55.0k]
+  |  Branch (104:13): [True: 5.41k, False: 55.3k]
   ------------------
-  105|  5.33k|        {
-  106|  5.33k|            if (phi::is_digit(token.at(0u)))
+  105|  5.41k|        {
+  106|  5.41k|            if (phi::is_digit(token.at(0u)))
   ------------------
-  |  Branch (106:17): [True: 1.80k, False: 3.53k]
+  |  Branch (106:17): [True: 1.87k, False: 3.54k]
   ------------------
-  107|  1.80k|            {
-  108|  1.80k|                return static_cast<phi::int16_t>(token.at(0u) - '0');
-  109|  1.80k|            }
+  107|  1.87k|            {
+  108|  1.87k|                return static_cast<phi::int16_t>(token.at(0u) - '0');
+  109|  1.87k|            }
   110|       |
-  111|  3.53k|            return {};
-  112|  5.33k|        }
+  111|  3.54k|            return {};
+  112|  5.41k|        }
   113|       |
   114|       |        // Disallow trailing separators
-  115|  55.0k|        if (token.at(token.length() - 1u) == '\'')
+  115|  55.3k|        if (token.at(token.length() - 1u) == '\'')
   ------------------
-  |  Branch (115:13): [True: 483, False: 54.6k]
+  |  Branch (115:13): [True: 538, False: 54.8k]
   ------------------
-  116|    483|        {
-  117|    483|            return {};
-  118|    483|        }
+  116|    538|        {
+  117|    538|            return {};
+  118|    538|        }
   119|       |
-  120|  54.6k|        phi::int32_t number{0};
-  121|  54.6k|        phi::boolean is_negative{false};
-  122|  54.6k|        phi::boolean starts_with_zero{false};
-  123|  54.6k|        phi::boolean parsing_binary{false};
-  124|  54.6k|        phi::boolean parsing_octal{false};
-  125|  54.6k|        phi::boolean parsing_hexadecimal{false};
-  126|  54.6k|        phi::boolean parsed_something{false};
-  127|  54.6k|        phi::boolean parsed_separator{false};
+  120|  54.8k|        phi::int32_t number{0};
+  121|  54.8k|        phi::boolean is_negative{false};
+  122|  54.8k|        phi::boolean starts_with_zero{false};
+  123|  54.8k|        phi::boolean parsing_binary{false};
+  124|  54.8k|        phi::boolean parsing_octal{false};
+  125|  54.8k|        phi::boolean parsing_hexadecimal{false};
+  126|  54.8k|        phi::boolean parsed_something{false};
+  127|  54.8k|        phi::boolean parsed_separator{false};
   128|       |
   129|       |        // TODO: Move x'th character checks out of the for loop
   130|       |
-  131|  61.6k|        for (phi::size_t index{0u}; index < token.length(); ++index)
+  131|  61.9k|        for (phi::size_t index{0u}; index < token.length(); ++index)
   ------------------
-  |  Branch (131:37): [True: 60.4k, False: 1.18k]
+  |  Branch (131:37): [True: 60.7k, False: 1.18k]
   ------------------
-  132|  60.4k|        {
-  133|  60.4k|            const char c{token.at(index)};
+  132|  60.7k|        {
+  133|  60.7k|            const char c{token.at(index)};
   134|       |
   135|       |            // First character
-  136|  60.4k|            if (index == 0u)
+  136|  60.7k|            if (index == 0u)
   ------------------
-  |  Branch (136:17): [True: 54.6k, False: 5.82k]
+  |  Branch (136:17): [True: 54.8k, False: 5.89k]
   ------------------
-  137|  54.6k|            {
-  138|  54.6k|                if (c == '+')
+  137|  54.8k|            {
+  138|  54.8k|                if (c == '+')
   ------------------
-  |  Branch (138:21): [True: 93, False: 54.5k]
+  |  Branch (138:21): [True: 93, False: 54.7k]
   ------------------
   139|     93|                {
   140|     93|                    continue;
   141|     93|                }
   142|       |
-  143|  54.5k|                if (c == '-')
+  143|  54.7k|                if (c == '-')
   ------------------
-  |  Branch (143:21): [True: 323, False: 54.1k]
+  |  Branch (143:21): [True: 323, False: 54.4k]
   ------------------
   144|    323|                {
   145|    323|                    is_negative = true;
   146|    323|                    continue;
   147|    323|                }
   148|       |
-  149|  54.1k|                if (c == '0')
+  149|  54.4k|                if (c == '0')
   ------------------
-  |  Branch (149:21): [True: 2.85k, False: 51.3k]
+  |  Branch (149:21): [True: 2.89k, False: 51.5k]
   ------------------
-  150|  2.85k|                {
-  151|  2.85k|                    starts_with_zero = true;
-  152|  2.85k|                    continue;
-  153|  2.85k|                }
+  150|  2.89k|                {
+  151|  2.89k|                    starts_with_zero = true;
+  152|  2.89k|                    continue;
+  153|  2.89k|                }
   154|       |
-  155|  51.3k|                if (c == '\'')
+  155|  51.5k|                if (c == '\'')
   ------------------
-  |  Branch (155:21): [True: 66, False: 51.2k]
+  |  Branch (155:21): [True: 66, False: 51.4k]
   ------------------
   156|     66|                {
   157|     66|                    return {};
   158|     66|                }
-  159|  51.3k|            }
+  159|  51.5k|            }
   160|       |
   161|       |            // Second character
-  162|  57.0k|            if (index == 1u)
+  162|  57.3k|            if (index == 1u)
   ------------------
-  |  Branch (162:17): [True: 3.66k, False: 53.4k]
+  |  Branch (162:17): [True: 3.70k, False: 53.6k]
   ------------------
-  163|  3.66k|            {
-  164|  3.66k|                if (starts_with_zero)
+  163|  3.70k|            {
+  164|  3.70k|                if (starts_with_zero)
   ------------------
-  |  Branch (164:21): [True: 2.85k, False: 810]
+  |  Branch (164:21): [True: 2.89k, False: 812]
   ------------------
-  165|  2.85k|                {
+  165|  2.89k|                {
   166|       |                    // Binary
-  167|  2.85k|                    if (c == 'b' || c == 'B')
+  167|  2.89k|                    if (c == 'b' || c == 'B')
   ------------------
-  |  Branch (167:25): [True: 276, False: 2.58k]
-  |  Branch (167:37): [True: 286, False: 2.29k]
+  |  Branch (167:25): [True: 276, False: 2.61k]
+  |  Branch (167:37): [True: 286, False: 2.33k]
   ------------------
   168|    562|                    {
   169|    562|                        parsing_binary = true;
@@ -1784,10 +1784,10 @@ _ZN3dlx11ParseNumberEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   171|    562|                    }
   172|       |
   173|       |                    // Hexadecimal
-  174|  2.29k|                    if (c == 'x' || c == 'X')
+  174|  2.33k|                    if (c == 'x' || c == 'X')
   ------------------
-  |  Branch (174:25): [True: 575, False: 1.72k]
-  |  Branch (174:37): [True: 67, False: 1.65k]
+  |  Branch (174:25): [True: 575, False: 1.75k]
+  |  Branch (174:37): [True: 67, False: 1.69k]
   ------------------
   175|    642|                    {
   176|    642|                        parsing_hexadecimal = true;
@@ -1795,14 +1795,14 @@ _ZN3dlx11ParseNumberEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   178|    642|                    }
   179|       |
   180|       |                    // Octal
-  181|  1.65k|                    parsing_octal = true;
-  182|  1.65k|                }
-  183|  3.66k|            }
+  181|  1.69k|                    parsing_octal = true;
+  182|  1.69k|                }
+  183|  3.70k|            }
   184|       |
   185|       |            // Handle separators
-  186|  55.8k|            if (c == '\'')
+  186|  56.1k|            if (c == '\'')
   ------------------
-  |  Branch (186:17): [True: 140, False: 55.7k]
+  |  Branch (186:17): [True: 140, False: 56.0k]
   ------------------
   187|    140|            {
   188|    140|                if (parsed_separator)
@@ -1818,32 +1818,32 @@ _ZN3dlx11ParseNumberEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   195|    140|            }
   196|       |
   197|       |            // Check for over/underflow
-  198|  55.7k|            if (is_negative && (-number < std::numeric_limits<phi::int16_t>::min()))
+  198|  56.0k|            if (is_negative && (-number < std::numeric_limits<phi::int16_t>::min()))
   ------------------
-  |  Branch (198:17): [True: 372, False: 55.3k]
+  |  Branch (198:17): [True: 372, False: 55.6k]
   |  Branch (198:32): [True: 0, False: 372]
   ------------------
   199|      0|            {
   200|       |                // Would underflow
   201|      0|                return {};
   202|      0|            }
-  203|  55.7k|            if (!is_negative && (number > std::numeric_limits<phi::int16_t>::max()))
+  203|  56.0k|            if (!is_negative && (number > std::numeric_limits<phi::int16_t>::max()))
   ------------------
-  |  Branch (203:17): [True: 55.3k, False: 372]
-  |  Branch (203:17): [True: 0, False: 55.7k]
-  |  Branch (203:33): [True: 0, False: 55.3k]
+  |  Branch (203:17): [True: 55.6k, False: 372]
+  |  Branch (203:17): [True: 0, False: 56.0k]
+  |  Branch (203:33): [True: 0, False: 55.6k]
   ------------------
   204|      0|            {
   205|       |                // Would overflow
   206|      0|                return {};
   207|      0|            }
   208|       |
-  209|  55.7k|            parsed_separator = false;
-  210|  55.7k|            parsed_something = true;
+  209|  56.0k|            parsed_separator = false;
+  210|  56.0k|            parsed_something = true;
   211|       |
-  212|  55.7k|            if (parsing_binary)
+  212|  56.0k|            if (parsing_binary)
   ------------------
-  |  Branch (212:17): [True: 430, False: 55.3k]
+  |  Branch (212:17): [True: 430, False: 55.5k]
   ------------------
   213|    430|            {
   214|    430|                if (!phi::is_binary_digit(c))
@@ -1857,25 +1857,25 @@ _ZN3dlx11ParseNumberEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   219|    132|                number <<= 1;
   220|    132|                number |= (c - '0');
   221|    132|            }
-  222|  55.3k|            else if (parsing_octal)
+  222|  55.5k|            else if (parsing_octal)
   ------------------
-  |  Branch (222:22): [True: 1.96k, False: 53.3k]
+  |  Branch (222:22): [True: 2.03k, False: 53.5k]
   ------------------
-  223|  1.96k|            {
-  224|  1.96k|                if (!phi::is_octal_digit(c))
+  223|  2.03k|            {
+  224|  2.03k|                if (!phi::is_octal_digit(c))
   ------------------
-  |  Branch (224:21): [True: 1.52k, False: 444]
+  |  Branch (224:21): [True: 1.55k, False: 473]
   ------------------
-  225|  1.52k|                {
-  226|  1.52k|                    return {};
-  227|  1.52k|                }
+  225|  1.55k|                {
+  226|  1.55k|                    return {};
+  227|  1.55k|                }
   228|       |
-  229|    444|                number <<= 3;
-  230|    444|                number |= (c - '0');
-  231|    444|            }
-  232|  53.3k|            else if (parsing_hexadecimal)
+  229|    473|                number <<= 3;
+  230|    473|                number |= (c - '0');
+  231|    473|            }
+  232|  53.5k|            else if (parsing_hexadecimal)
   ------------------
-  |  Branch (232:22): [True: 770, False: 52.5k]
+  |  Branch (232:22): [True: 770, False: 52.7k]
   ------------------
   233|    770|            {
   234|    770|                if (!phi::is_hex_digit(c))
@@ -1889,67 +1889,67 @@ _ZN3dlx11ParseNumberEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   239|    621|                number <<= 4;
   240|    621|                number |= phi::hex_digit_value(c).unsafe();
   241|    621|            }
-  242|  52.5k|            else
-  243|  52.5k|            {
-  244|  52.5k|                if (!phi::is_digit(c))
+  242|  52.7k|            else
+  243|  52.7k|            {
+  244|  52.7k|                if (!phi::is_digit(c))
   ------------------
-  |  Branch (244:21): [True: 51.1k, False: 1.45k]
+  |  Branch (244:21): [True: 51.3k, False: 1.45k]
   ------------------
-  245|  51.1k|                {
-  246|  51.1k|                    return {};
-  247|  51.1k|                }
+  245|  51.3k|                {
+  246|  51.3k|                    return {};
+  247|  51.3k|                }
   248|       |
   249|       |                // Disallow leading zeros
   250|  1.45k|                if (number == 0 && c == '0')
   ------------------
-  |  Branch (250:21): [True: 668, False: 785]
-  |  Branch (250:36): [True: 194, False: 474]
+  |  Branch (250:21): [True: 670, False: 785]
+  |  Branch (250:36): [True: 194, False: 476]
   ------------------
   251|    194|                {
   252|    194|                    return {};
   253|    194|                }
   254|       |
-  255|  1.25k|                number *= 10;
-  256|  1.25k|                number += (c - '0');
-  257|  1.25k|            }
-  258|  55.7k|        }
+  255|  1.26k|                number *= 10;
+  256|  1.26k|                number += (c - '0');
+  257|  1.26k|            }
+  258|  56.0k|        }
   259|       |
   260|  1.18k|        if (parsed_something)
   ------------------
-  |  Branch (260:13): [True: 971, False: 210]
+  |  Branch (260:13): [True: 974, False: 210]
   ------------------
-  261|    971|        {
+  261|    974|        {
   262|       |            // Check for over/underflow
-  263|    971|            if (is_negative && (-number < std::numeric_limits<phi::int16_t>::min()))
+  263|    974|            if (is_negative && (-number < std::numeric_limits<phi::int16_t>::min()))
   ------------------
-  |  Branch (263:17): [True: 75, False: 896]
+  |  Branch (263:17): [True: 75, False: 899]
   |  Branch (263:32): [True: 0, False: 75]
   ------------------
   264|      0|            {
   265|       |                // Would underflow
   266|      0|                return {};
   267|      0|            }
-  268|    971|            if (!is_negative && (number > std::numeric_limits<phi::int16_t>::max()))
+  268|    974|            if (!is_negative && (number > std::numeric_limits<phi::int16_t>::max()))
   ------------------
-  |  Branch (268:17): [True: 896, False: 75]
-  |  Branch (268:17): [True: 0, False: 971]
-  |  Branch (268:33): [True: 0, False: 896]
+  |  Branch (268:17): [True: 899, False: 75]
+  |  Branch (268:17): [True: 0, False: 974]
+  |  Branch (268:33): [True: 0, False: 899]
   ------------------
   269|      0|            {
   270|       |                // Would overflow
   271|      0|                return {};
   272|      0|            }
   273|       |
-  274|    971|            if (is_negative)
+  274|    974|            if (is_negative)
   ------------------
-  |  Branch (274:17): [True: 75, False: 896]
+  |  Branch (274:17): [True: 75, False: 899]
   ------------------
   275|     75|            {
   276|     75|                return static_cast<phi::int16_t>(-number);
   277|     75|            }
   278|       |
-  279|    896|            return static_cast<phi::int16_t>(number);
-  280|    971|        }
+  279|    899|            return static_cast<phi::int16_t>(number);
+  280|    974|        }
   281|       |
   282|    210|        return {};
   283|  1.18k|    }
@@ -2532,21 +2532,21 @@ Parser.cpp:_ZNK3dlx11TokenStream19find_first_token_ifIZNS_6Parser5ParseERS0_E3$_
    71|      0|            return nullptr;
    72|  2.74k|        }
 _ZN3dlx11TokenStream12emplace_backIJNS_5Token4TypeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEERNS4_7integerImEESC_EEEvDpOT_:
-   24|  59.8k|        {
+   24|  60.2k|        {
    25|       |#if defined(PHI_DEBUG)
    26|       |            PHI_ASSERT(!m_Finalized);
    27|       |#endif
    28|       |
-   29|  59.8k|            m_Tokens.emplace_back(std::forward<ArgsT>(args)...);
-   30|  59.8k|        }
+   29|  60.2k|            m_Tokens.emplace_back(std::forward<ArgsT>(args)...);
+   30|  60.2k|        }
 _ZN3dlx11TokenStream12emplace_backIJNS_5TokenEEEEvDpOT_:
-   24|  88.7k|        {
+   24|  89.3k|        {
    25|       |#if defined(PHI_DEBUG)
    26|       |            PHI_ASSERT(!m_Finalized);
    27|       |#endif
    28|       |
-   29|  88.7k|            m_Tokens.emplace_back(std::forward<ArgsT>(args)...);
-   30|  88.7k|        }
+   29|  89.3k|            m_Tokens.emplace_back(std::forward<ArgsT>(args)...);
+   30|  89.3k|        }
 _ZN3dlx11TokenStream12emplace_backIJRNS_5Token4TypeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEERNS5_7integerImEESD_EEEvDpOT_:
    24|  9.45k|        {
    25|       |#if defined(PHI_DEBUG)
@@ -2641,42 +2641,42 @@ _ZN3dlx11MemoryBlockC2EN3phi7integerImEES3_:
    14|      1|    }
 
 _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-   21|  61.0k|    {
-   22|  61.0k|        switch (token.length().unsafe())
-   23|  61.0k|        {
+   21|  61.3k|    {
+   22|  61.3k|        switch (token.length().unsafe())
+   23|  61.3k|        {
    24|       |            // 1 character OpCodes
    25|  6.55k|            case 1: {
   ------------------
-  |  Branch (25:13): [True: 6.55k, False: 54.4k]
+  |  Branch (25:13): [True: 6.55k, False: 54.7k]
   ------------------
    26|  6.55k|                const char c1 = token[0u];
    27|       |
    28|  6.55k|                if (ice(c1, 'J'))
   ------------------
-  |  Branch (28:21): [True: 2.16k, False: 4.38k]
+  |  Branch (28:21): [True: 2.16k, False: 4.39k]
   ------------------
    29|  2.16k|                {
    30|  2.16k|                    return OpCode::J;
    31|  2.16k|                }
-   32|  4.38k|                break;
+   32|  4.39k|                break;
    33|  6.55k|            }
    34|       |
    35|       |            // 2 character OpCodes
    36|  10.0k|            case 2: {
   ------------------
-  |  Branch (36:13): [True: 10.0k, False: 51.0k]
+  |  Branch (36:13): [True: 10.0k, False: 51.3k]
   ------------------
    37|  10.0k|                const char c1 = token[0u];
    38|  10.0k|                const char c2 = token[1u];
    39|       |
    40|  10.0k|                switch (c1)
   ------------------
-  |  Branch (40:25): [True: 3.88k, False: 6.14k]
+  |  Branch (40:25): [True: 3.89k, False: 6.14k]
   ------------------
    41|  10.0k|                {
    42|     99|                    case 'J':
   ------------------
-  |  Branch (42:21): [True: 99, False: 9.92k]
+  |  Branch (42:21): [True: 99, False: 9.93k]
   ------------------
    43|    216|                    case 'j':
   ------------------
@@ -2697,7 +2697,7 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
    51|  1.51k|                    case 'l':
   ------------------
-  |  Branch (51:21): [True: 600, False: 9.42k]
+  |  Branch (51:21): [True: 600, False: 9.43k]
   ------------------
    52|  1.51k|                        switch (c2)
   ------------------
@@ -2753,11 +2753,11 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
    70|    151|                        break;
    71|  1.02k|                    case 'O':
   ------------------
-  |  Branch (71:21): [True: 1.02k, False: 9.00k]
+  |  Branch (71:21): [True: 1.02k, False: 9.01k]
   ------------------
    72|  1.15k|                    case 'o':
   ------------------
-  |  Branch (72:21): [True: 133, False: 9.89k]
+  |  Branch (72:21): [True: 133, False: 9.90k]
   ------------------
    73|  1.15k|                        if (ice(c2, 'R'))
   ------------------
@@ -2773,7 +2773,7 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
    79|  3.26k|                    case 's':
   ------------------
-  |  Branch (79:21): [True: 1.35k, False: 8.67k]
+  |  Branch (79:21): [True: 1.35k, False: 8.68k]
   ------------------
    80|  3.26k|                        switch (c2)
   ------------------
@@ -2828,13 +2828,13 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
    97|  3.26k|                        }
    98|  1.41k|                        break;
    99|  10.0k|                }
-  100|  6.29k|                break;
+  100|  6.30k|                break;
   101|  10.0k|            }
   102|       |
   103|       |            // 3 character OpCodes
   104|  16.5k|            case 3: {
   ------------------
-  |  Branch (104:13): [True: 16.5k, False: 44.5k]
+  |  Branch (104:13): [True: 16.5k, False: 44.8k]
   ------------------
   105|  16.5k|                const char c1 = token[0u];
   106|  16.5k|                const char c2 = token[1u];
@@ -3413,27 +3413,27 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   374|  16.5k|            }
   375|       |
   376|       |            // 4 character OpCodes
-  377|  17.7k|            case 4: {
+  377|  17.8k|            case 4: {
   ------------------
-  |  Branch (377:13): [True: 17.7k, False: 43.2k]
+  |  Branch (377:13): [True: 17.8k, False: 43.4k]
   ------------------
-  378|  17.7k|                const char c1 = token[0u];
-  379|  17.7k|                const char c2 = token[1u];
-  380|  17.7k|                const char c3 = token[2u];
-  381|  17.7k|                const char c4 = token[3u];
+  378|  17.8k|                const char c1 = token[0u];
+  379|  17.8k|                const char c2 = token[1u];
+  380|  17.8k|                const char c3 = token[2u];
+  381|  17.8k|                const char c4 = token[3u];
   382|       |
-  383|  17.7k|                switch (c1)
+  383|  17.8k|                switch (c1)
   ------------------
-  |  Branch (383:25): [True: 1.36k, False: 16.3k]
+  |  Branch (383:25): [True: 1.36k, False: 16.5k]
   ------------------
-  384|  17.7k|                {
+  384|  17.8k|                {
   385|  1.54k|                    case 'A':
   ------------------
-  |  Branch (385:21): [True: 1.54k, False: 16.2k]
+  |  Branch (385:21): [True: 1.54k, False: 16.3k]
   ------------------
   386|  1.82k|                    case 'a':
   ------------------
-  |  Branch (386:21): [True: 279, False: 17.4k]
+  |  Branch (386:21): [True: 279, False: 17.6k]
   ------------------
   387|  1.82k|                        switch (c2)
   ------------------
@@ -3525,11 +3525,11 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   424|       |
   425|  1.76k|                    case 'B':
   ------------------
-  |  Branch (425:21): [True: 1.76k, False: 15.9k]
+  |  Branch (425:21): [True: 1.76k, False: 16.1k]
   ------------------
   426|  2.66k|                    case 'b':
   ------------------
-  |  Branch (426:21): [True: 899, False: 16.8k]
+  |  Branch (426:21): [True: 899, False: 16.9k]
   ------------------
   427|  2.66k|                        switch (c2)
   ------------------
@@ -3607,11 +3607,11 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   460|       |
   461|  1.30k|                    case 'D':
   ------------------
-  |  Branch (461:21): [True: 1.30k, False: 16.4k]
+  |  Branch (461:21): [True: 1.30k, False: 16.5k]
   ------------------
   462|  1.41k|                    case 'd':
   ------------------
-  |  Branch (462:21): [True: 116, False: 17.6k]
+  |  Branch (462:21): [True: 116, False: 17.7k]
   ------------------
   463|  1.41k|                        if (ice(c2, 'I') && ice(c3, 'V'))
   ------------------
@@ -3670,11 +3670,11 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   485|       |
   486|    376|                    case 'H':
   ------------------
-  |  Branch (486:21): [True: 93, False: 17.6k]
+  |  Branch (486:21): [True: 93, False: 17.7k]
   ------------------
   487|    624|                    case 'h':
   ------------------
-  |  Branch (487:21): [True: 531, False: 17.2k]
+  |  Branch (487:21): [True: 531, False: 17.3k]
   ------------------
   488|    624|                        if (ice(c2, 'A') && ice(c3, 'L') && ice(c4, 'T'))
   ------------------
@@ -3690,11 +3690,11 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   493|       |
   494|    484|                    case 'J':
   ------------------
-  |  Branch (494:21): [True: 288, False: 17.4k]
+  |  Branch (494:21): [True: 288, False: 17.6k]
   ------------------
   495|    725|                    case 'j':
   ------------------
-  |  Branch (495:21): [True: 437, False: 17.3k]
+  |  Branch (495:21): [True: 437, False: 17.4k]
   ------------------
   496|    725|                        if (ice(c2, 'A') && ice(c3, 'L') && ice(c4, 'R'))
   ------------------
@@ -3710,11 +3710,11 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   501|       |
   502|    817|                    case 'M':
   ------------------
-  |  Branch (502:21): [True: 817, False: 16.9k]
+  |  Branch (502:21): [True: 817, False: 17.0k]
   ------------------
   503|  1.18k|                    case 'm':
   ------------------
-  |  Branch (503:21): [True: 370, False: 17.3k]
+  |  Branch (503:21): [True: 370, False: 17.5k]
   ------------------
   504|  1.18k|                        if (ice(c2, 'O') && ice(c3, 'V'))
   ------------------
@@ -3752,24 +3752,24 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   520|       |
   521|  5.35k|                    case 'S':
   ------------------
-  |  Branch (521:21): [True: 5.35k, False: 12.4k]
+  |  Branch (521:21): [True: 5.35k, False: 12.5k]
   ------------------
-  522|  6.80k|                    case 's':
+  522|  6.93k|                    case 's':
   ------------------
-  |  Branch (522:21): [True: 1.45k, False: 16.3k]
+  |  Branch (522:21): [True: 1.58k, False: 16.3k]
   ------------------
-  523|  6.80k|                        switch (c2)
+  523|  6.93k|                        switch (c2)
   ------------------
-  |  Branch (523:33): [True: 104, False: 6.70k]
+  |  Branch (523:33): [True: 104, False: 6.83k]
   ------------------
-  524|  6.80k|                        {
+  524|  6.93k|                        {
   525|    269|                            case 'E':
   ------------------
-  |  Branch (525:29): [True: 269, False: 6.53k]
+  |  Branch (525:29): [True: 269, False: 6.66k]
   ------------------
   526|    816|                            case 'e':
   ------------------
-  |  Branch (526:29): [True: 547, False: 6.26k]
+  |  Branch (526:29): [True: 547, False: 6.38k]
   ------------------
   527|    816|                                if (ice(c3, 'Q'))
   ------------------
@@ -3793,34 +3793,34 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   537|    609|                                }
   538|    288|                                break;
   539|       |
-  540|    528|                            case 'G':
+  540|    529|                            case 'G':
   ------------------
-  |  Branch (540:29): [True: 528, False: 6.27k]
+  |  Branch (540:29): [True: 529, False: 6.40k]
   ------------------
   541|  1.11k|                            case 'g':
   ------------------
-  |  Branch (541:29): [True: 590, False: 6.21k]
+  |  Branch (541:29): [True: 590, False: 6.34k]
   ------------------
   542|  1.11k|                                if (ice(c3, 'E'))
   ------------------
-  |  Branch (542:37): [True: 463, False: 655]
+  |  Branch (542:37): [True: 464, False: 655]
   ------------------
-  543|    463|                                {
-  544|    463|                                    if (ice(c4, 'I'))
+  543|    464|                                {
+  544|    464|                                    if (ice(c4, 'I'))
   ------------------
-  |  Branch (544:41): [True: 132, False: 331]
+  |  Branch (544:41): [True: 132, False: 332]
   ------------------
   545|    132|                                    {
   546|    132|                                        return OpCode::SGEI;
   547|    132|                                    }
-  548|    331|                                    else if (ice(c4, 'U'))
+  548|    332|                                    else if (ice(c4, 'U'))
   ------------------
-  |  Branch (548:46): [True: 265, False: 66]
+  |  Branch (548:46): [True: 266, False: 66]
   ------------------
-  549|    265|                                    {
-  550|    265|                                        return OpCode::SGEU;
-  551|    265|                                    }
-  552|    463|                                }
+  549|    266|                                    {
+  550|    266|                                        return OpCode::SGEU;
+  551|    266|                                    }
+  552|    464|                                }
   553|    655|                                else if (ice(c3, 'T'))
   ------------------
   |  Branch (553:42): [True: 589, False: 66]
@@ -3845,11 +3845,11 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   565|       |
   566|    989|                            case 'L':
   ------------------
-  |  Branch (566:29): [True: 989, False: 5.81k]
+  |  Branch (566:29): [True: 989, False: 5.94k]
   ------------------
   567|  1.78k|                            case 'l':
   ------------------
-  |  Branch (567:29): [True: 797, False: 6.01k]
+  |  Branch (567:29): [True: 797, False: 6.13k]
   ------------------
   568|  1.78k|                                switch (c3)
   ------------------
@@ -3941,11 +3941,11 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   610|       |
   611|    755|                            case 'N':
   ------------------
-  |  Branch (611:29): [True: 422, False: 6.38k]
+  |  Branch (611:29): [True: 422, False: 6.51k]
   ------------------
   612|  1.01k|                            case 'n':
   ------------------
-  |  Branch (612:29): [True: 261, False: 6.54k]
+  |  Branch (612:29): [True: 261, False: 6.67k]
   ------------------
   613|  1.01k|                                if (ice(c3, 'E'))
   ------------------
@@ -3971,11 +3971,11 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   625|       |
   626|    363|                            case 'R':
   ------------------
-  |  Branch (626:29): [True: 363, False: 6.44k]
+  |  Branch (626:29): [True: 363, False: 6.57k]
   ------------------
   627|    564|                            case 'r':
   ------------------
-  |  Branch (627:29): [True: 201, False: 6.60k]
+  |  Branch (627:29): [True: 201, False: 6.73k]
   ------------------
   628|    564|                                if (ice(c3, 'A') && ice(c4, 'I'))
   ------------------
@@ -3999,74 +3999,74 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   637|       |
   638|    724|                            case 'U':
   ------------------
-  |  Branch (638:29): [True: 724, False: 6.08k]
+  |  Branch (638:29): [True: 724, False: 6.21k]
   ------------------
-  639|  1.73k|                            case 'u':
+  639|  1.86k|                            case 'u':
   ------------------
-  |  Branch (639:29): [True: 1.01k, False: 5.79k]
+  |  Branch (639:29): [True: 1.14k, False: 5.79k]
   ------------------
-  640|  1.73k|                                if (ice(c3, 'B'))
+  640|  1.86k|                                if (ice(c3, 'B'))
   ------------------
-  |  Branch (640:37): [True: 1.52k, False: 207]
+  |  Branch (640:37): [True: 1.65k, False: 207]
   ------------------
-  641|  1.52k|                                {
-  642|  1.52k|                                    switch (c4)
+  641|  1.65k|                                {
+  642|  1.65k|                                    switch (c4)
   ------------------
-  |  Branch (642:45): [True: 544, False: 985]
+  |  Branch (642:45): [True: 672, False: 985]
   ------------------
-  643|  1.52k|                                    {
+  643|  1.65k|                                    {
   644|     67|                                        case 'D':
   ------------------
-  |  Branch (644:41): [True: 67, False: 1.46k]
+  |  Branch (644:41): [True: 67, False: 1.59k]
   ------------------
   645|    133|                                        case 'd':
   ------------------
-  |  Branch (645:41): [True: 66, False: 1.46k]
+  |  Branch (645:41): [True: 66, False: 1.59k]
   ------------------
   646|    133|                                            return OpCode::SUBD;
   647|       |
   648|    196|                                        case 'F':
   ------------------
-  |  Branch (648:41): [True: 196, False: 1.33k]
+  |  Branch (648:41): [True: 196, False: 1.46k]
   ------------------
   649|    262|                                        case 'f':
   ------------------
-  |  Branch (649:41): [True: 66, False: 1.46k]
+  |  Branch (649:41): [True: 66, False: 1.59k]
   ------------------
   650|    262|                                            return OpCode::SUBF;
   651|       |
   652|    214|                                        case 'I':
   ------------------
-  |  Branch (652:41): [True: 214, False: 1.31k]
+  |  Branch (652:41): [True: 214, False: 1.44k]
   ------------------
   653|    280|                                        case 'i':
   ------------------
-  |  Branch (653:41): [True: 66, False: 1.46k]
+  |  Branch (653:41): [True: 66, False: 1.59k]
   ------------------
   654|    280|                                            return OpCode::SUBI;
   655|       |
   656|    244|                                        case 'U':
   ------------------
-  |  Branch (656:41): [True: 244, False: 1.28k]
+  |  Branch (656:41): [True: 244, False: 1.41k]
   ------------------
   657|    310|                                        case 'u':
   ------------------
-  |  Branch (657:41): [True: 66, False: 1.46k]
+  |  Branch (657:41): [True: 66, False: 1.59k]
   ------------------
   658|    310|                                            return OpCode::SUBU;
-  659|  1.52k|                                    }
-  660|  1.52k|                                }
-  661|    751|                                break;
-  662|  6.80k|                        }
-  663|  1.97k|                        break;
+  659|  1.65k|                                    }
+  660|  1.65k|                                }
+  661|    879|                                break;
+  662|  6.93k|                        }
+  663|  2.10k|                        break;
   664|       |
-  665|  1.97k|                    case 'T':
+  665|  2.10k|                    case 'T':
   ------------------
-  |  Branch (665:21): [True: 445, False: 17.3k]
+  |  Branch (665:21): [True: 445, False: 17.4k]
   ------------------
   666|    686|                    case 't':
   ------------------
-  |  Branch (666:21): [True: 241, False: 17.5k]
+  |  Branch (666:21): [True: 241, False: 17.6k]
   ------------------
   667|    686|                        if (ice(c2, 'R') && ice(c3, 'A') && ice(c4, 'P'))
   ------------------
@@ -4081,11 +4081,11 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   671|    344|                        break;
   672|    344|                    case 'X':
   ------------------
-  |  Branch (672:21): [True: 298, False: 17.4k]
+  |  Branch (672:21): [True: 298, False: 17.5k]
   ------------------
   673|    461|                    case 'x':
   ------------------
-  |  Branch (673:21): [True: 163, False: 17.5k]
+  |  Branch (673:21): [True: 163, False: 17.7k]
   ------------------
   674|    461|                        if (ice(c2, 'O') && ice(c3, 'R') && ice(c4, 'I'))
   ------------------
@@ -4098,14 +4098,14 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   676|    261|                            return OpCode::XORI;
   677|    261|                        }
   678|    200|                        break;
-  679|  17.7k|                }
-  680|  6.97k|                break;
-  681|  17.7k|            }
+  679|  17.8k|                }
+  680|  7.09k|                break;
+  681|  17.8k|            }
   682|       |
   683|       |            // 5 character OpCodes
-  684|  6.97k|            case 5: {
+  684|  7.09k|            case 5: {
   ------------------
-  |  Branch (684:13): [True: 3.45k, False: 57.5k]
+  |  Branch (684:13): [True: 3.45k, False: 57.8k]
   ------------------
   685|  3.45k|                const char c1 = token[0u];
   686|  3.45k|                const char c2 = token[1u];
@@ -4365,37 +4365,37 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   791|  3.45k|            }
   792|       |
   793|       |            // 6 character OpCodes
-  794|  1.18k|            case 6: {
+  794|  1.31k|            case 6: {
   ------------------
-  |  Branch (794:13): [True: 1.18k, False: 59.8k]
+  |  Branch (794:13): [True: 1.31k, False: 60.0k]
   ------------------
-  795|  1.18k|                const char c1 = token[0u];
-  796|  1.18k|                const char c2 = token[1u];
-  797|  1.18k|                const char c3 = token[2u];
-  798|  1.18k|                const char c4 = token[3u];
-  799|  1.18k|                const char c5 = token[4u];
-  800|  1.18k|                const char c6 = token[5u];
+  795|  1.31k|                const char c1 = token[0u];
+  796|  1.31k|                const char c2 = token[1u];
+  797|  1.31k|                const char c3 = token[2u];
+  798|  1.31k|                const char c4 = token[3u];
+  799|  1.31k|                const char c5 = token[4u];
+  800|  1.31k|                const char c6 = token[5u];
   801|       |
-  802|  1.18k|                if (ice(c1, 'C') && ice(c2, 'V') && ice(c3, 'T'))
+  802|  1.31k|                if (ice(c1, 'C') && ice(c2, 'V') && ice(c3, 'T'))
   ------------------
-  |  Branch (802:21): [True: 785, False: 404]
-  |  Branch (802:21): [True: 785, False: 404]
-  |  Branch (802:37): [True: 785, False: 0]
-  |  Branch (802:53): [True: 785, False: 0]
+  |  Branch (802:21): [True: 914, False: 404]
+  |  Branch (802:21): [True: 914, False: 404]
+  |  Branch (802:37): [True: 914, False: 0]
+  |  Branch (802:53): [True: 914, False: 0]
   ------------------
-  803|    785|                {
-  804|    785|                    switch (c4)
+  803|    914|                {
+  804|    914|                    switch (c4)
   ------------------
-  |  Branch (804:29): [True: 0, False: 785]
+  |  Branch (804:29): [True: 0, False: 914]
   ------------------
-  805|    785|                    {
+  805|    914|                    {
   806|    263|                        case 'D':
   ------------------
-  |  Branch (806:25): [True: 263, False: 522]
+  |  Branch (806:25): [True: 263, False: 651]
   ------------------
   807|    263|                        case 'd':
   ------------------
-  |  Branch (807:25): [True: 0, False: 785]
+  |  Branch (807:25): [True: 0, False: 914]
   ------------------
   808|    263|                            if (c5 == '2')
   ------------------
@@ -4419,26 +4419,26 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   818|    263|                            }
   819|      0|                            break;
   820|       |
-  821|    260|                        case 'F':
+  821|    261|                        case 'F':
   ------------------
-  |  Branch (821:25): [True: 260, False: 525]
+  |  Branch (821:25): [True: 261, False: 653]
   ------------------
-  822|    260|                        case 'f':
+  822|    261|                        case 'f':
   ------------------
-  |  Branch (822:25): [True: 0, False: 785]
+  |  Branch (822:25): [True: 0, False: 914]
   ------------------
-  823|    260|                            if (c5 == '2')
+  823|    261|                            if (c5 == '2')
   ------------------
-  |  Branch (823:33): [True: 260, False: 0]
+  |  Branch (823:33): [True: 261, False: 0]
   ------------------
-  824|    260|                            {
-  825|    260|                                if (ice(c6, 'D'))
+  824|    261|                            {
+  825|    261|                                if (ice(c6, 'D'))
   ------------------
-  |  Branch (825:37): [True: 66, False: 194]
+  |  Branch (825:37): [True: 67, False: 194]
   ------------------
-  826|     66|                                {
-  827|     66|                                    return OpCode::CVTF2D;
-  828|     66|                                }
+  826|     67|                                {
+  827|     67|                                    return OpCode::CVTF2D;
+  828|     67|                                }
   829|    194|                                else if (ice(c6, 'I'))
   ------------------
   |  Branch (829:42): [True: 194, False: 0]
@@ -4446,39 +4446,39 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   830|    194|                                {
   831|    194|                                    return OpCode::CVTF2I;
   832|    194|                                }
-  833|    260|                            }
+  833|    261|                            }
   834|      0|                            break;
   835|       |
-  836|    262|                        case 'I':
+  836|    390|                        case 'I':
   ------------------
-  |  Branch (836:25): [True: 262, False: 523]
+  |  Branch (836:25): [True: 390, False: 524]
   ------------------
-  837|    262|                        case 'i':
+  837|    390|                        case 'i':
   ------------------
-  |  Branch (837:25): [True: 0, False: 785]
+  |  Branch (837:25): [True: 0, False: 914]
   ------------------
-  838|    262|                            if (c5 == '2')
+  838|    390|                            if (c5 == '2')
   ------------------
-  |  Branch (838:33): [True: 262, False: 0]
+  |  Branch (838:33): [True: 390, False: 0]
   ------------------
-  839|    262|                            {
-  840|    262|                                if (ice(c6, 'D'))
+  839|    390|                            {
+  840|    390|                                if (ice(c6, 'D'))
   ------------------
-  |  Branch (840:37): [True: 195, False: 67]
+  |  Branch (840:37): [True: 195, False: 195]
   ------------------
   841|    195|                                {
   842|    195|                                    return OpCode::CVTI2D;
   843|    195|                                }
-  844|     67|                                else if (ice(c6, 'F'))
+  844|    195|                                else if (ice(c6, 'F'))
   ------------------
-  |  Branch (844:42): [True: 67, False: 0]
+  |  Branch (844:42): [True: 195, False: 0]
   ------------------
-  845|     67|                                {
-  846|     67|                                    return OpCode::CVTI2F;
-  847|     67|                                }
-  848|    262|                            }
-  849|    785|                    }
-  850|    785|                }
+  845|    195|                                {
+  846|    195|                                    return OpCode::CVTI2F;
+  847|    195|                                }
+  848|    390|                            }
+  849|    914|                    }
+  850|    914|                }
   851|    404|                else if (ice(c1, 'M') && ice(c2, 'U') && ice(c3, 'L') && ice(c4, 'T') &&
   ------------------
   |  Branch (851:26): [True: 194, False: 210]
@@ -4496,25 +4496,25 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   854|    194|                    return OpCode::MULTUI;
   855|    194|                }
   856|    210|                break;
-  857|  1.18k|            }
+  857|  1.31k|            }
   858|       |
   859|       |            // 7 character OpCodes
-  860|    380|            case 7: {
+  860|    412|            case 7: {
   ------------------
-  |  Branch (860:13): [True: 380, False: 60.6k]
+  |  Branch (860:13): [True: 412, False: 60.9k]
   ------------------
-  861|    380|                const char c1 = token[0u];
-  862|    380|                const char c2 = token[1u];
-  863|    380|                const char c3 = token[2u];
-  864|    380|                const char c4 = token[3u];
-  865|    380|                const char c5 = token[4u];
-  866|    380|                const char c6 = token[5u];
-  867|    380|                const char c7 = token[6u];
+  861|    412|                const char c1 = token[0u];
+  862|    412|                const char c2 = token[1u];
+  863|    412|                const char c3 = token[2u];
+  864|    412|                const char c4 = token[3u];
+  865|    412|                const char c5 = token[4u];
+  866|    412|                const char c6 = token[5u];
+  867|    412|                const char c7 = token[6u];
   868|       |
-  869|    380|                if (ice(c1, 'M') && ice(c2, 'O') && ice(c3, 'V'))
+  869|    412|                if (ice(c1, 'M') && ice(c2, 'O') && ice(c3, 'V'))
   ------------------
-  |  Branch (869:21): [True: 172, False: 208]
-  |  Branch (869:21): [True: 172, False: 208]
+  |  Branch (869:21): [True: 172, False: 240]
+  |  Branch (869:21): [True: 172, False: 240]
   |  Branch (869:37): [True: 172, False: 0]
   |  Branch (869:53): [True: 172, False: 0]
   ------------------
@@ -4542,32 +4542,32 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   877|     86|                        return OpCode::MOVFP2I;
   878|     86|                    }
   879|     86|                }
-  880|    208|                break;
-  881|    380|            }
+  880|    240|                break;
+  881|    412|            }
   882|       |
   883|  5.16k|            default: {
   ------------------
-  |  Branch (883:13): [True: 5.16k, False: 55.8k]
+  |  Branch (883:13): [True: 5.16k, False: 56.1k]
   ------------------
   884|  5.16k|                break;
-  885|    380|            }
-  886|  61.0k|        }
+  885|    412|            }
+  886|  61.3k|        }
   887|       |
   888|       |        // None found
-  889|  30.3k|        return OpCode::NONE;
-  890|  61.0k|    }
+  889|  30.4k|        return OpCode::NONE;
+  890|  61.3k|    }
 _ZN3dlx3iceEcc:
-   15|  82.6k|    {
-   16|  82.6k|        constexpr const char diff = 'a' - 'A';
-   17|  82.6k|        return (c == t) || (c == t + diff);
+   15|  83.4k|    {
+   16|  83.4k|        constexpr const char diff = 'a' - 'A';
+   17|  83.4k|        return (c == t) || (c == t + diff);
   ------------------
-  |  Branch (17:16): [True: 39.6k, False: 43.0k]
-  |  Branch (17:28): [True: 16.3k, False: 26.7k]
+  |  Branch (17:16): [True: 40.1k, False: 43.3k]
+  |  Branch (17:28): [True: 16.4k, False: 26.8k]
   ------------------
-   18|  82.6k|    }
+   18|  83.4k|    }
 
 _ZN3dlx10ParseErrorC2Ev:
-   18|  60.5k|    {}
+   18|  60.9k|    {}
 _ZN3dlx41ConstructUnexpectedArgumentTypeParseErrorEmmNS_12ArgumentTypeES0_:
   186|    772|    {
   187|    772|        ParseError err;
@@ -4618,23 +4618,23 @@ _ZN3dlx53ConstructTooFewArgumentsAddressDisplacementParseErrorERKNS_5TokenE:
   241|      2|                                                                     token.GetColumn().unsafe());
   242|      2|    }
 _ZN3dlx34ConstructUnexpectedTokenParseErrorEmmNS_5Token4TypeES1_:
-  247|  15.3k|    {
-  248|  15.3k|        ParseError err;
+  247|  15.5k|    {
+  248|  15.5k|        ParseError err;
   249|       |
-  250|  15.3k|        err.m_Type                         = ParseError::Type::UnexpectedToken;
-  251|  15.3k|        err.m_LineNumber                   = line_number;
-  252|  15.3k|        err.m_Column                       = column;
-  253|  15.3k|        err.unexpected_token.expected_type = expected_type;
-  254|  15.3k|        err.unexpected_token.actual_type   = actual_type;
+  250|  15.5k|        err.m_Type                         = ParseError::Type::UnexpectedToken;
+  251|  15.5k|        err.m_LineNumber                   = line_number;
+  252|  15.5k|        err.m_Column                       = column;
+  253|  15.5k|        err.unexpected_token.expected_type = expected_type;
+  254|  15.5k|        err.unexpected_token.actual_type   = actual_type;
   255|       |
-  256|  15.3k|        return err;
-  257|  15.3k|    }
+  256|  15.5k|        return err;
+  257|  15.5k|    }
 _ZN3dlx34ConstructUnexpectedTokenParseErrorERKNS_5TokenENS0_4TypeE:
-  261|  15.3k|    {
-  262|  15.3k|        return ConstructUnexpectedTokenParseError(token.GetLineNumber().unsafe(),
-  263|  15.3k|                                                  token.GetColumn().unsafe(), expected_type,
-  264|  15.3k|                                                  token.GetType());
-  265|  15.3k|    }
+  261|  15.5k|    {
+  262|  15.5k|        return ConstructUnexpectedTokenParseError(token.GetLineNumber().unsafe(),
+  263|  15.5k|                                                  token.GetColumn().unsafe(), expected_type,
+  264|  15.5k|                                                  token.GetType());
+  265|  15.5k|    }
 _ZN3dlx37ConstructReservedIdentifierParseErrorEmmN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   270|  1.31k|    {
   271|  1.31k|        ParseError err;
@@ -4652,21 +4652,21 @@ _ZN3dlx37ConstructReservedIdentifierParseErrorERKNS_5TokenE:
   284|    210|                                                     token.GetColumn().unsafe(), token.GetText());
   285|    210|    }
 _ZN3dlx41ConstructInvalidLabelIdentifierParseErrorEmmN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-  290|  13.8k|    {
-  291|  13.8k|        ParseError err;
+  290|  14.0k|    {
+  291|  14.0k|        ParseError err;
   292|       |
-  293|  13.8k|        err.m_Type                              = ParseError::Type::InvalidLabelIdentifier;
-  294|  13.8k|        err.m_LineNumber                        = line_number;
-  295|  13.8k|        err.m_Column                            = column;
-  296|  13.8k|        err.invalid_label_identifier.identifier = identifier;
+  293|  14.0k|        err.m_Type                              = ParseError::Type::InvalidLabelIdentifier;
+  294|  14.0k|        err.m_LineNumber                        = line_number;
+  295|  14.0k|        err.m_Column                            = column;
+  296|  14.0k|        err.invalid_label_identifier.identifier = identifier;
   297|       |
-  298|  13.8k|        return err;
-  299|  13.8k|    }
+  298|  14.0k|        return err;
+  299|  14.0k|    }
 _ZN3dlx41ConstructInvalidLabelIdentifierParseErrorERKNS_5TokenE:
-  302|  13.8k|    {
-  303|  13.8k|        return ConstructInvalidLabelIdentifierParseError(
-  304|  13.8k|                token.GetLineNumber().unsafe(), token.GetColumn().unsafe(), token.GetText());
-  305|  13.8k|    }
+  302|  14.0k|    {
+  303|  14.0k|        return ConstructInvalidLabelIdentifierParseError(
+  304|  14.0k|                token.GetLineNumber().unsafe(), token.GetColumn().unsafe(), token.GetText());
+  305|  14.0k|    }
 _ZN3dlx38ConstructLabelAlreadyDefinedParseErrorEmmN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEEmm:
   312|  2.74k|    {
   313|  2.74k|        ParseError err;
@@ -4687,20 +4687,20 @@ _ZN3dlx38ConstructLabelAlreadyDefinedParseErrorERKNS_5TokenES2_:
   330|  2.74k|                first_definition.GetLineNumber().unsafe(), first_definition.GetColumn().unsafe());
   331|  2.74k|    }
 _ZN3dlx40ConstructOneInstructionPerLineParseErrorEmm:
-  335|  15.2k|    {
-  336|  15.2k|        ParseError err;
+  335|  15.3k|    {
+  336|  15.3k|        ParseError err;
   337|       |
-  338|  15.2k|        err.m_Type       = ParseError::Type::OneInstructionPerLine;
-  339|  15.2k|        err.m_LineNumber = line_number;
-  340|  15.2k|        err.m_Column     = column;
+  338|  15.3k|        err.m_Type       = ParseError::Type::OneInstructionPerLine;
+  339|  15.3k|        err.m_LineNumber = line_number;
+  340|  15.3k|        err.m_Column     = column;
   341|       |
-  342|  15.2k|        return err;
-  343|  15.2k|    }
+  342|  15.3k|        return err;
+  343|  15.3k|    }
 _ZN3dlx40ConstructOneInstructionPerLineParseErrorERKNS_5TokenE:
-  346|  15.2k|    {
-  347|  15.2k|        return ConstructOneInstructionPerLineParseError(token.GetLineNumber().unsafe(),
-  348|  15.2k|                                                        token.GetColumn().unsafe());
-  349|  15.2k|    }
+  346|  15.3k|    {
+  347|  15.3k|        return ConstructOneInstructionPerLineParseError(token.GetLineNumber().unsafe(),
+  348|  15.3k|                                                        token.GetColumn().unsafe());
+  349|  15.3k|    }
 _ZN3dlx34ConstructTooFewArgumentsParseErrorEmmhh:
   354|  8.45k|    {
   355|  8.45k|        ParseError err;
@@ -4735,7 +4735,7 @@ _ZN3dlx29ConstructEmptyLabelParseErrorERKNS_5TokenE:
   389|  2.23k|                token.GetLineNumber().unsafe(), token.GetColumn().unsafe(),
   390|  2.23k|                (token.GetText().back() == ':') ?
   ------------------
-  |  Branch (390:17): [True: 2.11k, False: 126]
+  |  Branch (390:17): [True: 2.11k, False: 127]
   ------------------
   391|  2.11k|                        token.GetText().substring_view(0u, token.GetText().length() - 1u) :
   392|  2.23k|                        token.GetText());
@@ -4757,53 +4757,53 @@ _ZN3dlx31ConstructTooManyCommaParseErrorERKNS_5TokenE:
   411|    338|    }
 
 _ZN3dlx13ParsedProgram13AddParseErrorEONS_10ParseErrorE:
-   16|  60.5k|    {
-   17|  60.5k|        m_ParseErrors.emplace_back(phi::move(error));
-   18|  60.5k|    }
+   16|  60.9k|    {
+   17|  60.9k|        m_ParseErrors.emplace_back(phi::move(error));
+   18|  60.9k|    }
 
 _ZN3dlx6Parser5ParseERNS_11TokenStreamE:
-  180|  3.31k|    {
-  181|  3.31k|        ParsedProgram program;
+  180|  3.32k|    {
+  181|  3.32k|        ParsedProgram program;
   182|       |
-  183|  3.31k|        program.m_Tokens = tokens;
+  183|  3.32k|        program.m_Tokens = tokens;
   184|       |
-  185|  3.31k|        phi::boolean line_has_instruction{false};
-  186|  3.31k|        phi::usize   label_count{0u};
+  185|  3.32k|        phi::boolean line_has_instruction{false};
+  186|  3.32k|        phi::usize   label_count{0u};
   187|       |
-  188|   142k|        while (tokens.has_more())
+  188|   143k|        while (tokens.has_more())
   ------------------
-  |  Branch (188:16): [True: 139k, False: 3.31k]
+  |  Branch (188:16): [True: 140k, False: 3.32k]
   ------------------
-  189|   139k|        {
-  190|   139k|            const Token& current_token = tokens.consume();
+  189|   140k|        {
+  190|   140k|            const Token& current_token = tokens.consume();
   191|       |
   192|       |            //DLX_INFO("Parsing '{}'", current_token.DebugInfo());
   193|       |
-  194|   139k|            switch (current_token.GetType())
-  195|   139k|            {
+  194|   140k|            switch (current_token.GetType())
+  195|   140k|            {
   196|       |                // Ignore comments
-  197|  27.4k|                case Token::Type::Comment:
+  197|  27.6k|                case Token::Type::Comment:
   ------------------
-  |  Branch (197:17): [True: 27.4k, False: 111k]
+  |  Branch (197:17): [True: 27.6k, False: 112k]
   ------------------
   198|       |                    //DLX_DEBUG("Ignoring comment");
-  199|  27.4k|                    break;
+  199|  27.6k|                    break;
   200|       |
-  201|  50.3k|                case Token::Type::NewLine:
+  201|  50.8k|                case Token::Type::NewLine:
   ------------------
-  |  Branch (201:17): [True: 50.3k, False: 89.0k]
+  |  Branch (201:17): [True: 50.8k, False: 89.6k]
   ------------------
   202|       |                    //DLX_DEBUG("Ignoring newline");
-  203|  50.3k|                    line_has_instruction = false;
-  204|  50.3k|                    break;
+  203|  50.8k|                    line_has_instruction = false;
+  204|  50.8k|                    break;
   205|       |
-  206|  19.0k|                case Token::Type::LabelIdentifier: {
+  206|  19.2k|                case Token::Type::LabelIdentifier: {
   ------------------
-  |  Branch (206:17): [True: 19.0k, False: 120k]
+  |  Branch (206:17): [True: 19.2k, False: 121k]
   ------------------
-  207|  19.0k|                    if (line_has_instruction)
+  207|  19.2k|                    if (line_has_instruction)
   ------------------
-  |  Branch (207:25): [True: 281, False: 18.7k]
+  |  Branch (207:25): [True: 281, False: 18.9k]
   ------------------
   208|    281|                    {
   209|    281|                        program.AddParseError(ConstructUnexpectedTokenParseError(
@@ -4813,15 +4813,15 @@ _ZN3dlx6Parser5ParseERNS_11TokenStreamE:
   213|       |
   214|       |                    // Handle jump labels
   215|       |                    // Check if the last character of the identifier is a colon
-  216|  18.7k|                    if (current_token.GetText().back() != ':')
+  216|  18.9k|                    if (current_token.GetText().back() != ':')
   ------------------
-  |  Branch (216:25): [True: 10.8k, False: 7.87k]
+  |  Branch (216:25): [True: 11.0k, False: 7.87k]
   ------------------
-  217|  10.8k|                    {
-  218|  10.8k|                        program.AddParseError(
-  219|  10.8k|                                ConstructInvalidLabelIdentifierParseError(current_token));
-  220|  10.8k|                        break;
-  221|  10.8k|                    }
+  217|  11.0k|                    {
+  218|  11.0k|                        program.AddParseError(
+  219|  11.0k|                                ConstructInvalidLabelIdentifierParseError(current_token));
+  220|  11.0k|                        break;
+  221|  11.0k|                    }
   222|       |
   223|  7.87k|                    phi::string_view label_name = current_token.GetText();
   224|  7.87k|                    label_name.remove_suffix(1u);
@@ -4887,19 +4887,19 @@ _ZN3dlx6Parser5ParseERNS_11TokenStreamE:
   275|  2.24k|                    break;
   276|  4.98k|                }
   277|       |
-  278|  29.2k|                case Token::Type::OpCode: {
+  278|  29.4k|                case Token::Type::OpCode: {
   ------------------
-  |  Branch (278:17): [True: 29.2k, False: 110k]
+  |  Branch (278:17): [True: 29.4k, False: 111k]
   ------------------
-  279|  29.2k|                    if (line_has_instruction)
+  279|  29.4k|                    if (line_has_instruction)
   ------------------
-  |  Branch (279:25): [True: 15.2k, False: 14.0k]
+  |  Branch (279:25): [True: 15.3k, False: 14.0k]
   ------------------
-  280|  15.2k|                    {
-  281|  15.2k|                        program.AddParseError(
-  282|  15.2k|                                ConstructOneInstructionPerLineParseError(current_token));
-  283|  15.2k|                        break;
-  284|  15.2k|                    }
+  280|  15.3k|                    {
+  281|  15.3k|                        program.AddParseError(
+  282|  15.3k|                                ConstructOneInstructionPerLineParseError(current_token));
+  283|  15.3k|                        break;
+  284|  15.3k|                    }
   285|       |
   286|  14.0k|                    label_count = 0u;
   287|       |
@@ -5002,42 +5002,42 @@ _ZN3dlx6Parser5ParseERNS_11TokenStreamE:
   366|  14.0k|                    program.m_Instructions.emplace_back(instruction);
   367|  14.0k|                    line_has_instruction = true;
   368|  14.0k|                    break;
-  369|  29.2k|                }
+  369|  29.4k|                }
   370|       |
-  371|  13.2k|                default:
+  371|  13.3k|                default:
   ------------------
-  |  Branch (371:17): [True: 13.2k, False: 126k]
+  |  Branch (371:17): [True: 13.3k, False: 127k]
   ------------------
-  372|  13.2k|                    Token::Type expected_token_type = Token::Type::Unknown;
-  373|  13.2k|                    if (line_has_instruction)
+  372|  13.3k|                    Token::Type expected_token_type = Token::Type::Unknown;
+  373|  13.3k|                    if (line_has_instruction)
   ------------------
-  |  Branch (373:25): [True: 3.68k, False: 9.53k]
+  |  Branch (373:25): [True: 3.68k, False: 9.64k]
   ------------------
   374|  3.68k|                    {
   375|  3.68k|                        expected_token_type = Token::Type::NewLine;
   376|  3.68k|                    }
   377|       |
-  378|  13.2k|                    program.AddParseError(
-  379|  13.2k|                            ConstructUnexpectedTokenParseError(current_token, expected_token_type));
-  380|  13.2k|                    break;
-  381|   139k|            }
-  382|   139k|        }
+  378|  13.3k|                    program.AddParseError(
+  379|  13.3k|                            ConstructUnexpectedTokenParseError(current_token, expected_token_type));
+  380|  13.3k|                    break;
+  381|   140k|            }
+  382|   140k|        }
   383|       |
   384|       |        // Check for empty labels
-  385|  3.31k|        if (label_count > 0u)
+  385|  3.32k|        if (label_count > 0u)
   ------------------
-  |  Branch (385:13): [True: 249, False: 3.07k]
+  |  Branch (385:13): [True: 250, False: 3.07k]
   ------------------
-  386|    249|        {
-  387|  3.87k|            for (auto it = tokens.rbegin(); label_count > 0u; ++it)
+  386|    250|        {
+  387|  3.88k|            for (auto it = tokens.rbegin(); label_count > 0u; ++it)
   ------------------
-  |  Branch (387:45): [True: 3.62k, False: 249]
+  |  Branch (387:45): [True: 3.63k, False: 250]
   ------------------
-  388|  3.62k|            {
-  389|  3.62k|                PHI_ASSERT(it != tokens.rend(), "Iterator should never reach the end");
+  388|  3.63k|            {
+  389|  3.63k|                PHI_ASSERT(it != tokens.rend(), "Iterator should never reach the end");
   390|       |
-  391|  3.62k|                const Token& token = *it;
-  392|  3.62k|                if (token.GetType() == Token::Type::LabelIdentifier)
+  391|  3.63k|                const Token& token = *it;
+  392|  3.63k|                if (token.GetType() == Token::Type::LabelIdentifier)
   ------------------
   |  Branch (392:21): [True: 2.23k, False: 1.39k]
   ------------------
@@ -5045,16 +5045,16 @@ _ZN3dlx6Parser5ParseERNS_11TokenStreamE:
   394|  2.23k|                    program.AddParseError(ConstructEmptyLabelParseError(token));
   395|  2.23k|                    --label_count;
   396|  2.23k|                }
-  397|  3.62k|            }
-  398|    249|        }
+  397|  3.63k|            }
+  398|    250|        }
   399|       |
-  400|  3.31k|        return program;
-  401|  3.31k|    }
+  400|  3.32k|        return program;
+  401|  3.32k|    }
 _ZN3dlx6Parser5ParseEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-  404|  3.31k|    {
-  405|  3.31k|        TokenStream tokens = Tokenize(source);
-  406|  3.31k|        return Parse(tokens);
-  407|  3.31k|    }
+  404|  3.32k|    {
+  405|  3.32k|        TokenStream tokens = Tokenize(source);
+  406|  3.32k|        return Parse(tokens);
+  407|  3.32k|    }
 Parser.cpp:_ZN3dlxL26parse_instruction_argumentERKNS_5TokenENS_12ArgumentTypeERNS_11TokenStreamERNS_13ParsedProgramE:
    32|  6.55k|    {
    33|       |        // DLX_INFO("Parsing argument with token '{}' and expected type '{}'", token.DebugInfo(),
@@ -5287,10 +5287,10 @@ _ZN3dlx9ProcessorC2Ev:
    64|      1|        m_IntRegisters[0].SetReadOnly(true);
    65|      1|    }
 _ZN3dlx9Processor11LoadProgramERNS_13ParsedProgramE:
-  349|    173|    {
-  350|    173|        if (!program.m_ParseErrors.empty())
+  349|    174|    {
+  350|    174|        if (!program.m_ParseErrors.empty())
   ------------------
-  |  Branch (350:13): [True: 0, False: 173]
+  |  Branch (350:13): [True: 0, False: 174]
   ------------------
   351|      0|        {
   352|      0|            DLX_WARN("Trying to load program with parsing errors");
@@ -5300,29 +5300,29 @@ _ZN3dlx9Processor11LoadProgramERNS_13ParsedProgramE:
   353|      0|            return false;
   354|      0|        }
   355|       |
-  356|    173|        m_CurrentProgram = &program;
+  356|    174|        m_CurrentProgram = &program;
   357|       |
-  358|    173|        m_ProgramCounter               = 0u;
-  359|    173|        m_Halted                       = false;
-  360|    173|        m_CurrentInstructionAccessType = RegisterAccessType::Ignored;
-  361|    173|        m_LastRaisedException          = Exception::None;
-  362|    173|        m_CurrentStepCount             = 0u;
+  358|    174|        m_ProgramCounter               = 0u;
+  359|    174|        m_Halted                       = false;
+  360|    174|        m_CurrentInstructionAccessType = RegisterAccessType::Ignored;
+  361|    174|        m_LastRaisedException          = Exception::None;
+  362|    174|        m_CurrentStepCount             = 0u;
   363|       |
-  364|    173|        return true;
-  365|    173|    }
+  364|    174|        return true;
+  365|    174|    }
 
 _ZN3dlx19StringToIntRegisterEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-   10|  65.3k|    {
-   11|  65.3k|        if (token.length() == 2u)
+   10|  65.6k|    {
+   11|  65.6k|        if (token.length() == 2u)
   ------------------
-  |  Branch (11:13): [True: 11.6k, False: 53.7k]
+  |  Branch (11:13): [True: 11.6k, False: 54.0k]
   ------------------
    12|  11.6k|        {
    13|  11.6k|            const char first_char = token[0u];
    14|  11.6k|            if (first_char == 'R' || first_char == 'r')
   ------------------
   |  Branch (14:17): [True: 972, False: 10.6k]
-  |  Branch (14:38): [True: 1.23k, False: 9.42k]
+  |  Branch (14:38): [True: 1.23k, False: 9.43k]
   ------------------
    15|  2.20k|            {
    16|  2.20k|                const char second_char = token[1u];
@@ -5336,9 +5336,9 @@ _ZN3dlx19StringToIntRegisterEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEE
    20|  1.11k|                }
    21|  2.20k|            }
    22|  11.6k|        }
-   23|  53.7k|        else if (token.length() == 3u)
+   23|  54.0k|        else if (token.length() == 3u)
   ------------------
-  |  Branch (23:18): [True: 19.2k, False: 34.5k]
+  |  Branch (23:18): [True: 19.2k, False: 34.7k]
   ------------------
    24|  19.2k|        {
    25|  19.2k|            const char first_char = token[0u];
@@ -5405,20 +5405,20 @@ _ZN3dlx19StringToIntRegisterEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEE
    58|  2.25k|            }
    59|  19.2k|        }
    60|       |
-   61|  62.6k|        return IntRegisterID::None;
-   62|  65.3k|    }
+   61|  62.9k|        return IntRegisterID::None;
+   62|  65.6k|    }
 _ZN3dlx21StringToFloatRegisterEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-   65|  62.6k|    {
-   66|  62.6k|        if (token.length() == 2u)
+   65|  62.9k|    {
+   66|  62.9k|        if (token.length() == 2u)
   ------------------
-  |  Branch (66:13): [True: 10.5k, False: 52.1k]
+  |  Branch (66:13): [True: 10.5k, False: 52.4k]
   ------------------
    67|  10.5k|        {
    68|  10.5k|            const char first_char = token[0u];
    69|  10.5k|            if (first_char == 'F' || first_char == 'f')
   ------------------
   |  Branch (69:17): [True: 436, False: 10.0k]
-  |  Branch (69:38): [True: 352, False: 9.73k]
+  |  Branch (69:38): [True: 352, False: 9.74k]
   ------------------
    70|    788|            {
    71|    788|                const char second_char = token[1u];
@@ -5432,9 +5432,9 @@ _ZN3dlx21StringToFloatRegisterEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
    75|    496|                }
    76|    788|            }
    77|  10.5k|        }
-   78|  52.1k|        else if (token.length() == 3u)
+   78|  52.4k|        else if (token.length() == 3u)
   ------------------
-  |  Branch (78:18): [True: 17.6k, False: 34.5k]
+  |  Branch (78:18): [True: 17.6k, False: 34.7k]
   ------------------
    79|  17.6k|        {
    80|  17.6k|            const char first_char = token[0u];
@@ -5501,63 +5501,63 @@ _ZN3dlx21StringToFloatRegisterEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
   113|  1.84k|            }
   114|  17.6k|        }
   115|       |
-  116|  61.0k|        return FloatRegisterID::None;
-  117|  62.6k|    }
+  116|  61.3k|        return FloatRegisterID::None;
+  117|  62.9k|    }
 _ZN3dlx6IsFPSREN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-  120|  65.9k|    {
-  121|  65.9k|        if (token.length() == 4u)
+  120|  66.2k|    {
+  121|  66.2k|        if (token.length() == 4u)
   ------------------
-  |  Branch (121:13): [True: 19.4k, False: 46.5k]
+  |  Branch (121:13): [True: 19.6k, False: 46.6k]
   ------------------
-  122|  19.4k|        {
-  123|  19.4k|            const char c1 = token[0u];
-  124|  19.4k|            const char c2 = token[1u];
-  125|  19.4k|            const char c3 = token[2u];
-  126|  19.4k|            const char c4 = token[3u];
+  122|  19.6k|        {
+  123|  19.6k|            const char c1 = token[0u];
+  124|  19.6k|            const char c2 = token[1u];
+  125|  19.6k|            const char c3 = token[2u];
+  126|  19.6k|            const char c4 = token[3u];
   127|       |
-  128|  19.4k|            return (c1 == 'F' || c1 == 'f') && (c2 == 'P' || c2 == 'p') &&
+  128|  19.6k|            return (c1 == 'F' || c1 == 'f') && (c2 == 'P' || c2 == 'p') &&
   ------------------
-  |  Branch (128:21): [True: 1.75k, False: 17.7k]
-  |  Branch (128:34): [True: 421, False: 17.3k]
+  |  Branch (128:21): [True: 1.75k, False: 17.8k]
+  |  Branch (128:34): [True: 421, False: 17.4k]
   |  Branch (128:49): [True: 1.72k, False: 449]
   |  Branch (128:62): [True: 383, False: 66]
   ------------------
-  129|  19.4k|                   (c3 == 'S' || c3 == 's') && (c4 == 'R' || c4 == 'r');
+  129|  19.6k|                   (c3 == 'S' || c3 == 's') && (c4 == 'R' || c4 == 'r');
   ------------------
   |  Branch (129:21): [True: 1.71k, False: 388]
   |  Branch (129:34): [True: 66, False: 322]
   |  Branch (129:49): [True: 1.71k, False: 66]
   |  Branch (129:62): [True: 0, False: 66]
   ------------------
-  130|  19.4k|        }
+  130|  19.6k|        }
   131|       |
-  132|  46.5k|        return false;
-  133|  65.9k|    }
+  132|  46.6k|        return false;
+  133|  66.2k|    }
 
 _ZN3dlx5TokenC2ENS0_4TypeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEENS2_7integerImEES9_:
-   26|   121k|    {}
+   26|   122k|    {}
 _ZN3dlx5TokenC2ENS0_4TypeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEENS2_7integerImEES9_j:
-   36|  36.7k|    {}
+   36|  36.9k|    {}
 _ZNK3dlx5Token7GetTypeEv:
-   39|   371k|    {
-   40|   371k|        return m_Type;
-   41|   371k|    }
+   39|   373k|    {
+   40|   373k|        return m_Type;
+   41|   373k|    }
 _ZNK3dlx5Token13GetLineNumberEv:
-   49|   275k|    {
-   50|   275k|        return m_LineNumber;
-   51|   275k|    }
+   49|   276k|    {
+   50|   276k|        return m_LineNumber;
+   51|   276k|    }
 _ZNK3dlx5Token9GetColumnEv:
-   54|   542k|    {
-   55|   542k|        return m_Column;
-   56|   542k|    }
+   54|   546k|    {
+   55|   546k|        return m_Column;
+   56|   546k|    }
 _ZNK3dlx5Token9GetLengthEv:
-   59|   380k|    {
-   60|   380k|        return m_Text.length();
-   61|   380k|    }
+   59|   383k|    {
+   60|   383k|        return m_Text.length();
+   61|   383k|    }
 _ZNK3dlx5Token7GetTextEv:
-   64|  62.5k|    {
-   65|  62.5k|        return m_Text;
-   66|  62.5k|    }
+   64|  62.9k|    {
+   65|  62.9k|        return m_Text;
+   66|  62.9k|    }
 _ZNK3dlx5Token7HasHintEv:
    78|  14.6k|    {
    79|  14.6k|        return m_HasHint;
@@ -5573,142 +5573,142 @@ _ZNK3dlx5Token7GetHintEv:
    90|  15.6k|    }
 
 _ZN3dlx11TokenStream8finalizeEv:
-   28|  3.31k|    {
+   28|  3.32k|    {
    29|       |#if defined(PHI_DEBUG)
    30|       |        PHI_ASSERT(!m_Finalized);
    31|       |#endif
    32|       |
-   33|  3.31k|        m_Iterator = 0u;
+   33|  3.32k|        m_Iterator = 0u;
    34|       |#if defined(PHI_DEBUG)
    35|       |        m_Finalized = true;
    36|       |#endif
-   37|  3.31k|    }
+   37|  3.32k|    }
 _ZNK3dlx11TokenStream10has_x_moreEN3phi7integerImEE:
    49|    198|    {
    50|    198|        return x + m_Iterator <= m_Tokens.size();
    51|    198|    }
 _ZNK3dlx11TokenStream8has_moreEv:
-   54|   160k|    {
-   55|   160k|        return m_Iterator < m_Tokens.size();
-   56|   160k|    }
+   54|   161k|    {
+   55|   161k|        return m_Iterator < m_Tokens.size();
+   56|   161k|    }
 _ZNK3dlx11TokenStream11reached_endEv:
-   59|   158k|    {
-   60|   158k|        return m_Iterator >= m_Tokens.size();
-   61|   158k|    }
+   59|   159k|    {
+   60|   159k|        return m_Iterator >= m_Tokens.size();
+   61|   159k|    }
 _ZN3dlx11TokenStream7consumeEv:
-   74|   158k|    {
-   75|   158k|        PHI_ASSERT(!reached_end());
+   74|   159k|    {
+   75|   159k|        PHI_ASSERT(!reached_end());
    76|       |#if defined(PHI_DEBUG)
    77|       |        PHI_ASSERT(m_Finalized);
    78|       |#endif
    79|       |
-   80|   158k|        return m_Tokens.at(m_Iterator++.unsafe());
-   81|   158k|    }
+   80|   159k|        return m_Tokens.at(m_Iterator++.unsafe());
+   81|   159k|    }
 _ZNK3dlx11TokenStream16current_positionEv:
   154|    196|    {
   155|    196|        return m_Iterator;
   156|    196|    }
 _ZNK3dlx11TokenStream5beginEv:
-  168|  3.31k|    {
+  168|  3.32k|    {
   169|       |#if defined(PHI_DEBUG)
   170|       |        //PHI_ASSERT(m_Finalized);
   171|       |#endif
   172|       |
-  173|  3.31k|        return m_Tokens.begin();
-  174|  3.31k|    }
+  173|  3.32k|        return m_Tokens.begin();
+  174|  3.32k|    }
 _ZNK3dlx11TokenStream3endEv:
-  186|  3.31k|    {
+  186|  3.32k|    {
   187|       |#if defined(PHI_DEBUG)
   188|       |        //PHI_ASSERT(m_Finalized);
   189|       |#endif
   190|       |
-  191|  3.31k|        return m_Tokens.end();
-  192|  3.31k|    }
+  191|  3.32k|        return m_Tokens.end();
+  192|  3.32k|    }
 _ZNK3dlx11TokenStream6rbeginEv:
-  204|    249|    {
+  204|    250|    {
   205|       |#if defined(PHI_DEBUG)
   206|       |        //PHI_ASSERT(m_Finalized);
   207|       |#endif
   208|       |
-  209|    249|        return m_Tokens.rbegin();
-  210|    249|    }
+  209|    250|        return m_Tokens.rbegin();
+  210|    250|    }
 _ZNK3dlx11TokenStream4rendEv:
-  213|  3.62k|    {
+  213|  3.63k|    {
   214|       |#if defined(PHI_DEBUG)
   215|       |        //PHI_ASSERT(m_Finalized);
   216|       |#endif
   217|       |
-  218|  3.62k|        return m_Tokens.rend();
-  219|  3.62k|    }
+  218|  3.63k|        return m_Tokens.rend();
+  219|  3.63k|    }
 
 _ZN3dlx8TokenizeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-   65|  3.31k|    {
-   66|  3.31k|        TokenStream tokens;
+   65|  3.32k|    {
+   66|  3.32k|        TokenStream tokens;
    67|       |
-   68|  3.31k|        phi::string_view current_token;
+   68|  3.32k|        phi::string_view current_token;
    69|       |
-   70|  3.31k|        phi::u64 current_line_number{1u};
-   71|  3.31k|        phi::u64 current_column{1u};
-   72|  3.31k|        phi::u64 token_begin{0u};
+   70|  3.32k|        phi::u64 current_line_number{1u};
+   71|  3.32k|        phi::u64 current_column{1u};
+   72|  3.32k|        phi::u64 token_begin{0u};
    73|       |
-   74|  3.31k|        phi::boolean parsing_comment{false};
+   74|  3.32k|        phi::boolean parsing_comment{false};
    75|       |
-   76|   364k|        for (phi::usize i{0u}; i < source.length(); ++i)
+   76|   366k|        for (phi::usize i{0u}; i < source.length(); ++i)
   ------------------
-  |  Branch (76:32): [True: 360k, False: 3.31k]
+  |  Branch (76:32): [True: 363k, False: 3.32k]
   ------------------
-   77|   360k|        {
-   78|   360k|            const char c{source.at(i)};
+   77|   363k|        {
+   78|   363k|            const char c{source.at(i)};
    79|       |
-   80|   360k|            if (c == '\n')
+   80|   363k|            if (c == '\n')
   ------------------
-  |  Branch (80:17): [True: 59.1k, False: 301k]
+  |  Branch (80:17): [True: 59.5k, False: 303k]
   ------------------
-   81|  59.1k|            {
-   82|  59.1k|                if (current_token.is_empty())
+   81|  59.5k|            {
+   82|  59.5k|                if (current_token.is_empty())
   ------------------
-  |  Branch (82:21): [True: 8.78k, False: 50.3k]
+  |  Branch (82:21): [True: 8.79k, False: 50.7k]
   ------------------
-   83|  8.78k|                {
+   83|  8.79k|                {
    84|       |                    // Skip empty lines
-   85|  8.78k|                    tokens.emplace_back(Token::Type::NewLine, source.substring_view(i, 1u),
-   86|  8.78k|                                        current_line_number, current_column);
+   85|  8.79k|                    tokens.emplace_back(Token::Type::NewLine, source.substring_view(i, 1u),
+   86|  8.79k|                                        current_line_number, current_column);
    87|       |
-   88|  8.78k|                    parsing_comment = false;
-   89|  8.78k|                    current_line_number += 1u;
-   90|  8.78k|                    current_column = 1u;
-   91|  8.78k|                    continue;
-   92|  8.78k|                }
+   88|  8.79k|                    parsing_comment = false;
+   89|  8.79k|                    current_line_number += 1u;
+   90|  8.79k|                    current_column = 1u;
+   91|  8.79k|                    continue;
+   92|  8.79k|                }
    93|       |
    94|       |                // Otherwise a new line separates tokens
-   95|  50.3k|                tokens.emplace_back(ParseToken(
-   96|  50.3k|                        source.substring_view(
-   97|  50.3k|                                phi::narrow_cast<phi::string_view::size_type>(token_begin),
-   98|  50.3k|                                current_token.length()),
-   99|  50.3k|                        current_line_number, current_column - current_token.length()));
+   95|  50.7k|                tokens.emplace_back(ParseToken(
+   96|  50.7k|                        source.substring_view(
+   97|  50.7k|                                phi::narrow_cast<phi::string_view::size_type>(token_begin),
+   98|  50.7k|                                current_token.length()),
+   99|  50.7k|                        current_line_number, current_column - current_token.length()));
   100|       |
-  101|  50.3k|                tokens.emplace_back(Token::Type::NewLine, source.substring_view(i, 1u),
-  102|  50.3k|                                    current_line_number, current_column);
+  101|  50.7k|                tokens.emplace_back(Token::Type::NewLine, source.substring_view(i, 1u),
+  102|  50.7k|                                    current_line_number, current_column);
   103|       |
-  104|  50.3k|                current_token   = phi::string_view{};
-  105|  50.3k|                parsing_comment = false;
-  106|  50.3k|                current_line_number += 1u;
-  107|  50.3k|                current_column = 0u;
-  108|  50.3k|            }
+  104|  50.7k|                current_token   = phi::string_view{};
+  105|  50.7k|                parsing_comment = false;
+  106|  50.7k|                current_line_number += 1u;
+  107|  50.7k|                current_column = 0u;
+  108|  50.7k|            }
   109|       |            // Comments begin with an '/' or ';' and after that the entire line is treated as part of the comment
-  110|   301k|            else if (c == '/' || c == ';')
+  110|   303k|            else if (c == '/' || c == ';')
   ------------------
-  |  Branch (110:22): [True: 1.19k, False: 300k]
-  |  Branch (110:34): [True: 27.6k, False: 272k]
+  |  Branch (110:22): [True: 1.19k, False: 302k]
+  |  Branch (110:34): [True: 27.8k, False: 274k]
   ------------------
-  111|  28.8k|            {
-  112|  28.8k|                if (current_token.is_empty())
+  111|  29.0k|            {
+  112|  29.0k|                if (current_token.is_empty())
   ------------------
-  |  Branch (112:21): [True: 27.3k, False: 1.48k]
+  |  Branch (112:21): [True: 27.5k, False: 1.48k]
   ------------------
-  113|  27.3k|                {
-  114|  27.3k|                    token_begin = i;
-  115|  27.3k|                }
+  113|  27.5k|                {
+  114|  27.5k|                    token_begin = i;
+  115|  27.5k|                }
   116|  1.48k|                else if (!parsing_comment)
   ------------------
   |  Branch (116:26): [True: 919, False: 563]
@@ -5723,41 +5723,41 @@ _ZN3dlx8TokenizeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   124|    919|                    current_token = phi::string_view{};
   125|    919|                }
   126|       |
-  127|  28.8k|                parsing_comment = true;
-  128|  28.8k|                current_token   = source.substring_view(
-  129|  28.8k|                        phi::narrow_cast<phi::string_view::size_type>(token_begin),
-  130|  28.8k|                        current_token.length() + 1u);
-  131|  28.8k|            }
-  132|   272k|            else if (parsing_comment)
+  127|  29.0k|                parsing_comment = true;
+  128|  29.0k|                current_token   = source.substring_view(
+  129|  29.0k|                        phi::narrow_cast<phi::string_view::size_type>(token_begin),
+  130|  29.0k|                        current_token.length() + 1u);
+  131|  29.0k|            }
+  132|   274k|            else if (parsing_comment)
   ------------------
-  |  Branch (132:22): [True: 29.5k, False: 243k]
+  |  Branch (132:22): [True: 29.6k, False: 244k]
   ------------------
-  133|  29.5k|            {
+  133|  29.6k|            {
   134|       |                // simply append the character
-  135|  29.5k|                current_token = source.substring_view(
-  136|  29.5k|                        phi::narrow_cast<phi::string_view::size_type>(token_begin),
-  137|  29.5k|                        current_token.length() + 1u);
-  138|  29.5k|            }
-  139|   243k|            else
-  140|   243k|            {
+  135|  29.6k|                current_token = source.substring_view(
+  136|  29.6k|                        phi::narrow_cast<phi::string_view::size_type>(token_begin),
+  137|  29.6k|                        current_token.length() + 1u);
+  138|  29.6k|            }
+  139|   244k|            else
+  140|   244k|            {
   141|       |                // Not parsing a comment
-  142|   243k|                switch (c)
-  143|   243k|                {
-  144|  19.6k|                    case ' ':
+  142|   244k|                switch (c)
+  143|   244k|                {
+  144|  19.8k|                    case ' ':
   ------------------
-  |  Branch (144:21): [True: 19.6k, False: 223k]
+  |  Branch (144:21): [True: 19.8k, False: 225k]
   ------------------
-  145|  20.0k|                    case '\t':
+  145|  20.1k|                    case '\t':
   ------------------
-  |  Branch (145:21): [True: 348, False: 242k]
+  |  Branch (145:21): [True: 348, False: 244k]
   ------------------
-  146|  20.0k|                    case '\v':
+  146|  20.1k|                    case '\v':
   ------------------
-  |  Branch (146:21): [True: 0, False: 243k]
+  |  Branch (146:21): [True: 0, False: 244k]
   ------------------
-  147|  20.0k|                        if (current_token.is_empty())
+  147|  20.1k|                        if (current_token.is_empty())
   ------------------
-  |  Branch (147:29): [True: 107, False: 19.8k]
+  |  Branch (147:29): [True: 107, False: 20.0k]
   ------------------
   148|    107|                        {
   149|    107|                            current_column += 1u;
@@ -5766,21 +5766,21 @@ _ZN3dlx8TokenizeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   152|    107|                        }
   153|       |
   154|       |                        // Otherwise a whitespace separates tokens
-  155|  19.8k|                        tokens.emplace_back(ParseToken(
-  156|  19.8k|                                source.substring_view(
-  157|  19.8k|                                        phi::narrow_cast<phi::string_view::size_type>(token_begin),
-  158|  19.8k|                                        current_token.length()),
-  159|  19.8k|                                current_line_number, current_column - current_token.length()));
-  160|  19.8k|                        current_token = phi::string_view{};
-  161|  19.8k|                        break;
-  162|  8.82k|                    case ':':
+  155|  20.0k|                        tokens.emplace_back(ParseToken(
+  156|  20.0k|                                source.substring_view(
+  157|  20.0k|                                        phi::narrow_cast<phi::string_view::size_type>(token_begin),
+  158|  20.0k|                                        current_token.length()),
+  159|  20.0k|                                current_line_number, current_column - current_token.length()));
+  160|  20.0k|                        current_token = phi::string_view{};
+  161|  20.0k|                        break;
+  162|  8.85k|                    case ':':
   ------------------
-  |  Branch (162:21): [True: 8.82k, False: 234k]
+  |  Branch (162:21): [True: 8.85k, False: 236k]
   ------------------
   163|       |                        // Need to parse label names together with their colon
-  164|  8.82k|                        if (!current_token.is_empty())
+  164|  8.85k|                        if (!current_token.is_empty())
   ------------------
-  |  Branch (164:29): [True: 8.16k, False: 658]
+  |  Branch (164:29): [True: 8.16k, False: 690]
   ------------------
   165|  8.16k|                        {
   166|  8.16k|                            current_token = source.substring_view(
@@ -5796,31 +5796,31 @@ _ZN3dlx8TokenizeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   176|       |
   177|  8.16k|                            current_token = phi::string_view{};
   178|  8.16k|                        }
-  179|    658|                        else
-  180|    658|                        {
+  179|    690|                        else
+  180|    690|                        {
   181|       |                            // Orphan colon
-  182|    658|                            token_begin = i;
+  182|    690|                            token_begin = i;
   183|       |
-  184|    658|                            tokens.emplace_back(
-  185|    658|                                    Token::Type::Colon,
-  186|    658|                                    source.substring_view(
-  187|    658|                                            phi::narrow_cast<phi::string_view::size_type>(
-  188|    658|                                                    token_begin),
-  189|    658|                                            1u),
-  190|    658|                                    current_line_number, current_column);
-  191|    658|                        }
-  192|  8.82k|                        break;
+  184|    690|                            tokens.emplace_back(
+  185|    690|                                    Token::Type::Colon,
+  186|    690|                                    source.substring_view(
+  187|    690|                                            phi::narrow_cast<phi::string_view::size_type>(
+  188|    690|                                                    token_begin),
+  189|    690|                                            1u),
+  190|    690|                                    current_line_number, current_column);
+  191|    690|                        }
+  192|  8.85k|                        break;
   193|  8.30k|                    case ',':
   ------------------
-  |  Branch (193:21): [True: 8.30k, False: 234k]
+  |  Branch (193:21): [True: 8.30k, False: 236k]
   ------------------
   194|  9.04k|                    case '(':
   ------------------
-  |  Branch (194:21): [True: 740, False: 242k]
+  |  Branch (194:21): [True: 740, False: 244k]
   ------------------
   195|  9.45k|                    case ')':
   ------------------
-  |  Branch (195:21): [True: 411, False: 242k]
+  |  Branch (195:21): [True: 411, False: 244k]
   ------------------
   196|  9.45k|                        if (!current_token.is_empty())
   ------------------
@@ -5878,32 +5878,32 @@ _ZN3dlx8TokenizeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   234|  9.45k|                                current_line_number, current_column);
   235|  9.45k|                        break;
   236|       |
-  237|   204k|                    default:
+  237|   206k|                    default:
   ------------------
-  |  Branch (237:21): [True: 204k, False: 38.2k]
+  |  Branch (237:21): [True: 206k, False: 38.4k]
   ------------------
-  238|   204k|                        if (current_token.is_empty())
+  238|   206k|                        if (current_token.is_empty())
   ------------------
-  |  Branch (238:29): [True: 60.4k, False: 144k]
+  |  Branch (238:29): [True: 60.8k, False: 145k]
   ------------------
-  239|  60.4k|                        {
-  240|  60.4k|                            token_begin = i;
-  241|  60.4k|                        }
+  239|  60.8k|                        {
+  240|  60.8k|                            token_begin = i;
+  241|  60.8k|                        }
   242|       |
   243|       |                        // simply append the character
-  244|   204k|                        current_token = source.substring_view(
-  245|   204k|                                phi::narrow_cast<phi::string_view::size_type>(token_begin),
-  246|   204k|                                current_token.length() + 1u);
-  247|   243k|                }
-  248|   243k|            }
+  244|   206k|                        current_token = source.substring_view(
+  245|   206k|                                phi::narrow_cast<phi::string_view::size_type>(token_begin),
+  246|   206k|                                current_token.length() + 1u);
+  247|   244k|                }
+  248|   244k|            }
   249|       |
-  250|   351k|            current_column += 1u;
-  251|   351k|        }
+  250|   354k|            current_column += 1u;
+  251|   354k|        }
   252|       |
   253|       |        // Checked the entire string. Parse whats left if anything
-  254|  3.31k|        if (!current_token.is_empty())
+  254|  3.32k|        if (!current_token.is_empty())
   ------------------
-  |  Branch (254:13): [True: 1.19k, False: 2.12k]
+  |  Branch (254:13): [True: 1.19k, False: 2.13k]
   ------------------
   255|  1.19k|        {
   256|  1.19k|            tokens.emplace_back(
@@ -5914,16 +5914,16 @@ _ZN3dlx8TokenizeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   261|  1.19k|        }
   262|       |
   263|       |        // Finalize token stream
-  264|  3.31k|        tokens.finalize();
+  264|  3.32k|        tokens.finalize();
   265|       |
-  266|  3.31k|        return tokens;
-  267|  3.31k|    }
+  266|  3.32k|        return tokens;
+  267|  3.32k|    }
 Tokenize.cpp:_ZN3dlxL10ParseTokenEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEENS0_7integerImEES7_:
-   13|  88.7k|    {
-   14|  88.7k|        if (token.at(0u) == '#' && token.length() > 1u)
+   13|  89.3k|    {
+   14|  89.3k|        if (token.at(0u) == '#' && token.length() > 1u)
   ------------------
-  |  Branch (14:13): [True: 1.37k, False: 87.3k]
-  |  Branch (14:13): [True: 1.09k, False: 87.6k]
+  |  Branch (14:13): [True: 1.37k, False: 87.9k]
+  |  Branch (14:13): [True: 1.09k, False: 88.2k]
   |  Branch (14:36): [True: 1.09k, False: 285]
   ------------------
    15|  1.09k|        {
@@ -5931,130 +5931,130 @@ Tokenize.cpp:_ZN3dlxL10ParseTokenEN3phi17basic_string_viewIcNSt3__111char_traits
    17|       |
    18|  1.09k|            if (number)
   ------------------
-  |  Branch (18:17): [True: 520, False: 572]
+  |  Branch (18:17): [True: 521, False: 572]
   ------------------
-   19|    520|            {
-   20|    520|                return {Token::Type::ImmediateInteger, token, line_number, column,
-   21|    520|                        static_cast<phi::uint32_t>(number.value().unsafe())};
-   22|    520|            }
+   19|    521|            {
+   20|    521|                return {Token::Type::ImmediateInteger, token, line_number, column,
+   21|    521|                        static_cast<phi::uint32_t>(number.value().unsafe())};
+   22|    521|            }
    23|       |
    24|    572|            return {Token::Type::ImmediateInteger, token, line_number, column};
    25|  1.09k|        }
    26|       |
-   27|  87.6k|        if (token.at(0u) == '/' || token.at(0u) == ';')
+   27|  88.2k|        if (token.at(0u) == '/' || token.at(0u) == ';')
   ------------------
-  |  Branch (27:13): [True: 681, False: 86.9k]
-  |  Branch (27:13): [True: 28.3k, False: 59.3k]
-  |  Branch (27:36): [True: 27.6k, False: 59.3k]
+  |  Branch (27:13): [True: 683, False: 87.5k]
+  |  Branch (27:13): [True: 28.4k, False: 59.7k]
+  |  Branch (27:36): [True: 27.8k, False: 59.7k]
   ------------------
-   28|  28.3k|        {
-   29|  28.3k|            return {Token::Type::Comment, token, line_number, column};
-   30|  28.3k|        }
+   28|  28.4k|        {
+   29|  28.4k|            return {Token::Type::Comment, token, line_number, column};
+   30|  28.4k|        }
    31|       |
-   32|  59.3k|        if (phi::optional<phi::i16> number = ParseNumber(token); number.has_value())
+   32|  59.7k|        if (phi::optional<phi::i16> number = ParseNumber(token); number.has_value())
   ------------------
-  |  Branch (32:66): [True: 2.25k, False: 57.0k]
+  |  Branch (32:66): [True: 2.33k, False: 57.3k]
   ------------------
-   33|  2.25k|        {
-   34|  2.25k|            return {Token::Type::IntegerLiteral, token, line_number, column,
-   35|  2.25k|                    static_cast<phi::uint32_t>(number->unsafe())};
-   36|  2.25k|        }
+   33|  2.33k|        {
+   34|  2.33k|            return {Token::Type::IntegerLiteral, token, line_number, column,
+   35|  2.33k|                    static_cast<phi::uint32_t>(number->unsafe())};
+   36|  2.33k|        }
    37|       |
-   38|  57.0k|        if (IsFPSR(token))
+   38|  57.3k|        if (IsFPSR(token))
   ------------------
-  |  Branch (38:13): [True: 1.71k, False: 55.3k]
+  |  Branch (38:13): [True: 1.71k, False: 55.6k]
   ------------------
    39|  1.71k|        {
    40|  1.71k|            return {Token::Type::RegisterStatus, token, line_number, column};
    41|  1.71k|        }
    42|       |
-   43|  55.3k|        if (IntRegisterID id = StringToIntRegister(token); id != IntRegisterID::None)
+   43|  55.6k|        if (IntRegisterID id = StringToIntRegister(token); id != IntRegisterID::None)
   ------------------
-  |  Branch (43:60): [True: 2.32k, False: 53.0k]
+  |  Branch (43:60): [True: 2.32k, False: 53.3k]
   ------------------
    44|  2.32k|        {
    45|  2.32k|            return {Token::Type::RegisterInt, token, line_number, column,
    46|  2.32k|                    static_cast<phi::uint32_t>(id)};
    47|  2.32k|        }
    48|       |
-   49|  53.0k|        if (FloatRegisterID id = StringToFloatRegister(token); id != FloatRegisterID::None)
+   49|  53.3k|        if (FloatRegisterID id = StringToFloatRegister(token); id != FloatRegisterID::None)
   ------------------
-  |  Branch (49:64): [True: 1.55k, False: 51.4k]
+  |  Branch (49:64): [True: 1.55k, False: 51.7k]
   ------------------
    50|  1.55k|        {
    51|  1.55k|            return {Token::Type::RegisterFloat, token, line_number, column,
    52|  1.55k|                    static_cast<phi::uint32_t>(id)};
    53|  1.55k|        }
    54|       |
-   55|  51.4k|        if (OpCode opcode = StringToOpCode(token); opcode != OpCode::NONE)
+   55|  51.7k|        if (OpCode opcode = StringToOpCode(token); opcode != OpCode::NONE)
   ------------------
-  |  Branch (55:52): [True: 30.0k, False: 21.4k]
+  |  Branch (55:52): [True: 30.1k, False: 21.6k]
   ------------------
-   56|  30.0k|        {
-   57|  30.0k|            return {Token::Type::OpCode, token, line_number, column,
-   58|  30.0k|                    static_cast<phi::uint32_t>(opcode)};
-   59|  30.0k|        }
+   56|  30.1k|        {
+   57|  30.1k|            return {Token::Type::OpCode, token, line_number, column,
+   58|  30.1k|                    static_cast<phi::uint32_t>(opcode)};
+   59|  30.1k|        }
    60|       |
-   61|  21.4k|        return {Token::Type::LabelIdentifier, token, line_number, column};
-   62|  51.4k|    }
+   61|  21.6k|        return {Token::Type::LabelIdentifier, token, line_number, column};
+   62|  51.7k|    }
 
 _ZN6ImVec2C2Ev:
   267|      1|    constexpr ImVec2()                      : x(0.0f), y(0.0f) { }
 
 _ZN4fuzz23ParseAsStrucutedDLXCodeEPKhm:
-   58|  3.31k|    {
+   58|  3.32k|    {
    59|       |        // Constants
-   60|  3.31k|        constexpr phi::uint8_t number_of_opcodes =
-   61|  3.31k|                static_cast<phi::uint8_t>(dlx::OpCode::NUMBER_OF_ELEMENTS);
-   62|  3.31k|        constexpr phi::uint8_t number_of_int_registers   = 32;
-   63|  3.31k|        constexpr phi::uint8_t number_of_float_registers = 32;
+   60|  3.32k|        constexpr phi::uint8_t number_of_opcodes =
+   61|  3.32k|                static_cast<phi::uint8_t>(dlx::OpCode::NUMBER_OF_ELEMENTS);
+   62|  3.32k|        constexpr phi::uint8_t number_of_int_registers   = 32;
+   63|  3.32k|        constexpr phi::uint8_t number_of_float_registers = 32;
    64|       |
-   65|  3.31k|        std::string ret;
+   65|  3.32k|        std::string ret;
    66|       |
-   67|  68.1k|        for (phi::size_t index{0}; index < size;)
+   67|  68.6k|        for (phi::size_t index{0}; index < size;)
   ------------------
-  |  Branch (67:36): [True: 64.8k, False: 3.29k]
+  |  Branch (67:36): [True: 65.3k, False: 3.30k]
   ------------------
-   68|  64.8k|        {
-   69|  64.8k|            phi::uint8_t current_value = data[index++];
+   68|  65.3k|        {
+   69|  65.3k|            phi::uint8_t current_value = data[index++];
    70|       |
-   71|  64.8k|            switch (current_value)
-   72|  64.8k|            {
+   71|  65.3k|            switch (current_value)
+   72|  65.3k|            {
    73|       |                // OpCode
-   74|  20.6k|                case 0: {
+   74|  20.8k|                case 0: {
   ------------------
-  |  Branch (74:17): [True: 20.6k, False: 44.2k]
+  |  Branch (74:17): [True: 20.8k, False: 44.5k]
   ------------------
    75|       |                    // Has one more value
-   76|  20.6k|                    if (index < size)
+   76|  20.8k|                    if (index < size)
   ------------------
-  |  Branch (76:25): [True: 20.6k, False: 2]
+  |  Branch (76:25): [True: 20.8k, False: 2]
   ------------------
-   77|  20.6k|                    {
-   78|  20.6k|                        phi::uint8_t opcode_value = data[index++] % number_of_opcodes;
+   77|  20.8k|                    {
+   78|  20.8k|                        phi::uint8_t opcode_value = data[index++] % number_of_opcodes;
    79|       |
-   80|  20.6k|                        ret += dlx::enum_name(static_cast<dlx::OpCode>(opcode_value));
+   80|  20.8k|                        ret += dlx::enum_name(static_cast<dlx::OpCode>(opcode_value));
    81|       |
-   82|  20.6k|                        if (!detail::AddSeperatorToken(ret, data, size, index))
+   82|  20.8k|                        if (!detail::AddSeperatorToken(ret, data, size, index))
   ------------------
-  |  Branch (82:29): [True: 2, False: 20.6k]
+  |  Branch (82:29): [True: 2, False: 20.8k]
   ------------------
    83|      2|                        {
    84|      2|                            return detail::ErrorString;
    85|      2|                        }
-   86|  20.6k|                    }
-   87|  20.6k|                    break;
-   88|  20.6k|                }
+   86|  20.8k|                    }
+   87|  20.8k|                    break;
+   88|  20.8k|                }
    89|       |
    90|       |                // Int Register
-   91|  20.6k|                case 1: {
+   91|  20.8k|                case 1: {
   ------------------
-  |  Branch (91:17): [True: 2.54k, False: 62.3k]
+  |  Branch (91:17): [True: 2.54k, False: 62.7k]
   ------------------
    92|       |                    // Has one more value
    93|  2.54k|                    if (index < size)
   ------------------
-  |  Branch (93:25): [True: 2.54k, False: 4]
+  |  Branch (93:25): [True: 2.54k, False: 5]
   ------------------
    94|  2.54k|                    {
    95|  2.54k|                        phi::uint8_t opcode_value = data[index++] % number_of_int_registers;
@@ -6074,7 +6074,7 @@ _ZN4fuzz23ParseAsStrucutedDLXCodeEPKhm:
   106|       |                // Float register
   107|  2.54k|                case 2: {
   ------------------
-  |  Branch (107:17): [True: 1.56k, False: 63.3k]
+  |  Branch (107:17): [True: 1.56k, False: 63.7k]
   ------------------
   108|       |                    // Has one more value
   109|  1.56k|                    if (index < size)
@@ -6099,7 +6099,7 @@ _ZN4fuzz23ParseAsStrucutedDLXCodeEPKhm:
   122|       |                // Floating point status register
   123|  2.01k|                case 3: {
   ------------------
-  |  Branch (123:17): [True: 2.01k, False: 62.8k]
+  |  Branch (123:17): [True: 2.01k, False: 63.3k]
   ------------------
   124|  2.01k|                    ret += "FPSR";
   125|  2.01k|                    if (!detail::AddSeperatorToken(ret, data, size, index))
@@ -6116,44 +6116,44 @@ _ZN4fuzz23ParseAsStrucutedDLXCodeEPKhm:
   133|       |                // Immediate integer
   134|  2.01k|                case 4: {
   ------------------
-  |  Branch (134:17): [True: 1.94k, False: 62.9k]
+  |  Branch (134:17): [True: 1.98k, False: 63.3k]
   ------------------
-  135|  1.94k|                    ret += "#";
-  136|  1.94k|                    [[fallthrough]];
-  137|  1.94k|                }
+  135|  1.98k|                    ret += "#";
+  136|  1.98k|                    [[fallthrough]];
+  137|  1.98k|                }
   138|       |
   139|       |                // Integer literal
-  140|  4.26k|                case 5: {
+  140|  4.37k|                case 5: {
   ------------------
-  |  Branch (140:17): [True: 2.32k, False: 62.5k]
+  |  Branch (140:17): [True: 2.39k, False: 62.9k]
   ------------------
-  141|  4.26k|                    phi::size_t size_of_int = std::min(2ul, size - index);
+  141|  4.37k|                    phi::size_t size_of_int = std::min(2ul, size - index);
   142|       |
-  143|  4.26k|                    if (size_of_int > 0)
+  143|  4.37k|                    if (size_of_int > 0)
   ------------------
-  |  Branch (143:25): [True: 4.22k, False: 42]
+  |  Branch (143:25): [True: 4.33k, False: 42]
   ------------------
-  144|  4.22k|                    {
-  145|  4.22k|                        phi::int16_t value = 0;
+  144|  4.33k|                    {
+  145|  4.33k|                        phi::int16_t value = 0;
   146|       |
-  147|  12.6k|                        for (; size_of_int > 0; --size_of_int)
+  147|  12.9k|                        for (; size_of_int > 0; --size_of_int)
   ------------------
-  |  Branch (147:32): [True: 8.41k, False: 4.22k]
+  |  Branch (147:32): [True: 8.62k, False: 4.33k]
   ------------------
-  148|  8.41k|                        {
-  149|  8.41k|                            value <<= 8;
-  150|  8.41k|                            value &= data[index++];
-  151|  8.41k|                        }
+  148|  8.62k|                        {
+  149|  8.62k|                            value <<= 8;
+  150|  8.62k|                            value &= data[index++];
+  151|  8.62k|                        }
   152|       |
-  153|  4.22k|                        ret += std::to_string(value);
-  154|  4.22k|                    }
-  155|  4.26k|                    break;
-  156|  1.94k|                }
+  153|  4.33k|                        ret += std::to_string(value);
+  154|  4.33k|                    }
+  155|  4.37k|                    break;
+  156|  1.98k|                }
   157|       |
   158|       |                // Label
   159|  2.78k|                case 6: {
   ------------------
-  |  Branch (159:17): [True: 2.78k, False: 62.0k]
+  |  Branch (159:17): [True: 2.78k, False: 62.5k]
   ------------------
   160|  2.78k|                    phi::size_t label_length = std::min(5ul, size - index);
   161|       |
@@ -6200,67 +6200,67 @@ _ZN4fuzz23ParseAsStrucutedDLXCodeEPKhm:
   189|  2.78k|                }
   190|       |
   191|       |                // Newline
-  192|  3.73k|                case 7: {
+  192|  3.74k|                case 7: {
   ------------------
-  |  Branch (192:17): [True: 3.73k, False: 61.1k]
+  |  Branch (192:17): [True: 3.74k, False: 61.5k]
   ------------------
-  193|  3.73k|                    ret += '\n';
-  194|  3.73k|                    break;
+  193|  3.74k|                    ret += '\n';
+  194|  3.74k|                    break;
   195|  2.78k|                }
   196|       |
   197|       |                // Comment
-  198|  27.3k|                case 8: {
+  198|  27.4k|                case 8: {
   ------------------
-  |  Branch (198:17): [True: 27.3k, False: 37.5k]
+  |  Branch (198:17): [True: 27.4k, False: 37.8k]
   ------------------
-  199|  27.3k|                    phi::size_t comment_length = std::min(5ul, size - index);
+  199|  27.4k|                    phi::size_t comment_length = std::min(5ul, size - index);
   200|       |
-  201|  27.3k|                    if (comment_length > 0)
+  201|  27.4k|                    if (comment_length > 0)
   ------------------
-  |  Branch (201:25): [True: 27.3k, False: 4]
+  |  Branch (201:25): [True: 27.4k, False: 4]
   ------------------
-  202|  27.3k|                    {
-  203|  27.3k|                        std::string comment = "; ";
+  202|  27.4k|                    {
+  203|  27.4k|                        std::string comment = "; ";
   204|       |
-  205|   162k|                        for (; comment_length > 0; --comment_length)
+  205|   163k|                        for (; comment_length > 0; --comment_length)
   ------------------
-  |  Branch (205:32): [True: 134k, False: 27.3k]
+  |  Branch (205:32): [True: 135k, False: 27.4k]
   ------------------
-  206|   134k|                        {
-  207|   134k|                            comment += static_cast<char>(data[index++]);
-  208|   134k|                        }
+  206|   135k|                        {
+  207|   135k|                            comment += static_cast<char>(data[index++]);
+  208|   135k|                        }
   209|       |
-  210|  27.3k|                        ret += comment + '\n';
-  211|  27.3k|                    }
-  212|  27.3k|                    break;
+  210|  27.4k|                        ret += comment + '\n';
+  211|  27.4k|                    }
+  212|  27.4k|                    break;
   213|  2.78k|                }
   214|       |
   215|       |                // Ignore
   216|     15|                default:
   ------------------
-  |  Branch (216:17): [True: 15, False: 64.8k]
+  |  Branch (216:17): [True: 15, False: 65.3k]
   ------------------
   217|     15|                    return detail::ErrorString;
-  218|  64.8k|            }
-  219|  64.8k|        }
+  218|  65.3k|            }
+  219|  65.3k|        }
   220|       |
-  221|  3.29k|        return ret;
-  222|  3.31k|    }
+  221|  3.30k|        return ret;
+  222|  3.32k|    }
 _ZN4fuzz6detail17AddSeperatorTokenERNSt3__112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEPKhmRm:
-   23|  27.1k|        {
-   24|  27.1k|            if (index < size)
+   23|  27.3k|        {
+   24|  27.3k|            if (index < size)
   ------------------
-  |  Branch (24:17): [True: 26.0k, False: 1.10k]
+  |  Branch (24:17): [True: 26.2k, False: 1.10k]
   ------------------
-   25|  26.0k|            {
-   26|  26.0k|                phi::uint8_t val = data[index++];
-   27|  26.0k|                if (val == 0)
+   25|  26.2k|            {
+   26|  26.2k|                phi::uint8_t val = data[index++];
+   27|  26.2k|                if (val == 0)
   ------------------
-  |  Branch (27:21): [True: 19.6k, False: 6.44k]
+  |  Branch (27:21): [True: 19.7k, False: 6.44k]
   ------------------
-   28|  19.6k|                {
-   29|  19.6k|                    text += ' ';
-   30|  19.6k|                }
+   28|  19.7k|                {
+   29|  19.7k|                    text += ' ';
+   30|  19.7k|                }
    31|  6.44k|                else if (val == 1)
   ------------------
   |  Branch (31:26): [True: 6.43k, False: 8]
@@ -6272,10 +6272,10 @@ _ZN4fuzz6detail17AddSeperatorTokenERNSt3__112basic_stringIcNS1_11char_traitsIcEE
    36|      8|                {
    37|      8|                    return false;
    38|      8|                }
-   39|  26.0k|            }
+   39|  26.2k|            }
    40|       |
-   41|  27.1k|            return true;
-   42|  27.1k|        }
+   41|  27.3k|            return true;
+   42|  27.3k|        }
 _ZN4fuzz6detail21SanitizeForIdentifierEh:
    47|  13.7k|        {
    48|  13.7k|            if (!phi::is_alpha_numeric(static_cast<char>(c)))
@@ -6290,21 +6290,21 @@ _ZN4fuzz6detail21SanitizeForIdentifierEh:
    54|  13.7k|        }
 
 LLVMFuzzerTestOneInput:
-   10|  3.31k|{
-   11|  3.31k|    static dlxemu::Emulator emu;
+   10|  3.32k|{
+   11|  3.32k|    static dlxemu::Emulator emu;
    12|       |
-   13|  3.31k|    std::string source = fuzz::ParseAsStrucutedDLXCode(data, size);
+   13|  3.32k|    std::string source = fuzz::ParseAsStrucutedDLXCode(data, size);
    14|       |
-   15|  3.31k|    dlxemu::CodeEditor& editor = emu.GetEditor();
+   15|  3.32k|    dlxemu::CodeEditor& editor = emu.GetEditor();
    16|       |
    17|       |    // Parse it
-   18|  3.31k|    editor.SetText(source);
-   19|  3.31k|    editor.m_FullText = editor.GetText();
+   18|  3.32k|    editor.SetText(source);
+   19|  3.32k|    editor.m_FullText = editor.GetText();
    20|       |
-   21|  3.31k|    emu.ParseProgram(editor.m_FullText);
+   21|  3.32k|    emu.ParseProgram(editor.m_FullText);
    22|       |
-   23|  3.31k|    editor.ColorizeInternal();
+   23|  3.32k|    editor.ColorizeInternal();
    24|       |
-   25|  3.31k|    return 0;
-   26|  3.31k|}
+   25|  3.32k|    return 0;
+   26|  3.32k|}
 
