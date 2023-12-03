@@ -1,32 +1,216 @@
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2268378107
+INFO: Seed: 3213878661
 INFO: Loaded 1 modules   (521 inline 8-bit counters): 521 [0x888398, 0x8885a1), 
 INFO: Loaded 1 PC tables (521 PCs): 521 [0x783c00,0x785c90), 
-MERGE-OUTER: 10593 files, 0 in the initial corpus, 0 processed earlier
+MERGE-OUTER: 8717 files, 0 in the initial corpus, 0 processed earlier
 MERGE-OUTER: attempt 1
 INFO: Running with entropic power schedule (0xFF, 100).
-INFO: Seed: 2268426157
+INFO: Seed: 3213918022
 INFO: Loaded 1 modules   (521 inline 8-bit counters): 521 [0x888398, 0x8885a1), 
 INFO: Loaded 1 PC tables (521 PCs): 521 [0x783c00,0x785c90), 
 INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
 MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge570.txt'
-MERGE-INNER: 10593 total files; 0 processed earlier; will process 10593 files now
-#1	pulse  cov: 25 ft: 26 exec/s: 0 rss: 31Mb
-#2	pulse  cov: 29 ft: 30 exec/s: 0 rss: 31Mb
-#4	pulse  cov: 31 ft: 32 exec/s: 0 rss: 31Mb
-#8	pulse  cov: 36 ft: 37 exec/s: 0 rss: 31Mb
-#16	pulse  cov: 46 ft: 49 exec/s: 0 rss: 31Mb
-#32	pulse  cov: 72 ft: 76 exec/s: 0 rss: 31Mb
-#64	pulse  cov: 109 ft: 113 exec/s: 0 rss: 31Mb
-#128	pulse  cov: 161 ft: 193 exec/s: 0 rss: 31Mb
-#256	pulse  cov: 241 ft: 344 exec/s: 0 rss: 31Mb
-#512	pulse  cov: 286 ft: 564 exec/s: 0 rss: 31Mb
-#1024	pulse  cov: 318 ft: 789 exec/s: 0 rss: 31Mb
-#2048	pulse  cov: 330 ft: 1067 exec/s: 0 rss: 31Mb
-#4096	pulse  cov: 331 ft: 1333 exec/s: 0 rss: 32Mb
-#8192	pulse  cov: 331 ft: 1629 exec/s: 1638 rss: 240Mb
-#10593	DONE   cov: 331 ft: 1743 exec/s: 96 rss: 1683Mb
-MERGE-OUTER: successful in 1 attempt(s)
-MERGE-OUTER: the control file has 1324421 bytes
+MERGE-INNER: 8717 total files; 0 processed earlier; will process 8717 files now
+#1	pulse  cov: 25 ft: 26 exec/s: 0 rss: 30Mb
+#2	pulse  cov: 27 ft: 28 exec/s: 0 rss: 30Mb
+#4	pulse  cov: 29 ft: 30 exec/s: 0 rss: 30Mb
+#8	pulse  cov: 34 ft: 35 exec/s: 0 rss: 30Mb
+#16	pulse  cov: 42 ft: 43 exec/s: 0 rss: 30Mb
+#32	pulse  cov: 62 ft: 65 exec/s: 0 rss: 30Mb
+#64	pulse  cov: 110 ft: 114 exec/s: 0 rss: 30Mb
+#128	pulse  cov: 159 ft: 192 exec/s: 0 rss: 30Mb
+#256	pulse  cov: 237 ft: 341 exec/s: 0 rss: 31Mb
+#512	pulse  cov: 283 ft: 565 exec/s: 0 rss: 31Mb
+#1024	pulse  cov: 315 ft: 787 exec/s: 0 rss: 31Mb
+#2048	pulse  cov: 327 ft: 1052 exec/s: 0 rss: 31Mb
+#4096	pulse  cov: 327 ft: 1288 exec/s: 0 rss: 31Mb
+ASSERTION VIOLATION
+condition: draw_list->_VtxCurrentIdx < (1 << 16) && "Too many vertices in ImDrawList using 16-bit indices. Read comment above"
+file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (1900)
+function:  void ImGui::AddDrawListToDrawDataEx(ImDrawData *, ImVector<ImDrawList *> *, ImDrawList *)
+==593== ERROR: libFuzzer: deadly signal
+    #0 0x4bfed4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441078 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d53 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7fa4c78e541f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: f5b7b9b3efe01ef7aec691dc8f4e272c518f8cdf)
+    #4 0x7fa4c770700a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: e678fe54a5d2c2092f8e47eb0b33105e380f7340)
+    #5 0x7fa4c76e6858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: e678fe54a5d2c2092f8e47eb0b33105e380f7340)
+    #6 0x6113ba in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:30:9
+    #7 0x5b1c82 in ImGui::AddDrawListToDrawDataEx(ImDrawData*, ImVector<ImDrawList*>*, ImDrawList*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1900:9
+    #8 0x5979af in AddWindowToDrawData(ImGuiWindow*, int) /src/DLXEmu/external/imgui/imgui.cpp:5078:5
+    #9 0x597a3f in AddWindowToDrawData(ImGuiWindow*, int) /src/DLXEmu/external/imgui/imgui.cpp:5081:13
+    #10 0x5669bf in AddRootWindowToDrawData(ImGuiWindow*) /src/DLXEmu/external/imgui/imgui.cpp:5092:5
+    #11 0x5669bf in ImGui::Render() /src/DLXEmu/external/imgui/imgui.cpp:5425:13
+    #12 0x4c4e59 in EndImGui() /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:385:5
+    #13 0x4c6d2e in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:794:17
+    #14 0x4272f3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #15 0x4300e4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #16 0x418189 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #17 0x441832 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #18 0x7fa4c76e8082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: e678fe54a5d2c2092f8e47eb0b33105e380f7340)
+    #19 0x408c1d in _start (build-out/fuzz_code_editor+0x408c1d)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-73893b3efa8c086b4972275db2d7f8a9a82f4b27
+MERGE-OUTER: attempt 2
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 3218893473
+INFO: Loaded 1 modules   (521 inline 8-bit counters): 521 [0x888398, 0x8885a1), 
+INFO: Loaded 1 PC tables (521 PCs): 521 [0x783c00,0x785c90), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge570.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/73893b3efa8c086b4972275db2d7f8a9a82f4b27' caused a failure at the previous merge step
+MERGE-INNER: 8717 total files; 7343 processed earlier; will process 1374 files now
+ASSERTION VIOLATION
+condition: draw_list->_VtxCurrentIdx < (1 << 16) && "Too many vertices in ImDrawList using 16-bit indices. Read comment above"
+file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (1900)
+function:  void ImGui::AddDrawListToDrawDataEx(ImDrawData *, ImVector<ImDrawList *> *, ImDrawList *)
+==715== ERROR: libFuzzer: deadly signal
+    #0 0x4bfed4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441078 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d53 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7fb0bae7141f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: f5b7b9b3efe01ef7aec691dc8f4e272c518f8cdf)
+    #4 0x7fb0bac9300a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: e678fe54a5d2c2092f8e47eb0b33105e380f7340)
+    #5 0x7fb0bac72858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: e678fe54a5d2c2092f8e47eb0b33105e380f7340)
+    #6 0x6113ba in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:30:9
+    #7 0x5b1c82 in ImGui::AddDrawListToDrawDataEx(ImDrawData*, ImVector<ImDrawList*>*, ImDrawList*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1900:9
+    #8 0x5979af in AddWindowToDrawData(ImGuiWindow*, int) /src/DLXEmu/external/imgui/imgui.cpp:5078:5
+    #9 0x597a3f in AddWindowToDrawData(ImGuiWindow*, int) /src/DLXEmu/external/imgui/imgui.cpp:5081:13
+    #10 0x5669bf in AddRootWindowToDrawData(ImGuiWindow*) /src/DLXEmu/external/imgui/imgui.cpp:5092:5
+    #11 0x5669bf in ImGui::Render() /src/DLXEmu/external/imgui/imgui.cpp:5425:13
+    #12 0x4c4e59 in EndImGui() /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:385:5
+    #13 0x4c6d2e in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:794:17
+    #14 0x4272f3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #15 0x4300e4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #16 0x418189 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #17 0x441832 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #18 0x7fb0bac74082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: e678fe54a5d2c2092f8e47eb0b33105e380f7340)
+    #19 0x408c1d in _start (build-out/fuzz_code_editor+0x408c1d)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-7b2742601815522178b180b7c6f2d899b48cad49
+MERGE-OUTER: attempt 3
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 3219100628
+INFO: Loaded 1 modules   (521 inline 8-bit counters): 521 [0x888398, 0x8885a1), 
+INFO: Loaded 1 PC tables (521 PCs): 521 [0x783c00,0x785c90), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge570.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/7b2742601815522178b180b7c6f2d899b48cad49' caused a failure at the previous merge step
+MERGE-INNER: 8717 total files; 7344 processed earlier; will process 1373 files now
+#1	pulse  cov: 68 ft: 69 exec/s: 0 rss: 32Mb
+#2	pulse  cov: 69 ft: 70 exec/s: 0 rss: 32Mb
+ASSERTION VIOLATION
+condition: draw_list->_VtxCurrentIdx < (1 << 16) && "Too many vertices in ImDrawList using 16-bit indices. Read comment above"
+file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (1900)
+function:  void ImGui::AddDrawListToDrawDataEx(ImDrawData *, ImVector<ImDrawList *> *, ImDrawList *)
+==719== ERROR: libFuzzer: deadly signal
+    #0 0x4bfed4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441078 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d53 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7f24d5a5a41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: f5b7b9b3efe01ef7aec691dc8f4e272c518f8cdf)
+    #4 0x7f24d587c00a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: e678fe54a5d2c2092f8e47eb0b33105e380f7340)
+    #5 0x7f24d585b858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: e678fe54a5d2c2092f8e47eb0b33105e380f7340)
+    #6 0x6113ba in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:30:9
+    #7 0x5b1c82 in ImGui::AddDrawListToDrawDataEx(ImDrawData*, ImVector<ImDrawList*>*, ImDrawList*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1900:9
+    #8 0x5979af in AddWindowToDrawData(ImGuiWindow*, int) /src/DLXEmu/external/imgui/imgui.cpp:5078:5
+    #9 0x597a3f in AddWindowToDrawData(ImGuiWindow*, int) /src/DLXEmu/external/imgui/imgui.cpp:5081:13
+    #10 0x5669bf in AddRootWindowToDrawData(ImGuiWindow*) /src/DLXEmu/external/imgui/imgui.cpp:5092:5
+    #11 0x5669bf in ImGui::Render() /src/DLXEmu/external/imgui/imgui.cpp:5425:13
+    #12 0x4c4e59 in EndImGui() /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:385:5
+    #13 0x4c6d2e in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:794:17
+    #14 0x4272f3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #15 0x4300e4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #16 0x418189 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #17 0x441832 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #18 0x7f24d585d082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: e678fe54a5d2c2092f8e47eb0b33105e380f7340)
+    #19 0x408c1d in _start (build-out/fuzz_code_editor+0x408c1d)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-3418ffa3cf59cf5fa7a405416ac1d04be9bee8f0
+MERGE-OUTER: attempt 4
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 3219318380
+INFO: Loaded 1 modules   (521 inline 8-bit counters): 521 [0x888398, 0x8885a1), 
+INFO: Loaded 1 PC tables (521 PCs): 521 [0x783c00,0x785c90), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge570.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/3418ffa3cf59cf5fa7a405416ac1d04be9bee8f0' caused a failure at the previous merge step
+MERGE-INNER: 8717 total files; 7347 processed earlier; will process 1370 files now
+#1	pulse  cov: 65 ft: 66 exec/s: 0 rss: 30Mb
+#2	pulse  cov: 68 ft: 82 exec/s: 0 rss: 30Mb
+#4	pulse  cov: 99 ft: 175 exec/s: 0 rss: 30Mb
+#8	pulse  cov: 139 ft: 304 exec/s: 0 rss: 32Mb
+#16	pulse  cov: 155 ft: 403 exec/s: 0 rss: 32Mb
+#32	pulse  cov: 192 ft: 572 exec/s: 0 rss: 32Mb
+#64	pulse  cov: 203 ft: 673 exec/s: 0 rss: 43Mb
+#128	pulse  cov: 231 ft: 855 exec/s: 128 rss: 103Mb
+#256	pulse  cov: 253 ft: 1007 exec/s: 256 rss: 103Mb
+#512	pulse  cov: 267 ft: 1234 exec/s: 128 rss: 117Mb
+ASSERTION VIOLATION
+condition: draw_list->_VtxCurrentIdx < (1 << 16) && "Too many vertices in ImDrawList using 16-bit indices. Read comment above"
+file:      /src/DLXEmu/external/imgui/imgui_draw.cpp (1900)
+function:  void ImGui::AddDrawListToDrawDataEx(ImDrawData *, ImVector<ImDrawList *> *, ImDrawList *)
+==723== ERROR: libFuzzer: deadly signal
+    #0 0x4bfed4 in __sanitizer_print_stack_trace /src/llvm-project/compiler-rt/lib/ubsan/ubsan_diag_standalone.cpp:31:3
+    #1 0x441078 in fuzzer::PrintStackTrace() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerUtil.cpp:210:5
+    #2 0x425d53 in fuzzer::Fuzzer::CrashCallback() /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:233:3
+    #3 0x7fe5320ee41f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1441f) (BuildId: f5b7b9b3efe01ef7aec691dc8f4e272c518f8cdf)
+    #4 0x7fe531f1000a in raise (/lib/x86_64-linux-gnu/libc.so.6+0x4300a) (BuildId: e678fe54a5d2c2092f8e47eb0b33105e380f7340)
+    #5 0x7fe531eef858 in abort (/lib/x86_64-linux-gnu/libc.so.6+0x22858) (BuildId: e678fe54a5d2c2092f8e47eb0b33105e380f7340)
+    #6 0x6113ba in phi::detail::phi_assert_failure_handler(char const*, char const*, int, char const*) /src/DLXEmu/external/Phi/libs/PhiCore/src/core/assert.cpp:30:9
+    #7 0x5b1c82 in ImGui::AddDrawListToDrawDataEx(ImDrawData*, ImVector<ImDrawList*>*, ImDrawList*) /src/DLXEmu/external/imgui/imgui_draw.cpp:1900:9
+    #8 0x5979af in AddWindowToDrawData(ImGuiWindow*, int) /src/DLXEmu/external/imgui/imgui.cpp:5078:5
+    #9 0x597a3f in AddWindowToDrawData(ImGuiWindow*, int) /src/DLXEmu/external/imgui/imgui.cpp:5081:13
+    #10 0x5669bf in AddRootWindowToDrawData(ImGuiWindow*) /src/DLXEmu/external/imgui/imgui.cpp:5092:5
+    #11 0x5669bf in ImGui::Render() /src/DLXEmu/external/imgui/imgui.cpp:5425:13
+    #12 0x4c4e59 in EndImGui() /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:385:5
+    #13 0x4c6d2e in LLVMFuzzerTestOneInput /src/DLXEmu/tests/Fuzzing/src/CodeEditor.fuzz.cpp:794:17
+    #14 0x4272f3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerLoop.cpp:611:15
+    #15 0x4300e4 in fuzzer::Fuzzer::CrashResistantMergeInternalStep(std::__Fuzzer::basic_string<char, std::__Fuzzer::char_traits<char>, std::__Fuzzer::allocator<char> > const&, bool) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMerge.cpp:235:5
+    #16 0x418189 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerDriver.cpp:885:8
+    #17 0x441832 in main /src/llvm-project/compiler-rt/lib/fuzzer/FuzzerMain.cpp:20:10
+    #18 0x7fe531ef1082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: e678fe54a5d2c2092f8e47eb0b33105e380f7340)
+    #19 0x408c1d in _start (build-out/fuzz_code_editor+0x408c1d)
+
+DEDUP_TOKEN: __sanitizer_print_stack_trace--fuzzer::PrintStackTrace()--fuzzer::Fuzzer::CrashCallback()
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 0 ; base unit: 0000000000000000000000000000000000000000
+artifact_prefix='./'; Test unit written to ./crash-84ff684541fb02c8f2024d636cba3e1d869e11a7
+MERGE-OUTER: attempt 5
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 3254269286
+INFO: Loaded 1 modules   (521 inline 8-bit counters): 521 [0x888398, 0x8885a1), 
+INFO: Loaded 1 PC tables (521 PCs): 521 [0x783c00,0x785c90), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/libFuzzerTemp.Merge570.txt'
+MERGE-INNER: '/github/workspace/cifuzz-corpus/fuzz_code_editor/84ff684541fb02c8f2024d636cba3e1d869e11a7' caused a failure at the previous merge step
+MERGE-INNER: 8717 total files; 8352 processed earlier; will process 365 files now
+#1	pulse  cov: 83 ft: 84 exec/s: 0 rss: 31Mb
+#2	pulse  cov: 88 ft: 115 exec/s: 0 rss: 31Mb
+#4	pulse  cov: 98 ft: 170 exec/s: 0 rss: 31Mb
+#8	pulse  cov: 100 ft: 204 exec/s: 0 rss: 31Mb
+#16	pulse  cov: 162 ft: 364 exec/s: 0 rss: 31Mb
+#32	pulse  cov: 171 ft: 444 exec/s: 8 rss: 257Mb
+#64	pulse  cov: 193 ft: 582 exec/s: 16 rss: 257Mb
+#128	pulse  cov: 229 ft: 873 exec/s: 7 rss: 811Mb
+#256	pulse  cov: 258 ft: 1105 exec/s: 12 rss: 811Mb
+#365	DONE   cov: 261 ft: 1158 exec/s: 3 rss: 848Mb
+MERGE-OUTER: successful in 5 attempt(s)
+MERGE-OUTER: the control file has 1103343 bytes
 MERGE-OUTER: consumed 0Mb (31Mb rss) to parse the control file
-MERGE-OUTER: 816 new files with 1743 new features added; 331 new coverage edges
+MERGE-OUTER: 808 new files with 1740 new features added; 328 new coverage edges
