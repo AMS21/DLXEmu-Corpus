@@ -1,45 +1,45 @@
 _ZN6dlxemu6WindowC2Ev:
-   13|    156|        Window() = default;
+   13|    153|        Window() = default;
 
 _ZN6dlxemu10CodeEditor11CoordinatesC2Ev:
-  194|    780|    {}
+  194|    765|    {}
 _ZNK6dlxemu10CodeEditor11CoordinatesgeERKS1_:
-  242|    156|    {
-  243|    156|        if (m_Line != other.m_Line)
+  242|    153|    {
+  243|    153|        if (m_Line != other.m_Line)
   ------------------
-  |  Branch (243:13): [True: 0, False: 156]
+  |  Branch (243:13): [True: 0, False: 153]
   ------------------
   244|      0|        {
   245|      0|            return m_Line > other.m_Line;
   246|      0|        }
   247|       |
-  248|    156|        return m_Column >= other.m_Column;
-  249|    156|    }
+  248|    153|        return m_Column >= other.m_Column;
+  249|    153|    }
 _ZN6dlxemu10CodeEditorC2EPNS_8EmulatorE:
-  284|    156|    {
-  285|    156|        Colorize();
-  286|    156|        m_Lines.emplace_back();
-  287|    156|    }
+  284|    153|    {
+  285|    153|        Colorize();
+  286|    153|        m_Lines.emplace_back();
+  287|    153|    }
 _ZN6dlxemu10CodeEditorD2Ev:
-  290|    156|    {
-  291|    156|        VerifyInternalState();
-  292|    156|    }
+  290|    153|    {
+  291|    153|        VerifyInternalState();
+  292|    153|    }
 _ZNK6dlxemu10CodeEditor19VerifyInternalStateEv:
- 1484|    156|    {
+ 1484|    153|    {
  1485|       |        // Lines should never be empty
- 1486|    156|        PHI_ASSERT(!m_Lines.empty());
+ 1486|    153|        PHI_ASSERT(!m_Lines.empty());
  1487|       |
  1488|       |        // Verify Selection is still in a valid state
- 1489|    156|        PHI_ASSERT(m_State.m_SelectionEnd >= m_State.m_SelectionStart);
- 1490|    156|        PHI_ASSERT(m_State.m_SelectionStart.m_Line < m_Lines.size());
- 1491|    156|        PHI_ASSERT(m_State.m_SelectionStart.m_Column >= 0u);
- 1492|    156|        PHI_ASSERT(m_State.m_SelectionEnd.m_Line < m_Lines.size());
- 1493|    156|        PHI_ASSERT(m_State.m_SelectionEnd.m_Column >= 0u);
+ 1489|    153|        PHI_ASSERT(m_State.m_SelectionEnd >= m_State.m_SelectionStart);
+ 1490|    153|        PHI_ASSERT(m_State.m_SelectionStart.m_Line < m_Lines.size());
+ 1491|    153|        PHI_ASSERT(m_State.m_SelectionStart.m_Column >= 0u);
+ 1492|    153|        PHI_ASSERT(m_State.m_SelectionEnd.m_Line < m_Lines.size());
+ 1493|    153|        PHI_ASSERT(m_State.m_SelectionEnd.m_Column >= 0u);
  1494|       |
  1495|       |        // Verify cursor position
- 1496|    156|        PHI_ASSERT(m_State.m_CursorPosition.m_Line >= 0u);
- 1497|    156|        PHI_ASSERT(m_State.m_CursorPosition.m_Line < m_Lines.size());
- 1498|    156|        PHI_ASSERT(m_State.m_CursorPosition.m_Column >= 0u);
+ 1496|    153|        PHI_ASSERT(m_State.m_CursorPosition.m_Line >= 0u);
+ 1497|    153|        PHI_ASSERT(m_State.m_CursorPosition.m_Line < m_Lines.size());
+ 1498|    153|        PHI_ASSERT(m_State.m_CursorPosition.m_Column >= 0u);
  1499|       |
  1500|       |        // This should also always be true. But its implementation is way to slow when fuzzing
  1501|       |#if defined(DLXEMU_VERIFY_COLUMN)
@@ -50,9 +50,9 @@ _ZNK6dlxemu10CodeEditor19VerifyInternalStateEv:
  1506|       |#endif
  1507|       |
  1508|       |        // Verify that all breakpoints are on existing lines
- 1509|    156|        for (phi::u32 break_point : m_Breakpoints)
+ 1509|    153|        for (phi::u32 break_point : m_Breakpoints)
   ------------------
-  |  Branch (1509:35): [True: 0, False: 156]
+  |  Branch (1509:35): [True: 0, False: 153]
   ------------------
  1510|      0|        {
  1511|      0|            PHI_ASSERT(break_point != 0u);
@@ -60,9 +60,9 @@ _ZNK6dlxemu10CodeEditor19VerifyInternalStateEv:
  1513|      0|        }
  1514|       |
  1515|       |        // Verify that all error markers are on existing lines
- 1516|    156|        for (auto&& error_marker : m_ErrorMarkers)
+ 1516|    153|        for (auto&& error_marker : m_ErrorMarkers)
   ------------------
-  |  Branch (1516:34): [True: 0, False: 156]
+  |  Branch (1516:34): [True: 0, False: 153]
   ------------------
  1517|      0|        {
  1518|      0|            const phi::u32 line_number = error_marker.first;
@@ -70,53 +70,53 @@ _ZNK6dlxemu10CodeEditor19VerifyInternalStateEv:
  1520|      0|            PHI_ASSERT(line_number != 0u);
  1521|      0|            PHI_ASSERT(line_number <= m_Lines.size());
  1522|      0|        }
- 1523|    156|    }
+ 1523|    153|    }
 _ZN6dlxemu10CodeEditor14GetDarkPaletteEv:
- 1526|    156|    {
- 1527|    156|        constexpr const static Palette palette = {{
- 1528|    156|                0xff7f7f7f, // Default
- 1529|    156|                0xffd69c56, // OpCode
- 1530|    156|                0xff00ff00, // Register
- 1531|    156|                0xff7070e0, // IntegerLiteral
- 1532|    156|                0xff206020, // Comment
- 1533|    156|                0xff101010, // Background
- 1534|    156|                0xffe0e0e0, // Cursor
- 1535|    156|                0x80a06020, // Selection
- 1536|    156|                0x800020ff, // ErrorMarker
- 1537|    156|                0x40f08000, // Breakpoint
- 1538|    156|                0xff707000, // Line number
- 1539|    156|                0x40000000, // Current line fill
- 1540|    156|                0x40808080, // Current line fill (inactive)
- 1541|    156|                0x40a0a0a0, // Current line edge
- 1542|    156|        }};
+ 1526|    153|    {
+ 1527|    153|        constexpr const static Palette palette = {{
+ 1528|    153|                0xff7f7f7f, // Default
+ 1529|    153|                0xffd69c56, // OpCode
+ 1530|    153|                0xff00ff00, // Register
+ 1531|    153|                0xff7070e0, // IntegerLiteral
+ 1532|    153|                0xff206020, // Comment
+ 1533|    153|                0xff101010, // Background
+ 1534|    153|                0xffe0e0e0, // Cursor
+ 1535|    153|                0x80a06020, // Selection
+ 1536|    153|                0x800020ff, // ErrorMarker
+ 1537|    153|                0x40f08000, // Breakpoint
+ 1538|    153|                0xff707000, // Line number
+ 1539|    153|                0x40000000, // Current line fill
+ 1540|    153|                0x40808080, // Current line fill (inactive)
+ 1541|    153|                0x40a0a0a0, // Current line edge
+ 1542|    153|        }};
  1543|       |
- 1544|    156|        return palette;
- 1545|    156|    }
+ 1544|    153|        return palette;
+ 1545|    153|    }
 _ZN6dlxemu10CodeEditor8ColorizeEN3phi7integerIjEENS2_IlEE:
- 1710|    156|    {
+ 1710|    153|    {
  1711|       |        // TODO: This is quite unreadable
- 1712|    156|        const phi::u32 to_line =
- 1713|    156|                count == -1 ? static_cast<phi::uint32_t>(m_Lines.size()) :
+ 1712|    153|        const phi::u32 to_line =
+ 1713|    153|                count == -1 ? static_cast<phi::uint32_t>(m_Lines.size()) :
   ------------------
-  |  Branch (1713:17): [True: 156, False: 0]
+  |  Branch (1713:17): [True: 153, False: 0]
   ------------------
- 1714|    156|                              phi::min(static_cast<phi::uint32_t>(m_Lines.size()),
+ 1714|    153|                              phi::min(static_cast<phi::uint32_t>(m_Lines.size()),
  1715|      0|                                       from_line + static_cast<phi::uint32_t>(count.unsafe()));
  1716|       |
- 1717|    156|        m_ColorRangeMin = phi::min(m_ColorRangeMin, from_line);
- 1718|    156|        m_ColorRangeMax = phi::max(m_ColorRangeMax, to_line);
- 1719|    156|        m_ColorRangeMin = phi::max(0u, m_ColorRangeMin);
- 1720|    156|        m_ColorRangeMax = phi::max(m_ColorRangeMin, m_ColorRangeMax);
- 1721|    156|    }
+ 1717|    153|        m_ColorRangeMin = phi::min(m_ColorRangeMin, from_line);
+ 1718|    153|        m_ColorRangeMax = phi::max(m_ColorRangeMax, to_line);
+ 1719|    153|        m_ColorRangeMin = phi::max(0u, m_ColorRangeMin);
+ 1720|    153|        m_ColorRangeMax = phi::max(m_ColorRangeMin, m_ColorRangeMax);
+ 1721|    153|    }
 
 _ZN6dlxemu8EmulatorC2Ev:
-   46|    156|    {}
+   46|    153|    {}
 _ZN6dlxemu8Emulator26HandleCommandLineArgumentsEN3phi7integerIiEEPPc:
-   55|    155|    {
+   55|    152|    {
    56|       |        // No args
-   57|    155|        if (argc <= 1)
+   57|    152|        if (argc <= 1)
   ------------------
-  |  Branch (57:13): [True: 8, False: 147]
+  |  Branch (57:13): [True: 8, False: 144]
   ------------------
    58|      8|        {
    59|      8|            return ShouldContinueInitialization::Yes;
@@ -124,7 +124,7 @@ _ZN6dlxemu8Emulator26HandleCommandLineArgumentsEN3phi7integerIiEEPPc:
    61|       |
    62|  2.21k|        for (phi::i32 arg_num{1}; arg_num < argc; ++arg_num)
   ------------------
-  |  Branch (62:35): [True: 2.18k, False: 32]
+  |  Branch (62:35): [True: 2.18k, False: 29]
   ------------------
    63|  2.18k|        {
    64|  2.18k|            std::string arg_value = argv[arg_num.unsafe()];
@@ -161,8 +161,8 @@ _ZN6dlxemu8Emulator26HandleCommandLineArgumentsEN3phi7integerIiEEPPc:
    81|       |                // Display version
    82|    111|                if (arg_value == "-v" || arg_value == "--value")
   ------------------
-  |  Branch (82:21): [True: 83, False: 28]
-  |  Branch (82:42): [True: 19, False: 9]
+  |  Branch (82:21): [True: 85, False: 26]
+  |  Branch (82:42): [True: 17, False: 9]
   ------------------
    83|    102|                {
    84|    102|                    fmt::print("DLXEmu version {:d}.{:d}.{:d} {:s}-{:s}\n", VersionMajor,
@@ -184,66 +184,66 @@ _ZN6dlxemu8Emulator26HandleCommandLineArgumentsEN3phi7integerIiEEPPc:
   ------------------
    95|  2.07k|        }
    96|       |
-   97|     41|        return ShouldContinueInitialization::Yes;
-   98|    147|    }
+   97|     38|        return ShouldContinueInitialization::Yes;
+   98|    144|    }
 
 _ZN6dlxemu12MemoryViewerC2EPNS_8EmulatorE:
-   13|    156|    {}
+   13|    153|    {}
 
 _ZN6dlxemu14RegisterViewerC2EPNS_8EmulatorE:
-   19|    156|    {}
+   19|    153|    {}
 
 _ZN6dlxemu6WindowD2Ev:
-   41|    156|    {
-   42|    156|        Shutdown();
-   43|    156|    }
+   41|    153|    {
+   42|    153|        Shutdown();
+   43|    153|    }
 _ZN6dlxemu6Window8ShutdownEv:
-  113|    156|    {
-  114|    156|        if (imgui_initialized)
+  113|    153|    {
+  114|    153|        if (imgui_initialized)
   ------------------
-  |  Branch (114:13): [True: 0, False: 156]
+  |  Branch (114:13): [True: 0, False: 153]
   ------------------
   115|      0|        {
   116|      0|            ShutdownImGui();
   117|      0|        }
   118|       |
-  119|    156|        if (m_Window != nullptr)
+  119|    153|        if (m_Window != nullptr)
   ------------------
-  |  Branch (119:13): [True: 0, False: 156]
+  |  Branch (119:13): [True: 0, False: 153]
   ------------------
   120|      0|        {
   121|      0|            glfwDestroyWindow(m_Window);
   122|      0|        }
   123|       |
-  124|    156|        if (glfw_initialized)
+  124|    153|        if (glfw_initialized)
   ------------------
-  |  Branch (124:13): [True: 0, False: 156]
+  |  Branch (124:13): [True: 0, False: 153]
   ------------------
   125|      0|        {
   126|      0|            glfwTerminate();
   127|      0|        }
-  128|    156|    }
+  128|    153|    }
 
 _ZN3dlx11MemoryBlock10MemoryByteC2Ev:
-   17|   156k|            {}
+   17|   153k|            {}
 
 _ZN3dlx11IntRegisterC2Ev:
-   12|  4.99k|    {}
+   12|  4.89k|    {}
 _ZN3dlx11IntRegister11SetReadOnlyEN3phi7booleanE:
-   40|    156|    {
-   41|    156|        m_IsReadOnly = read_only;
-   42|    156|    }
+   40|    153|    {
+   41|    153|        m_IsReadOnly = read_only;
+   42|    153|    }
 
 _ZN3dlx11MemoryBlockC2EN3phi7integerImEES3_:
-   12|    156|    {
-   13|    156|        m_Values.resize(starting_size.unsafe());
-   14|    156|    }
+   12|    153|    {
+   13|    153|        m_Values.resize(starting_size.unsafe());
+   14|    153|    }
 
 _ZN3dlx9ProcessorC2Ev:
-   62|    156|    {
+   62|    153|    {
    63|       |        // Mark R0 as ready only
-   64|    156|        m_IntRegisters[0].SetReadOnly(true);
-   65|    156|    }
+   64|    153|        m_IntRegisters[0].SetReadOnly(true);
+   65|    153|    }
 
 _ZN3fmt3v106detail6bufferIcE6appendIcEEvPKT_S7_:
   904|  1.12k|  template <typename U> void append(const U* begin, const U* end) {
@@ -1886,65 +1886,65 @@ _ZZN3fmt3v106detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_
  4259|    102|        : parse_context(str), context(p_out, p_args, p_loc) {}
 
 _ZN6ImVec2C2Ev:
-  272|    156|    constexpr ImVec2()                      : x(0.0f), y(0.0f) { }
+  272|    153|    constexpr ImVec2()                      : x(0.0f), y(0.0f) { }
 
 LLVMFuzzerTestOneInput:
-   10|    157|{
+   10|    154|{
    11|       |    // Only accept properly null terminated strings
-   12|    157|    if (size < 1 || data[size - 1] != '\0')
+   12|    154|    if (size < 1 || data[size - 1] != '\0')
   ------------------
-  |  Branch (12:9): [True: 0, False: 157]
-  |  Branch (12:21): [True: 1, False: 156]
+  |  Branch (12:9): [True: 0, False: 154]
+  |  Branch (12:21): [True: 1, False: 153]
   ------------------
    13|      1|    {
    14|      1|        return 1;
    15|      1|    }
    16|       |
-   17|    156|    dlxemu::Emulator emulator;
+   17|    153|    dlxemu::Emulator emulator;
    18|       |
    19|       |    // Build argv
-   20|    156|    std::vector<char*> argv;
-   21|    156|    argv.reserve(10);
+   20|    153|    std::vector<char*> argv;
+   21|    153|    argv.reserve(10);
    22|       |
-   23|    156|    phi::size_t begin{0u};
-   24|  12.0k|    for (phi::size_t index{0}; index < size; ++index)
+   23|    153|    phi::size_t begin{0u};
+   24|  11.3k|    for (phi::size_t index{0}; index < size; ++index)
   ------------------
-  |  Branch (24:32): [True: 11.9k, False: 155]
+  |  Branch (24:32): [True: 11.2k, False: 152]
   ------------------
-   25|  11.9k|    {
-   26|  11.9k|        char c = static_cast<char>(data[index]);
+   25|  11.2k|    {
+   26|  11.2k|        char c = static_cast<char>(data[index]);
    27|       |
-   28|  11.9k|        if (c == '\0')
+   28|  11.2k|        if (c == '\0')
   ------------------
-  |  Branch (28:13): [True: 2.41k, False: 9.52k]
+  |  Branch (28:13): [True: 2.45k, False: 8.78k]
   ------------------
-   29|  2.41k|        {
+   29|  2.45k|        {
    30|       |            // Disallow empty strings
-   31|  2.41k|            if (begin == index)
+   31|  2.45k|            if (begin == index)
   ------------------
-  |  Branch (31:17): [True: 1, False: 2.41k]
+  |  Branch (31:17): [True: 1, False: 2.45k]
   ------------------
    32|      1|            {
    33|      1|                return 1;
    34|      1|            }
    35|       |
    36|       |            // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
-   37|  2.41k|            argv.push_back(const_cast<char*>(reinterpret_cast<const char*>(data + begin)));
-   38|  2.41k|            begin = index + 1u;
-   39|  2.41k|        }
-   40|  11.9k|    }
+   37|  2.45k|            argv.push_back(const_cast<char*>(reinterpret_cast<const char*>(data + begin)));
+   38|  2.45k|            begin = index + 1u;
+   39|  2.45k|        }
+   40|  11.2k|    }
    41|       |
    42|       |    // Can't eccept too large buffers
-   43|    155|    if (argv.size() > std::numeric_limits<phi::int32_t>::max())
+   43|    152|    if (argv.size() > std::numeric_limits<phi::int32_t>::max())
   ------------------
-  |  Branch (43:9): [True: 0, False: 155]
+  |  Branch (43:9): [True: 0, False: 152]
   ------------------
    44|      0|    {
    45|      0|        return 1;
    46|      0|    }
    47|       |
-   48|    155|    (void)emulator.HandleCommandLineArguments(static_cast<phi::int32_t>(argv.size()), argv.data());
+   48|    152|    (void)emulator.HandleCommandLineArguments(static_cast<phi::int32_t>(argv.size()), argv.data());
    49|       |
-   50|    155|    return 0;
-   51|    155|}
+   50|    152|    return 0;
+   51|    152|}
 
