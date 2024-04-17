@@ -1439,16 +1439,16 @@ _ZNK6dlxemu10CodeEditor23TextDistanceToLineStartERKNS0_11CoordinatesE:
  1730|  66.7k|                        ->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX, -1.0f, " ", nullptr, nullptr)
  1731|  66.7k|                        .x;
  1732|  66.7k|        const phi::u32 col_index = GetCharacterIndex(from);
- 1733|   107M|        for (phi::usize it{0u}; it < line.size() && it < col_index;)
+ 1733|   108M|        for (phi::usize it{0u}; it < line.size() && it < col_index;)
   ------------------
-  |  Branch (1733:33): [True: 107M, False: 62.2k]
-  |  Branch (1733:33): [True: 107M, False: 66.7k]
-  |  Branch (1733:53): [True: 107M, False: 4.51k]
+  |  Branch (1733:33): [True: 108M, False: 62.2k]
+  |  Branch (1733:33): [True: 108M, False: 66.7k]
+  |  Branch (1733:53): [True: 108M, False: 4.51k]
   ------------------
- 1734|   107M|        {
- 1735|   107M|            if (line[it.unsafe()].m_Char == '\t')
+ 1734|   108M|        {
+ 1735|   108M|            if (line[it.unsafe()].m_Char == '\t')
   ------------------
-  |  Branch (1735:17): [True: 26.8k, False: 107M]
+  |  Branch (1735:17): [True: 26.8k, False: 108M]
   ------------------
  1736|  26.8k|            {
  1737|  26.8k|                distance = (1.0f + std::floor((1.0f + distance) /
@@ -1456,29 +1456,29 @@ _ZNK6dlxemu10CodeEditor23TextDistanceToLineStartERKNS0_11CoordinatesE:
  1739|  26.8k|                           (float(m_TabSize.unsafe()) * space_size);
  1740|  26.8k|                ++it;
  1741|  26.8k|            }
- 1742|   107M|            else
- 1743|   107M|            {
- 1744|   107M|                phi::u8_fast        length = UTF8CharLength(line[it.unsafe()].m_Char);
- 1745|   107M|                phi::array<char, 7> temp_c_string;
- 1746|   107M|                phi::usize          index = 0u;
- 1747|   215M|                for (; index < 6u && length > 0u && it < line.size(); ++index, ++it, --length)
+ 1742|   108M|            else
+ 1743|   108M|            {
+ 1744|   108M|                phi::u8_fast        length = UTF8CharLength(line[it.unsafe()].m_Char);
+ 1745|   108M|                phi::array<char, 7> temp_c_string;
+ 1746|   108M|                phi::usize          index = 0u;
+ 1747|   218M|                for (; index < 6u && length > 0u && it < line.size(); ++index, ++it, --length)
   ------------------
-  |  Branch (1747:24): [True: 215M, False: 0]
-  |  Branch (1747:24): [True: 108M, False: 107M]
-  |  Branch (1747:38): [True: 108M, False: 107M]
-  |  Branch (1747:53): [True: 108M, False: 0]
+  |  Branch (1747:24): [True: 218M, False: 0]
+  |  Branch (1747:24): [True: 109M, False: 108M]
+  |  Branch (1747:38): [True: 109M, False: 108M]
+  |  Branch (1747:53): [True: 109M, False: 0]
   ------------------
- 1748|   108M|                {
- 1749|   108M|                    temp_c_string[index] = static_cast<char>(line[it.unsafe()].m_Char);
- 1750|   108M|                }
+ 1748|   109M|                {
+ 1749|   109M|                    temp_c_string[index] = static_cast<char>(line[it.unsafe()].m_Char);
+ 1750|   109M|                }
  1751|       |
- 1752|   107M|                temp_c_string[index] = '\0';
- 1753|   107M|                distance += ImGui::GetFont()
- 1754|   107M|                                    ->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX, -1.0f,
- 1755|   107M|                                                    temp_c_string.data(), nullptr, nullptr)
- 1756|   107M|                                    .x;
- 1757|   107M|            }
- 1758|   107M|        }
+ 1752|   108M|                temp_c_string[index] = '\0';
+ 1753|   108M|                distance += ImGui::GetFont()
+ 1754|   108M|                                    ->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX, -1.0f,
+ 1755|   108M|                                                    temp_c_string.data(), nullptr, nullptr)
+ 1756|   108M|                                    .x;
+ 1757|   108M|            }
+ 1758|   108M|        }
  1759|       |
  1760|  66.7k|        return distance;
  1761|  66.7k|    }
@@ -2292,17 +2292,17 @@ _ZNK6dlxemu10CodeEditor17GetCharacterIndexERKNS0_11CoordinatesE:
  2404|       |
  2405|   468k|        const Line& line  = m_Lines[coordinates.m_Line.unsafe()];
  2406|   468k|        phi::u32    index = 0u;
- 2407|  1.38G|        for (phi::u32 column{0u}; index < line.size() && column < coordinates.m_Column;)
+ 2407|  1.39G|        for (phi::u32 column{0u}; index < line.size() && column < coordinates.m_Column;)
   ------------------
-  |  Branch (2407:35): [True: 1.38G, False: 247k]
-  |  Branch (2407:35): [True: 1.38G, False: 468k]
-  |  Branch (2407:58): [True: 1.38G, False: 220k]
+  |  Branch (2407:35): [True: 1.39G, False: 247k]
+  |  Branch (2407:35): [True: 1.39G, False: 468k]
+  |  Branch (2407:58): [True: 1.39G, False: 220k]
   ------------------
- 2408|  1.38G|        {
- 2409|  1.38G|            PHI_ASSERT(index < line.size());
- 2410|  1.38G|            const Char character = line[index.unsafe()].m_Char;
+ 2408|  1.39G|        {
+ 2409|  1.39G|            PHI_ASSERT(index < line.size());
+ 2410|  1.39G|            const Char character = line[index.unsafe()].m_Char;
  2411|       |
- 2412|  1.38G|            if (character == '\t')
+ 2412|  1.39G|            if (character == '\t')
   ------------------
   |  Branch (2412:17): [True: 520k, False: 1.38G]
   ------------------
@@ -2314,8 +2314,8 @@ _ZNK6dlxemu10CodeEditor17GetCharacterIndexERKNS0_11CoordinatesE:
  2418|  1.38G|                ++column;
  2419|  1.38G|            }
  2420|       |
- 2421|  1.38G|            index += UTF8CharLength(character);
- 2422|  1.38G|        }
+ 2421|  1.39G|            index += UTF8CharLength(character);
+ 2422|  1.39G|        }
  2423|       |
  2424|   468k|        return index;
  2425|   468k|    }
@@ -3834,18 +3834,18 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3463|  11.9k|                    phi::uint64_t elapsed = time_end - m_StartTime;
  3464|  11.9k|                    if (elapsed > 400)
   ------------------
-  |  Branch (3464:25): [True: 32, False: 11.9k]
+  |  Branch (3464:25): [True: 38, False: 11.9k]
   ------------------
- 3465|     32|                    {
- 3466|     32|                        float    width  = 1.0f;
- 3467|     32|                        phi::u32 cindex = GetCharacterIndex(m_State.m_CursorPosition);
- 3468|     32|                        float    cx     = TextDistanceToLineStart(m_State.m_CursorPosition);
+ 3465|     38|                    {
+ 3466|     38|                        float    width  = 1.0f;
+ 3467|     38|                        phi::u32 cindex = GetCharacterIndex(m_State.m_CursorPosition);
+ 3468|     38|                        float    cx     = TextDistanceToLineStart(m_State.m_CursorPosition);
  3469|       |
- 3470|     32|                        if (m_Overwrite && cindex < line.size())
+ 3470|     38|                        if (m_Overwrite && cindex < line.size())
   ------------------
-  |  Branch (3470:29): [True: 19, False: 13]
-  |  Branch (3470:29): [True: 6, False: 26]
-  |  Branch (3470:44): [True: 6, False: 13]
+  |  Branch (3470:29): [True: 21, False: 17]
+  |  Branch (3470:29): [True: 6, False: 32]
+  |  Branch (3470:44): [True: 6, False: 15]
   ------------------
  3471|      6|                        {
  3472|      6|                            char character = static_cast<char>(line[cindex.unsafe()].m_Char);
@@ -3871,19 +3871,19 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3489|      6|                                                .x;
  3490|      6|                            }
  3491|      6|                        }
- 3492|     32|                        const ImVec2 cstart(text_screen_pos.x + cx, line_start_screen_pos.y);
- 3493|     32|                        const ImVec2 cend(text_screen_pos.x + cx + width,
- 3494|     32|                                          line_start_screen_pos.y + m_CharAdvance.y);
- 3495|     32|                        draw_list->AddRectFilled(cstart, cend,
- 3496|     32|                                                 GetPaletteForIndex(PaletteIndex::Cursor));
- 3497|     32|                        if (elapsed > 800)
+ 3492|     38|                        const ImVec2 cstart(text_screen_pos.x + cx, line_start_screen_pos.y);
+ 3493|     38|                        const ImVec2 cend(text_screen_pos.x + cx + width,
+ 3494|     38|                                          line_start_screen_pos.y + m_CharAdvance.y);
+ 3495|     38|                        draw_list->AddRectFilled(cstart, cend,
+ 3496|     38|                                                 GetPaletteForIndex(PaletteIndex::Cursor));
+ 3497|     38|                        if (elapsed > 800)
   ------------------
-  |  Branch (3497:29): [True: 19, False: 13]
+  |  Branch (3497:29): [True: 19, False: 19]
   ------------------
  3498|     19|                        {
  3499|     19|                            m_StartTime = time_end;
  3500|     19|                        }
- 3501|     32|                    }
+ 3501|     38|                    }
  3502|  11.9k|                }
  3503|  19.5k|            }
  3504|       |
@@ -16243,13 +16243,13 @@ _ZN5ImGui17GetWindowDrawListEv:
  8389|  20.1k|    return window->DrawList;
  8390|  20.1k|}
 _ZN5ImGui7GetFontEv:
- 8406|   109M|{
- 8407|   109M|    return GImGui->Font;
- 8408|   109M|}
+ 8406|   110M|{
+ 8407|   110M|    return GImGui->Font;
+ 8408|   110M|}
 _ZN5ImGui11GetFontSizeEv:
- 8411|   109M|{
- 8412|   109M|    return GImGui->FontSize;
- 8413|   109M|}
+ 8411|   110M|{
+ 8412|   110M|    return GImGui->FontSize;
+ 8413|   110M|}
 _ZN5ImGui14PushFocusScopeEj:
  8430|  60.8k|{
  8431|  60.8k|    ImGuiContext& g = *GImGui;
@@ -25625,7 +25625,7 @@ _ZN6ImVec2C2Ev:
 _ZN6ImVec4C2Ev:
   291|   164k|    constexpr ImVec4()                                        : x(0.0f), y(0.0f), z(0.0f), w(0.0f) { }
 _ZN6ImVec2C2Eff:
-  279|   119M|    constexpr ImVec2(float _x, float _y)    : x(_x), y(_y) { }
+  279|   120M|    constexpr ImVec2(float _x, float _y)    : x(_x), y(_y) { }
 imgui.cpp:_ZmlRK6ImVec2f:
  2629|   202k|static inline ImVec2  operator*(const ImVec2& lhs, const float rhs)     { return ImVec2(lhs.x * rhs, lhs.y * rhs); }
 imgui.cpp:_ZmiRK6ImVec2S1_:
@@ -29502,31 +29502,31 @@ _ZNK6ImFont19FindGlyphNoFallbackEt:
  3802|      3|    return &Glyphs.Data[i];
  3803|      3|}
 _ZNK6ImFont13CalcTextSizeAEfffPKcS1_PS1_:
- 3917|   109M|{
- 3918|   109M|    if (!text_end)
+ 3917|   110M|{
+ 3918|   110M|    if (!text_end)
   ------------------
-  |  Branch (3918:9): [True: 109M, False: 40.7k]
+  |  Branch (3918:9): [True: 110M, False: 40.7k]
   ------------------
- 3919|   109M|        text_end = text_begin + strlen(text_begin); // FIXME-OPT: Need to avoid this.
+ 3919|   110M|        text_end = text_begin + strlen(text_begin); // FIXME-OPT: Need to avoid this.
  3920|       |
- 3921|   109M|    const float line_height = size;
- 3922|   109M|    const float scale = size / FontSize;
+ 3921|   110M|    const float line_height = size;
+ 3922|   110M|    const float scale = size / FontSize;
  3923|       |
- 3924|   109M|    ImVec2 text_size = ImVec2(0, 0);
- 3925|   109M|    float line_width = 0.0f;
+ 3924|   110M|    ImVec2 text_size = ImVec2(0, 0);
+ 3925|   110M|    float line_width = 0.0f;
  3926|       |
- 3927|   109M|    const bool word_wrap_enabled = (wrap_width > 0.0f);
- 3928|   109M|    const char* word_wrap_eol = NULL;
+ 3927|   110M|    const bool word_wrap_enabled = (wrap_width > 0.0f);
+ 3928|   110M|    const char* word_wrap_eol = NULL;
  3929|       |
- 3930|   109M|    const char* s = text_begin;
- 3931|   224M|    while (s < text_end)
+ 3930|   110M|    const char* s = text_begin;
+ 3931|   226M|    while (s < text_end)
   ------------------
-  |  Branch (3931:12): [True: 114M, False: 109M]
+  |  Branch (3931:12): [True: 116M, False: 110M]
   ------------------
- 3932|   114M|    {
- 3933|   114M|        if (word_wrap_enabled)
+ 3932|   116M|    {
+ 3933|   116M|        if (word_wrap_enabled)
   ------------------
-  |  Branch (3933:13): [True: 0, False: 114M]
+  |  Branch (3933:13): [True: 0, False: 116M]
   ------------------
  3934|      0|        {
  3935|       |            // Calculate how far we can render. Requires two passes on the string data but keeps the code simple and not intrusive for what's essentially an uncommon feature.
@@ -29555,19 +29555,19 @@ _ZNK6ImFont13CalcTextSizeAEfffPKcS1_PS1_:
  3949|      0|        }
  3950|       |
  3951|       |        // Decode and advance source
- 3952|   114M|        const char* prev_s = s;
- 3953|   114M|        unsigned int c = (unsigned int)*s;
- 3954|   114M|        if (c < 0x80)
+ 3952|   116M|        const char* prev_s = s;
+ 3953|   116M|        unsigned int c = (unsigned int)*s;
+ 3954|   116M|        if (c < 0x80)
   ------------------
-  |  Branch (3954:13): [True: 113M, False: 1.20M]
+  |  Branch (3954:13): [True: 114M, False: 1.20M]
   ------------------
- 3955|   113M|            s += 1;
+ 3955|   114M|            s += 1;
  3956|  1.20M|        else
  3957|  1.20M|            s += ImTextCharFromUtf8(&c, s, text_end);
  3958|       |
- 3959|   114M|        if (c < 32)
+ 3959|   116M|        if (c < 32)
   ------------------
-  |  Branch (3959:13): [True: 16.7k, False: 114M]
+  |  Branch (3959:13): [True: 16.7k, False: 116M]
   ------------------
  3960|  16.7k|        {
  3961|  16.7k|            if (c == '\n')
@@ -29587,43 +29587,43 @@ _ZNK6ImFont13CalcTextSizeAEfffPKcS1_PS1_:
  3969|  1.01k|                continue;
  3970|  16.7k|        }
  3971|       |
- 3972|   114M|        const float char_width = ((int)c < IndexAdvanceX.Size ? IndexAdvanceX.Data[c] : FallbackAdvanceX) * scale;
+ 3972|   116M|        const float char_width = ((int)c < IndexAdvanceX.Size ? IndexAdvanceX.Data[c] : FallbackAdvanceX) * scale;
   ------------------
-  |  Branch (3972:35): [True: 113M, False: 1.19M]
+  |  Branch (3972:35): [True: 114M, False: 1.19M]
   ------------------
- 3973|   114M|        if (line_width + char_width >= max_width)
+ 3973|   116M|        if (line_width + char_width >= max_width)
   ------------------
-  |  Branch (3973:13): [True: 0, False: 114M]
+  |  Branch (3973:13): [True: 0, False: 116M]
   ------------------
  3974|      0|        {
  3975|      0|            s = prev_s;
  3976|      0|            break;
  3977|      0|        }
  3978|       |
- 3979|   114M|        line_width += char_width;
- 3980|   114M|    }
+ 3979|   116M|        line_width += char_width;
+ 3980|   116M|    }
  3981|       |
- 3982|   109M|    if (text_size.x < line_width)
+ 3982|   110M|    if (text_size.x < line_width)
   ------------------
-  |  Branch (3982:9): [True: 109M, False: 1.01k]
+  |  Branch (3982:9): [True: 110M, False: 1.01k]
   ------------------
- 3983|   109M|        text_size.x = line_width;
+ 3983|   110M|        text_size.x = line_width;
  3984|       |
- 3985|   109M|    if (line_width > 0 || text_size.y == 0.0f)
+ 3985|   110M|    if (line_width > 0 || text_size.y == 0.0f)
   ------------------
-  |  Branch (3985:9): [True: 109M, False: 1.01k]
+  |  Branch (3985:9): [True: 110M, False: 1.01k]
   |  Branch (3985:27): [True: 1.01k, False: 0]
   ------------------
- 3986|   109M|        text_size.y += line_height;
+ 3986|   110M|        text_size.y += line_height;
  3987|       |
- 3988|   109M|    if (remaining)
+ 3988|   110M|    if (remaining)
   ------------------
-  |  Branch (3988:9): [True: 0, False: 109M]
+  |  Branch (3988:9): [True: 0, False: 110M]
   ------------------
  3989|      0|        *remaining = s;
  3990|       |
- 3991|   109M|    return text_size;
- 3992|   109M|}
+ 3991|   110M|    return text_size;
+ 3992|   110M|}
 _ZNK6ImFont10RenderTextEP10ImDrawListfRK6ImVec2jRK6ImVec4PKcS9_fb:
  4011|  2.38M|{
  4012|  2.38M|    if (!text_end)
