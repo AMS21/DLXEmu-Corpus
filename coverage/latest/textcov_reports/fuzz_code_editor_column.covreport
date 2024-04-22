@@ -3834,17 +3834,17 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3463|  11.9k|                    phi::uint64_t elapsed = time_end - m_StartTime;
  3464|  11.9k|                    if (elapsed > 400)
   ------------------
-  |  Branch (3464:25): [True: 33, False: 11.9k]
+  |  Branch (3464:25): [True: 34, False: 11.9k]
   ------------------
- 3465|     33|                    {
- 3466|     33|                        float    width  = 1.0f;
- 3467|     33|                        phi::u32 cindex = GetCharacterIndex(m_State.m_CursorPosition);
- 3468|     33|                        float    cx     = TextDistanceToLineStart(m_State.m_CursorPosition);
+ 3465|     34|                    {
+ 3466|     34|                        float    width  = 1.0f;
+ 3467|     34|                        phi::u32 cindex = GetCharacterIndex(m_State.m_CursorPosition);
+ 3468|     34|                        float    cx     = TextDistanceToLineStart(m_State.m_CursorPosition);
  3469|       |
- 3470|     33|                        if (m_Overwrite && cindex < line.size())
+ 3470|     34|                        if (m_Overwrite && cindex < line.size())
   ------------------
-  |  Branch (3470:29): [True: 20, False: 13]
-  |  Branch (3470:29): [True: 7, False: 26]
+  |  Branch (3470:29): [True: 20, False: 14]
+  |  Branch (3470:29): [True: 7, False: 27]
   |  Branch (3470:44): [True: 7, False: 13]
   ------------------
  3471|      7|                        {
@@ -3871,19 +3871,19 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3489|      7|                                                .x;
  3490|      7|                            }
  3491|      7|                        }
- 3492|     33|                        const ImVec2 cstart(text_screen_pos.x + cx, line_start_screen_pos.y);
- 3493|     33|                        const ImVec2 cend(text_screen_pos.x + cx + width,
- 3494|     33|                                          line_start_screen_pos.y + m_CharAdvance.y);
- 3495|     33|                        draw_list->AddRectFilled(cstart, cend,
- 3496|     33|                                                 GetPaletteForIndex(PaletteIndex::Cursor));
- 3497|     33|                        if (elapsed > 800)
+ 3492|     34|                        const ImVec2 cstart(text_screen_pos.x + cx, line_start_screen_pos.y);
+ 3493|     34|                        const ImVec2 cend(text_screen_pos.x + cx + width,
+ 3494|     34|                                          line_start_screen_pos.y + m_CharAdvance.y);
+ 3495|     34|                        draw_list->AddRectFilled(cstart, cend,
+ 3496|     34|                                                 GetPaletteForIndex(PaletteIndex::Cursor));
+ 3497|     34|                        if (elapsed > 800)
   ------------------
-  |  Branch (3497:29): [True: 20, False: 13]
+  |  Branch (3497:29): [True: 20, False: 14]
   ------------------
  3498|     20|                        {
  3499|     20|                            m_StartTime = time_end;
  3500|     20|                        }
- 3501|     33|                    }
+ 3501|     34|                    }
  3502|  11.9k|                }
  3503|  19.5k|            }
  3504|       |
@@ -16243,13 +16243,13 @@ _ZN5ImGui17GetWindowDrawListEv:
  8389|  20.1k|    return window->DrawList;
  8390|  20.1k|}
 _ZN5ImGui7GetFontEv:
- 8406|   109M|{
- 8407|   109M|    return GImGui->Font;
- 8408|   109M|}
+ 8406|   110M|{
+ 8407|   110M|    return GImGui->Font;
+ 8408|   110M|}
 _ZN5ImGui11GetFontSizeEv:
- 8411|   109M|{
- 8412|   109M|    return GImGui->FontSize;
- 8413|   109M|}
+ 8411|   110M|{
+ 8412|   110M|    return GImGui->FontSize;
+ 8413|   110M|}
 _ZN5ImGui14PushFocusScopeEj:
  8430|  60.8k|{
  8431|  60.8k|    ImGuiContext& g = *GImGui;
@@ -29502,26 +29502,26 @@ _ZNK6ImFont19FindGlyphNoFallbackEt:
  3802|      3|    return &Glyphs.Data[i];
  3803|      3|}
 _ZNK6ImFont13CalcTextSizeAEfffPKcS1_PS1_:
- 3917|   109M|{
- 3918|   109M|    if (!text_end)
+ 3917|   110M|{
+ 3918|   110M|    if (!text_end)
   ------------------
-  |  Branch (3918:9): [True: 109M, False: 40.6k]
+  |  Branch (3918:9): [True: 110M, False: 40.6k]
   ------------------
- 3919|   109M|        text_end = text_begin + strlen(text_begin); // FIXME-OPT: Need to avoid this.
+ 3919|   110M|        text_end = text_begin + strlen(text_begin); // FIXME-OPT: Need to avoid this.
  3920|       |
- 3921|   109M|    const float line_height = size;
- 3922|   109M|    const float scale = size / FontSize;
+ 3921|   110M|    const float line_height = size;
+ 3922|   110M|    const float scale = size / FontSize;
  3923|       |
- 3924|   109M|    ImVec2 text_size = ImVec2(0, 0);
- 3925|   109M|    float line_width = 0.0f;
+ 3924|   110M|    ImVec2 text_size = ImVec2(0, 0);
+ 3925|   110M|    float line_width = 0.0f;
  3926|       |
- 3927|   109M|    const bool word_wrap_enabled = (wrap_width > 0.0f);
- 3928|   109M|    const char* word_wrap_eol = NULL;
+ 3927|   110M|    const bool word_wrap_enabled = (wrap_width > 0.0f);
+ 3928|   110M|    const char* word_wrap_eol = NULL;
  3929|       |
- 3930|   109M|    const char* s = text_begin;
+ 3930|   110M|    const char* s = text_begin;
  3931|   225M|    while (s < text_end)
   ------------------
-  |  Branch (3931:12): [True: 115M, False: 109M]
+  |  Branch (3931:12): [True: 115M, False: 110M]
   ------------------
  3932|   115M|    {
  3933|   115M|        if (word_wrap_enabled)
@@ -29603,27 +29603,27 @@ _ZNK6ImFont13CalcTextSizeAEfffPKcS1_PS1_:
  3979|   115M|        line_width += char_width;
  3980|   115M|    }
  3981|       |
- 3982|   109M|    if (text_size.x < line_width)
+ 3982|   110M|    if (text_size.x < line_width)
   ------------------
-  |  Branch (3982:9): [True: 109M, False: 1.01k]
+  |  Branch (3982:9): [True: 110M, False: 1.01k]
   ------------------
- 3983|   109M|        text_size.x = line_width;
+ 3983|   110M|        text_size.x = line_width;
  3984|       |
- 3985|   109M|    if (line_width > 0 || text_size.y == 0.0f)
+ 3985|   110M|    if (line_width > 0 || text_size.y == 0.0f)
   ------------------
-  |  Branch (3985:9): [True: 109M, False: 1.01k]
+  |  Branch (3985:9): [True: 110M, False: 1.01k]
   |  Branch (3985:27): [True: 1.01k, False: 0]
   ------------------
- 3986|   109M|        text_size.y += line_height;
+ 3986|   110M|        text_size.y += line_height;
  3987|       |
- 3988|   109M|    if (remaining)
+ 3988|   110M|    if (remaining)
   ------------------
-  |  Branch (3988:9): [True: 0, False: 109M]
+  |  Branch (3988:9): [True: 0, False: 110M]
   ------------------
  3989|      0|        *remaining = s;
  3990|       |
- 3991|   109M|    return text_size;
- 3992|   109M|}
+ 3991|   110M|    return text_size;
+ 3992|   110M|}
 _ZNK6ImFont10RenderTextEP10ImDrawListfRK6ImVec2jRK6ImVec4PKcS9_fb:
  4011|  2.38M|{
  4012|  2.38M|    if (!text_end)
