@@ -3834,24 +3834,24 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3463|  11.9k|                    phi::uint64_t elapsed = time_end - m_StartTime;
  3464|  11.9k|                    if (elapsed > 400)
   ------------------
-  |  Branch (3464:25): [True: 35, False: 11.9k]
+  |  Branch (3464:25): [True: 36, False: 11.9k]
   ------------------
- 3465|     35|                    {
- 3466|     35|                        float    width  = 1.0f;
- 3467|     35|                        phi::u32 cindex = GetCharacterIndex(m_State.m_CursorPosition);
- 3468|     35|                        float    cx     = TextDistanceToLineStart(m_State.m_CursorPosition);
+ 3465|     36|                    {
+ 3466|     36|                        float    width  = 1.0f;
+ 3467|     36|                        phi::u32 cindex = GetCharacterIndex(m_State.m_CursorPosition);
+ 3468|     36|                        float    cx     = TextDistanceToLineStart(m_State.m_CursorPosition);
  3469|       |
- 3470|     35|                        if (m_Overwrite && cindex < line.size())
+ 3470|     36|                        if (m_Overwrite && cindex < line.size())
   ------------------
-  |  Branch (3470:29): [True: 20, False: 15]
-  |  Branch (3470:29): [True: 7, False: 28]
-  |  Branch (3470:44): [True: 7, False: 13]
+  |  Branch (3470:29): [True: 21, False: 15]
+  |  Branch (3470:29): [True: 8, False: 28]
+  |  Branch (3470:44): [True: 8, False: 13]
   ------------------
- 3471|      7|                        {
- 3472|      7|                            char character = static_cast<char>(line[cindex.unsafe()].m_Char);
- 3473|      7|                            if (character == '\t')
+ 3471|      8|                        {
+ 3472|      8|                            char character = static_cast<char>(line[cindex.unsafe()].m_Char);
+ 3473|      8|                            if (character == '\t')
   ------------------
-  |  Branch (3473:33): [True: 0, False: 7]
+  |  Branch (3473:33): [True: 0, False: 8]
   ------------------
  3474|      0|                            {
  3475|      0|                                float x = (1.0f +
@@ -3860,30 +3860,30 @@ _ZN6dlxemu10CodeEditor14InternalRenderEv:
  3478|      0|                                          (float(m_TabSize.unsafe()) * space_size);
  3479|      0|                                width = x - cx;
  3480|      0|                            }
- 3481|      7|                            else
- 3482|      7|                            {
- 3483|      7|                                phi::array<char, 2u> buffer2;
- 3484|      7|                                buffer2[0u] = static_cast<char>(line[cindex.unsafe()].m_Char);
- 3485|      7|                                buffer2[1u] = '\0';
- 3486|      7|                                width       = ImGui::GetFont()
- 3487|      7|                                                ->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX,
- 3488|      7|                                                                -1.0f, buffer2.data())
- 3489|      7|                                                .x;
- 3490|      7|                            }
- 3491|      7|                        }
- 3492|     35|                        const ImVec2 cstart(text_screen_pos.x + cx, line_start_screen_pos.y);
- 3493|     35|                        const ImVec2 cend(text_screen_pos.x + cx + width,
- 3494|     35|                                          line_start_screen_pos.y + m_CharAdvance.y);
- 3495|     35|                        draw_list->AddRectFilled(cstart, cend,
- 3496|     35|                                                 GetPaletteForIndex(PaletteIndex::Cursor));
- 3497|     35|                        if (elapsed > 800)
+ 3481|      8|                            else
+ 3482|      8|                            {
+ 3483|      8|                                phi::array<char, 2u> buffer2;
+ 3484|      8|                                buffer2[0u] = static_cast<char>(line[cindex.unsafe()].m_Char);
+ 3485|      8|                                buffer2[1u] = '\0';
+ 3486|      8|                                width       = ImGui::GetFont()
+ 3487|      8|                                                ->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX,
+ 3488|      8|                                                                -1.0f, buffer2.data())
+ 3489|      8|                                                .x;
+ 3490|      8|                            }
+ 3491|      8|                        }
+ 3492|     36|                        const ImVec2 cstart(text_screen_pos.x + cx, line_start_screen_pos.y);
+ 3493|     36|                        const ImVec2 cend(text_screen_pos.x + cx + width,
+ 3494|     36|                                          line_start_screen_pos.y + m_CharAdvance.y);
+ 3495|     36|                        draw_list->AddRectFilled(cstart, cend,
+ 3496|     36|                                                 GetPaletteForIndex(PaletteIndex::Cursor));
+ 3497|     36|                        if (elapsed > 800)
   ------------------
-  |  Branch (3497:29): [True: 20, False: 15]
+  |  Branch (3497:29): [True: 21, False: 15]
   ------------------
- 3498|     20|                        {
- 3499|     20|                            m_StartTime = time_end;
- 3500|     20|                        }
- 3501|     35|                    }
+ 3498|     21|                        {
+ 3499|     21|                            m_StartTime = time_end;
+ 3500|     21|                        }
+ 3501|     36|                    }
  3502|  11.9k|                }
  3503|  19.5k|            }
  3504|       |
