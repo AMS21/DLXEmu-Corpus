@@ -124,7 +124,7 @@ _ZN6dlxemu8Emulator26HandleCommandLineArgumentsEN3phi7integerIiEEPPc:
    61|       |
    62|  2.38k|        for (phi::i32 arg_num{1}; arg_num < argc; ++arg_num)
   ------------------
-  |  Branch (62:35): [True: 2.34k, False: 33]
+  |  Branch (62:35): [True: 2.34k, False: 37]
   ------------------
    63|  2.34k|        {
    64|  2.34k|            std::string arg_value = argv[arg_num.unsafe()];
@@ -137,19 +137,19 @@ _ZN6dlxemu8Emulator26HandleCommandLineArgumentsEN3phi7integerIiEEPPc:
    71|       |
    72|  2.34k|            if (arg_value.front() == '-')
   ------------------
-  |  Branch (72:17): [True: 18, False: 2.32k]
+  |  Branch (72:17): [True: 14, False: 2.33k]
   ------------------
-   73|     18|            {
+   73|     14|            {
    74|       |                // Display help
-   75|     18|                if (arg_value == "-h" || arg_value == "-help" || arg_value == "-?" ||
+   75|     14|                if (arg_value == "-h" || arg_value == "-help" || arg_value == "-?" ||
   ------------------
-  |  Branch (75:21): [True: 1, False: 17]
-  |  Branch (75:42): [True: 1, False: 16]
-  |  Branch (75:66): [True: 1, False: 15]
+  |  Branch (75:21): [True: 1, False: 13]
+  |  Branch (75:42): [True: 1, False: 12]
+  |  Branch (75:66): [True: 1, False: 11]
   ------------------
-   76|     18|                    arg_value == "--help")
+   76|     14|                    arg_value == "--help")
   ------------------
-  |  Branch (76:21): [True: 1, False: 14]
+  |  Branch (76:21): [True: 1, False: 10]
   ------------------
    77|      4|                {
    78|      4|                    DLX_INFO("Help");
@@ -159,10 +159,10 @@ _ZN6dlxemu8Emulator26HandleCommandLineArgumentsEN3phi7integerIiEEPPc:
    79|      4|                    return ShouldContinueInitialization::No;
    80|      4|                }
    81|       |                // Display version
-   82|     14|                if (arg_value == "-v" || arg_value == "--value")
+   82|     10|                if (arg_value == "-v" || arg_value == "--value")
   ------------------
-  |  Branch (82:21): [True: 1, False: 13]
-  |  Branch (82:42): [True: 1, False: 12]
+  |  Branch (82:21): [True: 1, False: 9]
+  |  Branch (82:42): [True: 1, False: 8]
   ------------------
    83|      2|                {
    84|      2|                    fmt::print("DLXEmu version {:d}.{:d}.{:d} {:s}-{:s}\n", VersionMajor,
@@ -171,18 +171,18 @@ _ZN6dlxemu8Emulator26HandleCommandLineArgumentsEN3phi7integerIiEEPPc:
    87|      2|                }
    88|       |
    89|       |                // Unknown option
-   90|     12|                DLX_WARN("Unknown option '{:s}' ignored", arg_value);
+   90|      8|                DLX_WARN("Unknown option '{:s}' ignored", arg_value);
   ------------------
-  |  |    8|     12|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
+  |  |    8|      8|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
   ------------------
-   91|     12|                break;
-   92|     14|            }
+   91|      8|                break;
+   92|     10|            }
    93|       |
-   94|  2.32k|            DLX_WARN("Ignore command line argument '{:s}'", arg_value);
+   94|  2.33k|            DLX_WARN("Ignore command line argument '{:s}'", arg_value);
   ------------------
-  |  |    8|  2.32k|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
+  |  |    8|  2.33k|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
   ------------------
-   95|  2.32k|        }
+   95|  2.33k|        }
    96|       |
    97|     45|        return ShouldContinueInitialization::Yes;
    98|     51|    }
