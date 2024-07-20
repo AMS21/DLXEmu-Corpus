@@ -155,19 +155,19 @@ _ZN3dlx17IsValidIdentifierEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
    73|       |
    74|  53.7k|        for (phi::size_t index{1u}; index < token.length(); ++index)
   ------------------
-  |  Branch (74:37): [True: 45.7k, False: 7.97k]
+  |  Branch (74:37): [True: 45.7k, False: 7.96k]
   ------------------
    75|  45.7k|        {
    76|  45.7k|            const char c{token.at(index)};
    77|       |
    78|  45.7k|            if (phi::is_alpha_numeric(c))
   ------------------
-  |  Branch (78:17): [True: 37.8k, False: 7.86k]
+  |  Branch (78:17): [True: 37.8k, False: 7.87k]
   ------------------
    79|  37.8k|            {
    80|  37.8k|                just_under_scores = false;
    81|  37.8k|            }
-   82|  7.86k|            else if (c == '_')
+   82|  7.87k|            else if (c == '_')
   ------------------
   |  Branch (82:22): [True: 454, False: 7.41k]
   ------------------
@@ -180,7 +180,7 @@ _ZN3dlx17IsValidIdentifierEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
    89|  7.41k|            }
    90|  45.7k|        }
    91|       |
-   92|  7.97k|        return !just_under_scores;
+   92|  7.96k|        return !just_under_scores;
    93|  15.3k|    }
 _ZN3dlx11ParseNumberEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
    98|   108k|    {
@@ -260,26 +260,26 @@ _ZN3dlx11ParseNumberEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   148|       |
   149|  90.7k|                if (c == '0')
   ------------------
-  |  Branch (149:21): [True: 1.77k, False: 89.0k]
+  |  Branch (149:21): [True: 1.77k, False: 88.9k]
   ------------------
   150|  1.77k|                {
   151|  1.77k|                    starts_with_zero = true;
   152|  1.77k|                    continue;
   153|  1.77k|                }
   154|       |
-  155|  89.0k|                if (c == '\'')
+  155|  88.9k|                if (c == '\'')
   ------------------
-  |  Branch (155:21): [True: 199, False: 88.8k]
+  |  Branch (155:21): [True: 199, False: 88.7k]
   ------------------
   156|    199|                {
   157|    199|                    return {};
   158|    199|                }
-  159|  89.0k|            }
+  159|  88.9k|            }
   160|       |
   161|       |            // Second character
   162|  98.5k|            if (index == 1u)
   ------------------
-  |  Branch (162:17): [True: 3.81k, False: 94.7k]
+  |  Branch (162:17): [True: 3.81k, False: 94.6k]
   ------------------
   163|  3.81k|            {
   164|  3.81k|                if (starts_with_zero)
@@ -302,7 +302,7 @@ _ZN3dlx11ParseNumberEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   174|  1.35k|                    if (c == 'x' || c == 'X')
   ------------------
   |  Branch (174:25): [True: 257, False: 1.09k]
-  |  Branch (174:37): [True: 278, False: 820]
+  |  Branch (174:37): [True: 278, False: 819]
   ------------------
   175|    535|                    {
   176|    535|                        parsing_hexadecimal = true;
@@ -310,8 +310,8 @@ _ZN3dlx11ParseNumberEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   178|    535|                    }
   179|       |
   180|       |                    // Octal
-  181|    820|                    parsing_octal = true;
-  182|    820|                }
+  181|    819|                    parsing_octal = true;
+  182|    819|                }
   183|  3.81k|            }
   184|       |
   185|       |            // Handle separators
@@ -374,20 +374,20 @@ _ZN3dlx11ParseNumberEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   221|    388|            }
   222|  96.1k|            else if (parsing_octal)
   ------------------
-  |  Branch (222:22): [True: 844, False: 95.2k]
+  |  Branch (222:22): [True: 840, False: 95.2k]
   ------------------
-  223|    844|            {
-  224|    844|                if (!phi::is_octal_digit(c))
+  223|    840|            {
+  224|    840|                if (!phi::is_octal_digit(c))
   ------------------
-  |  Branch (224:21): [True: 425, False: 419]
+  |  Branch (224:21): [True: 425, False: 415]
   ------------------
   225|    425|                {
   226|    425|                    return {};
   227|    425|                }
   228|       |
-  229|    419|                number <<= 3;
-  230|    419|                number |= (c - '0');
-  231|    419|            }
+  229|    415|                number <<= 3;
+  230|    415|                number |= (c - '0');
+  231|    415|            }
   232|  95.2k|            else if (parsing_hexadecimal)
   ------------------
   |  Branch (232:22): [True: 1.03k, False: 94.2k]
@@ -470,9 +470,9 @@ _ZN3dlx11ParseNumberEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   283|  1.64k|    }
 
 _ZN3dlx14StatusRegister9SetStatusEN3phi7booleanE:
-   11|   327k|        {
-   12|   327k|            m_Value = value;
-   13|   327k|        }
+   11|   326k|        {
+   12|   326k|            m_Value = value;
+   13|   326k|        }
 _ZNK3dlx14StatusRegister3GetEv:
    16|   112k|        {
    17|   112k|            return m_Value;
@@ -517,13 +517,13 @@ _ZN3dlx11TokenStream12emplace_backIJNS_5TokenEEEEvDpOT_:
    29|   110k|            m_Tokens.emplace_back(std::forward<ArgsT>(args)...);
    30|   110k|        }
 _ZN3dlx11TokenStream12emplace_backIJRNS_5Token4TypeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEERNS5_7integerImEESD_EEEvDpOT_:
-   24|  41.6k|        {
+   24|  41.5k|        {
    25|       |#if defined(PHI_DEBUG)
    26|       |            PHI_ASSERT(!m_Finalized);
    27|       |#endif
    28|       |
-   29|  41.6k|            m_Tokens.emplace_back(std::forward<ArgsT>(args)...);
-   30|  41.6k|        }
+   29|  41.5k|            m_Tokens.emplace_back(std::forward<ArgsT>(args)...);
+   30|  41.5k|        }
 
 _ZN3dlx13FloatRegister8SetValueEN3phi14floating_pointIfEE:
     8|   576k|    {
@@ -537,38 +537,38 @@ _ZNK3dlx13FloatRegister8GetValueEv:
 _ZN3dlx11InstructionC2ERKNS_15InstructionInfoEN3phi7integerImEE:
    18|  23.1k|    {}
 _ZN3dlx11Instruction11SetArgumentEN3phi7integerIhEENS_19InstructionArgumentE:
-   23|  11.9k|    {
-   24|  11.9k|        PHI_ASSERT(argument_number < 3u);
+   23|  11.8k|    {
+   24|  11.8k|        PHI_ASSERT(argument_number < 3u);
    25|       |
-   26|  11.9k|        switch (argument_number.unsafe())
-   27|  11.9k|        {
-   28|  6.93k|            case 0u:
+   26|  11.8k|        switch (argument_number.unsafe())
+   27|  11.8k|        {
+   28|  6.92k|            case 0u:
   ------------------
-  |  Branch (28:13): [True: 6.93k, False: 4.97k]
+  |  Branch (28:13): [True: 6.92k, False: 4.97k]
   ------------------
-   29|  6.93k|                m_Arg1 = argument;
-   30|  6.93k|                break;
-   31|  2.95k|            case 1u:
+   29|  6.92k|                m_Arg1 = argument;
+   30|  6.92k|                break;
+   31|  2.94k|            case 1u:
   ------------------
-  |  Branch (31:13): [True: 2.95k, False: 8.96k]
+  |  Branch (31:13): [True: 2.94k, False: 8.95k]
   ------------------
-   32|  2.95k|                m_Arg2 = argument;
-   33|  2.95k|                break;
+   32|  2.94k|                m_Arg2 = argument;
+   33|  2.94k|                break;
    34|  2.02k|            case 2u:
   ------------------
-  |  Branch (34:13): [True: 2.02k, False: 9.88k]
+  |  Branch (34:13): [True: 2.02k, False: 9.87k]
   ------------------
    35|  2.02k|                m_Arg3 = argument;
    36|  2.02k|                break;
    37|      0|#if !defined(DLXEMU_COVERAGE_BUILD)
    38|      0|            default:
   ------------------
-  |  Branch (38:13): [True: 0, False: 11.9k]
+  |  Branch (38:13): [True: 0, False: 11.8k]
   ------------------
    39|      0|                PHI_ASSERT_NOT_REACHED();
-   40|  11.9k|#endif
-   41|  11.9k|        }
-   42|  11.9k|    }
+   40|  11.8k|#endif
+   41|  11.8k|        }
+   42|  11.8k|    }
 _ZNK3dlx11Instruction7ExecuteERNS_9ProcessorE:
    81|  7.69M|    {
    82|  7.69M|        m_Info.Execute(processor, m_Arg1, m_Arg2, m_Arg3);
@@ -585,11 +585,11 @@ _ZNK3dlx19InstructionArgument7GetTypeEv:
    25|  46.4M|        return m_Type;
    26|  46.4M|    }
 _ZNK3dlx19InstructionArgument13AsRegisterIntEv:
-   73|  8.86M|    {
-   74|  8.86M|        PHI_ASSERT(m_Type == ArgumentType::IntRegister);
+   73|  8.85M|    {
+   74|  8.85M|        PHI_ASSERT(m_Type == ArgumentType::IntRegister);
    75|       |
-   76|  8.86M|        return register_int;
-   77|  8.86M|    }
+   76|  8.85M|        return register_int;
+   77|  8.85M|    }
 _ZNK3dlx19InstructionArgument15AsRegisterFloatEv:
    80|  1.33M|    {
    81|  1.33M|        PHI_ASSERT(m_Type == ArgumentType::FloatRegister);
@@ -615,19 +615,19 @@ _ZNK3dlx19InstructionArgument7AsLabelEv:
   106|   412k|        return label;
   107|   412k|    }
 _ZN3dlx39ConstructInstructionArgumentRegisterIntENS_13IntRegisterIDE:
-  166|  6.21k|    {
-  167|  6.21k|        InstructionArgument arg;
-  168|  6.21k|        arg.m_Type                   = ArgumentType::IntRegister;
-  169|  6.21k|        arg.register_int.register_id = id;
-  170|  6.21k|        return arg;
-  171|  6.21k|    }
+  166|  6.20k|    {
+  167|  6.20k|        InstructionArgument arg;
+  168|  6.20k|        arg.m_Type                   = ArgumentType::IntRegister;
+  169|  6.20k|        arg.register_int.register_id = id;
+  170|  6.20k|        return arg;
+  171|  6.20k|    }
 _ZN3dlx41ConstructInstructionArgumentRegisterFloatENS_15FloatRegisterIDE:
-  174|  1.42k|    {
-  175|  1.42k|        InstructionArgument arg;
-  176|  1.42k|        arg.m_Type                     = ArgumentType::FloatRegister;
-  177|  1.42k|        arg.register_float.register_id = id;
-  178|  1.42k|        return arg;
-  179|  1.42k|    }
+  174|  1.41k|    {
+  175|  1.41k|        InstructionArgument arg;
+  176|  1.41k|        arg.m_Type                     = ArgumentType::FloatRegister;
+  177|  1.41k|        arg.register_float.register_id = id;
+  178|  1.41k|        return arg;
+  179|  1.41k|    }
 _ZN3dlx42ConstructInstructionArgumentImmediateValueEs:
   182|  1.21k|    {
   183|  1.21k|        InstructionArgument arg;
@@ -644,24 +644,24 @@ _ZN3dlx47ConstructInstructionArgumentAddressDisplacementENS_13IntRegisterIDEN3ph
   196|    199|        return arg;
   197|    199|    }
 _ZN3dlx33ConstructInstructionArgumentLabelEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-  200|  2.86k|    {
-  201|  2.86k|        InstructionArgument arg;
-  202|  2.86k|        arg.m_Type           = ArgumentType::Label;
-  203|  2.86k|        arg.label.label_name = label_name;
-  204|  2.86k|        return arg;
-  205|  2.86k|    }
+  200|  2.85k|    {
+  201|  2.85k|        InstructionArgument arg;
+  202|  2.85k|        arg.m_Type           = ArgumentType::Label;
+  203|  2.85k|        arg.label.label_name = label_name;
+  204|  2.85k|        return arg;
+  205|  2.85k|    }
 
 _ZN3dlx4impl3ADDERNS_9ProcessorERKNS_19InstructionArgumentES5_S5_:
-  350|  37.9k|        {
-  351|  37.9k|            const auto& dest_reg = arg1.AsRegisterInt();
-  352|  37.9k|            const auto& lhs_reg  = arg2.AsRegisterInt();
-  353|  37.9k|            const auto& rhs_reg  = arg3.AsRegisterInt();
+  350|  38.2k|        {
+  351|  38.2k|            const auto& dest_reg = arg1.AsRegisterInt();
+  352|  38.2k|            const auto& lhs_reg  = arg2.AsRegisterInt();
+  353|  38.2k|            const auto& rhs_reg  = arg3.AsRegisterInt();
   354|       |
-  355|  37.9k|            phi::i32 lhs_value = processor.IntRegisterGetSignedValue(lhs_reg.register_id);
-  356|  37.9k|            phi::i32 rhs_value = processor.IntRegisterGetSignedValue(rhs_reg.register_id);
+  355|  38.2k|            phi::i32 lhs_value = processor.IntRegisterGetSignedValue(lhs_reg.register_id);
+  356|  38.2k|            phi::i32 rhs_value = processor.IntRegisterGetSignedValue(rhs_reg.register_id);
   357|       |
-  358|  37.9k|            Addition(processor, dest_reg.register_id, lhs_value, rhs_value);
-  359|  37.9k|        }
+  358|  38.2k|            Addition(processor, dest_reg.register_id, lhs_value, rhs_value);
+  359|  38.2k|        }
 _ZN3dlx4impl4ADDIERNS_9ProcessorERKNS_19InstructionArgumentES5_S5_:
   363|  78.3k|        {
   364|  78.3k|            const auto& dest_reg  = arg1.AsRegisterInt();
@@ -720,16 +720,16 @@ _ZN3dlx4impl4ADDDERNS_9ProcessorERKNS_19InstructionArgumentES5_S5_:
   425|  17.9k|            processor.FloatRegisterSetDoubleValue(dest_reg, new_value);
   426|  17.9k|        }
 _ZN3dlx4impl3SUBERNS_9ProcessorERKNS_19InstructionArgumentES5_S5_:
-  430|   397k|        {
-  431|   397k|            const auto& dest_reg = arg1.AsRegisterInt();
-  432|   397k|            const auto& lhs_reg  = arg2.AsRegisterInt();
-  433|   397k|            const auto& rhs_reg  = arg3.AsRegisterInt();
+  430|   396k|        {
+  431|   396k|            const auto& dest_reg = arg1.AsRegisterInt();
+  432|   396k|            const auto& lhs_reg  = arg2.AsRegisterInt();
+  433|   396k|            const auto& rhs_reg  = arg3.AsRegisterInt();
   434|       |
-  435|   397k|            phi::i32 lhs_value = processor.IntRegisterGetSignedValue(lhs_reg.register_id);
-  436|   397k|            phi::i32 rhs_value = processor.IntRegisterGetSignedValue(rhs_reg.register_id);
+  435|   396k|            phi::i32 lhs_value = processor.IntRegisterGetSignedValue(lhs_reg.register_id);
+  436|   396k|            phi::i32 rhs_value = processor.IntRegisterGetSignedValue(rhs_reg.register_id);
   437|       |
-  438|   397k|            Subtraction(processor, dest_reg.register_id, lhs_value, rhs_value);
-  439|   397k|        }
+  438|   396k|            Subtraction(processor, dest_reg.register_id, lhs_value, rhs_value);
+  439|   396k|        }
 _ZN3dlx4impl4SUBIERNS_9ProcessorERKNS_19InstructionArgumentES5_S5_:
   443|   162k|        {
   444|   162k|            const auto& dest_reg  = arg1.AsRegisterInt();
@@ -1271,21 +1271,21 @@ _ZN3dlx4impl3GTDERNS_9ProcessorERKNS_19InstructionArgumentES5_S5_:
  1034|  27.6k|            processor.SetFPSRValue(new_value);
  1035|  27.6k|        }
 _ZN3dlx4impl3SLEERNS_9ProcessorERKNS_19InstructionArgumentES5_S5_:
- 1039|   367k|        {
- 1040|   367k|            const auto& dest_reg = arg1.AsRegisterInt();
- 1041|   367k|            const auto& lhs_reg  = arg2.AsRegisterInt();
- 1042|   367k|            const auto& rhs_reg  = arg3.AsRegisterInt();
+ 1039|   364k|        {
+ 1040|   364k|            const auto& dest_reg = arg1.AsRegisterInt();
+ 1041|   364k|            const auto& lhs_reg  = arg2.AsRegisterInt();
+ 1042|   364k|            const auto& rhs_reg  = arg3.AsRegisterInt();
  1043|       |
- 1044|   367k|            const phi::i32 lhs_value = processor.IntRegisterGetSignedValue(lhs_reg.register_id);
- 1045|   367k|            const phi::i32 rhs_value = processor.IntRegisterGetSignedValue(rhs_reg.register_id);
+ 1044|   364k|            const phi::i32 lhs_value = processor.IntRegisterGetSignedValue(lhs_reg.register_id);
+ 1045|   364k|            const phi::i32 rhs_value = processor.IntRegisterGetSignedValue(rhs_reg.register_id);
  1046|       |
- 1047|   367k|            const phi::i32 new_value = (lhs_value <= rhs_value ? 1 : 0);
+ 1047|   364k|            const phi::i32 new_value = (lhs_value <= rhs_value ? 1 : 0);
   ------------------
-  |  Branch (1047:41): [True: 267k, False: 99.9k]
+  |  Branch (1047:41): [True: 264k, False: 99.9k]
   ------------------
  1048|       |
- 1049|   367k|            processor.IntRegisterSetSignedValue(dest_reg.register_id, new_value);
- 1050|   367k|        }
+ 1049|   364k|            processor.IntRegisterSetSignedValue(dest_reg.register_id, new_value);
+ 1050|   364k|        }
 _ZN3dlx4impl4SLEIERNS_9ProcessorERKNS_19InstructionArgumentES5_S5_:
  1054|  22.8k|        {
  1055|  22.8k|            const auto& dest_reg  = arg1.AsRegisterInt();
@@ -1345,17 +1345,17 @@ _ZN3dlx4impl3LEFERNS_9ProcessorERKNS_19InstructionArgumentES5_S5_:
  1106|  42.7k|            processor.SetFPSRValue(new_value);
  1107|  42.7k|        }
 _ZN3dlx4impl3LEDERNS_9ProcessorERKNS_19InstructionArgumentES5_S5_:
- 1111|  40.1k|        {
- 1112|  40.1k|            const FloatRegisterID lhs_reg = arg1.AsRegisterFloat().register_id;
- 1113|  40.1k|            const FloatRegisterID rhs_reg = arg2.AsRegisterFloat().register_id;
+ 1111|  39.0k|        {
+ 1112|  39.0k|            const FloatRegisterID lhs_reg = arg1.AsRegisterFloat().register_id;
+ 1113|  39.0k|            const FloatRegisterID rhs_reg = arg2.AsRegisterFloat().register_id;
  1114|       |
- 1115|  40.1k|            const phi::f64 lhs_value = processor.FloatRegisterGetDoubleValue(lhs_reg);
- 1116|  40.1k|            const phi::f64 rhs_value = processor.FloatRegisterGetDoubleValue(rhs_reg);
+ 1115|  39.0k|            const phi::f64 lhs_value = processor.FloatRegisterGetDoubleValue(lhs_reg);
+ 1116|  39.0k|            const phi::f64 rhs_value = processor.FloatRegisterGetDoubleValue(rhs_reg);
  1117|       |
- 1118|  40.1k|            const phi::boolean new_value = (lhs_value <= rhs_value);
+ 1118|  39.0k|            const phi::boolean new_value = (lhs_value <= rhs_value);
  1119|       |
- 1120|  40.1k|            processor.SetFPSRValue(new_value);
- 1121|  40.1k|        }
+ 1120|  39.0k|            processor.SetFPSRValue(new_value);
+ 1121|  39.0k|        }
 _ZN3dlx4impl3SGEERNS_9ProcessorERKNS_19InstructionArgumentES5_S5_:
  1125|  15.7k|        {
  1126|  15.7k|            const auto& dest_reg = arg1.AsRegisterInt();
@@ -2379,14 +2379,14 @@ InstructionImplementation.cpp:_ZN3dlxL8AdditionERNS_9ProcessorENS_13IntRegisterI
   171|   116k|        SafeWriteInteger(processor, dest_reg, res);
   172|   116k|    }
 InstructionImplementation.cpp:_ZN3dlxL16SafeWriteIntegerERNS_9ProcessorENS_13IntRegisterIDEN3phi7integerIlEE:
-  123|   880k|    {
-  124|   880k|        static const constexpr phi::i64 min = phi::i32::limits_type::min();
-  125|   880k|        static const constexpr phi::i64 max = phi::i32::limits_type::max();
+  123|   879k|    {
+  124|   879k|        static const constexpr phi::i64 min = phi::i32::limits_type::min();
+  125|   879k|        static const constexpr phi::i64 max = phi::i32::limits_type::max();
   126|       |
   127|       |        // Check for underflow
-  128|   880k|        if (value < min)
+  128|   879k|        if (value < min)
   ------------------
-  |  Branch (128:13): [True: 53.1k, False: 827k]
+  |  Branch (128:13): [True: 53.1k, False: 826k]
   ------------------
   129|  53.1k|        {
   130|  53.1k|            processor.Raise(Exception::Underflow);
@@ -2394,9 +2394,9 @@ InstructionImplementation.cpp:_ZN3dlxL16SafeWriteIntegerERNS_9ProcessorENS_13Int
   132|  53.1k|            value = max + (value % (min - 1));
   133|  53.1k|        }
   134|       |        // Check for overflow
-  135|   827k|        else if (value > max)
+  135|   826k|        else if (value > max)
   ------------------
-  |  Branch (135:18): [True: 81.3k, False: 746k]
+  |  Branch (135:18): [True: 81.3k, False: 745k]
   ------------------
   136|  81.3k|        {
   137|  81.3k|            processor.Raise(Exception::Overflow);
@@ -2404,11 +2404,11 @@ InstructionImplementation.cpp:_ZN3dlxL16SafeWriteIntegerERNS_9ProcessorENS_13Int
   139|  81.3k|            value = min + (value % (max + 1));
   140|  81.3k|        }
   141|       |
-  142|   880k|        PHI_ASSERT(value >= min);
-  143|   880k|        PHI_ASSERT(value <= max);
+  142|   879k|        PHI_ASSERT(value >= min);
+  143|   879k|        PHI_ASSERT(value <= max);
   144|       |
-  145|   880k|        processor.IntRegisterSetSignedValue(dest_reg, static_cast<phi::int32_t>(value.unsafe()));
-  146|   880k|    }
+  145|   879k|        processor.IntRegisterSetSignedValue(dest_reg, static_cast<phi::int32_t>(value.unsafe()));
+  146|   879k|    }
 InstructionImplementation.cpp:_ZN3dlxL8AdditionERNS_9ProcessorENS_13IntRegisterIDEN3phi7integerIjEES5_:
   176|  69.9k|    {
   177|  69.9k|        phi::u64 res = phi::u64(lhs) + rhs;
@@ -2435,11 +2435,11 @@ InstructionImplementation.cpp:_ZN3dlxL16SafeWriteIntegerERNS_9ProcessorENS_13Int
   163|   255k|        processor.IntRegisterSetUnsignedValue(dest_reg, static_cast<phi::uint32_t>(value.unsafe()));
   164|   255k|    }
 InstructionImplementation.cpp:_ZN3dlxL11SubtractionERNS_9ProcessorENS_13IntRegisterIDEN3phi7integerIiEES5_:
-  184|   559k|    {
-  185|   559k|        phi::i64 res = phi::i64(lhs) - rhs;
+  184|   558k|    {
+  185|   558k|        phi::i64 res = phi::i64(lhs) - rhs;
   186|       |
-  187|   559k|        SafeWriteInteger(processor, dest_reg, res);
-  188|   559k|    }
+  187|   558k|        SafeWriteInteger(processor, dest_reg, res);
+  188|   558k|    }
 InstructionImplementation.cpp:_ZN3dlxL11SubtractionERNS_9ProcessorENS_13IntRegisterIDEN3phi7integerIjEES5_:
   192|  77.4k|    {
   193|  77.4k|        constexpr phi::u32 max = phi::u32::limits_type::max();
@@ -2741,9 +2741,9 @@ _ZN3dlx11IntRegister16SetUnsignedValueEN3phi7integerIjEE:
    21|   238k|        m_ValueUnsigned = val;
    22|   238k|    }
 _ZNK3dlx11IntRegister14GetSignedValueEv:
-   25|  3.48M|    {
-   26|  3.48M|        return m_ValueSigned;
-   27|  3.48M|    }
+   25|  3.47M|    {
+   26|  3.47M|        return m_ValueSigned;
+   27|  3.47M|    }
 _ZNK3dlx11IntRegister16GetUnsignedValueEv:
    30|  2.68M|    {
    31|  2.68M|        return m_ValueUnsigned;
@@ -3199,12 +3199,12 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
    28|       |
    29|  18.0k|                if (ice(c1, 'J'))
   ------------------
-  |  Branch (29:21): [True: 10.1k, False: 7.82k]
+  |  Branch (29:21): [True: 10.1k, False: 7.81k]
   ------------------
    30|  10.1k|                {
    31|  10.1k|                    return OpCode::J;
    32|  10.1k|                }
-   33|  7.82k|                break;
+   33|  7.81k|                break;
    34|  18.0k|            }
    35|       |
    36|       |            // 2 character OpCodes
@@ -3224,18 +3224,18 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   |  Branch (43:21): [True: 1.15k, False: 16.7k]
   ------------------
-   44|  1.37k|                    case 'j':
+   44|  1.36k|                    case 'j':
   ------------------
-  |  Branch (44:21): [True: 221, False: 17.6k]
+  |  Branch (44:21): [True: 215, False: 17.6k]
   ------------------
-   45|  1.37k|                        if (ice(c2, 'R'))
+   45|  1.36k|                        if (ice(c2, 'R'))
   ------------------
-  |  Branch (45:29): [True: 1.11k, False: 255]
+  |  Branch (45:29): [True: 1.11k, False: 249]
   ------------------
    46|  1.11k|                        {
    47|  1.11k|                            return OpCode::JR;
    48|  1.11k|                        }
-   49|    255|                        break;
+   49|    249|                        break;
    50|       |
    51|  1.79k|                    case 'L':
   ------------------
@@ -3474,7 +3474,7 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   148|  2.23k|                    case 'g':
   ------------------
-  |  Branch (148:21): [True: 1.22k, False: 32.2k]
+  |  Branch (148:21): [True: 1.22k, False: 32.3k]
   ------------------
   149|  2.23k|                        if (ice(c2, 'E'))
   ------------------
@@ -3524,22 +3524,22 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   174|  1.04k|                    case 'j':
   ------------------
-  |  Branch (174:21): [True: 211, False: 33.3k]
+  |  Branch (174:21): [True: 212, False: 33.3k]
   ------------------
   175|  1.04k|                        if (ice(c2, 'A') && ice(c3, 'L'))
   ------------------
-  |  Branch (175:29): [True: 809, False: 233]
-  |  Branch (175:29): [True: 504, False: 538]
+  |  Branch (175:29): [True: 809, False: 234]
+  |  Branch (175:29): [True: 504, False: 539]
   |  Branch (175:45): [True: 504, False: 305]
   ------------------
   176|    504|                        {
   177|    504|                            return OpCode::JAL;
   178|    504|                        }
-  179|    538|                        break;
+  179|    539|                        break;
   180|       |
-  181|  3.45k|                    case 'L':
+  181|  3.44k|                    case 'L':
   ------------------
-  |  Branch (181:21): [True: 3.45k, False: 30.0k]
+  |  Branch (181:21): [True: 3.44k, False: 30.0k]
   ------------------
   182|  5.26k|                    case 'l':
   ------------------
@@ -3556,7 +3556,7 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   186|    783|                            case 'b':
   ------------------
-  |  Branch (186:29): [True: 198, False: 5.07k]
+  |  Branch (186:29): [True: 198, False: 5.06k]
   ------------------
   187|    783|                                if (ice(c3, 'U'))
   ------------------
@@ -3573,15 +3573,15 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   194|  1.03k|                            case 'e':
   ------------------
-  |  Branch (194:29): [True: 636, False: 4.63k]
+  |  Branch (194:29): [True: 635, False: 4.63k]
   ------------------
   195|  1.03k|                                if (ice(c3, 'D'))
   ------------------
-  |  Branch (195:37): [True: 415, False: 616]
+  |  Branch (195:37): [True: 414, False: 616]
   ------------------
-  196|    415|                                {
-  197|    415|                                    return OpCode::LED;
-  198|    415|                                }
+  196|    414|                                {
+  197|    414|                                    return OpCode::LED;
+  198|    414|                                }
   199|    616|                                else if (ice(c3, 'F'))
   ------------------
   |  Branch (199:42): [True: 412, False: 204]
@@ -3658,9 +3658,9 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   236|  5.26k|                        }
   237|  1.79k|                        break;
   238|       |
-  239|  3.44k|                    case 'N':
+  239|  3.45k|                    case 'N':
   ------------------
-  |  Branch (239:21): [True: 3.44k, False: 30.0k]
+  |  Branch (239:21): [True: 3.45k, False: 30.0k]
   ------------------
   240|  4.05k|                    case 'n':
   ------------------
@@ -3770,15 +3770,15 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   288|  1.03k|                            case 'g':
   ------------------
-  |  Branch (288:29): [True: 827, False: 8.36k]
+  |  Branch (288:29): [True: 828, False: 8.36k]
   ------------------
   289|  1.03k|                                if (ice(c3, 'E'))
   ------------------
-  |  Branch (289:37): [True: 431, False: 605]
+  |  Branch (289:37): [True: 432, False: 605]
   ------------------
-  290|    431|                                {
-  291|    431|                                    return OpCode::SGE;
-  292|    431|                                }
+  290|    432|                                {
+  291|    432|                                    return OpCode::SGE;
+  292|    432|                                }
   293|    605|                                else if (ice(c3, 'T'))
   ------------------
   |  Branch (293:42): [True: 405, False: 200]
@@ -3901,9 +3901,9 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   346|    429|                                }
   347|    207|                                break;
   348|       |
-  349|    790|                            case 'U':
+  349|    789|                            case 'U':
   ------------------
-  |  Branch (349:29): [True: 790, False: 8.40k]
+  |  Branch (349:29): [True: 789, False: 8.40k]
   ------------------
   350|  1.00k|                            case 'u':
   ------------------
@@ -3911,11 +3911,11 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   351|  1.00k|                                if (ice(c3, 'B'))
   ------------------
-  |  Branch (351:37): [True: 774, False: 227]
+  |  Branch (351:37): [True: 773, False: 227]
   ------------------
-  352|    774|                                {
-  353|    774|                                    return OpCode::SUB;
-  354|    774|                                }
+  352|    773|                                {
+  353|    773|                                    return OpCode::SUB;
+  354|    773|                                }
   355|    227|                                break;
   356|       |
   357|    227|                            case 'W':
@@ -4395,7 +4395,7 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   568|  3.94k|                            case 'l':
   ------------------
-  |  Branch (568:29): [True: 878, False: 11.4k]
+  |  Branch (568:29): [True: 879, False: 11.4k]
   ------------------
   569|  3.94k|                                switch (c3)
   ------------------
@@ -4926,7 +4926,7 @@ _ZN3dlx14StringToOpCodeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   |  Branch (803:21): [True: 4.16k, False: 2.85k]
   |  Branch (803:21): [True: 3.77k, False: 3.24k]
-  |  Branch (803:37): [True: 3.96k, False: 195]
+  |  Branch (803:37): [True: 3.96k, False: 194]
   |  Branch (803:53): [True: 3.77k, False: 194]
   ------------------
   804|  3.77k|                {
@@ -5361,13 +5361,13 @@ _ZN3dlx6Parser5ParseERNS_11TokenStreamE:
   214|       |                    // Check if the last character of the identifier is a colon
   215|  32.7k|                    if (current_token.GetText().back() != ':')
   ------------------
-  |  Branch (215:25): [True: 5.48k, False: 27.2k]
+  |  Branch (215:25): [True: 5.47k, False: 27.2k]
   ------------------
-  216|  5.48k|                    {
-  217|  5.48k|                        program.AddParseError(
-  218|  5.48k|                                ConstructInvalidLabelIdentifierParseError(current_token));
-  219|  5.48k|                        break;
-  220|  5.48k|                    }
+  216|  5.47k|                    {
+  217|  5.47k|                        program.AddParseError(
+  218|  5.47k|                                ConstructInvalidLabelIdentifierParseError(current_token));
+  219|  5.47k|                        break;
+  220|  5.47k|                    }
   221|       |
   222|  27.2k|                    phi::string_view label_name = current_token.GetText();
   223|  27.2k|                    label_name.remove_suffix(1u);
@@ -5435,7 +5435,7 @@ _ZN3dlx6Parser5ParseERNS_11TokenStreamE:
   276|       |
   277|  47.7k|                case Token::Type::OpCode: {
   ------------------
-  |  Branch (277:17): [True: 47.7k, False: 87.5k]
+  |  Branch (277:17): [True: 47.7k, False: 87.4k]
   ------------------
   278|  47.7k|                    if (line_has_instruction)
   ------------------
@@ -5474,7 +5474,7 @@ _ZN3dlx6Parser5ParseERNS_11TokenStreamE:
   309|       |                    // Parse arguments
   310|  49.9k|                    for (phi::u8 argument_num{0_u8}; argument_num < number_of_argument_required;)
   ------------------
-  |  Branch (310:54): [True: 40.9k, False: 8.98k]
+  |  Branch (310:54): [True: 40.9k, False: 8.97k]
   ------------------
   311|  40.9k|                    {
   312|       |                        // Get next token
@@ -5526,7 +5526,7 @@ _ZN3dlx6Parser5ParseERNS_11TokenStreamE:
   346|  23.0k|                                        token, info.GetArgumentType(argument_num), tokens, program);
   347|  23.0k|                        if (!optional_parsed_argument.has_value())
   ------------------
-  |  Branch (347:29): [True: 11.1k, False: 11.9k]
+  |  Branch (347:29): [True: 11.1k, False: 11.8k]
   ------------------
   348|  11.1k|                        {
   349|       |                            // The parse_instruction_argument function should already have added a parse error with more detail
@@ -5534,14 +5534,14 @@ _ZN3dlx6Parser5ParseERNS_11TokenStreamE:
   351|  11.1k|                        }
   352|       |
   353|       |                        // Successfully parsed one argument
-  354|  11.9k|                        InstructionArgument parsed_argument = optional_parsed_argument.value();
+  354|  11.8k|                        InstructionArgument parsed_argument = optional_parsed_argument.value();
   355|       |
-  356|  11.9k|                        instruction.SetArgument(argument_num, parsed_argument);
-  357|  11.9k|                        argument_num++;
-  358|  11.9k|                        consumed_comma = false;
+  356|  11.8k|                        instruction.SetArgument(argument_num, parsed_argument);
+  357|  11.8k|                        argument_num++;
+  358|  11.8k|                        consumed_comma = false;
   359|       |
   360|       |                        //DLX_INFO("Successfully parsed argument {}", argument_num.unsafe());
-  361|  11.9k|                    }
+  361|  11.8k|                    }
   362|       |
   363|       |                    //DLX_INFO("Successfully parsed instruction '{}'",
   364|       |                    //            instruction.DebugInfo());
@@ -5557,7 +5557,7 @@ _ZN3dlx6Parser5ParseERNS_11TokenStreamE:
   371|  27.5k|                    Token::Type expected_token_type = Token::Type::Unknown;
   372|  27.5k|                    if (line_has_instruction)
   ------------------
-  |  Branch (372:25): [True: 19.3k, False: 8.21k]
+  |  Branch (372:25): [True: 19.3k, False: 8.20k]
   ------------------
   373|  19.3k|                    {
   374|  19.3k|                        expected_token_type = Token::Type::NewLine;
@@ -5690,7 +5690,7 @@ Parser.cpp:_ZN3dlxL26parse_instruction_argumentERKNS_5TokenENS_12ArgumentTypeERN
   ------------------
    96|  6.40k|                if (!ArgumentTypeIncludes(expected_argument_type, ArgumentType::IntRegister))
   ------------------
-  |  Branch (96:21): [True: 195, False: 6.21k]
+  |  Branch (96:21): [True: 195, False: 6.20k]
   ------------------
    97|    195|                {
    98|    195|                    program.AddParseError(ConstructUnexpectedArgumentTypeParseError(
@@ -5701,8 +5701,8 @@ Parser.cpp:_ZN3dlxL26parse_instruction_argumentERKNS_5TokenENS_12ArgumentTypeERN
   103|       |                //DLX_INFO("Parsed identifier as int register {}",
   104|       |                //             dlx::enum_name(reg_id));
   105|       |
-  106|  6.21k|                return ConstructInstructionArgumentRegisterInt(
-  107|  6.21k|                        static_cast<IntRegisterID>(token.GetHint()));
+  106|  6.20k|                return ConstructInstructionArgumentRegisterInt(
+  107|  6.20k|                        static_cast<IntRegisterID>(token.GetHint()));
   108|  6.40k|            }
   109|  1.61k|            case Token::Type::RegisterFloat: {
   ------------------
@@ -5710,7 +5710,7 @@ Parser.cpp:_ZN3dlxL26parse_instruction_argumentERKNS_5TokenENS_12ArgumentTypeERN
   ------------------
   110|  1.61k|                if (!ArgumentTypeIncludes(expected_argument_type, ArgumentType::FloatRegister))
   ------------------
-  |  Branch (110:21): [True: 194, False: 1.42k]
+  |  Branch (110:21): [True: 194, False: 1.41k]
   ------------------
   111|    194|                {
   112|    194|                    program.AddParseError(ConstructUnexpectedArgumentTypeParseError(
@@ -5721,8 +5721,8 @@ Parser.cpp:_ZN3dlxL26parse_instruction_argumentERKNS_5TokenENS_12ArgumentTypeERN
   117|       |                //DLX_INFO("Parsed identifier as float register {}",
   118|       |                //             dlx::enum_name(float_reg_id));
   119|       |
-  120|  1.42k|                return ConstructInstructionArgumentRegisterFloat(
-  121|  1.42k|                        static_cast<FloatRegisterID>(token.GetHint()));
+  120|  1.41k|                return ConstructInstructionArgumentRegisterFloat(
+  121|  1.41k|                        static_cast<FloatRegisterID>(token.GetHint()));
   122|  1.61k|            }
   123|    194|            case Token::Type::RegisterStatus: {
   ------------------
@@ -5758,16 +5758,16 @@ Parser.cpp:_ZN3dlxL26parse_instruction_argumentERKNS_5TokenENS_12ArgumentTypeERN
   142|       |
   143|  8.33k|                if (!IsValidIdentifier(token.GetText()))
   ------------------
-  |  Branch (143:21): [True: 5.46k, False: 2.86k]
+  |  Branch (143:21): [True: 5.47k, False: 2.85k]
   ------------------
-  144|  5.46k|                {
-  145|  5.46k|                    program.AddParseError(ConstructInvalidLabelIdentifierParseError(token));
-  146|  5.46k|                    return {};
-  147|  5.46k|                }
+  144|  5.47k|                {
+  145|  5.47k|                    program.AddParseError(ConstructInvalidLabelIdentifierParseError(token));
+  146|  5.47k|                    return {};
+  147|  5.47k|                }
   148|       |
   149|       |                //DLX_INFO("Parsed Label identifier as '{}'", token.GetText());
   150|       |
-  151|  2.86k|                return ConstructInstructionArgumentLabel(token.GetText());
+  151|  2.85k|                return ConstructInstructionArgumentLabel(token.GetText());
   152|  8.33k|            }
   153|  1.60k|            case Token::Type::ImmediateInteger: {
   ------------------
@@ -5842,41 +5842,41 @@ _ZN3dlx9Processor14GetIntRegisterENS_13IntRegisterIDE:
    74|  2.64M|        return m_IntRegisters[id_value];
    75|  2.64M|    }
 _ZNK3dlx9Processor14GetIntRegisterENS_13IntRegisterIDE:
-   78|  6.16M|    {
-   79|  6.16M|        PHI_ASSERT(id != IntRegisterID::None);
-   80|  6.16M|        phi::size_t id_value = phi::to_underlying(id);
+   78|  6.15M|    {
+   79|  6.15M|        PHI_ASSERT(id != IntRegisterID::None);
+   80|  6.15M|        phi::size_t id_value = phi::to_underlying(id);
    81|       |
-   82|  6.16M|        PHI_ASSERT(id_value < m_IntRegisters.size());
+   82|  6.15M|        PHI_ASSERT(id_value < m_IntRegisters.size());
    83|       |
-   84|  6.16M|        return m_IntRegisters[id_value];
-   85|  6.16M|    }
+   84|  6.15M|        return m_IntRegisters[id_value];
+   85|  6.15M|    }
 _ZNK3dlx9Processor25IntRegisterGetSignedValueENS_13IntRegisterIDE:
-   88|  3.48M|    {
-   89|  3.48M|        PHI_ASSERT(RegisterAccessTypeMatches(m_CurrentInstructionAccessType,
-   90|  3.48M|                                             RegisterAccessType::Signed),
-   91|  3.48M|                   "Mismatch for instruction access type");
+   88|  3.47M|    {
+   89|  3.47M|        PHI_ASSERT(RegisterAccessTypeMatches(m_CurrentInstructionAccessType,
+   90|  3.47M|                                             RegisterAccessType::Signed),
+   91|  3.47M|                   "Mismatch for instruction access type");
    92|       |
-   93|  3.48M|        const phi::size_t id_value = phi::to_underlying(id);
+   93|  3.47M|        const phi::size_t id_value = phi::to_underlying(id);
    94|       |
-   95|  3.48M|        PHI_ASSERT(id_value < m_IntRegistersValueTypes.size());
-   96|  3.48M|        const IntRegisterValueType register_value_type = m_IntRegistersValueTypes[id_value];
-   97|  3.48M|        if (register_value_type != IntRegisterValueType::NotSet &&
+   95|  3.47M|        PHI_ASSERT(id_value < m_IntRegistersValueTypes.size());
+   96|  3.47M|        const IntRegisterValueType register_value_type = m_IntRegistersValueTypes[id_value];
+   97|  3.47M|        if (register_value_type != IntRegisterValueType::NotSet &&
   ------------------
-  |  Branch (97:13): [True: 2.04M, False: 1.43M]
+  |  Branch (97:13): [True: 2.05M, False: 1.42M]
   ------------------
-   98|  3.48M|            register_value_type != IntRegisterValueType::Signed)
+   98|  3.47M|            register_value_type != IntRegisterValueType::Signed)
   ------------------
-  |  Branch (98:13): [True: 119k, False: 1.92M]
+  |  Branch (98:13): [True: 118k, False: 1.93M]
   ------------------
-   99|   119k|        {
-  100|   119k|            DLX_WARN("Mismatch for register value type");
+   99|   118k|        {
+  100|   118k|            DLX_WARN("Mismatch for register value type");
   ------------------
-  |  |    8|   119k|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
+  |  |    8|   118k|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
   ------------------
-  101|   119k|        }
+  101|   118k|        }
   102|       |
-  103|  3.48M|        return GetIntRegister(id).GetSignedValue();
-  104|  3.48M|    }
+  103|  3.47M|        return GetIntRegister(id).GetSignedValue();
+  104|  3.47M|    }
 _ZNK3dlx9Processor27IntRegisterGetUnsignedValueENS_13IntRegisterIDE:
   107|  2.68M|    {
   108|  2.68M|        PHI_ASSERT(RegisterAccessTypeMatches(m_CurrentInstructionAccessType,
@@ -5889,18 +5889,18 @@ _ZNK3dlx9Processor27IntRegisterGetUnsignedValueENS_13IntRegisterIDE:
   115|  2.68M|        const IntRegisterValueType register_value_type = m_IntRegistersValueTypes[id_value];
   116|  2.68M|        if (register_value_type != IntRegisterValueType::NotSet &&
   ------------------
-  |  Branch (116:13): [True: 2.07M, False: 602k]
+  |  Branch (116:13): [True: 2.08M, False: 593k]
   ------------------
   117|  2.68M|            register_value_type != IntRegisterValueType::Unsigned)
   ------------------
-  |  Branch (117:13): [True: 1.76M, False: 312k]
+  |  Branch (117:13): [True: 1.75M, False: 336k]
   ------------------
-  118|  1.76M|        {
-  119|  1.76M|            DLX_WARN("Mismatch for register value type");
+  118|  1.75M|        {
+  119|  1.75M|            DLX_WARN("Mismatch for register value type");
   ------------------
-  |  |    8|  1.76M|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
+  |  |    8|  1.75M|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
   ------------------
-  120|  1.76M|        }
+  120|  1.75M|        }
   121|       |
   122|  2.68M|        return GetIntRegister(id).GetUnsignedValue();
   123|  2.68M|    }
@@ -5984,91 +5984,91 @@ _ZNK3dlx9Processor26FloatRegisterGetFloatValueENS_15FloatRegisterIDE:
   ------------------
   198|   560k|            register_value_type != FloatRegisterValueType::Float)
   ------------------
-  |  Branch (198:13): [True: 216k, False: 223k]
+  |  Branch (198:13): [True: 180k, False: 259k]
   ------------------
-  199|   216k|        {
+  199|   180k|        {
   200|       |            /*
   201|       |            DLX_WARN("Mismatch for register value type");
   202|       |            */
-  203|   216k|        }
+  203|   180k|        }
   204|       |
   205|   560k|        const FloatRegister& reg = GetFloatRegister(id);
   206|       |
   207|   560k|        return reg.GetValue();
   208|   560k|    }
 _ZN3dlx9Processor27FloatRegisterGetDoubleValueENS_15FloatRegisterIDE:
-  211|   488k|    {
-  212|   488k|        PHI_ASSERT(RegisterAccessTypeMatches(m_CurrentInstructionAccessType,
-  213|   488k|                                             RegisterAccessType::Double),
-  214|   488k|                   "Mismatch for instruction access type");
+  211|   486k|    {
+  212|   486k|        PHI_ASSERT(RegisterAccessTypeMatches(m_CurrentInstructionAccessType,
+  213|   486k|                                             RegisterAccessType::Double),
+  214|   486k|                   "Mismatch for instruction access type");
   215|       |
-  216|   488k|        if (phi::to_underlying(id) % 2 == 1)
+  216|   486k|        if (phi::to_underlying(id) % 2 == 1)
   ------------------
-  |  Branch (216:13): [True: 22, False: 488k]
+  |  Branch (216:13): [True: 22, False: 486k]
   ------------------
   217|     22|        {
   218|     22|            Raise(Exception::MisalignedRegisterAccess);
   219|     22|            return {0.0};
   220|     22|        }
   221|       |
-  222|   488k|        const phi::size_t id_value = phi::to_underlying(id);
+  222|   486k|        const phi::size_t id_value = phi::to_underlying(id);
   223|       |
-  224|   488k|        PHI_ASSERT(id_value + 1u < m_FloatRegistersValueTypes.size());
-  225|   488k|        const FloatRegisterValueType register_value_type_low = m_FloatRegistersValueTypes[id_value];
-  226|   488k|        if (register_value_type_low != FloatRegisterValueType::NotSet &&
+  224|   486k|        PHI_ASSERT(id_value + 1u < m_FloatRegistersValueTypes.size());
+  225|   486k|        const FloatRegisterValueType register_value_type_low = m_FloatRegistersValueTypes[id_value];
+  226|   486k|        if (register_value_type_low != FloatRegisterValueType::NotSet &&
   ------------------
-  |  Branch (226:13): [True: 390k, False: 98.4k]
+  |  Branch (226:13): [True: 389k, False: 97.5k]
   ------------------
-  227|   488k|            register_value_type_low != FloatRegisterValueType::DoubleLow)
+  227|   486k|            register_value_type_low != FloatRegisterValueType::DoubleLow)
   ------------------
-  |  Branch (227:13): [True: 191k, False: 199k]
+  |  Branch (227:13): [True: 251k, False: 137k]
   ------------------
-  228|   191k|        {
-  229|   191k|            DLX_WARN("Mismatch for register value type");
+  228|   251k|        {
+  229|   251k|            DLX_WARN("Mismatch for register value type");
   ------------------
-  |  |    8|   191k|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
+  |  |    8|   251k|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
   ------------------
-  230|   191k|        }
+  230|   251k|        }
   231|       |
-  232|   488k|        const FloatRegisterValueType register_value_type_high =
-  233|   488k|                m_FloatRegistersValueTypes[id_value + 1u];
-  234|   488k|        if (register_value_type_high != FloatRegisterValueType::NotSet &&
+  232|   486k|        const FloatRegisterValueType register_value_type_high =
+  233|   486k|                m_FloatRegistersValueTypes[id_value + 1u];
+  234|   486k|        if (register_value_type_high != FloatRegisterValueType::NotSet &&
   ------------------
-  |  Branch (234:13): [True: 373k, False: 115k]
+  |  Branch (234:13): [True: 371k, False: 115k]
   ------------------
-  235|   488k|            register_value_type_high != FloatRegisterValueType::DoubleHigh)
+  235|   486k|            register_value_type_high != FloatRegisterValueType::DoubleHigh)
   ------------------
-  |  Branch (235:13): [True: 91.2k, False: 282k]
+  |  Branch (235:13): [True: 72.4k, False: 299k]
   ------------------
-  236|  91.2k|        {
-  237|  91.2k|            DLX_WARN("Mismatch for register value type");
+  236|  72.4k|        {
+  237|  72.4k|            DLX_WARN("Mismatch for register value type");
   ------------------
-  |  |    8|  91.2k|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
+  |  |    8|  72.4k|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
   ------------------
-  238|  91.2k|        }
+  238|  72.4k|        }
   239|       |
-  240|   488k|        const FloatRegister& first_reg = GetFloatRegister(id);
-  241|   488k|        const FloatRegister& second_reg =
-  242|   488k|                GetFloatRegister(static_cast<FloatRegisterID>(static_cast<phi::size_t>(id) + 1));
+  240|   486k|        const FloatRegister& first_reg = GetFloatRegister(id);
+  241|   486k|        const FloatRegister& second_reg =
+  242|   486k|                GetFloatRegister(static_cast<FloatRegisterID>(static_cast<phi::size_t>(id) + 1));
   243|       |
-  244|   488k|        const float first_value  = first_reg.GetValue().unsafe();
-  245|   488k|        const float second_value = second_reg.GetValue().unsafe();
+  244|   486k|        const float first_value  = first_reg.GetValue().unsafe();
+  245|   486k|        const float second_value = second_reg.GetValue().unsafe();
   246|       |
   247|       |        // TODO: Don't invoke undefined behavior this way. Instead use union type punning
-  248|   488k|        PHI_CLANG_SUPPRESS_WARNING_WITH_PUSH("-Wundefined-reinterpret-cast")
+  248|   486k|        PHI_CLANG_SUPPRESS_WARNING_WITH_PUSH("-Wundefined-reinterpret-cast")
   249|       |
-  250|   488k|        const phi::uint32_t first_value_bits =
-  251|   488k|                *reinterpret_cast<const phi::uint32_t*>(&first_value);
-  252|   488k|        const phi::uint32_t second_value_bits =
-  253|   488k|                *reinterpret_cast<const phi::uint32_t*>(&second_value);
+  250|   486k|        const phi::uint32_t first_value_bits =
+  251|   486k|                *reinterpret_cast<const phi::uint32_t*>(&first_value);
+  252|   486k|        const phi::uint32_t second_value_bits =
+  253|   486k|                *reinterpret_cast<const phi::uint32_t*>(&second_value);
   254|       |
-  255|   488k|        phi::uint64_t final_value_bits =
-  256|   488k|                static_cast<phi::uint64_t>(second_value_bits) << 32u | first_value_bits;
+  255|   486k|        phi::uint64_t final_value_bits =
+  256|   486k|                static_cast<phi::uint64_t>(second_value_bits) << 32u | first_value_bits;
   257|       |
-  258|   488k|        return *reinterpret_cast<double*>(&final_value_bits);
+  258|   486k|        return *reinterpret_cast<double*>(&final_value_bits);
   259|       |
-  260|   488k|        PHI_CLANG_SUPPRESS_WARNING_POP()
-  261|   488k|    }
+  260|   486k|        PHI_CLANG_SUPPRESS_WARNING_POP()
+  261|   486k|    }
 _ZN3dlx9Processor26FloatRegisterSetFloatValueENS_15FloatRegisterIDEN3phi14floating_pointIfEE:
   264|   167k|    {
   265|   167k|        PHI_ASSERT(RegisterAccessTypeMatches(m_CurrentInstructionAccessType,
@@ -6125,9 +6125,9 @@ _ZN3dlx9Processor27FloatRegisterSetDoubleValueENS_15FloatRegisterIDEN3phi14float
   314|   119k|        m_FloatRegistersValueTypes[id_value + 1u] = FloatRegisterValueType::DoubleHigh;
   315|   119k|    }
 _ZN3dlx9Processor7GetFPSREv:
-  318|   322k|    {
-  319|   322k|        return m_FPSR;
-  320|   322k|    }
+  318|   320k|    {
+  319|   320k|        return m_FPSR;
+  320|   320k|    }
 _ZNK3dlx9Processor7GetFPSREv:
   323|   112k|    {
   324|   112k|        return m_FPSR;
@@ -6139,11 +6139,11 @@ _ZNK3dlx9Processor12GetFPSRValueEv:
   331|   112k|        return status_reg.Get();
   332|   112k|    }
 _ZN3dlx9Processor12SetFPSRValueEN3phi7booleanE:
-  335|   322k|    {
-  336|   322k|        StatusRegister& status_reg = GetFPSR();
+  335|   320k|    {
+  336|   320k|        StatusRegister& status_reg = GetFPSR();
   337|       |
-  338|   322k|        status_reg.SetStatus(value);
-  339|   322k|    }
+  338|   320k|        status_reg.SetStatus(value);
+  339|   320k|    }
 _ZN3dlx9Processor18ExecuteInstructionERKNS_11InstructionE:
   342|  7.69M|    {
   343|  7.69M|        m_CurrentInstructionAccessType = inst.GetInfo().GetRegisterAccessType();
@@ -6425,7 +6425,7 @@ Processor.cpp:_ZN3dlxL25RegisterAccessTypeMatchesENS_18RegisterAccessTypeES0_:
    39|  10.1M|        {
    40|  1.50M|            case RegisterAccessType::Ignored:
   ------------------
-  |  Branch (40:13): [True: 1.50M, False: 8.64M]
+  |  Branch (40:13): [True: 1.50M, False: 8.63M]
   ------------------
    41|  1.50M|                return true;
    42|      0|            case RegisterAccessType::None:
@@ -6435,7 +6435,7 @@ Processor.cpp:_ZN3dlxL25RegisterAccessTypeMatchesENS_18RegisterAccessTypeES0_:
    43|      0|                return false;
    44|   157k|            case RegisterAccessType::MixedFloatDouble:
   ------------------
-  |  Branch (44:13): [True: 157k, False: 9.99M]
+  |  Branch (44:13): [True: 157k, False: 9.97M]
   ------------------
    45|   157k|                return access == RegisterAccessType::Float || access == RegisterAccessType::Double;
   ------------------
@@ -6465,24 +6465,24 @@ Processor.cpp:_ZN3dlxL25RegisterAccessTypeMatchesENS_18RegisterAccessTypeES0_:
   ------------------
    51|  42.2k|            case RegisterAccessType::MixedDoubleSigned:
   ------------------
-  |  Branch (51:13): [True: 42.2k, False: 10.1M]
+  |  Branch (51:13): [True: 42.2k, False: 10.0M]
   ------------------
    52|  42.2k|                return access == RegisterAccessType::Double || access == RegisterAccessType::Signed;
   ------------------
   |  Branch (52:24): [True: 42.2k, False: 3]
   |  Branch (52:64): [True: 3, False: 0]
   ------------------
-   53|  8.29M|            default:
+   53|  8.28M|            default:
   ------------------
-  |  Branch (53:13): [True: 8.29M, False: 1.85M]
+  |  Branch (53:13): [True: 8.28M, False: 1.85M]
   ------------------
-   54|  8.29M|                return expected_access == access;
+   54|  8.28M|                return expected_access == access;
    55|  10.1M|        }
    56|  10.1M|    }
 
 _ZN3dlx19StringToIntRegisterEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
-   10|   140k|    {
-   11|   140k|        if (token.length() == 2u)
+   10|   139k|    {
+   11|   139k|        if (token.length() == 2u)
   ------------------
   |  Branch (11:13): [True: 27.2k, False: 112k]
   ------------------
@@ -6491,19 +6491,19 @@ _ZN3dlx19StringToIntRegisterEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEE
    14|  27.2k|            if (first_char == 'R' || first_char == 'r')
   ------------------
   |  Branch (14:17): [True: 807, False: 26.4k]
-  |  Branch (14:38): [True: 7.37k, False: 19.0k]
+  |  Branch (14:38): [True: 7.36k, False: 19.0k]
   ------------------
-   15|  8.18k|            {
-   16|  8.18k|                const char second_char = token[1u];
-   17|  8.18k|                if (second_char >= '0' && second_char <= '9')
+   15|  8.17k|            {
+   16|  8.17k|                const char second_char = token[1u];
+   17|  8.17k|                if (second_char >= '0' && second_char <= '9')
   ------------------
-  |  Branch (17:21): [True: 7.89k, False: 281]
-  |  Branch (17:43): [True: 7.35k, False: 545]
+  |  Branch (17:21): [True: 7.89k, False: 279]
+  |  Branch (17:43): [True: 7.34k, False: 545]
   ------------------
-   18|  7.35k|                {
-   19|  7.35k|                    return static_cast<IntRegisterID>(second_char - '0');
-   20|  7.35k|                }
-   21|  8.18k|            }
+   18|  7.34k|                {
+   19|  7.34k|                    return static_cast<IntRegisterID>(second_char - '0');
+   20|  7.34k|                }
+   21|  8.17k|            }
    22|  27.2k|        }
    23|   112k|        else if (token.length() == 3u)
   ------------------
@@ -6575,7 +6575,7 @@ _ZN3dlx19StringToIntRegisterEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEE
    59|  35.0k|        }
    60|       |
    61|   131k|        return IntRegisterID::None;
-   62|   140k|    }
+   62|   139k|    }
 _ZN3dlx21StringToFloatRegisterEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
    65|   131k|    {
    66|   131k|        if (token.length() == 2u)
@@ -6618,34 +6618,34 @@ _ZN3dlx21StringToFloatRegisterEN3phi17basic_string_viewIcNSt3__111char_traitsIcE
    85|       |
    86|  2.27k|                switch (second_char)
    87|  2.27k|                {
-   88|    595|                    case '1': {
+   88|    597|                    case '1': {
   ------------------
-  |  Branch (88:21): [True: 595, False: 1.67k]
+  |  Branch (88:21): [True: 597, False: 1.67k]
   ------------------
-   89|    595|                        if (third_char >= '0' && third_char <= '9')
+   89|    597|                        if (third_char >= '0' && third_char <= '9')
   ------------------
-  |  Branch (89:29): [True: 401, False: 194]
-  |  Branch (89:50): [True: 195, False: 206]
+  |  Branch (89:29): [True: 403, False: 194]
+  |  Branch (89:50): [True: 195, False: 208]
   ------------------
    90|    195|                        {
    91|    195|                            return static_cast<FloatRegisterID>(third_char - '0' + 10);
    92|    195|                        }
-   93|    400|                        break;
-   94|    595|                    }
-   95|    695|                    case '2': {
+   93|    402|                        break;
+   94|    597|                    }
+   95|    693|                    case '2': {
   ------------------
-  |  Branch (95:21): [True: 695, False: 1.57k]
+  |  Branch (95:21): [True: 693, False: 1.57k]
   ------------------
-   96|    695|                        if (third_char >= '0' && third_char <= '9')
+   96|    693|                        if (third_char >= '0' && third_char <= '9')
   ------------------
-  |  Branch (96:29): [True: 501, False: 194]
-  |  Branch (96:50): [True: 194, False: 307]
+  |  Branch (96:29): [True: 499, False: 194]
+  |  Branch (96:50): [True: 194, False: 305]
   ------------------
    97|    194|                        {
    98|    194|                            return static_cast<FloatRegisterID>(third_char - '0' + 20);
    99|    194|                        }
-  100|    501|                        break;
-  101|    695|                    }
+  100|    499|                        break;
+  101|    693|                    }
   102|    597|                    case '3': {
   ------------------
   |  Branch (102:21): [True: 597, False: 1.67k]
@@ -6676,7 +6676,7 @@ _ZN3dlx6IsFPSREN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   120|   126k|    {
   121|   126k|        if (token.length() == 4u)
   ------------------
-  |  Branch (121:13): [True: 29.6k, False: 96.8k]
+  |  Branch (121:13): [True: 29.6k, False: 96.7k]
   ------------------
   122|  29.6k|        {
   123|  29.6k|            const char c1 = token[0u];
@@ -6700,7 +6700,7 @@ _ZN3dlx6IsFPSREN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   130|  29.6k|        }
   131|       |
-  132|  96.8k|        return false;
+  132|  96.7k|        return false;
   133|   126k|    }
 
 _ZN3dlx5TokenC2ENS0_4TypeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEENS2_7integerImEES9_:
@@ -6824,18 +6824,18 @@ _ZN3dlx8TokenizeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
    84|  25.5k|            {
    85|  25.5k|                if (current_token.is_empty())
   ------------------
-  |  Branch (85:21): [True: 2.31k, False: 23.2k]
+  |  Branch (85:21): [True: 2.32k, False: 23.2k]
   ------------------
-   86|  2.31k|                {
+   86|  2.32k|                {
    87|       |                    // Skip empty lines
-   88|  2.31k|                    tokens.emplace_back(Token::Type::NewLine, source.substring_view(i, 1u),
-   89|  2.31k|                                        current_line_number, current_column);
+   88|  2.32k|                    tokens.emplace_back(Token::Type::NewLine, source.substring_view(i, 1u),
+   89|  2.32k|                                        current_line_number, current_column);
    90|       |
-   91|  2.31k|                    parsing_comment = false;
-   92|  2.31k|                    current_line_number += 1u;
-   93|  2.31k|                    current_column = 1u;
-   94|  2.31k|                    continue;
-   95|  2.31k|                }
+   91|  2.32k|                    parsing_comment = false;
+   92|  2.32k|                    current_line_number += 1u;
+   93|  2.32k|                    current_column = 1u;
+   94|  2.32k|                    continue;
+   95|  2.32k|                }
    96|       |
    97|       |                // Otherwise a new line separates tokens
    98|  23.2k|                tokens.emplace_back(ParseToken(
@@ -6914,13 +6914,13 @@ _ZN3dlx8TokenizeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   150|  11.9k|                        if (current_token.is_empty())
   ------------------
-  |  Branch (150:29): [True: 618, False: 11.3k]
+  |  Branch (150:29): [True: 617, False: 11.3k]
   ------------------
-  151|    618|                        {
-  152|    618|                            current_column += 1u;
+  151|    617|                        {
+  152|    617|                            current_column += 1u;
   153|       |                            // We haven't found any usable character for the current token so just skip the whitespace.
-  154|    618|                            continue;
-  155|    618|                        }
+  154|    617|                            continue;
+  155|    617|                        }
   156|       |
   157|       |                        // Otherwise a whitespace separates tokens
   158|  11.3k|                        tokens.emplace_back(ParseToken(
@@ -6973,15 +6973,15 @@ _ZN3dlx8TokenizeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   197|  34.1k|                    case '(':
   ------------------
-  |  Branch (197:21): [True: 3.94k, False: 416k]
+  |  Branch (197:21): [True: 3.94k, False: 415k]
   ------------------
-  198|  41.6k|                    case ')':
+  198|  41.5k|                    case ')':
   ------------------
-  |  Branch (198:21): [True: 7.41k, False: 412k]
+  |  Branch (198:21): [True: 7.40k, False: 412k]
   ------------------
-  199|  41.6k|                        if (!current_token.is_empty())
+  199|  41.5k|                        if (!current_token.is_empty())
   ------------------
-  |  Branch (199:29): [True: 39.8k, False: 1.71k]
+  |  Branch (199:29): [True: 39.8k, False: 1.70k]
   ------------------
   200|  39.8k|                        {
   201|  39.8k|                            tokens.emplace_back(ParseToken(
@@ -6994,9 +6994,9 @@ _ZN3dlx8TokenizeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   208|  39.8k|                            current_token = phi::string_view{};
   209|  39.8k|                        }
   210|       |
-  211|  41.6k|                        Token::Type type;
-  212|  41.6k|                        switch (c)
-  213|  41.6k|                        {
+  211|  41.5k|                        Token::Type type;
+  212|  41.5k|                        switch (c)
+  213|  41.5k|                        {
   214|  30.2k|                            case ',':
   ------------------
   |  Branch (214:29): [True: 30.2k, False: 11.3k]
@@ -7009,31 +7009,31 @@ _ZN3dlx8TokenizeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   218|  3.94k|                                type = Token::Type::OpenBracket;
   219|  3.94k|                                break;
-  220|  7.41k|                            case ')':
+  220|  7.40k|                            case ')':
   ------------------
-  |  Branch (220:29): [True: 7.41k, False: 34.1k]
+  |  Branch (220:29): [True: 7.40k, False: 34.1k]
   ------------------
-  221|  7.41k|                                type = Token::Type::ClosingBracket;
-  222|  7.41k|                                break;
+  221|  7.40k|                                type = Token::Type::ClosingBracket;
+  222|  7.40k|                                break;
   223|      0|#if !defined(DLXEMU_COVERAGE_BUILD)
   224|      0|                            default:
   ------------------
-  |  Branch (224:29): [True: 0, False: 41.6k]
+  |  Branch (224:29): [True: 0, False: 41.5k]
   ------------------
   225|      0|                                PHI_ASSERT_NOT_REACHED();
   226|      0|                                break;
-  227|  41.6k|#endif
-  228|  41.6k|                        }
+  227|  41.5k|#endif
+  228|  41.5k|                        }
   229|       |
-  230|  41.6k|                        token_begin = i;
+  230|  41.5k|                        token_begin = i;
   231|       |
-  232|  41.6k|                        tokens.emplace_back(
-  233|  41.6k|                                type,
-  234|  41.6k|                                source.substring_view(
-  235|  41.6k|                                        phi::narrow_cast<phi::string_view::size_type>(token_begin),
-  236|  41.6k|                                        1u),
-  237|  41.6k|                                current_line_number, current_column);
-  238|  41.6k|                        break;
+  232|  41.5k|                        tokens.emplace_back(
+  233|  41.5k|                                type,
+  234|  41.5k|                                source.substring_view(
+  235|  41.5k|                                        phi::narrow_cast<phi::string_view::size_type>(token_begin),
+  236|  41.5k|                                        1u),
+  237|  41.5k|                                current_line_number, current_column);
+  238|  41.5k|                        break;
   239|       |
   240|   335k|                    default:
   ------------------
@@ -7041,7 +7041,7 @@ _ZN3dlx8TokenizeEN3phi17basic_string_viewIcNSt3__111char_traitsIcEEEE:
   ------------------
   241|   335k|                        if (current_token.is_empty())
   ------------------
-  |  Branch (241:29): [True: 108k, False: 227k]
+  |  Branch (241:29): [True: 108k, False: 226k]
   ------------------
   242|   108k|                        {
   243|   108k|                            token_begin = i;
@@ -7127,12 +7127,12 @@ Tokenize.cpp:_ZN3dlxL10ParseTokenEN3phi17basic_string_viewIcNSt3__111char_traits
    45|       |
    46|   104k|        if (IntRegisterID id = StringToIntRegister(token); id != IntRegisterID::None)
   ------------------
-  |  Branch (46:60): [True: 7.55k, False: 96.8k]
+  |  Branch (46:60): [True: 7.54k, False: 96.8k]
   ------------------
-   47|  7.55k|        {
-   48|  7.55k|            return {Token::Type::RegisterInt, token, line_number, column,
-   49|  7.55k|                    static_cast<phi::uint32_t>(id)};
-   50|  7.55k|        }
+   47|  7.54k|        {
+   48|  7.54k|            return {Token::Type::RegisterInt, token, line_number, column,
+   49|  7.54k|                    static_cast<phi::uint32_t>(id)};
+   50|  7.54k|        }
    51|       |
    52|  96.8k|        if (FloatRegisterID id = StringToFloatRegister(token); id != FloatRegisterID::None)
   ------------------
@@ -7145,14 +7145,14 @@ Tokenize.cpp:_ZN3dlxL10ParseTokenEN3phi17basic_string_viewIcNSt3__111char_traits
    57|       |
    58|  94.6k|        if (OpCode opcode = StringToOpCode(token); opcode != OpCode::NONE)
   ------------------
-  |  Branch (58:52): [True: 49.3k, False: 45.3k]
+  |  Branch (58:52): [True: 49.3k, False: 45.2k]
   ------------------
    59|  49.3k|        {
    60|  49.3k|            return {Token::Type::OpCode, token, line_number, column,
    61|  49.3k|                    static_cast<phi::uint32_t>(opcode)};
    62|  49.3k|        }
    63|       |
-   64|  45.3k|        return {Token::Type::LabelIdentifier, token, line_number, column};
+   64|  45.2k|        return {Token::Type::LabelIdentifier, token, line_number, column};
    65|  94.6k|    }
 
 LLVMFuzzerTestOneInput:
