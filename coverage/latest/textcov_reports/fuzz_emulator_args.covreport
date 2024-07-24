@@ -1,45 +1,45 @@
 _ZN6dlxemu6WindowC2Ev:
-   13|    109|        Window() = default;
+   13|    139|        Window() = default;
 
 _ZN6dlxemu10CodeEditor11CoordinatesC2Ev:
-  193|    545|    {}
+  193|    695|    {}
 _ZNK6dlxemu10CodeEditor11CoordinatesgeERKS1_:
-  241|    109|    {
-  242|    109|        if (m_Line != other.m_Line)
+  241|    139|    {
+  242|    139|        if (m_Line != other.m_Line)
   ------------------
-  |  Branch (242:13): [True: 0, False: 109]
+  |  Branch (242:13): [True: 0, False: 139]
   ------------------
   243|      0|        {
   244|      0|            return m_Line > other.m_Line;
   245|      0|        }
   246|       |
-  247|    109|        return m_Column >= other.m_Column;
-  248|    109|    }
+  247|    139|        return m_Column >= other.m_Column;
+  248|    139|    }
 _ZN6dlxemu10CodeEditorC2EPNS_8EmulatorE:
-  283|    109|    {
-  284|    109|        Colorize();
-  285|    109|        m_Lines.emplace_back();
-  286|    109|    }
+  283|    139|    {
+  284|    139|        Colorize();
+  285|    139|        m_Lines.emplace_back();
+  286|    139|    }
 _ZN6dlxemu10CodeEditorD2Ev:
-  289|    109|    {
-  290|    109|        VerifyInternalState();
-  291|    109|    }
+  289|    139|    {
+  290|    139|        VerifyInternalState();
+  291|    139|    }
 _ZNK6dlxemu10CodeEditor19VerifyInternalStateEv:
- 1483|    109|    {
+ 1483|    139|    {
  1484|       |        // Lines should never be empty
- 1485|    109|        PHI_ASSERT(!m_Lines.empty());
+ 1485|    139|        PHI_ASSERT(!m_Lines.empty());
  1486|       |
  1487|       |        // Verify Selection is still in a valid state
- 1488|    109|        PHI_ASSERT(m_State.m_SelectionEnd >= m_State.m_SelectionStart);
- 1489|    109|        PHI_ASSERT(m_State.m_SelectionStart.m_Line < m_Lines.size());
- 1490|    109|        PHI_ASSERT(m_State.m_SelectionStart.m_Column >= 0u);
- 1491|    109|        PHI_ASSERT(m_State.m_SelectionEnd.m_Line < m_Lines.size());
- 1492|    109|        PHI_ASSERT(m_State.m_SelectionEnd.m_Column >= 0u);
+ 1488|    139|        PHI_ASSERT(m_State.m_SelectionEnd >= m_State.m_SelectionStart);
+ 1489|    139|        PHI_ASSERT(m_State.m_SelectionStart.m_Line < m_Lines.size());
+ 1490|    139|        PHI_ASSERT(m_State.m_SelectionStart.m_Column >= 0u);
+ 1491|    139|        PHI_ASSERT(m_State.m_SelectionEnd.m_Line < m_Lines.size());
+ 1492|    139|        PHI_ASSERT(m_State.m_SelectionEnd.m_Column >= 0u);
  1493|       |
  1494|       |        // Verify cursor position
- 1495|    109|        PHI_ASSERT(m_State.m_CursorPosition.m_Line >= 0u);
- 1496|    109|        PHI_ASSERT(m_State.m_CursorPosition.m_Line < m_Lines.size());
- 1497|    109|        PHI_ASSERT(m_State.m_CursorPosition.m_Column >= 0u);
+ 1495|    139|        PHI_ASSERT(m_State.m_CursorPosition.m_Line >= 0u);
+ 1496|    139|        PHI_ASSERT(m_State.m_CursorPosition.m_Line < m_Lines.size());
+ 1497|    139|        PHI_ASSERT(m_State.m_CursorPosition.m_Column >= 0u);
  1498|       |
  1499|       |        // This should also always be true. But its implementation is way to slow when fuzzing
  1500|       |#if defined(DLXEMU_VERIFY_COLUMN)
@@ -50,9 +50,9 @@ _ZNK6dlxemu10CodeEditor19VerifyInternalStateEv:
  1505|       |#endif
  1506|       |
  1507|       |        // Verify that all breakpoints are on existing lines
- 1508|    109|        for (phi::u32 break_point : m_Breakpoints)
+ 1508|    139|        for (phi::u32 break_point : m_Breakpoints)
   ------------------
-  |  Branch (1508:35): [True: 0, False: 109]
+  |  Branch (1508:35): [True: 0, False: 139]
   ------------------
  1509|      0|        {
  1510|      0|            PHI_ASSERT(break_point != 0u);
@@ -60,9 +60,9 @@ _ZNK6dlxemu10CodeEditor19VerifyInternalStateEv:
  1512|      0|        }
  1513|       |
  1514|       |        // Verify that all error markers are on existing lines
- 1515|    109|        for (auto&& error_marker : m_ErrorMarkers)
+ 1515|    139|        for (auto&& error_marker : m_ErrorMarkers)
   ------------------
-  |  Branch (1515:34): [True: 0, False: 109]
+  |  Branch (1515:34): [True: 0, False: 139]
   ------------------
  1516|      0|        {
  1517|      0|            const phi::u32 line_number = error_marker.first;
@@ -70,86 +70,86 @@ _ZNK6dlxemu10CodeEditor19VerifyInternalStateEv:
  1519|      0|            PHI_ASSERT(line_number != 0u);
  1520|      0|            PHI_ASSERT(line_number <= m_Lines.size());
  1521|      0|        }
- 1522|    109|    }
+ 1522|    139|    }
 _ZN6dlxemu10CodeEditor14GetDarkPaletteEv:
- 1525|    109|    {
- 1526|    109|        constexpr const static Palette palette = {{
- 1527|    109|                0xff7f7f7f, // Default
- 1528|    109|                0xffd69c56, // OpCode
- 1529|    109|                0xff00ff00, // Register
- 1530|    109|                0xff7070e0, // IntegerLiteral
- 1531|    109|                0xff206020, // Comment
- 1532|    109|                0xff101010, // Background
- 1533|    109|                0xffe0e0e0, // Cursor
- 1534|    109|                0x80a06020, // Selection
- 1535|    109|                0x800020ff, // ErrorMarker
- 1536|    109|                0x40f08000, // Breakpoint
- 1537|    109|                0xff707000, // Line number
- 1538|    109|                0x40000000, // Current line fill
- 1539|    109|                0x40808080, // Current line fill (inactive)
- 1540|    109|                0x40a0a0a0, // Current line edge
- 1541|    109|        }};
+ 1525|    139|    {
+ 1526|    139|        constexpr const static Palette palette = {{
+ 1527|    139|                0xff7f7f7f, // Default
+ 1528|    139|                0xffd69c56, // OpCode
+ 1529|    139|                0xff00ff00, // Register
+ 1530|    139|                0xff7070e0, // IntegerLiteral
+ 1531|    139|                0xff206020, // Comment
+ 1532|    139|                0xff101010, // Background
+ 1533|    139|                0xffe0e0e0, // Cursor
+ 1534|    139|                0x80a06020, // Selection
+ 1535|    139|                0x800020ff, // ErrorMarker
+ 1536|    139|                0x40f08000, // Breakpoint
+ 1537|    139|                0xff707000, // Line number
+ 1538|    139|                0x40000000, // Current line fill
+ 1539|    139|                0x40808080, // Current line fill (inactive)
+ 1540|    139|                0x40a0a0a0, // Current line edge
+ 1541|    139|        }};
  1542|       |
- 1543|    109|        return palette;
- 1544|    109|    }
+ 1543|    139|        return palette;
+ 1544|    139|    }
 _ZN6dlxemu10CodeEditor8ColorizeEN3phi7integerIjEENS2_IlEE:
- 1709|    109|    {
+ 1709|    139|    {
  1710|       |        // TODO: This is quite unreadable
- 1711|    109|        const phi::u32 to_line =
- 1712|    109|                count == -1 ? static_cast<phi::uint32_t>(m_Lines.size()) :
+ 1711|    139|        const phi::u32 to_line =
+ 1712|    139|                count == -1 ? static_cast<phi::uint32_t>(m_Lines.size()) :
   ------------------
-  |  Branch (1712:17): [True: 109, False: 0]
+  |  Branch (1712:17): [True: 139, False: 0]
   ------------------
- 1713|    109|                              phi::min(static_cast<phi::uint32_t>(m_Lines.size()),
+ 1713|    139|                              phi::min(static_cast<phi::uint32_t>(m_Lines.size()),
  1714|      0|                                       from_line + static_cast<phi::uint32_t>(count.unsafe()));
  1715|       |
- 1716|    109|        m_ColorRangeMin = phi::min(m_ColorRangeMin, from_line);
- 1717|    109|        m_ColorRangeMax = phi::max(m_ColorRangeMax, to_line);
- 1718|    109|        m_ColorRangeMin = phi::max(0u, m_ColorRangeMin);
- 1719|    109|        m_ColorRangeMax = phi::max(m_ColorRangeMin, m_ColorRangeMax);
- 1720|    109|    }
+ 1716|    139|        m_ColorRangeMin = phi::min(m_ColorRangeMin, from_line);
+ 1717|    139|        m_ColorRangeMax = phi::max(m_ColorRangeMax, to_line);
+ 1718|    139|        m_ColorRangeMin = phi::max(0u, m_ColorRangeMin);
+ 1719|    139|        m_ColorRangeMax = phi::max(m_ColorRangeMin, m_ColorRangeMax);
+ 1720|    139|    }
 
 _ZN6dlxemu8EmulatorC2Ev:
-   46|    109|    {}
+   46|    139|    {}
 _ZN6dlxemu8Emulator26HandleCommandLineArgumentsEN3phi7integerIiEEPPc:
-   55|    108|    {
+   55|    138|    {
    56|       |        // No args
-   57|    108|        if (argc <= 1)
+   57|    138|        if (argc <= 1)
   ------------------
-  |  Branch (57:13): [True: 8, False: 100]
+  |  Branch (57:13): [True: 8, False: 130]
   ------------------
    58|      8|        {
    59|      8|            return ShouldContinueInitialization::Yes;
    60|      8|        }
    61|       |
-   62|  2.53k|        for (phi::i32 arg_num{1}; arg_num < argc; ++arg_num)
+   62|  2.49k|        for (phi::i32 arg_num{1}; arg_num < argc; ++arg_num)
   ------------------
-  |  Branch (62:35): [True: 2.49k, False: 46]
+  |  Branch (62:35): [True: 2.45k, False: 33]
   ------------------
-   63|  2.49k|        {
-   64|  2.49k|            std::string arg_value = argv[arg_num.unsafe()];
+   63|  2.45k|        {
+   64|  2.45k|            std::string arg_value = argv[arg_num.unsafe()];
    65|       |
    66|       |            // Convert all characters to lower case
-   67|  2.49k|            phi::for_each(arg_value.begin(), arg_value.end(), phi::to_lower_case);
+   67|  2.45k|            phi::for_each(arg_value.begin(), arg_value.end(), phi::to_lower_case);
    68|       |            //std::transform(arg_value.begin(), arg_value.end(), arg_value.begin(), ::tolower);
    69|       |
-   70|  2.49k|            PHI_ASSERT(!arg_value.empty());
+   70|  2.45k|            PHI_ASSERT(!arg_value.empty());
    71|       |
-   72|  2.49k|            if (arg_value.front() == '-')
+   72|  2.45k|            if (arg_value.front() == '-')
   ------------------
-  |  Branch (72:17): [True: 54, False: 2.43k]
+  |  Branch (72:17): [True: 97, False: 2.36k]
   ------------------
-   73|     54|            {
+   73|     97|            {
    74|       |                // Display help
-   75|     54|                if (arg_value == "-h" || arg_value == "-help" || arg_value == "-?" ||
+   75|     97|                if (arg_value == "-h" || arg_value == "-help" || arg_value == "-?" ||
   ------------------
-  |  Branch (75:21): [True: 1, False: 53]
-  |  Branch (75:42): [True: 1, False: 52]
-  |  Branch (75:66): [True: 1, False: 51]
+  |  Branch (75:21): [True: 1, False: 96]
+  |  Branch (75:42): [True: 1, False: 95]
+  |  Branch (75:66): [True: 1, False: 94]
   ------------------
-   76|     54|                    arg_value == "--help")
+   76|     97|                    arg_value == "--help")
   ------------------
-  |  Branch (76:21): [True: 1, False: 50]
+  |  Branch (76:21): [True: 1, False: 93]
   ------------------
    77|      4|                {
    78|      4|                    DLX_INFO("Help");
@@ -159,184 +159,184 @@ _ZN6dlxemu8Emulator26HandleCommandLineArgumentsEN3phi7integerIiEEPPc:
    79|      4|                    return ShouldContinueInitialization::No;
    80|      4|                }
    81|       |                // Display version
-   82|     50|                if (arg_value == "-v" || arg_value == "--value")
+   82|     93|                if (arg_value == "-v" || arg_value == "--value")
   ------------------
-  |  Branch (82:21): [True: 37, False: 13]
-  |  Branch (82:42): [True: 2, False: 11]
+  |  Branch (82:21): [True: 82, False: 11]
+  |  Branch (82:42): [True: 5, False: 6]
   ------------------
-   83|     39|                {
-   84|     39|                    fmt::print("DLXEmu version {:d}.{:d}.{:d} {:s}-{:s}\n", VersionMajor,
-   85|     39|                               VersionMinor, VersionPatch, GitBranch, GitShaFull);
-   86|     39|                    return ShouldContinueInitialization::No;
-   87|     39|                }
+   83|     87|                {
+   84|     87|                    fmt::print("DLXEmu version {:d}.{:d}.{:d} {:s}-{:s}\n", VersionMajor,
+   85|     87|                               VersionMinor, VersionPatch, GitBranch, GitShaFull);
+   86|     87|                    return ShouldContinueInitialization::No;
+   87|     87|                }
    88|       |
    89|       |                // Unknown option
-   90|     11|                DLX_WARN("Unknown option '{:s}' ignored", arg_value);
+   90|      6|                DLX_WARN("Unknown option '{:s}' ignored", arg_value);
   ------------------
-  |  |    8|     11|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
+  |  |    8|      6|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
   ------------------
-   91|     11|                break;
-   92|     50|            }
+   91|      6|                break;
+   92|     93|            }
    93|       |
-   94|  2.43k|            DLX_WARN("Ignore command line argument '{:s}'", arg_value);
+   94|  2.36k|            DLX_WARN("Ignore command line argument '{:s}'", arg_value);
   ------------------
-  |  |    8|  2.43k|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
+  |  |    8|  2.36k|#define DLX_WARN(...)     PHI_EMPTY_MACRO()
   ------------------
-   95|  2.43k|        }
+   95|  2.36k|        }
    96|       |
-   97|     57|        return ShouldContinueInitialization::Yes;
-   98|    100|    }
+   97|     39|        return ShouldContinueInitialization::Yes;
+   98|    130|    }
 
 _ZN6dlxemu12MemoryViewerC2EPNS_8EmulatorE:
-   13|    109|    {}
+   13|    139|    {}
 
 _ZN6dlxemu14RegisterViewerC2EPNS_8EmulatorE:
-   19|    109|    {}
+   19|    139|    {}
 
 _ZN6dlxemu6WindowD2Ev:
-   41|    109|    {
-   42|    109|        Shutdown();
-   43|    109|    }
+   41|    139|    {
+   42|    139|        Shutdown();
+   43|    139|    }
 _ZN6dlxemu6Window8ShutdownEv:
-  113|    109|    {
-  114|    109|        if (imgui_initialized)
+  113|    139|    {
+  114|    139|        if (imgui_initialized)
   ------------------
-  |  Branch (114:13): [True: 0, False: 109]
+  |  Branch (114:13): [True: 0, False: 139]
   ------------------
   115|      0|        {
   116|      0|            ShutdownImGui();
   117|      0|        }
   118|       |
-  119|    109|        if (m_Window != nullptr)
+  119|    139|        if (m_Window != nullptr)
   ------------------
-  |  Branch (119:13): [True: 0, False: 109]
+  |  Branch (119:13): [True: 0, False: 139]
   ------------------
   120|      0|        {
   121|      0|            glfwDestroyWindow(m_Window);
   122|      0|        }
   123|       |
-  124|    109|        if (glfw_initialized)
+  124|    139|        if (glfw_initialized)
   ------------------
-  |  Branch (124:13): [True: 0, False: 109]
+  |  Branch (124:13): [True: 0, False: 139]
   ------------------
   125|      0|        {
   126|      0|            glfwTerminate();
   127|      0|        }
-  128|    109|    }
+  128|    139|    }
 
 _ZN3dlx11MemoryBlock10MemoryByteC2Ev:
-   17|   109k|            {}
+   17|   139k|            {}
 
 _ZN3dlx11IntRegisterC2Ev:
-   12|  3.48k|    {}
+   12|  4.44k|    {}
 _ZN3dlx11IntRegister11SetReadOnlyEN3phi7booleanE:
-   40|    109|    {
-   41|    109|        m_IsReadOnly = read_only;
-   42|    109|    }
+   40|    139|    {
+   41|    139|        m_IsReadOnly = read_only;
+   42|    139|    }
 
 _ZN3dlx11MemoryBlockC2EN3phi7integerImEES3_:
-   12|    109|    {
-   13|    109|        m_Values.resize(starting_size.unsafe());
-   14|    109|    }
+   12|    139|    {
+   13|    139|        m_Values.resize(starting_size.unsafe());
+   14|    139|    }
 
 _ZN3dlx9ProcessorC2Ev:
-   62|    109|    {
+   62|    139|    {
    63|       |        // Mark R0 as ready only
-   64|    109|        m_IntRegisters[0].SetReadOnly(true);
-   65|    109|    }
+   64|    139|        m_IntRegisters[0].SetReadOnly(true);
+   65|    139|    }
 
 _ZN3fmt3v116detail6bufferIcE6appendIcEEvPKT_S7_:
-  927|    429|  template <typename U> void append(const U* begin, const U* end) {
-  928|    780|    while (begin != end) {
+  927|    957|  template <typename U> void append(const U* begin, const U* end) {
+  928|  1.74k|    while (begin != end) {
   ------------------
-  |  Branch (928:12): [True: 351, False: 429]
+  |  Branch (928:12): [True: 783, False: 957]
   ------------------
-  929|    351|      auto count = to_unsigned(end - begin);
-  930|    351|      try_reserve(size_ + count);
-  931|    351|      auto free_cap = capacity_ - size_;
-  932|    351|      if (free_cap < count) count = free_cap;
+  929|    783|      auto count = to_unsigned(end - begin);
+  930|    783|      try_reserve(size_ + count);
+  931|    783|      auto free_cap = capacity_ - size_;
+  932|    783|      if (free_cap < count) count = free_cap;
   ------------------
-  |  Branch (932:11): [True: 0, False: 351]
+  |  Branch (932:11): [True: 0, False: 783]
   ------------------
   933|       |      // A loop is faster than memcpy on small sizes.
-  934|    351|      T* out = ptr_ + size_;
-  935|  1.24k|      for (size_t i = 0; i < count; ++i) out[i] = begin[i];
+  934|    783|      T* out = ptr_ + size_;
+  935|  2.78k|      for (size_t i = 0; i < count; ++i) out[i] = begin[i];
   ------------------
-  |  Branch (935:26): [True: 897, False: 351]
+  |  Branch (935:26): [True: 2.00k, False: 783]
   ------------------
-  936|    351|      size_ += count;
-  937|    351|      begin += count;
-  938|    351|    }
-  939|    429|  }
+  936|    783|      size_ += count;
+  937|    783|      begin += count;
+  938|    783|    }
+  939|    957|  }
 _ZN3fmt3v116detail11to_unsignedIiEENSt3__113make_unsignedIT_E4typeES5_:
-  432|    195|FMT_CONSTEXPR auto to_unsigned(Int value) -> make_unsigned_t<Int> {
-  433|    195|  FMT_ASSERT(std::is_unsigned<Int>::value || value >= 0, "negative value");
+  432|    435|FMT_CONSTEXPR auto to_unsigned(Int value) -> make_unsigned_t<Int> {
+  433|    435|  FMT_ASSERT(std::is_unsigned<Int>::value || value >= 0, "negative value");
   ------------------
-  |  |  402|    390|    fmt::detail::ignore_unused((condition), (message))
+  |  |  402|    870|    fmt::detail::ignore_unused((condition), (message))
   |  |  ------------------
   |  |  |  Branch (402:33): [Folded - Ignored]
-  |  |  |  Branch (402:33): [True: 195, False: 0]
+  |  |  |  Branch (402:33): [True: 435, False: 0]
   |  |  ------------------
   ------------------
-  434|    195|  return static_cast<make_unsigned_t<Int>>(value);
-  435|    195|}
+  434|    435|  return static_cast<make_unsigned_t<Int>>(value);
+  435|    435|}
 _ZN3fmt3v116detail13ignore_unusedIJbA15_cEEEvDpRKT_:
-  372|  1.05k|template <typename... T> FMT_CONSTEXPR void ignore_unused(const T&...) {}
+  372|  2.34k|template <typename... T> FMT_CONSTEXPR void ignore_unused(const T&...) {}
 _ZN3fmt3v1114basic_appenderIcEC2ERNS0_6detail6bufferIcEE:
- 1171|     39|  FMT_CONSTEXPR basic_appender(detail::buffer<T>& buf) : buffer_(&buf) {}
+ 1171|     87|  FMT_CONSTEXPR basic_appender(detail::buffer<T>& buf) : buffer_(&buf) {}
 _ZNK3fmt3v1117basic_string_viewIcE4sizeEv:
-  555|    156|  constexpr auto size() const noexcept -> size_t { return size_; }
+  555|    348|  constexpr auto size() const noexcept -> size_t { return size_; }
 _ZNK3fmt3v116detail6bufferIcE4sizeEv:
-  894|    234|  constexpr auto size() const noexcept -> size_t { return size_; }
+  894|    522|  constexpr auto size() const noexcept -> size_t { return size_; }
 _ZN3fmt3v116detail6bufferIcE3setEPcm:
-  875|     39|  FMT_CONSTEXPR void set(T* buf_data, size_t buf_capacity) noexcept {
-  876|     39|    ptr_ = buf_data;
-  877|     39|    capacity_ = buf_capacity;
-  878|     39|  }
+  875|     87|  FMT_CONSTEXPR void set(T* buf_data, size_t buf_capacity) noexcept {
+  876|     87|    ptr_ = buf_data;
+  877|     87|    capacity_ = buf_capacity;
+  878|     87|  }
 _ZN3fmt3v116detail4copyIcPKcNS0_14basic_appenderIcEELi0EEET1_T0_S8_S7_:
- 1191|    312|auto copy(InputIt begin, InputIt end, OutputIt out) -> OutputIt {
- 1192|    312|  get_container(out).append(begin, end);
- 1193|    312|  return out;
- 1194|    312|}
+ 1191|    696|auto copy(InputIt begin, InputIt end, OutputIt out) -> OutputIt {
+ 1192|    696|  get_container(out).append(begin, end);
+ 1193|    696|  return out;
+ 1194|    696|}
 _ZN3fmt3v1113get_containerENS0_14basic_appenderIcEE:
- 1158|    624|  friend auto get_container(basic_appender app) -> detail::buffer<T>& {
- 1159|    624|    return *app.buffer_;
- 1160|    624|  }
+ 1158|  1.39k|  friend auto get_container(basic_appender app) -> detail::buffer<T>& {
+ 1159|  1.39k|    return *app.buffer_;
+ 1160|  1.39k|  }
 _ZN3fmt3v1117basic_string_viewIcEC2EPKc:
-  541|     78|                  : detail::length(s)) {}
+  541|    174|                  : detail::length(s)) {}
 _ZN3fmt3v116detail10locale_refC2Ev:
- 1571|    117|  constexpr locale_ref() : locale_(nullptr) {}
+ 1571|    261|  constexpr locale_ref() : locale_(nullptr) {}
 _ZN3fmt3v116detail5valueINS0_7contextEEC2Ev:
- 1332|    195|  constexpr FMT_ALWAYS_INLINE value() : no_value() {}
+ 1332|    435|  constexpr FMT_ALWAYS_INLINE value() : no_value() {}
 _ZN3fmt3v119monostateC2Ev:
-  347|    195|  constexpr monostate() {}
+  347|    435|  constexpr monostate() {}
 _ZNK3fmt3v1117basic_string_viewIcE4dataEv:
-  552|    117|  constexpr auto data() const noexcept -> const Char* { return data_; }
+  552|    261|  constexpr auto data() const noexcept -> const Char* { return data_; }
 _ZN3fmt3v116detail11to_unsignedIlEENSt3__113make_unsignedIT_E4typeES5_:
-  432|    858|FMT_CONSTEXPR auto to_unsigned(Int value) -> make_unsigned_t<Int> {
-  433|    858|  FMT_ASSERT(std::is_unsigned<Int>::value || value >= 0, "negative value");
+  432|  1.91k|FMT_CONSTEXPR auto to_unsigned(Int value) -> make_unsigned_t<Int> {
+  433|  1.91k|  FMT_ASSERT(std::is_unsigned<Int>::value || value >= 0, "negative value");
   ------------------
-  |  |  402|  1.71k|    fmt::detail::ignore_unused((condition), (message))
+  |  |  402|  3.82k|    fmt::detail::ignore_unused((condition), (message))
   |  |  ------------------
   |  |  |  Branch (402:33): [Folded - Ignored]
-  |  |  |  Branch (402:33): [True: 858, False: 0]
+  |  |  |  Branch (402:33): [True: 1.91k, False: 0]
   |  |  ------------------
   ------------------
-  434|    858|  return static_cast<make_unsigned_t<Int>>(value);
-  435|    858|}
+  434|  1.91k|  return static_cast<make_unsigned_t<Int>>(value);
+  435|  1.91k|}
 _ZN3fmt3v116detail6bufferIcE11try_reserveEm:
-  917|    546|  FMT_CONSTEXPR void try_reserve(size_t new_capacity) {
-  918|    546|    if (new_capacity > capacity_) grow_(*this, new_capacity);
+  917|  1.21k|  FMT_CONSTEXPR void try_reserve(size_t new_capacity) {
+  918|  1.21k|    if (new_capacity > capacity_) grow_(*this, new_capacity);
   ------------------
-  |  Branch (918:9): [True: 0, False: 546]
+  |  Branch (918:9): [True: 0, False: 1.21k]
   ------------------
-  919|    546|  }
+  919|  1.21k|  }
 _ZNK3fmt3v1117basic_format_argsINS0_7contextEE3getEi:
- 1890|    195|  FMT_CONSTEXPR auto get(int id) const -> format_arg {
- 1891|    195|    format_arg arg;
- 1892|    195|    if (!is_packed()) {
+ 1890|    435|  FMT_CONSTEXPR auto get(int id) const -> format_arg {
+ 1891|    435|    format_arg arg;
+ 1892|    435|    if (!is_packed()) {
   ------------------
-  |  Branch (1892:9): [True: 0, False: 195]
+  |  Branch (1892:9): [True: 0, False: 435]
   ------------------
  1893|      0|      if (id < max_size()) arg = args_[id];
   ------------------
@@ -344,58 +344,58 @@ _ZNK3fmt3v1117basic_format_argsINS0_7contextEE3getEi:
   ------------------
  1894|      0|      return arg;
  1895|      0|    }
- 1896|    195|    if (static_cast<unsigned>(id) >= detail::max_packed_args) return arg;
+ 1896|    435|    if (static_cast<unsigned>(id) >= detail::max_packed_args) return arg;
   ------------------
-  |  Branch (1896:9): [True: 0, False: 195]
+  |  Branch (1896:9): [True: 0, False: 435]
   ------------------
- 1897|    195|    arg.type_ = type(id);
- 1898|    195|    if (arg.type_ == detail::type::none_type) return arg;
+ 1897|    435|    arg.type_ = type(id);
+ 1898|    435|    if (arg.type_ == detail::type::none_type) return arg;
   ------------------
-  |  Branch (1898:9): [True: 0, False: 195]
+  |  Branch (1898:9): [True: 0, False: 435]
   ------------------
- 1899|    195|    arg.value_ = values_[id];
- 1900|    195|    return arg;
- 1901|    195|  }
+ 1899|    435|    arg.value_ = values_[id];
+ 1900|    435|    return arg;
+ 1901|    435|  }
 _ZN3fmt3v1116basic_format_argINS0_7contextEEC2Ev:
- 1746|    195|  constexpr basic_format_arg() : type_(detail::type::none_type) {}
+ 1746|    435|  constexpr basic_format_arg() : type_(detail::type::none_type) {}
 _ZNK3fmt3v1117basic_format_argsINS0_7contextEE9is_packedEv:
- 1849|    195|  constexpr auto is_packed() const -> bool {
- 1850|    195|    return (desc_ & detail::is_unpacked_bit) == 0;
- 1851|    195|  }
+ 1849|    435|  constexpr auto is_packed() const -> bool {
+ 1850|    435|    return (desc_ & detail::is_unpacked_bit) == 0;
+ 1851|    435|  }
 _ZNK3fmt3v1117basic_format_argsINS0_7contextEE4typeEi:
- 1856|    195|  FMT_CONSTEXPR auto type(int index) const -> detail::type {
- 1857|    195|    int shift = index * detail::packed_arg_bits;
- 1858|    195|    unsigned int mask = (1 << detail::packed_arg_bits) - 1;
- 1859|    195|    return static_cast<detail::type>((desc_ >> shift) & mask);
- 1860|    195|  }
+ 1856|    435|  FMT_CONSTEXPR auto type(int index) const -> detail::type {
+ 1857|    435|    int shift = index * detail::packed_arg_bits;
+ 1858|    435|    unsigned int mask = (1 << detail::packed_arg_bits) - 1;
+ 1859|    435|    return static_cast<detail::type>((desc_ >> shift) & mask);
+ 1860|    435|  }
 _ZNK3fmt3v1116basic_format_argINS0_7contextEEcvbEv:
- 1748|    195|  constexpr explicit operator bool() const noexcept {
- 1749|    195|    return type_ != detail::type::none_type;
- 1750|    195|  }
+ 1748|    435|  constexpr explicit operator bool() const noexcept {
+ 1749|    435|    return type_ != detail::type::none_type;
+ 1750|    435|  }
 _ZN3fmt3v116detail13ignore_unusedIJbA20_cEEEvDpRKT_:
-  372|    117|template <typename... T> FMT_CONSTEXPR void ignore_unused(const T&...) {}
+  372|    261|template <typename... T> FMT_CONSTEXPR void ignore_unused(const T&...) {}
 _ZN3fmt3v116detail4copyIcPcNS0_14basic_appenderIcEELi0EEET1_T0_S7_S6_:
- 1191|    117|auto copy(InputIt begin, InputIt end, OutputIt out) -> OutputIt {
- 1192|    117|  get_container(out).append(begin, end);
- 1193|    117|  return out;
- 1194|    117|}
+ 1191|    261|auto copy(InputIt begin, InputIt end, OutputIt out) -> OutputIt {
+ 1192|    261|  get_container(out).append(begin, end);
+ 1193|    261|  return out;
+ 1194|    261|}
 _ZNK3fmt3v116detail6fill_t4sizeEv:
- 2110|     78|  constexpr auto size() const -> size_t { return size_; }
+ 2110|    174|  constexpr auto size() const -> size_t { return size_; }
 _ZN3fmt3v1112format_specsC2Ev:
- 2172|    195|        localized(false) {}
+ 2172|    435|        localized(false) {}
 _ZN3fmt3v1126basic_format_parse_contextIcEC2ENS0_17basic_string_viewIcEEi:
-  766|     39|      : format_str_(format_str), next_arg_id_(next_arg_id) {}
+  766|     87|      : format_str_(format_str), next_arg_id_(next_arg_id) {}
 _ZN3fmt3v117contextC2ENS0_14basic_appenderIcEENS0_17basic_format_argsIS1_EENS0_6detail10locale_refE:
- 1947|     39|      : out_(out), args_(ctx_args), loc_(loc) {}
+ 1947|     87|      : out_(out), args_(ctx_args), loc_(loc) {}
 _ZN3fmt3v117context3outEv:
- 1960|    429|  FMT_CONSTEXPR auto out() -> iterator { return out_; }
+ 1960|    957|  FMT_CONSTEXPR auto out() -> iterator { return out_; }
 _ZN3fmt3v116detail19parse_format_stringILb0EcZNS1_10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS5_EENS1_12vformat_argsIS5_E4typeENS1_10locale_refEE14format_handlerEEvNS8_IT0_EEOT1_:
- 2612|     39|                                       Handler&& handler) {
- 2613|     39|  auto begin = format_str.data();
- 2614|     39|  auto end = begin + format_str.size();
- 2615|     39|  if (end - begin < 32) {
+ 2612|     87|                                       Handler&& handler) {
+ 2613|     87|  auto begin = format_str.data();
+ 2614|     87|  auto end = begin + format_str.size();
+ 2615|     87|  if (end - begin < 32) {
   ------------------
-  |  Branch (2615:7): [True: 0, False: 39]
+  |  Branch (2615:7): [True: 0, False: 87]
   ------------------
  2616|       |    // Use a simple loop instead of memchr for small strings.
  2617|      0|    const Char* p = begin;
@@ -427,74 +427,74 @@ _ZN3fmt3v116detail19parse_format_stringILb0EcZNS1_10vformat_toIcEEvRNS1_6bufferI
  2630|      0|    handler.on_text(begin, end);
  2631|      0|    return;
  2632|      0|  }
- 2633|     39|  struct writer {
- 2634|     39|    FMT_CONSTEXPR void operator()(const Char* from, const Char* to) {
- 2635|     39|      if (from == to) return;
- 2636|     39|      for (;;) {
- 2637|     39|        const Char* p = nullptr;
- 2638|     39|        if (!find<IS_CONSTEXPR>(from, to, Char('}'), p))
- 2639|     39|          return handler_.on_text(from, to);
- 2640|     39|        ++p;
- 2641|     39|        if (p == to || *p != '}')
- 2642|     39|          return handler_.on_error("unmatched '}' in format string");
- 2643|     39|        handler_.on_text(from, p);
- 2644|     39|        from = p + 1;
- 2645|     39|      }
- 2646|     39|    }
- 2647|     39|    Handler& handler_;
- 2648|     39|  } write = {handler};
- 2649|    234|  while (begin != end) {
+ 2633|     87|  struct writer {
+ 2634|     87|    FMT_CONSTEXPR void operator()(const Char* from, const Char* to) {
+ 2635|     87|      if (from == to) return;
+ 2636|     87|      for (;;) {
+ 2637|     87|        const Char* p = nullptr;
+ 2638|     87|        if (!find<IS_CONSTEXPR>(from, to, Char('}'), p))
+ 2639|     87|          return handler_.on_text(from, to);
+ 2640|     87|        ++p;
+ 2641|     87|        if (p == to || *p != '}')
+ 2642|     87|          return handler_.on_error("unmatched '}' in format string");
+ 2643|     87|        handler_.on_text(from, p);
+ 2644|     87|        from = p + 1;
+ 2645|     87|      }
+ 2646|     87|    }
+ 2647|     87|    Handler& handler_;
+ 2648|     87|  } write = {handler};
+ 2649|    522|  while (begin != end) {
   ------------------
-  |  Branch (2649:10): [True: 234, False: 0]
+  |  Branch (2649:10): [True: 522, False: 0]
   ------------------
  2650|       |    // Doing two passes with memchr (one for '{' and another for '}') is up to
  2651|       |    // 2.5x faster than the naive one-pass implementation on big format strings.
- 2652|    234|    const Char* p = begin;
- 2653|    234|    if (*begin != '{' && !find<IS_CONSTEXPR>(begin + 1, end, Char('{'), p))
+ 2652|    522|    const Char* p = begin;
+ 2653|    522|    if (*begin != '{' && !find<IS_CONSTEXPR>(begin + 1, end, Char('{'), p))
   ------------------
-  |  Branch (2653:9): [True: 234, False: 0]
-  |  Branch (2653:26): [True: 39, False: 195]
+  |  Branch (2653:9): [True: 522, False: 0]
+  |  Branch (2653:26): [True: 87, False: 435]
   ------------------
- 2654|     39|      return write(begin, end);
- 2655|    195|    write(begin, p);
- 2656|    195|    begin = parse_replacement_field(p, end, handler);
- 2657|    195|  }
- 2658|     39|}
+ 2654|     87|      return write(begin, end);
+ 2655|    435|    write(begin, p);
+ 2656|    435|    begin = parse_replacement_field(p, end, handler);
+ 2657|    435|  }
+ 2658|     87|}
 _ZN3fmt3v117context10advance_toENS0_14basic_appenderIcEE:
- 1963|    429|  void advance_to(iterator) {}
+ 1963|    957|  void advance_to(iterator) {}
 _ZN3fmt3v116detail23parse_replacement_fieldIcRZNS1_10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS5_EENS1_12vformat_argsIS5_E4typeENS1_10locale_refEE14format_handlerEEPKS5_SH_SH_OT0_:
- 2563|    195|    -> const Char* {
- 2564|    195|  ++begin;
- 2565|    195|  if (begin == end) {
+ 2563|    435|    -> const Char* {
+ 2564|    435|  ++begin;
+ 2565|    435|  if (begin == end) {
   ------------------
-  |  Branch (2565:7): [True: 0, False: 195]
+  |  Branch (2565:7): [True: 0, False: 435]
   ------------------
  2566|      0|    handler.on_error("invalid format string");
  2567|      0|    return end;
  2568|      0|  }
- 2569|    195|  int arg_id = 0;
- 2570|    195|  switch (*begin) {
+ 2569|    435|  int arg_id = 0;
+ 2570|    435|  switch (*begin) {
  2571|      0|  case '}':
   ------------------
-  |  Branch (2571:3): [True: 0, False: 195]
+  |  Branch (2571:3): [True: 0, False: 435]
   ------------------
  2572|      0|    handler.on_replacement_field(handler.on_arg_id(), begin);
  2573|      0|    return begin + 1;
  2574|      0|  case '{':
   ------------------
-  |  Branch (2574:3): [True: 0, False: 195]
+  |  Branch (2574:3): [True: 0, False: 435]
   ------------------
  2575|      0|    handler.on_text(begin, begin + 1);
  2576|      0|    return begin + 1;
- 2577|    195|  case ':':
+ 2577|    435|  case ':':
   ------------------
-  |  Branch (2577:3): [True: 195, False: 0]
+  |  Branch (2577:3): [True: 435, False: 0]
   ------------------
- 2578|    195|    arg_id = handler.on_arg_id();
- 2579|    195|    break;
+ 2578|    435|    arg_id = handler.on_arg_id();
+ 2579|    435|    break;
  2580|      0|  default: {
   ------------------
-  |  Branch (2580:3): [True: 0, False: 195]
+  |  Branch (2580:3): [True: 0, False: 435]
   ------------------
  2581|      0|    struct id_adapter {
  2582|      0|      Handler& handler;
@@ -527,42 +527,42 @@ _ZN3fmt3v116detail23parse_replacement_fieldIcRZNS1_10vformat_toIcEEvRNS1_6buffer
  2600|      0|    }
  2601|      0|    break;
  2602|      0|  }
- 2603|    195|  }
- 2604|    195|  begin = handler.on_format_specs(arg_id, begin + 1, end);
- 2605|    195|  if (begin == end || *begin != '}')
+ 2603|    435|  }
+ 2604|    435|  begin = handler.on_format_specs(arg_id, begin + 1, end);
+ 2605|    435|  if (begin == end || *begin != '}')
   ------------------
-  |  Branch (2605:7): [True: 0, False: 195]
-  |  Branch (2605:23): [True: 0, False: 195]
+  |  Branch (2605:7): [True: 0, False: 435]
+  |  Branch (2605:23): [True: 0, False: 435]
   ------------------
  2606|      0|    return handler.on_error("unknown format specifier"), end;
- 2607|    195|  return begin + 1;
- 2608|    195|}
+ 2607|    435|  return begin + 1;
+ 2608|    435|}
 _ZNK3fmt3v117context3argEi:
- 1952|    195|  FMT_CONSTEXPR auto arg(int id) const -> format_arg { return args_.get(id); }
+ 1952|    435|  FMT_CONSTEXPR auto arg(int id) const -> format_arg { return args_.get(id); }
 _ZN3fmt3v117context6localeEv:
- 1965|    195|  FMT_CONSTEXPR auto locale() -> detail::locale_ref { return loc_; }
+ 1965|    435|  FMT_CONSTEXPR auto locale() -> detail::locale_ref { return loc_; }
 _ZN3fmt3v1126basic_format_parse_contextIcE11next_arg_idEv:
-  784|    195|  FMT_CONSTEXPR auto next_arg_id() -> int {
-  785|    195|    if (next_arg_id_ < 0) {
+  784|    435|  FMT_CONSTEXPR auto next_arg_id() -> int {
+  785|    435|    if (next_arg_id_ < 0) {
   ------------------
-  |  Branch (785:9): [True: 0, False: 195]
+  |  Branch (785:9): [True: 0, False: 435]
   ------------------
   786|      0|      report_error("cannot switch from manual to automatic argument indexing");
   787|      0|      return 0;
   788|      0|    }
-  789|    195|    int id = next_arg_id_++;
-  790|    195|    do_check_arg_id(id);
-  791|    195|    return id;
-  792|    195|  }
+  789|    435|    int id = next_arg_id_++;
+  790|    435|    do_check_arg_id(id);
+  791|    435|    return id;
+  792|    435|  }
 _ZN3fmt3v1126basic_format_parse_contextIcE15do_check_arg_idEi:
- 1113|    195|FMT_CONSTEXPR void basic_format_parse_context<Char>::do_check_arg_id(int id) {
+ 1113|    435|FMT_CONSTEXPR void basic_format_parse_context<Char>::do_check_arg_id(int id) {
  1114|       |  // Argument id is only checked at compile-time during parsing because
  1115|       |  // formatting has its own validation.
- 1116|    195|  if (detail::is_constant_evaluated() &&
+ 1116|    435|  if (detail::is_constant_evaluated() &&
   ------------------
   |  Branch (1116:7): [Folded - Ignored]
   ------------------
- 1117|    195|      (!FMT_GCC_VERSION || FMT_GCC_VERSION >= 1200)) {
+ 1117|    435|      (!FMT_GCC_VERSION || FMT_GCC_VERSION >= 1200)) {
   ------------------
   |  |   37|      0|#  define FMT_GCC_VERSION 0
   ------------------
@@ -580,34 +580,34 @@ _ZN3fmt3v1126basic_format_parse_contextIcE15do_check_arg_idEi:
   ------------------
  1120|      0|      report_error("argument not found");
  1121|      0|  }
- 1122|    195|}
+ 1122|    435|}
 _ZN3fmt3v1116basic_format_argINS0_7contextEE13format_customEPKcRNS0_26basic_format_parse_contextIcEERS2_:
- 1806|    195|                     Context& ctx) -> bool {
- 1807|    195|    if (type_ != detail::type::custom_type) return false;
+ 1806|    435|                     Context& ctx) -> bool {
+ 1807|    435|    if (type_ != detail::type::custom_type) return false;
   ------------------
-  |  Branch (1807:9): [True: 195, False: 0]
+  |  Branch (1807:9): [True: 435, False: 0]
   ------------------
  1808|      0|    parse_ctx.advance_to(parse_begin);
  1809|      0|    value_.custom.format(value_.custom.value, parse_ctx, ctx);
  1810|      0|    return true;
- 1811|    195|  }
+ 1811|    435|  }
 _ZN3fmt3v116detail7arg_refIcEC2Ev:
- 2181|    390|  FMT_CONSTEXPR arg_ref() : kind(arg_id_kind::none), val() {}
+ 2181|    870|  FMT_CONSTEXPR arg_ref() : kind(arg_id_kind::none), val() {}
 _ZN3fmt3v116detail7arg_refIcE5valueC2Ei:
- 2196|    390|    FMT_CONSTEXPR value(int idx = 0) : index(idx) {}
+ 2196|    870|    FMT_CONSTEXPR value(int idx = 0) : index(idx) {}
 _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsIS3_EERNS0_26basic_format_parse_contextIS3_EENS1_4typeE:
- 2379|    195|                                      type arg_type) -> const Char* {
- 2380|    195|  auto c = '\0';
- 2381|    195|  if (end - begin > 1) {
+ 2379|    435|                                      type arg_type) -> const Char* {
+ 2380|    435|  auto c = '\0';
+ 2381|    435|  if (end - begin > 1) {
   ------------------
-  |  Branch (2381:7): [True: 195, False: 0]
+  |  Branch (2381:7): [True: 435, False: 0]
   ------------------
- 2382|    195|    auto next = to_ascii(begin[1]);
- 2383|    195|    c = parse_align(next) == align::none ? to_ascii(*begin) : '\0';
+ 2382|    435|    auto next = to_ascii(begin[1]);
+ 2383|    435|    c = parse_align(next) == align::none ? to_ascii(*begin) : '\0';
   ------------------
-  |  Branch (2383:9): [True: 195, False: 0]
+  |  Branch (2383:9): [True: 435, False: 0]
   ------------------
- 2384|    195|  } else {
+ 2384|    435|  } else {
  2385|      0|    if (begin == end) return begin;
   ------------------
   |  Branch (2385:9): [True: 0, False: 0]
@@ -615,45 +615,45 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
  2386|      0|    c = to_ascii(*begin);
  2387|      0|  }
  2388|       |
- 2389|    195|  struct {
- 2390|    195|    state current_state = state::start;
- 2391|    195|    FMT_CONSTEXPR void operator()(state s, bool valid = true) {
- 2392|    195|      if (current_state >= s || !valid)
- 2393|    195|        report_error("invalid format specifier");
- 2394|    195|      current_state = s;
- 2395|    195|    }
- 2396|    195|  } enter_state;
+ 2389|    435|  struct {
+ 2390|    435|    state current_state = state::start;
+ 2391|    435|    FMT_CONSTEXPR void operator()(state s, bool valid = true) {
+ 2392|    435|      if (current_state >= s || !valid)
+ 2393|    435|        report_error("invalid format specifier");
+ 2394|    435|      current_state = s;
+ 2395|    435|    }
+ 2396|    435|  } enter_state;
  2397|       |
- 2398|    195|  using pres = presentation_type;
- 2399|    195|  constexpr auto integral_set = sint_set | uint_set | bool_set | char_set;
- 2400|    195|  struct {
- 2401|    195|    const Char*& begin;
- 2402|    195|    dynamic_format_specs<Char>& specs;
- 2403|    195|    type arg_type;
+ 2398|    435|  using pres = presentation_type;
+ 2399|    435|  constexpr auto integral_set = sint_set | uint_set | bool_set | char_set;
+ 2400|    435|  struct {
+ 2401|    435|    const Char*& begin;
+ 2402|    435|    dynamic_format_specs<Char>& specs;
+ 2403|    435|    type arg_type;
  2404|       |
- 2405|    195|    FMT_CONSTEXPR auto operator()(pres pres_type, int set) -> const Char* {
- 2406|    195|      if (!in(arg_type, set)) {
- 2407|    195|        if (arg_type == type::none_type) return begin;
- 2408|    195|        report_error("invalid format specifier");
- 2409|    195|      }
- 2410|    195|      specs.type = pres_type;
- 2411|    195|      return begin + 1;
- 2412|    195|    }
- 2413|    195|  } parse_presentation_type{begin, specs, arg_type};
+ 2405|    435|    FMT_CONSTEXPR auto operator()(pres pres_type, int set) -> const Char* {
+ 2406|    435|      if (!in(arg_type, set)) {
+ 2407|    435|        if (arg_type == type::none_type) return begin;
+ 2408|    435|        report_error("invalid format specifier");
+ 2409|    435|      }
+ 2410|    435|      specs.type = pres_type;
+ 2411|    435|      return begin + 1;
+ 2412|    435|    }
+ 2413|    435|  } parse_presentation_type{begin, specs, arg_type};
  2414|       |
- 2415|    195|  for (;;) {
- 2416|    195|    switch (c) {
+ 2415|    435|  for (;;) {
+ 2416|    435|    switch (c) {
  2417|      0|    case '<':
   ------------------
-  |  Branch (2417:5): [True: 0, False: 195]
+  |  Branch (2417:5): [True: 0, False: 435]
   ------------------
  2418|      0|    case '>':
   ------------------
-  |  Branch (2418:5): [True: 0, False: 195]
+  |  Branch (2418:5): [True: 0, False: 435]
   ------------------
  2419|      0|    case '^':
   ------------------
-  |  Branch (2419:5): [True: 0, False: 195]
+  |  Branch (2419:5): [True: 0, False: 435]
   ------------------
  2420|      0|      enter_state(state::align);
  2421|      0|      specs.align = parse_align(c);
@@ -661,15 +661,15 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
  2423|      0|      break;
  2424|      0|    case '+':
   ------------------
-  |  Branch (2424:5): [True: 0, False: 195]
+  |  Branch (2424:5): [True: 0, False: 435]
   ------------------
  2425|      0|    case '-':
   ------------------
-  |  Branch (2425:5): [True: 0, False: 195]
+  |  Branch (2425:5): [True: 0, False: 435]
   ------------------
  2426|      0|    case ' ':
   ------------------
-  |  Branch (2426:5): [True: 0, False: 195]
+  |  Branch (2426:5): [True: 0, False: 435]
   ------------------
  2427|      0|      if (arg_type == type::none_type) return begin;
   ------------------
@@ -703,7 +703,7 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
  2441|      0|      break;
  2442|      0|    case '#':
   ------------------
-  |  Branch (2442:5): [True: 0, False: 195]
+  |  Branch (2442:5): [True: 0, False: 435]
   ------------------
  2443|      0|      if (arg_type == type::none_type) return begin;
   ------------------
@@ -715,7 +715,7 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
  2447|      0|      break;
  2448|      0|    case '0':
   ------------------
-  |  Branch (2448:5): [True: 0, False: 195]
+  |  Branch (2448:5): [True: 0, False: 435]
   ------------------
  2449|      0|      enter_state(state::zero);
  2450|      0|      if (!is_arithmetic_type(arg_type)) {
@@ -740,50 +740,50 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
  2460|      0|      break;
  2461|      0|    case '1':
   ------------------
-  |  Branch (2461:5): [True: 0, False: 195]
+  |  Branch (2461:5): [True: 0, False: 435]
   ------------------
  2462|      0|    case '2':
   ------------------
-  |  Branch (2462:5): [True: 0, False: 195]
+  |  Branch (2462:5): [True: 0, False: 435]
   ------------------
  2463|      0|    case '3':
   ------------------
-  |  Branch (2463:5): [True: 0, False: 195]
+  |  Branch (2463:5): [True: 0, False: 435]
   ------------------
  2464|      0|    case '4':
   ------------------
-  |  Branch (2464:5): [True: 0, False: 195]
+  |  Branch (2464:5): [True: 0, False: 435]
   ------------------
  2465|      0|    case '5':
   ------------------
-  |  Branch (2465:5): [True: 0, False: 195]
+  |  Branch (2465:5): [True: 0, False: 435]
   ------------------
  2466|      0|    case '6':
   ------------------
-  |  Branch (2466:5): [True: 0, False: 195]
+  |  Branch (2466:5): [True: 0, False: 435]
   ------------------
  2467|      0|    case '7':
   ------------------
-  |  Branch (2467:5): [True: 0, False: 195]
+  |  Branch (2467:5): [True: 0, False: 435]
   ------------------
  2468|      0|    case '8':
   ------------------
-  |  Branch (2468:5): [True: 0, False: 195]
+  |  Branch (2468:5): [True: 0, False: 435]
   ------------------
  2469|      0|    case '9':
   ------------------
-  |  Branch (2469:5): [True: 0, False: 195]
+  |  Branch (2469:5): [True: 0, False: 435]
   ------------------
  2470|      0|    case '{':
   ------------------
-  |  Branch (2470:5): [True: 0, False: 195]
+  |  Branch (2470:5): [True: 0, False: 435]
   ------------------
  2471|      0|      enter_state(state::width);
  2472|      0|      begin = parse_dynamic_spec(begin, end, specs.width, specs.width_ref, ctx);
  2473|      0|      break;
  2474|      0|    case '.':
   ------------------
-  |  Branch (2474:5): [True: 0, False: 195]
+  |  Branch (2474:5): [True: 0, False: 435]
   ------------------
  2475|      0|      if (arg_type == type::none_type) return begin;
   ------------------
@@ -796,7 +796,7 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
  2480|      0|      break;
  2481|      0|    case 'L':
   ------------------
-  |  Branch (2481:5): [True: 0, False: 195]
+  |  Branch (2481:5): [True: 0, False: 435]
   ------------------
  2482|      0|      if (arg_type == type::none_type) return begin;
   ------------------
@@ -806,14 +806,14 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
  2484|      0|      specs.localized = true;
  2485|      0|      ++begin;
  2486|      0|      break;
- 2487|    117|    case 'd':
+ 2487|    261|    case 'd':
   ------------------
-  |  Branch (2487:5): [True: 117, False: 78]
+  |  Branch (2487:5): [True: 261, False: 174]
   ------------------
- 2488|    117|      return parse_presentation_type(pres::dec, integral_set);
+ 2488|    261|      return parse_presentation_type(pres::dec, integral_set);
  2489|      0|    case 'X':
   ------------------
-  |  Branch (2489:5): [True: 0, False: 195]
+  |  Branch (2489:5): [True: 0, False: 435]
   ------------------
  2490|      0|      specs.upper = true;
  2491|      0|      FMT_FALLTHROUGH;
@@ -822,17 +822,17 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
   ------------------
  2492|      0|    case 'x':
   ------------------
-  |  Branch (2492:5): [True: 0, False: 195]
+  |  Branch (2492:5): [True: 0, False: 435]
   ------------------
  2493|      0|      return parse_presentation_type(pres::hex, integral_set);
  2494|      0|    case 'o':
   ------------------
-  |  Branch (2494:5): [True: 0, False: 195]
+  |  Branch (2494:5): [True: 0, False: 435]
   ------------------
  2495|      0|      return parse_presentation_type(pres::oct, integral_set);
  2496|      0|    case 'B':
   ------------------
-  |  Branch (2496:5): [True: 0, False: 195]
+  |  Branch (2496:5): [True: 0, False: 435]
   ------------------
  2497|      0|      specs.upper = true;
  2498|      0|      FMT_FALLTHROUGH;
@@ -841,12 +841,12 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
   ------------------
  2499|      0|    case 'b':
   ------------------
-  |  Branch (2499:5): [True: 0, False: 195]
+  |  Branch (2499:5): [True: 0, False: 435]
   ------------------
  2500|      0|      return parse_presentation_type(pres::bin, integral_set);
  2501|      0|    case 'E':
   ------------------
-  |  Branch (2501:5): [True: 0, False: 195]
+  |  Branch (2501:5): [True: 0, False: 435]
   ------------------
  2502|      0|      specs.upper = true;
  2503|      0|      FMT_FALLTHROUGH;
@@ -855,12 +855,12 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
   ------------------
  2504|      0|    case 'e':
   ------------------
-  |  Branch (2504:5): [True: 0, False: 195]
+  |  Branch (2504:5): [True: 0, False: 435]
   ------------------
  2505|      0|      return parse_presentation_type(pres::exp, float_set);
  2506|      0|    case 'F':
   ------------------
-  |  Branch (2506:5): [True: 0, False: 195]
+  |  Branch (2506:5): [True: 0, False: 435]
   ------------------
  2507|      0|      specs.upper = true;
  2508|      0|      FMT_FALLTHROUGH;
@@ -869,12 +869,12 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
   ------------------
  2509|      0|    case 'f':
   ------------------
-  |  Branch (2509:5): [True: 0, False: 195]
+  |  Branch (2509:5): [True: 0, False: 435]
   ------------------
  2510|      0|      return parse_presentation_type(pres::fixed, float_set);
  2511|      0|    case 'G':
   ------------------
-  |  Branch (2511:5): [True: 0, False: 195]
+  |  Branch (2511:5): [True: 0, False: 435]
   ------------------
  2512|      0|      specs.upper = true;
  2513|      0|      FMT_FALLTHROUGH;
@@ -883,12 +883,12 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
   ------------------
  2514|      0|    case 'g':
   ------------------
-  |  Branch (2514:5): [True: 0, False: 195]
+  |  Branch (2514:5): [True: 0, False: 435]
   ------------------
  2515|      0|      return parse_presentation_type(pres::general, float_set);
  2516|      0|    case 'A':
   ------------------
-  |  Branch (2516:5): [True: 0, False: 195]
+  |  Branch (2516:5): [True: 0, False: 435]
   ------------------
  2517|      0|      specs.upper = true;
  2518|      0|      FMT_FALLTHROUGH;
@@ -897,43 +897,43 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
   ------------------
  2519|      0|    case 'a':
   ------------------
-  |  Branch (2519:5): [True: 0, False: 195]
+  |  Branch (2519:5): [True: 0, False: 435]
   ------------------
  2520|      0|      return parse_presentation_type(pres::hexfloat, float_set);
  2521|      0|    case 'c':
   ------------------
-  |  Branch (2521:5): [True: 0, False: 195]
+  |  Branch (2521:5): [True: 0, False: 435]
   ------------------
  2522|      0|      if (arg_type == type::bool_type) report_error("invalid format specifier");
   ------------------
   |  Branch (2522:11): [True: 0, False: 0]
   ------------------
  2523|      0|      return parse_presentation_type(pres::chr, integral_set);
- 2524|     78|    case 's':
+ 2524|    174|    case 's':
   ------------------
-  |  Branch (2524:5): [True: 78, False: 117]
+  |  Branch (2524:5): [True: 174, False: 261]
   ------------------
- 2525|     78|      return parse_presentation_type(pres::string,
- 2526|     78|                                     bool_set | string_set | cstring_set);
+ 2525|    174|      return parse_presentation_type(pres::string,
+ 2526|    174|                                     bool_set | string_set | cstring_set);
  2527|      0|    case 'p':
   ------------------
-  |  Branch (2527:5): [True: 0, False: 195]
+  |  Branch (2527:5): [True: 0, False: 435]
   ------------------
  2528|      0|      return parse_presentation_type(pres::pointer, pointer_set | cstring_set);
  2529|      0|    case '?':
   ------------------
-  |  Branch (2529:5): [True: 0, False: 195]
+  |  Branch (2529:5): [True: 0, False: 435]
   ------------------
  2530|      0|      return parse_presentation_type(pres::debug,
  2531|      0|                                     char_set | string_set | cstring_set);
  2532|      0|    case '}':
   ------------------
-  |  Branch (2532:5): [True: 0, False: 195]
+  |  Branch (2532:5): [True: 0, False: 435]
   ------------------
  2533|      0|      return begin;
  2534|      0|    default: {
   ------------------
-  |  Branch (2534:5): [True: 0, False: 195]
+  |  Branch (2534:5): [True: 0, False: 435]
   ------------------
  2535|      0|      if (*begin == '}') return begin;
   ------------------
@@ -962,54 +962,54 @@ _ZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsI
  2550|      0|      specs.align = align;
  2551|      0|      begin = fill_end + 1;
  2552|      0|    }
- 2553|    195|    }
+ 2553|    435|    }
  2554|      0|    if (begin == end) return begin;
   ------------------
   |  Branch (2554:9): [True: 0, False: 0]
   ------------------
  2555|      0|    c = to_ascii(*begin);
  2556|      0|  }
- 2557|    195|}
+ 2557|    435|}
 _ZN3fmt3v116detail8to_asciiIcLi0EEEcT_:
- 2214|    390|constexpr auto to_ascii(Char c) -> char {
- 2215|    390|  return c <= 0xff ? static_cast<char>(c) : '\0';
+ 2214|    870|constexpr auto to_ascii(Char c) -> char {
+ 2215|    870|  return c <= 0xff ? static_cast<char>(c) : '\0';
   ------------------
-  |  Branch (2215:10): [True: 390, False: 0]
+  |  Branch (2215:10): [True: 870, False: 0]
   ------------------
- 2216|    390|}
+ 2216|    870|}
 _ZN3fmt3v116detail11parse_alignEc:
- 2268|    195|FMT_CONSTEXPR inline auto parse_align(char c) -> align_t {
- 2269|    195|  switch (c) {
+ 2268|    435|FMT_CONSTEXPR inline auto parse_align(char c) -> align_t {
+ 2269|    435|  switch (c) {
   ------------------
-  |  Branch (2269:11): [True: 195, False: 0]
+  |  Branch (2269:11): [True: 435, False: 0]
   ------------------
  2270|      0|  case '<':
   ------------------
-  |  Branch (2270:3): [True: 0, False: 195]
+  |  Branch (2270:3): [True: 0, False: 435]
   ------------------
  2271|      0|    return align::left;
  2272|      0|  case '>':
   ------------------
-  |  Branch (2272:3): [True: 0, False: 195]
+  |  Branch (2272:3): [True: 0, False: 435]
   ------------------
  2273|      0|    return align::right;
  2274|      0|  case '^':
   ------------------
-  |  Branch (2274:3): [True: 0, False: 195]
+  |  Branch (2274:3): [True: 0, False: 435]
   ------------------
  2275|      0|    return align::center;
- 2276|    195|  }
- 2277|    195|  return align::none;
- 2278|    195|}
+ 2276|    435|  }
+ 2277|    435|  return align::none;
+ 2278|    435|}
 _ZN3fmt3v116detail2inENS1_4typeEi:
-  712|    195|constexpr auto in(type t, int set) -> bool {
-  713|    195|  return ((set >> static_cast<int>(t)) & 1) != 0;
-  714|    195|}
+  712|    435|constexpr auto in(type t, int set) -> bool {
+  713|    435|  return ((set >> static_cast<int>(t)) & 1) != 0;
+  714|    435|}
 _ZZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specsIS3_EERNS0_26basic_format_parse_contextIS3_EENS1_4typeEENUt0_clENS0_17presentation_typeEi:
- 2405|    195|    FMT_CONSTEXPR auto operator()(pres pres_type, int set) -> const Char* {
- 2406|    195|      if (!in(arg_type, set)) {
+ 2405|    435|    FMT_CONSTEXPR auto operator()(pres pres_type, int set) -> const Char* {
+ 2406|    435|      if (!in(arg_type, set)) {
   ------------------
-  |  Branch (2406:11): [True: 0, False: 195]
+  |  Branch (2406:11): [True: 0, False: 435]
   ------------------
  2407|      0|        if (arg_type == type::none_type) return begin;
   ------------------
@@ -1017,124 +1017,124 @@ _ZZN3fmt3v116detail18parse_format_specsIcEEPKT_S5_S5_RNS1_20dynamic_format_specs
   ------------------
  2408|      0|        report_error("invalid format specifier");
  2409|      0|      }
- 2410|    195|      specs.type = pres_type;
- 2411|    195|      return begin + 1;
- 2412|    195|    }
+ 2410|    435|      specs.type = pres_type;
+ 2411|    435|      return begin + 1;
+ 2412|    435|    }
 _ZNK3fmt3v1116basic_format_argINS0_7contextEE4typeEv:
- 1752|    195|  auto type() const -> detail::type { return type_; }
+ 1752|    435|  auto type() const -> detail::type { return type_; }
 _ZNK3fmt3v1116basic_format_argINS0_7contextEE5visitINS0_6detail13arg_formatterIcEEEEDTclfp_Li0EEEOT_:
- 1765|    195|  FMT_CONSTEXPR FMT_INLINE auto visit(Visitor&& vis) const -> decltype(vis(0)) {
- 1766|    195|    switch (type_) {
+ 1765|    435|  FMT_CONSTEXPR FMT_INLINE auto visit(Visitor&& vis) const -> decltype(vis(0)) {
+ 1766|    435|    switch (type_) {
   ------------------
-  |  Branch (1766:13): [True: 0, False: 195]
+  |  Branch (1766:13): [True: 0, False: 435]
   ------------------
  1767|      0|    case detail::type::none_type:
   ------------------
-  |  Branch (1767:5): [True: 0, False: 195]
+  |  Branch (1767:5): [True: 0, False: 435]
   ------------------
  1768|      0|      break;
  1769|      0|    case detail::type::int_type:
   ------------------
-  |  Branch (1769:5): [True: 0, False: 195]
+  |  Branch (1769:5): [True: 0, False: 435]
   ------------------
  1770|      0|      return vis(value_.int_value);
- 1771|    117|    case detail::type::uint_type:
+ 1771|    261|    case detail::type::uint_type:
   ------------------
-  |  Branch (1771:5): [True: 117, False: 78]
+  |  Branch (1771:5): [True: 261, False: 174]
   ------------------
- 1772|    117|      return vis(value_.uint_value);
+ 1772|    261|      return vis(value_.uint_value);
  1773|      0|    case detail::type::long_long_type:
   ------------------
-  |  Branch (1773:5): [True: 0, False: 195]
+  |  Branch (1773:5): [True: 0, False: 435]
   ------------------
  1774|      0|      return vis(value_.long_long_value);
  1775|      0|    case detail::type::ulong_long_type:
   ------------------
-  |  Branch (1775:5): [True: 0, False: 195]
+  |  Branch (1775:5): [True: 0, False: 435]
   ------------------
  1776|      0|      return vis(value_.ulong_long_value);
  1777|      0|    case detail::type::int128_type:
   ------------------
-  |  Branch (1777:5): [True: 0, False: 195]
+  |  Branch (1777:5): [True: 0, False: 435]
   ------------------
  1778|      0|      return vis(detail::convert_for_visit(value_.int128_value));
  1779|      0|    case detail::type::uint128_type:
   ------------------
-  |  Branch (1779:5): [True: 0, False: 195]
+  |  Branch (1779:5): [True: 0, False: 435]
   ------------------
  1780|      0|      return vis(detail::convert_for_visit(value_.uint128_value));
  1781|      0|    case detail::type::bool_type:
   ------------------
-  |  Branch (1781:5): [True: 0, False: 195]
+  |  Branch (1781:5): [True: 0, False: 435]
   ------------------
  1782|      0|      return vis(value_.bool_value);
  1783|      0|    case detail::type::char_type:
   ------------------
-  |  Branch (1783:5): [True: 0, False: 195]
+  |  Branch (1783:5): [True: 0, False: 435]
   ------------------
  1784|      0|      return vis(value_.char_value);
  1785|      0|    case detail::type::float_type:
   ------------------
-  |  Branch (1785:5): [True: 0, False: 195]
+  |  Branch (1785:5): [True: 0, False: 435]
   ------------------
  1786|      0|      return vis(value_.float_value);
  1787|      0|    case detail::type::double_type:
   ------------------
-  |  Branch (1787:5): [True: 0, False: 195]
+  |  Branch (1787:5): [True: 0, False: 435]
   ------------------
  1788|      0|      return vis(value_.double_value);
  1789|      0|    case detail::type::long_double_type:
   ------------------
-  |  Branch (1789:5): [True: 0, False: 195]
+  |  Branch (1789:5): [True: 0, False: 435]
   ------------------
  1790|      0|      return vis(value_.long_double_value);
- 1791|     78|    case detail::type::cstring_type:
+ 1791|    174|    case detail::type::cstring_type:
   ------------------
-  |  Branch (1791:5): [True: 78, False: 117]
+  |  Branch (1791:5): [True: 174, False: 261]
   ------------------
- 1792|     78|      return vis(value_.string.data);
+ 1792|    174|      return vis(value_.string.data);
  1793|      0|    case detail::type::string_type:
   ------------------
-  |  Branch (1793:5): [True: 0, False: 195]
+  |  Branch (1793:5): [True: 0, False: 435]
   ------------------
  1794|      0|      using sv = basic_string_view<typename Context::char_type>;
  1795|      0|      return vis(sv(value_.string.data, value_.string.size));
  1796|      0|    case detail::type::pointer_type:
   ------------------
-  |  Branch (1796:5): [True: 0, False: 195]
+  |  Branch (1796:5): [True: 0, False: 435]
   ------------------
  1797|      0|      return vis(value_.pointer);
  1798|      0|    case detail::type::custom_type:
   ------------------
-  |  Branch (1798:5): [True: 0, False: 195]
+  |  Branch (1798:5): [True: 0, False: 435]
   ------------------
  1799|      0|      return vis(typename basic_format_arg<Context>::handle(value_.custom));
- 1800|    195|    }
+ 1800|    435|    }
  1801|      0|    return vis(monostate());
- 1802|    195|  }
+ 1802|    435|  }
 _ZN3fmt3v116detail10arg_mapperINS0_7contextEE3mapEj:
- 1425|    117|  FMT_MAP_API auto map(unsigned val) -> unsigned { return val; }
+ 1425|    261|  FMT_MAP_API auto map(unsigned val) -> unsigned { return val; }
 _ZN3fmt3v116detail5valueINS0_7contextEEC2Ej:
- 1334|    117|  constexpr FMT_ALWAYS_INLINE value(unsigned val) : uint_value(val) {}
+ 1334|    261|  constexpr FMT_ALWAYS_INLINE value(unsigned val) : uint_value(val) {}
 _ZN3fmt3v116detail4findILb0EcPKcEEbT1_S5_T0_RS5_:
- 2237|    468|                              const char*& out) -> bool {
- 2238|    468|  out =
- 2239|    468|      static_cast<const char*>(memchr(first, value, to_unsigned(last - first)));
- 2240|    468|  return out != nullptr;
- 2241|    468|}
+ 2237|  1.04k|                              const char*& out) -> bool {
+ 2238|  1.04k|  out =
+ 2239|  1.04k|      static_cast<const char*>(memchr(first, value, to_unsigned(last - first)));
+ 2240|  1.04k|  return out != nullptr;
+ 2241|  1.04k|}
 _ZZN3fmt3v116detail19parse_format_stringILb0EcZNS1_10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS5_EENS1_12vformat_argsIS5_E4typeENS1_10locale_refEE14format_handlerEEvNS8_IT0_EEOT1_EN6writerclEPKcSL_:
- 2634|    234|    FMT_CONSTEXPR void operator()(const Char* from, const Char* to) {
- 2635|    234|      if (from == to) return;
+ 2634|    522|    FMT_CONSTEXPR void operator()(const Char* from, const Char* to) {
+ 2635|    522|      if (from == to) return;
   ------------------
-  |  Branch (2635:11): [True: 0, False: 234]
+  |  Branch (2635:11): [True: 0, False: 522]
   ------------------
- 2636|    234|      for (;;) {
- 2637|    234|        const Char* p = nullptr;
- 2638|    234|        if (!find<IS_CONSTEXPR>(from, to, Char('}'), p))
+ 2636|    522|      for (;;) {
+ 2637|    522|        const Char* p = nullptr;
+ 2638|    522|        if (!find<IS_CONSTEXPR>(from, to, Char('}'), p))
   ------------------
-  |  Branch (2638:13): [True: 234, False: 0]
+  |  Branch (2638:13): [True: 522, False: 0]
   ------------------
- 2639|    234|          return handler_.on_text(from, to);
+ 2639|    522|          return handler_.on_text(from, to);
  2640|      0|        ++p;
  2641|      0|        if (p == to || *p != '}')
   ------------------
@@ -1145,95 +1145,95 @@ _ZZN3fmt3v116detail19parse_format_stringILb0EcZNS1_10vformat_toIcEEvRNS1_6buffer
  2643|      0|        handler_.on_text(from, p);
  2644|      0|        from = p + 1;
  2645|      0|      }
- 2646|    234|    }
+ 2646|    522|    }
 _ZN3fmt3v116detail10arg_mapperINS0_7contextEE3mapEPKc:
- 1458|     78|  FMT_MAP_API auto map(const char_type* val) -> const char_type* { return val; }
+ 1458|    174|  FMT_MAP_API auto map(const char_type* val) -> const char_type* { return val; }
 _ZN3fmt3v116detail5valueINS0_7contextEEC2EPKc:
- 1345|     78|  FMT_CONSTEXPR FMT_ALWAYS_INLINE value(const char_type* val) {
- 1346|     78|    string.data = val;
- 1347|     78|    if (is_constant_evaluated()) string.size = {};
+ 1345|    174|  FMT_CONSTEXPR FMT_ALWAYS_INLINE value(const char_type* val) {
+ 1346|    174|    string.data = val;
+ 1347|    174|    if (is_constant_evaluated()) string.size = {};
   ------------------
   |  Branch (1347:9): [Folded - Ignored]
   ------------------
- 1348|     78|  }
+ 1348|    174|  }
 _ZN3fmt3v116detail6bufferIcEC2EPFvRS3_mEm:
-  865|     39|      : size_(sz), capacity_(sz), grow_(grow) {}
+  865|     87|      : size_(sz), capacity_(sz), grow_(grow) {}
 
 _ZN3fmt3v116vprintEP8_IO_FILENS0_17basic_string_viewIcEENS0_17basic_format_argsINS0_7contextEEE:
- 1717|     39|FMT_FUNC void vprint(std::FILE* f, string_view fmt, format_args args) {
- 1718|     39|  if (!detail::file_ref(f).is_buffered() || !detail::has_flockfile<>())
+ 1717|     87|FMT_FUNC void vprint(std::FILE* f, string_view fmt, format_args args) {
+ 1718|     87|  if (!detail::file_ref(f).is_buffered() || !detail::has_flockfile<>())
   ------------------
-  |  Branch (1718:7): [True: 0, False: 39]
-  |  Branch (1718:7): [True: 0, False: 39]
+  |  Branch (1718:7): [True: 0, False: 87]
+  |  Branch (1718:7): [True: 0, False: 87]
   |  Branch (1718:45): [Folded - Ignored]
   ------------------
  1719|      0|    return vprint_buffered(f, fmt, args);
- 1720|     39|  auto&& buffer = detail::file_print_buffer<>(f);
- 1721|     39|  return detail::vformat_to(buffer, fmt, args);
- 1722|     39|}
+ 1720|     87|  auto&& buffer = detail::file_print_buffer<>(f);
+ 1721|     87|  return detail::vformat_to(buffer, fmt, args);
+ 1722|     87|}
 _ZN3fmt3v116vprintENS0_17basic_string_viewIcEENS0_17basic_format_argsINS0_7contextEEE:
- 1731|     39|FMT_FUNC void vprint(string_view fmt, format_args args) {
- 1732|     39|  vprint(stdout, fmt, args);
- 1733|     39|}
+ 1731|     87|FMT_FUNC void vprint(string_view fmt, format_args args) {
+ 1732|     87|  vprint(stdout, fmt, args);
+ 1733|     87|}
 _ZN3fmt3v116detail9file_baseI8_IO_FILEEC2EPS3_:
- 1473|     78|  file_base(F* file) : file_(file) {}
+ 1473|    174|  file_base(F* file) : file_(file) {}
 _ZNK3fmt3v116detail10glibc_fileI8_IO_FILEE11is_bufferedEv:
- 1504|     39|  auto is_buffered() const -> bool {
- 1505|     39|    return (this->file_->_flags & unbuffered) == 0;
- 1506|     39|  }
+ 1504|     87|  auto is_buffered() const -> bool {
+ 1505|     87|    return (this->file_->_flags & unbuffered) == 0;
+ 1506|     87|  }
 _ZN3fmt3v116detail17file_print_bufferI8_IO_FILEvEC2EPS3_:
- 1659|     39|  explicit file_print_buffer(F* f) : buffer(grow, size_t()), file_(f) {
- 1660|     39|    flockfile(f);
- 1661|     39|    file_.init_buffer();
- 1662|     39|    auto buf = file_.get_write_buffer();
- 1663|     39|    set(buf.data, buf.size);
- 1664|     39|  }
+ 1659|     87|  explicit file_print_buffer(F* f) : buffer(grow, size_t()), file_(f) {
+ 1660|     87|    flockfile(f);
+ 1661|     87|    file_.init_buffer();
+ 1662|     87|    auto buf = file_.get_write_buffer();
+ 1663|     87|    set(buf.data, buf.size);
+ 1664|     87|  }
 _ZN3fmt3v116detail10glibc_fileI8_IO_FILEE20advance_write_bufferEm:
- 1527|     39|  void advance_write_buffer(size_t size) { this->file_->_IO_write_ptr += size; }
+ 1527|     87|  void advance_write_buffer(size_t size) { this->file_->_IO_write_ptr += size; }
 _ZN3fmt3v116detail10glibc_fileI8_IO_FILEE11init_bufferEv:
- 1508|     39|  void init_buffer() {
- 1509|     39|    if (this->file_->_IO_write_ptr) return;
+ 1508|     87|  void init_buffer() {
+ 1509|     87|    if (this->file_->_IO_write_ptr) return;
   ------------------
-  |  Branch (1509:9): [True: 38, False: 1]
+  |  Branch (1509:9): [True: 86, False: 1]
   ------------------
  1510|       |    // Force buffer initialization by placing and removing a char in a buffer.
  1511|      1|    putc_unlocked(0, this->file_);
  1512|      1|    --this->file_->_IO_write_ptr;
  1513|      1|  }
 _ZNK3fmt3v116detail10glibc_fileI8_IO_FILEE16get_write_bufferEv:
- 1522|     39|  auto get_write_buffer() const -> span<char> {
- 1523|     39|    auto ptr = this->file_->_IO_write_ptr;
- 1524|     39|    return {ptr, to_unsigned(this->file_->_IO_buf_end - ptr)};
- 1525|     39|  }
+ 1522|     87|  auto get_write_buffer() const -> span<char> {
+ 1523|     87|    auto ptr = this->file_->_IO_write_ptr;
+ 1524|     87|    return {ptr, to_unsigned(this->file_->_IO_buf_end - ptr)};
+ 1525|     87|  }
 _ZN3fmt3v116detail17file_print_bufferI8_IO_FILEvED2Ev:
- 1665|     39|  ~file_print_buffer() {
- 1666|     39|    file_.advance_write_buffer(size());
- 1667|     39|    bool flush = file_.needs_flush();
- 1668|     39|    F* f = file_;    // Make funlockfile depend on the template parameter F
- 1669|     39|    funlockfile(f);  // for the system API detection to work.
- 1670|     39|    if (flush) fflush(file_);
+ 1665|     87|  ~file_print_buffer() {
+ 1666|     87|    file_.advance_write_buffer(size());
+ 1667|     87|    bool flush = file_.needs_flush();
+ 1668|     87|    F* f = file_;    // Make funlockfile depend on the template parameter F
+ 1669|     87|    funlockfile(f);  // for the system API detection to work.
+ 1670|     87|    if (flush) fflush(file_);
   ------------------
-  |  Branch (1670:9): [True: 0, False: 39]
+  |  Branch (1670:9): [True: 0, False: 87]
   ------------------
- 1671|     39|  }
+ 1671|     87|  }
 _ZNK3fmt3v116detail10glibc_fileI8_IO_FILEE11needs_flushEv:
- 1529|     39|  bool needs_flush() const {
- 1530|     39|    if ((this->file_->_flags & line_buffered) == 0) return false;
+ 1529|     87|  bool needs_flush() const {
+ 1530|     87|    if ((this->file_->_flags & line_buffered) == 0) return false;
   ------------------
-  |  Branch (1530:9): [True: 39, False: 0]
+  |  Branch (1530:9): [True: 87, False: 0]
   ------------------
  1531|      0|    char* end = this->file_->_IO_write_end;
  1532|      0|    return memchr(end, '\n', to_unsigned(this->file_->_IO_write_ptr - end));
- 1533|     39|  }
+ 1533|     87|  }
 _ZNK3fmt3v116detail9file_baseI8_IO_FILEEcvPS3_Ev:
- 1474|     39|  operator F*() const { return file_; }
+ 1474|     87|  operator F*() const { return file_; }
 
 _ZN3fmt3v116detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refE:
- 4221|     39|                typename vformat_args<Char>::type args, locale_ref loc) {
- 4222|     39|  auto out = basic_appender<Char>(buf);
- 4223|     39|  if (fmt.size() == 2 && equal2(fmt.data(), "{}")) {
+ 4221|     87|                typename vformat_args<Char>::type args, locale_ref loc) {
+ 4222|     87|  auto out = basic_appender<Char>(buf);
+ 4223|     87|  if (fmt.size() == 2 && equal2(fmt.data(), "{}")) {
   ------------------
-  |  Branch (4223:7): [True: 0, False: 39]
+  |  Branch (4223:7): [True: 0, False: 87]
   |  Branch (4223:26): [True: 0, False: 0]
   ------------------
  4224|      0|    auto arg = args.get(0);
@@ -1245,230 +1245,230 @@ _ZN3fmt3v116detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_E
  4227|      0|    return;
  4228|      0|  }
  4229|       |
- 4230|     39|  struct format_handler {
- 4231|     39|    basic_format_parse_context<Char> parse_context;
- 4232|     39|    buffered_context<Char> context;
+ 4230|     87|  struct format_handler {
+ 4231|     87|    basic_format_parse_context<Char> parse_context;
+ 4232|     87|    buffered_context<Char> context;
  4233|       |
- 4234|     39|    format_handler(basic_appender<Char> p_out, basic_string_view<Char> str,
- 4235|     39|                   basic_format_args<buffered_context<Char>> p_args,
- 4236|     39|                   locale_ref p_loc)
- 4237|     39|        : parse_context(str), context(p_out, p_args, p_loc) {}
+ 4234|     87|    format_handler(basic_appender<Char> p_out, basic_string_view<Char> str,
+ 4235|     87|                   basic_format_args<buffered_context<Char>> p_args,
+ 4236|     87|                   locale_ref p_loc)
+ 4237|     87|        : parse_context(str), context(p_out, p_args, p_loc) {}
  4238|       |
- 4239|     39|    void on_text(const Char* begin, const Char* end) {
- 4240|     39|      context.advance_to(copy_noinline<Char>(begin, end, context.out()));
- 4241|     39|    }
+ 4239|     87|    void on_text(const Char* begin, const Char* end) {
+ 4240|     87|      context.advance_to(copy_noinline<Char>(begin, end, context.out()));
+ 4241|     87|    }
  4242|       |
- 4243|     39|    FMT_CONSTEXPR auto on_arg_id() -> int {
- 4244|     39|      return parse_context.next_arg_id();
- 4245|     39|    }
- 4246|     39|    FMT_CONSTEXPR auto on_arg_id(int id) -> int {
- 4247|     39|      parse_context.check_arg_id(id);
- 4248|     39|      return id;
- 4249|     39|    }
- 4250|     39|    FMT_CONSTEXPR auto on_arg_id(basic_string_view<Char> id) -> int {
- 4251|     39|      parse_context.check_arg_id(id);
- 4252|     39|      int arg_id = context.arg_id(id);
- 4253|     39|      if (arg_id < 0) report_error("argument not found");
- 4254|     39|      return arg_id;
- 4255|     39|    }
+ 4243|     87|    FMT_CONSTEXPR auto on_arg_id() -> int {
+ 4244|     87|      return parse_context.next_arg_id();
+ 4245|     87|    }
+ 4246|     87|    FMT_CONSTEXPR auto on_arg_id(int id) -> int {
+ 4247|     87|      parse_context.check_arg_id(id);
+ 4248|     87|      return id;
+ 4249|     87|    }
+ 4250|     87|    FMT_CONSTEXPR auto on_arg_id(basic_string_view<Char> id) -> int {
+ 4251|     87|      parse_context.check_arg_id(id);
+ 4252|     87|      int arg_id = context.arg_id(id);
+ 4253|     87|      if (arg_id < 0) report_error("argument not found");
+ 4254|     87|      return arg_id;
+ 4255|     87|    }
  4256|       |
- 4257|     39|    FMT_INLINE void on_replacement_field(int id, const Char*) {
- 4258|     39|      auto arg = get_arg(context, id);
- 4259|     39|      context.advance_to(arg.visit(default_arg_formatter<Char>{
- 4260|     39|          context.out(), context.args(), context.locale()}));
- 4261|     39|    }
+ 4257|     87|    FMT_INLINE void on_replacement_field(int id, const Char*) {
+ 4258|     87|      auto arg = get_arg(context, id);
+ 4259|     87|      context.advance_to(arg.visit(default_arg_formatter<Char>{
+ 4260|     87|          context.out(), context.args(), context.locale()}));
+ 4261|     87|    }
  4262|       |
- 4263|     39|    auto on_format_specs(int id, const Char* begin, const Char* end)
- 4264|     39|        -> const Char* {
- 4265|     39|      auto arg = get_arg(context, id);
+ 4263|     87|    auto on_format_specs(int id, const Char* begin, const Char* end)
+ 4264|     87|        -> const Char* {
+ 4265|     87|      auto arg = get_arg(context, id);
  4266|       |      // Not using a visitor for custom types gives better codegen.
- 4267|     39|      if (arg.format_custom(begin, parse_context, context))
- 4268|     39|        return parse_context.begin();
- 4269|     39|      auto specs = detail::dynamic_format_specs<Char>();
- 4270|     39|      begin = parse_format_specs(begin, end, specs, parse_context, arg.type());
- 4271|     39|      detail::handle_dynamic_spec<detail::width_checker>(
- 4272|     39|          specs.width, specs.width_ref, context);
- 4273|     39|      detail::handle_dynamic_spec<detail::precision_checker>(
- 4274|     39|          specs.precision, specs.precision_ref, context);
- 4275|     39|      if (begin == end || *begin != '}')
- 4276|     39|        report_error("missing '}' in format string");
- 4277|     39|      context.advance_to(arg.visit(
- 4278|     39|          arg_formatter<Char>{context.out(), specs, context.locale()}));
- 4279|     39|      return begin;
- 4280|     39|    }
+ 4267|     87|      if (arg.format_custom(begin, parse_context, context))
+ 4268|     87|        return parse_context.begin();
+ 4269|     87|      auto specs = detail::dynamic_format_specs<Char>();
+ 4270|     87|      begin = parse_format_specs(begin, end, specs, parse_context, arg.type());
+ 4271|     87|      detail::handle_dynamic_spec<detail::width_checker>(
+ 4272|     87|          specs.width, specs.width_ref, context);
+ 4273|     87|      detail::handle_dynamic_spec<detail::precision_checker>(
+ 4274|     87|          specs.precision, specs.precision_ref, context);
+ 4275|     87|      if (begin == end || *begin != '}')
+ 4276|     87|        report_error("missing '}' in format string");
+ 4277|     87|      context.advance_to(arg.visit(
+ 4278|     87|          arg_formatter<Char>{context.out(), specs, context.locale()}));
+ 4279|     87|      return begin;
+ 4280|     87|    }
  4281|       |
- 4282|     39|    FMT_NORETURN void on_error(const char* message) { report_error(message); }
- 4283|     39|  };
- 4284|     39|  detail::parse_format_string<false>(fmt, format_handler(out, fmt, args, loc));
- 4285|     39|}
+ 4282|     87|    FMT_NORETURN void on_error(const char* message) { report_error(message); }
+ 4283|     87|  };
+ 4284|     87|  detail::parse_format_string<false>(fmt, format_handler(out, fmt, args, loc));
+ 4285|     87|}
 _ZN3fmt3v116detail12count_digitsEj:
- 1226|    234|FMT_CONSTEXPR20 inline auto count_digits(uint32_t n) -> int {
- 1227|    234|#ifdef FMT_BUILTIN_CLZ
- 1228|    234|  if (!is_constant_evaluated()) {
+ 1226|    522|FMT_CONSTEXPR20 inline auto count_digits(uint32_t n) -> int {
+ 1227|    522|#ifdef FMT_BUILTIN_CLZ
+ 1228|    522|  if (!is_constant_evaluated()) {
   ------------------
   |  Branch (1228:7): [Folded - Ignored]
   ------------------
- 1229|    234|    return do_count_digits(n);
- 1230|    234|  }
+ 1229|    522|    return do_count_digits(n);
+ 1230|    522|  }
  1231|      0|#endif
  1232|      0|  return count_digits_fallback(n);
- 1233|    234|}
+ 1233|    522|}
 _ZN3fmt3v116detail15do_count_digitsEj:
- 1203|    234|FMT_INLINE auto do_count_digits(uint32_t n) -> int {
+ 1203|    522|FMT_INLINE auto do_count_digits(uint32_t n) -> int {
  1204|       |// An optimization by Kendall Willets from https://bit.ly/3uOIQrB.
  1205|       |// This increments the upper 32 bits (log10(T) - 1) when >= T is added.
- 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
- 1207|    234|  static constexpr uint64_t table[] = {
- 1208|    234|      FMT_INC(0),          FMT_INC(0),          FMT_INC(0),           // 8
+ 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+ 1207|    522|  static constexpr uint64_t table[] = {
+ 1208|    522|      FMT_INC(0),          FMT_INC(0),          FMT_INC(0),           // 8
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
-  ------------------
-                    FMT_INC(0),          FMT_INC(0),          FMT_INC(0),           // 8
-  ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(0),          FMT_INC(0),          FMT_INC(0),           // 8
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
- 1209|    234|      FMT_INC(10),         FMT_INC(10),         FMT_INC(10),          // 64
+                    FMT_INC(0),          FMT_INC(0),          FMT_INC(0),           // 8
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  ------------------
+ 1209|    522|      FMT_INC(10),         FMT_INC(10),         FMT_INC(10),          // 64
+  ------------------
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(10),         FMT_INC(10),         FMT_INC(10),          // 64
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(10),         FMT_INC(10),         FMT_INC(10),          // 64
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
- 1210|    234|      FMT_INC(100),        FMT_INC(100),        FMT_INC(100),         // 512
+ 1210|    522|      FMT_INC(100),        FMT_INC(100),        FMT_INC(100),         // 512
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
-  ------------------
-                    FMT_INC(100),        FMT_INC(100),        FMT_INC(100),         // 512
-  ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(100),        FMT_INC(100),        FMT_INC(100),         // 512
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
- 1211|    234|      FMT_INC(1000),       FMT_INC(1000),       FMT_INC(1000),        // 4096
+                    FMT_INC(100),        FMT_INC(100),        FMT_INC(100),         // 512
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  ------------------
+ 1211|    522|      FMT_INC(1000),       FMT_INC(1000),       FMT_INC(1000),        // 4096
+  ------------------
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(1000),       FMT_INC(1000),       FMT_INC(1000),        // 4096
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(1000),       FMT_INC(1000),       FMT_INC(1000),        // 4096
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
- 1212|    234|      FMT_INC(10000),      FMT_INC(10000),      FMT_INC(10000),       // 32k
+ 1212|    522|      FMT_INC(10000),      FMT_INC(10000),      FMT_INC(10000),       // 32k
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
-  ------------------
-                    FMT_INC(10000),      FMT_INC(10000),      FMT_INC(10000),       // 32k
-  ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(10000),      FMT_INC(10000),      FMT_INC(10000),       // 32k
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
- 1213|    234|      FMT_INC(100000),     FMT_INC(100000),     FMT_INC(100000),      // 256k
+                    FMT_INC(10000),      FMT_INC(10000),      FMT_INC(10000),       // 32k
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  ------------------
+ 1213|    522|      FMT_INC(100000),     FMT_INC(100000),     FMT_INC(100000),      // 256k
+  ------------------
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(100000),     FMT_INC(100000),     FMT_INC(100000),      // 256k
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(100000),     FMT_INC(100000),     FMT_INC(100000),      // 256k
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
- 1214|    234|      FMT_INC(1000000),    FMT_INC(1000000),    FMT_INC(1000000),     // 2048k
+ 1214|    522|      FMT_INC(1000000),    FMT_INC(1000000),    FMT_INC(1000000),     // 2048k
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
-  ------------------
-                    FMT_INC(1000000),    FMT_INC(1000000),    FMT_INC(1000000),     // 2048k
-  ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(1000000),    FMT_INC(1000000),    FMT_INC(1000000),     // 2048k
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
- 1215|    234|      FMT_INC(10000000),   FMT_INC(10000000),   FMT_INC(10000000),    // 16M
+                    FMT_INC(1000000),    FMT_INC(1000000),    FMT_INC(1000000),     // 2048k
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  ------------------
+ 1215|    522|      FMT_INC(10000000),   FMT_INC(10000000),   FMT_INC(10000000),    // 16M
+  ------------------
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(10000000),   FMT_INC(10000000),   FMT_INC(10000000),    // 16M
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(10000000),   FMT_INC(10000000),   FMT_INC(10000000),    // 16M
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
- 1216|    234|      FMT_INC(100000000),  FMT_INC(100000000),  FMT_INC(100000000),   // 128M
+ 1216|    522|      FMT_INC(100000000),  FMT_INC(100000000),  FMT_INC(100000000),   // 128M
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
-  ------------------
-                    FMT_INC(100000000),  FMT_INC(100000000),  FMT_INC(100000000),   // 128M
-  ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(100000000),  FMT_INC(100000000),  FMT_INC(100000000),   // 128M
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
- 1217|    234|      FMT_INC(1000000000), FMT_INC(1000000000), FMT_INC(1000000000),  // 1024M
+                    FMT_INC(100000000),  FMT_INC(100000000),  FMT_INC(100000000),   // 128M
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  ------------------
+ 1217|    522|      FMT_INC(1000000000), FMT_INC(1000000000), FMT_INC(1000000000),  // 1024M
+  ------------------
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(1000000000), FMT_INC(1000000000), FMT_INC(1000000000),  // 1024M
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(1000000000), FMT_INC(1000000000), FMT_INC(1000000000),  // 1024M
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
  1218|       |      FMT_INC(1000000000), FMT_INC(1000000000)                        // 4B
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
                     FMT_INC(1000000000), FMT_INC(1000000000)                        // 4B
   ------------------
-  |  | 1206|    234|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
+  |  | 1206|    522|#  define FMT_INC(T) (((sizeof(#T) - 1ull) << 32) - T)
   ------------------
- 1219|    234|  };
- 1220|    234|  auto inc = table[FMT_BUILTIN_CLZ(n | 1) ^ 31];
+ 1219|    522|  };
+ 1220|    522|  auto inc = table[FMT_BUILTIN_CLZ(n | 1) ^ 31];
   ------------------
-  |  |  173|    234|#    define FMT_BUILTIN_CLZ(n) __builtin_clz(n)
+  |  |  173|    522|#    define FMT_BUILTIN_CLZ(n) __builtin_clz(n)
   ------------------
- 1221|    234|  return static_cast<int>((n + inc) >> 32);
- 1222|    234|}
+ 1221|    522|  return static_cast<int>((n + inc) >> 32);
+ 1222|    522|}
 _ZN3fmt3v116detail13copy_noinlineIcPKcNS0_14basic_appenderIcEEEET1_T0_S8_S7_:
-  595|    234|                                              OutputIt out) -> OutputIt {
-  596|    234|  return copy<OutChar>(begin, end, out);
-  597|    234|}
+  595|    522|                                              OutputIt out) -> OutputIt {
+  596|    522|  return copy<OutChar>(begin, end, out);
+  597|    522|}
 _ZN3fmt3v116detail14format_decimalIcjEENS1_21format_decimal_resultIPT_EES5_T0_i:
- 1296|    117|    -> format_decimal_result<Char*> {
- 1297|    117|  FMT_ASSERT(size >= count_digits(value), "invalid digit count");
+ 1296|    261|    -> format_decimal_result<Char*> {
+ 1297|    261|  FMT_ASSERT(size >= count_digits(value), "invalid digit count");
   ------------------
-  |  |  402|    117|    fmt::detail::ignore_unused((condition), (message))
+  |  |  402|    261|    fmt::detail::ignore_unused((condition), (message))
   ------------------
- 1298|    117|  out += size;
- 1299|    117|  Char* end = out;
- 1300|    117|  while (value >= 100) {
+ 1298|    261|  out += size;
+ 1299|    261|  Char* end = out;
+ 1300|    261|  while (value >= 100) {
   ------------------
-  |  Branch (1300:10): [True: 0, False: 117]
+  |  Branch (1300:10): [True: 0, False: 261]
   ------------------
  1301|       |    // Integer division is slow so do it for a group of two digits instead
  1302|       |    // of for every digit. The idea comes from the talk by Alexandrescu
@@ -1477,45 +1477,45 @@ _ZN3fmt3v116detail14format_decimalIcjEENS1_21format_decimal_resultIPT_EES5_T0_i:
  1305|      0|    copy2(out, digits2(static_cast<size_t>(value % 100)));
  1306|      0|    value /= 100;
  1307|      0|  }
- 1308|    117|  if (value < 10) {
+ 1308|    261|  if (value < 10) {
   ------------------
-  |  Branch (1308:7): [True: 117, False: 0]
+  |  Branch (1308:7): [True: 261, False: 0]
   ------------------
- 1309|    117|    *--out = static_cast<Char>('0' + value);
- 1310|    117|    return {out, end};
- 1311|    117|  }
+ 1309|    261|    *--out = static_cast<Char>('0' + value);
+ 1310|    261|    return {out, end};
+ 1311|    261|  }
  1312|      0|  out -= 2;
  1313|      0|  copy2(out, digits2(static_cast<size_t>(value)));
  1314|      0|  return {out, end};
- 1315|    117|}
+ 1315|    261|}
 _ZN3fmt3v116detail14format_decimalIcjNS0_14basic_appenderIcEELi0EEENS1_21format_decimal_resultIT1_EES6_T0_i:
- 1320|    117|    -> format_decimal_result<Iterator> {
+ 1320|    261|    -> format_decimal_result<Iterator> {
  1321|       |  // Buffer is large enough to hold all digits (digits10 + 1).
- 1322|    117|  Char buffer[digits10<UInt>() + 1] = {};
- 1323|    117|  auto end = format_decimal(buffer, value, size).end;
- 1324|    117|  return {out, detail::copy_noinline<Char>(buffer, end, out)};
- 1325|    117|}
+ 1322|    261|  Char buffer[digits10<UInt>() + 1] = {};
+ 1323|    261|  auto end = format_decimal(buffer, value, size).end;
+ 1324|    261|  return {out, detail::copy_noinline<Char>(buffer, end, out)};
+ 1325|    261|}
 _ZN3fmt3v116detail13copy_noinlineIcPcNS0_14basic_appenderIcEEEET1_T0_S7_S6_:
-  595|    117|                                              OutputIt out) -> OutputIt {
-  596|    117|  return copy<OutChar>(begin, end, out);
-  597|    117|}
+  595|    261|                                              OutputIt out) -> OutputIt {
+  596|    261|  return copy<OutChar>(begin, end, out);
+  597|    261|}
 _ZN3fmt3v116detail11is_negativeIjLi0EEEbT_:
- 1088|    117|constexpr auto is_negative(T) -> bool {
- 1089|    117|  return false;
- 1090|    117|}
+ 1088|    261|constexpr auto is_negative(T) -> bool {
+ 1089|    261|  return false;
+ 1090|    261|}
 _ZN3fmt3v116detail18write_int_noinlineIcNS0_14basic_appenderIcEEjEET0_S5_NS1_13write_int_argIT1_EERKNS0_12format_specsENS1_10locale_refE:
- 2210|    117|                                                   locale_ref loc) -> OutputIt {
- 2211|    117|  return write_int<Char>(out, arg, specs, loc);
- 2212|    117|}
+ 2210|    261|                                                   locale_ref loc) -> OutputIt {
+ 2211|    261|  return write_int<Char>(out, arg, specs, loc);
+ 2212|    261|}
 _ZN3fmt3v116detail9write_intIcNS0_14basic_appenderIcEEjEET0_S5_NS1_13write_int_argIT1_EERKNS0_12format_specsENS1_10locale_refE:
- 2157|    117|    -> OutputIt {
- 2158|    117|  static_assert(std::is_same<T, uint32_or_64_or_128_t<T>>::value, "");
- 2159|    117|  auto abs_value = arg.abs_value;
- 2160|    117|  auto prefix = arg.prefix;
- 2161|    117|  switch (specs.type) {
+ 2157|    261|    -> OutputIt {
+ 2158|    261|  static_assert(std::is_same<T, uint32_or_64_or_128_t<T>>::value, "");
+ 2159|    261|  auto abs_value = arg.abs_value;
+ 2160|    261|  auto prefix = arg.prefix;
+ 2161|    261|  switch (specs.type) {
  2162|      0|  default:
   ------------------
-  |  Branch (2162:3): [True: 0, False: 117]
+  |  Branch (2162:3): [True: 0, False: 261]
   ------------------
  2163|      0|    FMT_ASSERT(false, "");
   ------------------
@@ -1527,21 +1527,21 @@ _ZN3fmt3v116detail9write_intIcNS0_14basic_appenderIcEEjEET0_S5_NS1_13write_int_a
   ------------------
  2165|      0|  case presentation_type::none:
   ------------------
-  |  Branch (2165:3): [True: 0, False: 117]
+  |  Branch (2165:3): [True: 0, False: 261]
   ------------------
- 2166|    117|  case presentation_type::dec: {
+ 2166|    261|  case presentation_type::dec: {
   ------------------
-  |  Branch (2166:3): [True: 117, False: 0]
+  |  Branch (2166:3): [True: 261, False: 0]
   ------------------
- 2167|    117|    int num_digits = count_digits(abs_value);
- 2168|    117|    return write_int<Char>(
- 2169|    117|        out, num_digits, prefix, specs, [=](reserve_iterator<OutputIt> it) {
- 2170|    117|          return format_decimal<Char>(it, abs_value, num_digits).end;
- 2171|    117|        });
+ 2167|    261|    int num_digits = count_digits(abs_value);
+ 2168|    261|    return write_int<Char>(
+ 2169|    261|        out, num_digits, prefix, specs, [=](reserve_iterator<OutputIt> it) {
+ 2170|    261|          return format_decimal<Char>(it, abs_value, num_digits).end;
+ 2171|    261|        });
  2172|      0|  }
  2173|      0|  case presentation_type::hex: {
   ------------------
-  |  Branch (2173:3): [True: 0, False: 117]
+  |  Branch (2173:3): [True: 0, False: 261]
   ------------------
  2174|      0|    if (specs.alt)
   ------------------
@@ -1559,7 +1559,7 @@ _ZN3fmt3v116detail9write_intIcNS0_14basic_appenderIcEEjEET0_S5_NS1_13write_int_a
  2181|      0|  }
  2182|      0|  case presentation_type::oct: {
   ------------------
-  |  Branch (2182:3): [True: 0, False: 117]
+  |  Branch (2182:3): [True: 0, False: 261]
   ------------------
  2183|      0|    int num_digits = count_digits<3>(abs_value);
  2184|       |    // Octal prefix '0' is counted as a digit, so only add it if precision
@@ -1578,7 +1578,7 @@ _ZN3fmt3v116detail9write_intIcNS0_14basic_appenderIcEEjEET0_S5_NS1_13write_int_a
  2192|      0|  }
  2193|      0|  case presentation_type::bin: {
   ------------------
-  |  Branch (2193:3): [True: 0, False: 117]
+  |  Branch (2193:3): [True: 0, False: 261]
   ------------------
  2194|      0|    if (specs.alt)
   ------------------
@@ -1596,22 +1596,22 @@ _ZN3fmt3v116detail9write_intIcNS0_14basic_appenderIcEEjEET0_S5_NS1_13write_int_a
  2201|      0|  }
  2202|      0|  case presentation_type::chr:
   ------------------
-  |  Branch (2202:3): [True: 0, False: 117]
+  |  Branch (2202:3): [True: 0, False: 261]
   ------------------
  2203|      0|    return write_char<Char>(out, static_cast<Char>(abs_value), specs);
- 2204|    117|  }
- 2205|    117|}
+ 2204|    261|  }
+ 2205|    261|}
 _ZN3fmt3v116detail9write_intIcNS0_14basic_appenderIcEEZNS1_9write_intIcS4_jEET0_S6_NS1_13write_int_argIT1_EERKNS0_12format_specsENS1_10locale_refEEUlS4_E_EES6_S6_ijSC_S8_:
- 1963|    117|                                        W write_digits) -> OutputIt {
+ 1963|    261|                                        W write_digits) -> OutputIt {
  1964|       |  // Slightly faster check for specs.width == 0 && specs.precision == -1.
- 1965|    117|  if ((specs.width | (specs.precision + 1)) == 0) {
+ 1965|    261|  if ((specs.width | (specs.precision + 1)) == 0) {
   ------------------
-  |  Branch (1965:7): [True: 117, False: 0]
+  |  Branch (1965:7): [True: 261, False: 0]
   ------------------
- 1966|    117|    auto it = reserve(out, to_unsigned(num_digits) + (prefix >> 24));
- 1967|    117|    if (prefix != 0) {
+ 1966|    261|    auto it = reserve(out, to_unsigned(num_digits) + (prefix >> 24));
+ 1967|    261|    if (prefix != 0) {
   ------------------
-  |  Branch (1967:9): [True: 0, False: 117]
+  |  Branch (1967:9): [True: 0, False: 261]
   ------------------
  1968|      0|      for (unsigned p = prefix & 0xffffff; p != 0; p >>= 8)
   ------------------
@@ -1619,8 +1619,8 @@ _ZN3fmt3v116detail9write_intIcNS0_14basic_appenderIcEEZNS1_9write_intIcS4_jEET0_
   ------------------
  1969|      0|        *it++ = static_cast<Char>(p & 0xff);
  1970|      0|    }
- 1971|    117|    return base_iterator(out, write_digits(it));
- 1972|    117|  }
+ 1971|    261|    return base_iterator(out, write_digits(it));
+ 1972|    261|  }
  1973|      0|  auto data = write_int_data<Char>(num_digits, prefix, specs);
  1974|      0|  return write_padded<Char, align::right>(
  1975|      0|      out, specs, data.size, [=](reserve_iterator<OutputIt> it) {
@@ -1629,186 +1629,186 @@ _ZN3fmt3v116detail9write_intIcNS0_14basic_appenderIcEEZNS1_9write_intIcS4_jEET0_
  1978|      0|        it = detail::fill_n(it, data.padding, static_cast<Char>('0'));
  1979|      0|        return write_digits(it);
  1980|      0|      });
- 1981|    117|}
+ 1981|    261|}
 _ZN3fmt3v116detail7reserveIcEENS0_14basic_appenderIT_EES5_m:
-  534|    195|inline auto reserve(basic_appender<T> it, size_t n) -> basic_appender<T> {
-  535|    195|  buffer<T>& buf = get_container(it);
-  536|    195|  buf.try_reserve(buf.size() + n);
-  537|    195|  return it;
-  538|    195|}
+  534|    435|inline auto reserve(basic_appender<T> it, size_t n) -> basic_appender<T> {
+  535|    435|  buffer<T>& buf = get_container(it);
+  536|    435|  buf.try_reserve(buf.size() + n);
+  537|    435|  return it;
+  538|    435|}
 _ZN3fmt3v116detail13base_iteratorINS0_14basic_appenderIcEEEET_S5_S5_:
-  572|    195|constexpr auto base_iterator(Iterator, Iterator it) -> Iterator {
-  573|    195|  return it;
-  574|    195|}
+  572|    435|constexpr auto base_iterator(Iterator, Iterator it) -> Iterator {
+  573|    435|  return it;
+  574|    435|}
 _ZZN3fmt3v116detail9write_intIcNS0_14basic_appenderIcEEjEET0_S5_NS1_13write_int_argIT1_EERKNS0_12format_specsENS1_10locale_refEENKUlS4_E_clES4_:
- 2169|    117|        out, num_digits, prefix, specs, [=](reserve_iterator<OutputIt> it) {
- 2170|    117|          return format_decimal<Char>(it, abs_value, num_digits).end;
- 2171|    117|        });
+ 2169|    261|        out, num_digits, prefix, specs, [=](reserve_iterator<OutputIt> it) {
+ 2170|    261|          return format_decimal<Char>(it, abs_value, num_digits).end;
+ 2171|    261|        });
 _ZZN3fmt3v116detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refEEN14format_handler7on_textEPKcSF_:
- 4239|    234|    void on_text(const Char* begin, const Char* end) {
- 4240|    234|      context.advance_to(copy_noinline<Char>(begin, end, context.out()));
- 4241|    234|    }
+ 4239|    522|    void on_text(const Char* begin, const Char* end) {
+ 4240|    522|      context.advance_to(copy_noinline<Char>(begin, end, context.out()));
+ 4241|    522|    }
 _ZN3fmt3v116detail7get_argINS0_7contextEiEEDTcldtfp_3argfp0_EERT_T0_:
- 3792|    195|FMT_CONSTEXPR auto get_arg(Context& ctx, ID id) -> decltype(ctx.arg(id)) {
- 3793|    195|  auto arg = ctx.arg(id);
- 3794|    195|  if (!arg) report_error("argument not found");
+ 3792|    435|FMT_CONSTEXPR auto get_arg(Context& ctx, ID id) -> decltype(ctx.arg(id)) {
+ 3793|    435|  auto arg = ctx.arg(id);
+ 3794|    435|  if (!arg) report_error("argument not found");
   ------------------
-  |  Branch (3794:7): [True: 0, False: 195]
+  |  Branch (3794:7): [True: 0, False: 435]
   ------------------
- 3795|    195|  return arg;
- 3796|    195|}
+ 3795|    435|  return arg;
+ 3796|    435|}
 _ZZN3fmt3v116detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refEEN14format_handler9on_arg_idEv:
- 4243|    195|    FMT_CONSTEXPR auto on_arg_id() -> int {
- 4244|    195|      return parse_context.next_arg_id();
- 4245|    195|    }
+ 4243|    435|    FMT_CONSTEXPR auto on_arg_id() -> int {
+ 4244|    435|      return parse_context.next_arg_id();
+ 4245|    435|    }
 _ZZN3fmt3v116detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refEEN14format_handler15on_format_specsEiPKcSF_:
- 4264|    195|        -> const Char* {
- 4265|    195|      auto arg = get_arg(context, id);
+ 4264|    435|        -> const Char* {
+ 4265|    435|      auto arg = get_arg(context, id);
  4266|       |      // Not using a visitor for custom types gives better codegen.
- 4267|    195|      if (arg.format_custom(begin, parse_context, context))
+ 4267|    435|      if (arg.format_custom(begin, parse_context, context))
   ------------------
-  |  Branch (4267:11): [True: 0, False: 195]
+  |  Branch (4267:11): [True: 0, False: 435]
   ------------------
  4268|      0|        return parse_context.begin();
- 4269|    195|      auto specs = detail::dynamic_format_specs<Char>();
- 4270|    195|      begin = parse_format_specs(begin, end, specs, parse_context, arg.type());
- 4271|    195|      detail::handle_dynamic_spec<detail::width_checker>(
- 4272|    195|          specs.width, specs.width_ref, context);
- 4273|    195|      detail::handle_dynamic_spec<detail::precision_checker>(
- 4274|    195|          specs.precision, specs.precision_ref, context);
- 4275|    195|      if (begin == end || *begin != '}')
+ 4269|    435|      auto specs = detail::dynamic_format_specs<Char>();
+ 4270|    435|      begin = parse_format_specs(begin, end, specs, parse_context, arg.type());
+ 4271|    435|      detail::handle_dynamic_spec<detail::width_checker>(
+ 4272|    435|          specs.width, specs.width_ref, context);
+ 4273|    435|      detail::handle_dynamic_spec<detail::precision_checker>(
+ 4274|    435|          specs.precision, specs.precision_ref, context);
+ 4275|    435|      if (begin == end || *begin != '}')
   ------------------
-  |  Branch (4275:11): [True: 0, False: 195]
-  |  Branch (4275:27): [True: 0, False: 195]
+  |  Branch (4275:11): [True: 0, False: 435]
+  |  Branch (4275:27): [True: 0, False: 435]
   ------------------
  4276|      0|        report_error("missing '}' in format string");
- 4277|    195|      context.advance_to(arg.visit(
- 4278|    195|          arg_formatter<Char>{context.out(), specs, context.locale()}));
- 4279|    195|      return begin;
- 4280|    195|    }
+ 4277|    435|      context.advance_to(arg.visit(
+ 4278|    435|          arg_formatter<Char>{context.out(), specs, context.locale()}));
+ 4279|    435|      return begin;
+ 4280|    435|    }
 _ZN3fmt3v116detail19handle_dynamic_specINS1_13width_checkerENS0_7contextEEEvRiNS1_7arg_refINT0_9char_typeEEERS7_:
- 3801|    195|                                       Context& ctx) {
- 3802|    195|  switch (ref.kind) {
+ 3801|    435|                                       Context& ctx) {
+ 3802|    435|  switch (ref.kind) {
   ------------------
-  |  Branch (3802:11): [True: 0, False: 195]
+  |  Branch (3802:11): [True: 0, False: 435]
   ------------------
- 3803|    195|  case arg_id_kind::none:
+ 3803|    435|  case arg_id_kind::none:
   ------------------
-  |  Branch (3803:3): [True: 195, False: 0]
+  |  Branch (3803:3): [True: 435, False: 0]
   ------------------
- 3804|    195|    break;
+ 3804|    435|    break;
  3805|      0|  case arg_id_kind::index:
   ------------------
-  |  Branch (3805:3): [True: 0, False: 195]
+  |  Branch (3805:3): [True: 0, False: 435]
   ------------------
  3806|      0|    value = detail::get_dynamic_spec<Handler>(get_arg(ctx, ref.val.index));
  3807|      0|    break;
  3808|      0|  case arg_id_kind::name:
   ------------------
-  |  Branch (3808:3): [True: 0, False: 195]
+  |  Branch (3808:3): [True: 0, False: 435]
   ------------------
  3809|      0|    value = detail::get_dynamic_spec<Handler>(get_arg(ctx, ref.val.name));
  3810|      0|    break;
- 3811|    195|  }
- 3812|    195|}
+ 3811|    435|  }
+ 3812|    435|}
 _ZN3fmt3v116detail19handle_dynamic_specINS1_17precision_checkerENS0_7contextEEEvRiNS1_7arg_refINT0_9char_typeEEERS7_:
- 3801|    195|                                       Context& ctx) {
- 3802|    195|  switch (ref.kind) {
+ 3801|    435|                                       Context& ctx) {
+ 3802|    435|  switch (ref.kind) {
   ------------------
-  |  Branch (3802:11): [True: 0, False: 195]
+  |  Branch (3802:11): [True: 0, False: 435]
   ------------------
- 3803|    195|  case arg_id_kind::none:
+ 3803|    435|  case arg_id_kind::none:
   ------------------
-  |  Branch (3803:3): [True: 195, False: 0]
+  |  Branch (3803:3): [True: 435, False: 0]
   ------------------
- 3804|    195|    break;
+ 3804|    435|    break;
  3805|      0|  case arg_id_kind::index:
   ------------------
-  |  Branch (3805:3): [True: 0, False: 195]
+  |  Branch (3805:3): [True: 0, False: 435]
   ------------------
  3806|      0|    value = detail::get_dynamic_spec<Handler>(get_arg(ctx, ref.val.index));
  3807|      0|    break;
  3808|      0|  case arg_id_kind::name:
   ------------------
-  |  Branch (3808:3): [True: 0, False: 195]
+  |  Branch (3808:3): [True: 0, False: 435]
   ------------------
  3809|      0|    value = detail::get_dynamic_spec<Handler>(get_arg(ctx, ref.val.name));
  3810|      0|    break;
- 3811|    195|  }
- 3812|    195|}
+ 3811|    435|  }
+ 3812|    435|}
 _ZN3fmt3v116detail13arg_formatterIcEclIjEENS0_14basic_appenderIcEET_:
- 3746|    117|  FMT_CONSTEXPR FMT_INLINE auto operator()(T value) -> iterator {
- 3747|    117|    return detail::write<Char>(out, value, specs, locale);
- 3748|    117|  }
+ 3746|    261|  FMT_CONSTEXPR FMT_INLINE auto operator()(T value) -> iterator {
+ 3747|    261|    return detail::write<Char>(out, value, specs, locale);
+ 3748|    261|  }
 _ZN3fmt3v116detail5writeIcjLi0EEENS0_14basic_appenderIT_EES5_T0_RKNS0_12format_specsENS1_10locale_refE:
- 2219|    117|    -> basic_appender<Char> {
- 2220|    117|  if (specs.localized && write_loc(out, value, specs, loc)) return out;
+ 2219|    261|    -> basic_appender<Char> {
+ 2220|    261|  if (specs.localized && write_loc(out, value, specs, loc)) return out;
   ------------------
-  |  Branch (2220:7): [True: 0, False: 117]
+  |  Branch (2220:7): [True: 0, False: 261]
   |  Branch (2220:26): [True: 0, False: 0]
   ------------------
- 2221|    117|  return write_int_noinline<Char>(out, make_write_int_arg(value, specs.sign),
- 2222|    117|                                  specs, loc);
- 2223|    117|}
+ 2221|    261|  return write_int_noinline<Char>(out, make_write_int_arg(value, specs.sign),
+ 2222|    261|                                  specs, loc);
+ 2223|    261|}
 _ZN3fmt3v116detail18make_write_int_argIjEENS1_13write_int_argINSt3__111conditionalIXaalecl8num_bitsIT_EELi32EntLi0EEjNS5_IXlecl8num_bitsIS6_EELi64EEmoE4typeEE4typeEEES6_NS0_4sign4typeE:
- 2119|    117|    -> write_int_arg<uint32_or_64_or_128_t<T>> {
- 2120|    117|  auto prefix = 0u;
- 2121|    117|  auto abs_value = static_cast<uint32_or_64_or_128_t<T>>(value);
- 2122|    117|  if (is_negative(value)) {
+ 2119|    261|    -> write_int_arg<uint32_or_64_or_128_t<T>> {
+ 2120|    261|  auto prefix = 0u;
+ 2121|    261|  auto abs_value = static_cast<uint32_or_64_or_128_t<T>>(value);
+ 2122|    261|  if (is_negative(value)) {
   ------------------
-  |  Branch (2122:7): [True: 0, False: 117]
+  |  Branch (2122:7): [True: 0, False: 261]
   ------------------
  2123|      0|    prefix = 0x01000000 | '-';
  2124|      0|    abs_value = 0 - abs_value;
- 2125|    117|  } else {
- 2126|    117|    constexpr const unsigned prefixes[4] = {0, 0, 0x1000000u | '+',
- 2127|    117|                                            0x1000000u | ' '};
- 2128|    117|    prefix = prefixes[sign];
- 2129|    117|  }
- 2130|    117|  return {abs_value, prefix};
- 2131|    117|}
+ 2125|    261|  } else {
+ 2126|    261|    constexpr const unsigned prefixes[4] = {0, 0, 0x1000000u | '+',
+ 2127|    261|                                            0x1000000u | ' '};
+ 2128|    261|    prefix = prefixes[sign];
+ 2129|    261|  }
+ 2130|    261|  return {abs_value, prefix};
+ 2131|    261|}
 _ZN3fmt3v116detail13arg_formatterIcEclIPKcEENS0_14basic_appenderIcEET_:
- 3746|     78|  FMT_CONSTEXPR FMT_INLINE auto operator()(T value) -> iterator {
- 3747|     78|    return detail::write<Char>(out, value, specs, locale);
- 3748|     78|  }
+ 3746|    174|  FMT_CONSTEXPR FMT_INLINE auto operator()(T value) -> iterator {
+ 3747|    174|    return detail::write<Char>(out, value, specs, locale);
+ 3748|    174|  }
 _ZN3fmt3v116detail5writeIcNS0_14basic_appenderIcEEEET0_S5_PKT_RKNS0_12format_specsENS1_10locale_refE:
- 2310|     78|                         locale_ref) -> OutputIt {
- 2311|     78|  if (specs.type == presentation_type::pointer)
+ 2310|    174|                         locale_ref) -> OutputIt {
+ 2311|    174|  if (specs.type == presentation_type::pointer)
   ------------------
-  |  Branch (2311:7): [True: 0, False: 78]
+  |  Branch (2311:7): [True: 0, False: 174]
   ------------------
  2312|      0|    return write_ptr<Char>(out, bit_cast<uintptr_t>(s), &specs);
- 2313|     78|  if (!s) report_error("string pointer is null");
+ 2313|    174|  if (!s) report_error("string pointer is null");
   ------------------
-  |  Branch (2313:7): [True: 0, False: 78]
+  |  Branch (2313:7): [True: 0, False: 174]
   ------------------
- 2314|     78|  return write<Char>(out, basic_string_view<Char>(s), specs, {});
- 2315|     78|}
+ 2314|    174|  return write<Char>(out, basic_string_view<Char>(s), specs, {});
+ 2315|    174|}
 _ZN3fmt3v116detail5writeIcNS0_14basic_appenderIcEEEET0_S5_NS0_17basic_string_viewINS0_13type_identityIT_E4typeEEERKNS0_12format_specsENS1_10locale_refE:
- 2305|     78|                         const format_specs& specs, locale_ref) -> OutputIt {
- 2306|     78|  return write<Char>(out, s, specs);
- 2307|     78|}
+ 2305|    174|                         const format_specs& specs, locale_ref) -> OutputIt {
+ 2306|    174|  return write<Char>(out, s, specs);
+ 2307|    174|}
 _ZN3fmt3v116detail5writeIcNS0_14basic_appenderIcEEEET0_S5_NS0_17basic_string_viewIT_EERKNS0_12format_specsE:
- 2280|     78|                         const format_specs& specs) -> OutputIt {
- 2281|     78|  auto data = s.data();
- 2282|     78|  auto size = s.size();
- 2283|     78|  if (specs.precision >= 0 && to_unsigned(specs.precision) < size)
+ 2280|    174|                         const format_specs& specs) -> OutputIt {
+ 2281|    174|  auto data = s.data();
+ 2282|    174|  auto size = s.size();
+ 2283|    174|  if (specs.precision >= 0 && to_unsigned(specs.precision) < size)
   ------------------
-  |  Branch (2283:7): [True: 0, False: 78]
+  |  Branch (2283:7): [True: 0, False: 174]
   |  Branch (2283:31): [True: 0, False: 0]
   ------------------
  2284|      0|    size = code_point_index(s, to_unsigned(specs.precision));
- 2285|     78|  bool is_debug = specs.type == presentation_type::debug;
- 2286|     78|  size_t width = 0;
+ 2285|    174|  bool is_debug = specs.type == presentation_type::debug;
+ 2286|    174|  size_t width = 0;
  2287|       |
- 2288|     78|  if (is_debug) size = write_escaped_string(counting_iterator{}, s).count();
+ 2288|    174|  if (is_debug) size = write_escaped_string(counting_iterator{}, s).count();
   ------------------
-  |  Branch (2288:7): [True: 0, False: 78]
+  |  Branch (2288:7): [True: 0, False: 174]
   ------------------
  2289|       |
- 2290|     78|  if (specs.width != 0) {
+ 2290|    174|  if (specs.width != 0) {
   ------------------
-  |  Branch (2290:7): [True: 0, False: 78]
+  |  Branch (2290:7): [True: 0, False: 174]
   ------------------
  2291|      0|    if (is_debug)
   ------------------
@@ -1818,111 +1818,111 @@ _ZN3fmt3v116detail5writeIcNS0_14basic_appenderIcEEEET0_S5_NS0_17basic_string_vie
  2293|      0|    else
  2294|      0|      width = compute_width(basic_string_view<Char>(data, size));
  2295|      0|  }
- 2296|     78|  return write_padded<Char>(out, specs, size, width,
- 2297|     78|                            [=](reserve_iterator<OutputIt> it) {
- 2298|     78|                              if (is_debug) return write_escaped_string(it, s);
- 2299|     78|                              return copy<Char>(data, data + size, it);
- 2300|     78|                            });
- 2301|     78|}
+ 2296|    174|  return write_padded<Char>(out, specs, size, width,
+ 2297|    174|                            [=](reserve_iterator<OutputIt> it) {
+ 2298|    174|                              if (is_debug) return write_escaped_string(it, s);
+ 2299|    174|                              return copy<Char>(data, data + size, it);
+ 2300|    174|                            });
+ 2301|    174|}
 _ZN3fmt3v116detail12write_paddedIcLNS0_5align4typeE1ENS0_14basic_appenderIcEEZNS1_5writeIcS6_EET0_S8_NS0_17basic_string_viewIT_EERKNS0_12format_specsEEUlS6_E_EET1_SG_SE_mmOT2_:
- 1718|     78|                                size_t size, size_t width, F&& f) -> OutputIt {
- 1719|     78|  static_assert(align == align::left || align == align::right, "");
- 1720|     78|  unsigned spec_width = to_unsigned(specs.width);
- 1721|     78|  size_t padding = spec_width > width ? spec_width - width : 0;
+ 1718|    174|                                size_t size, size_t width, F&& f) -> OutputIt {
+ 1719|    174|  static_assert(align == align::left || align == align::right, "");
+ 1720|    174|  unsigned spec_width = to_unsigned(specs.width);
+ 1721|    174|  size_t padding = spec_width > width ? spec_width - width : 0;
   ------------------
-  |  Branch (1721:20): [True: 0, False: 78]
+  |  Branch (1721:20): [True: 0, False: 174]
   ------------------
  1722|       |  // Shifts are encoded as string literals because static constexpr is not
  1723|       |  // supported in constexpr functions.
- 1724|     78|  auto* shifts = align == align::left ? "\x1f\x1f\x00\x01" : "\x00\x1f\x00\x01";
+ 1724|    174|  auto* shifts = align == align::left ? "\x1f\x1f\x00\x01" : "\x00\x1f\x00\x01";
   ------------------
   |  Branch (1724:18): [Folded - Ignored]
   ------------------
- 1725|     78|  size_t left_padding = padding >> shifts[specs.align];
- 1726|     78|  size_t right_padding = padding - left_padding;
- 1727|     78|  auto it = reserve(out, size + padding * specs.fill.size());
- 1728|     78|  if (left_padding != 0) it = fill<Char>(it, left_padding, specs.fill);
+ 1725|    174|  size_t left_padding = padding >> shifts[specs.align];
+ 1726|    174|  size_t right_padding = padding - left_padding;
+ 1727|    174|  auto it = reserve(out, size + padding * specs.fill.size());
+ 1728|    174|  if (left_padding != 0) it = fill<Char>(it, left_padding, specs.fill);
   ------------------
-  |  Branch (1728:7): [True: 0, False: 78]
+  |  Branch (1728:7): [True: 0, False: 174]
   ------------------
- 1729|     78|  it = f(it);
- 1730|     78|  if (right_padding != 0) it = fill<Char>(it, right_padding, specs.fill);
+ 1729|    174|  it = f(it);
+ 1730|    174|  if (right_padding != 0) it = fill<Char>(it, right_padding, specs.fill);
   ------------------
-  |  Branch (1730:7): [True: 0, False: 78]
+  |  Branch (1730:7): [True: 0, False: 174]
   ------------------
- 1731|     78|  return base_iterator(out, it);
- 1732|     78|}
+ 1731|    174|  return base_iterator(out, it);
+ 1732|    174|}
 _ZZN3fmt3v116detail5writeIcNS0_14basic_appenderIcEEEET0_S5_NS0_17basic_string_viewIT_EERKNS0_12format_specsEENKUlS4_E_clES4_:
- 2297|     78|                            [=](reserve_iterator<OutputIt> it) {
- 2298|     78|                              if (is_debug) return write_escaped_string(it, s);
+ 2297|    174|                            [=](reserve_iterator<OutputIt> it) {
+ 2298|    174|                              if (is_debug) return write_escaped_string(it, s);
   ------------------
-  |  Branch (2298:35): [True: 0, False: 78]
+  |  Branch (2298:35): [True: 0, False: 174]
   ------------------
- 2299|     78|                              return copy<Char>(data, data + size, it);
- 2300|     78|                            });
+ 2299|    174|                              return copy<Char>(data, data + size, it);
+ 2300|    174|                            });
 _ZZN3fmt3v116detail10vformat_toIcEEvRNS1_6bufferIT_EENS0_17basic_string_viewIS4_EENS1_12vformat_argsIS4_E4typeENS1_10locale_refEEN14format_handlerC2ENS0_14basic_appenderIcEENS7_IcEENS0_17basic_format_argsINS0_7contextEEESC_:
- 4237|     39|        : parse_context(str), context(p_out, p_args, p_loc) {}
+ 4237|     87|        : parse_context(str), context(p_out, p_args, p_loc) {}
 
 _ZN6ImVec2C2Ev:
-  295|    109|    constexpr ImVec2()                      : x(0.0f), y(0.0f) { }
+  295|    139|    constexpr ImVec2()                      : x(0.0f), y(0.0f) { }
 
 LLVMFuzzerTestOneInput:
-   10|    110|{
+   10|    140|{
    11|       |    // Only accept properly null terminated strings
-   12|    110|    if (size < 1 || data[size - 1] != '\0')
+   12|    140|    if (size < 1 || data[size - 1] != '\0')
   ------------------
-  |  Branch (12:9): [True: 0, False: 110]
-  |  Branch (12:21): [True: 1, False: 109]
+  |  Branch (12:9): [True: 0, False: 140]
+  |  Branch (12:21): [True: 1, False: 139]
   ------------------
    13|      1|    {
    14|      1|        return 1;
    15|      1|    }
    16|       |
-   17|    109|    dlxemu::Emulator emulator;
+   17|    139|    dlxemu::Emulator emulator;
    18|       |
    19|       |    // Build argv
-   20|    109|    std::vector<char*> argv;
-   21|    109|    argv.reserve(10);
+   20|    139|    std::vector<char*> argv;
+   21|    139|    argv.reserve(10);
    22|       |
-   23|    109|    phi::size_t begin{0u};
-   24|  11.8k|    for (phi::size_t index{0}; index < size; ++index)
+   23|    139|    phi::size_t begin{0u};
+   24|  11.5k|    for (phi::size_t index{0}; index < size; ++index)
   ------------------
-  |  Branch (24:32): [True: 11.7k, False: 108]
+  |  Branch (24:32): [True: 11.4k, False: 138]
   ------------------
-   25|  11.7k|    {
-   26|  11.7k|        char c = static_cast<char>(data[index]);
+   25|  11.4k|    {
+   26|  11.4k|        char c = static_cast<char>(data[index]);
    27|       |
-   28|  11.7k|        if (c == '\0')
+   28|  11.4k|        if (c == '\0')
   ------------------
-  |  Branch (28:13): [True: 2.60k, False: 9.16k]
+  |  Branch (28:13): [True: 2.71k, False: 8.73k]
   ------------------
-   29|  2.60k|        {
+   29|  2.71k|        {
    30|       |            // Disallow empty strings
-   31|  2.60k|            if (begin == index)
+   31|  2.71k|            if (begin == index)
   ------------------
-  |  Branch (31:17): [True: 1, False: 2.60k]
+  |  Branch (31:17): [True: 1, False: 2.71k]
   ------------------
    32|      1|            {
    33|      1|                return 1;
    34|      1|            }
    35|       |
    36|       |            // NOLINTNEXTLINE(cppcoreguidelines-pro-type-const-cast)
-   37|  2.60k|            argv.push_back(const_cast<char*>(reinterpret_cast<const char*>(data + begin)));
-   38|  2.60k|            begin = index + 1u;
-   39|  2.60k|        }
-   40|  11.7k|    }
+   37|  2.71k|            argv.push_back(const_cast<char*>(reinterpret_cast<const char*>(data + begin)));
+   38|  2.71k|            begin = index + 1u;
+   39|  2.71k|        }
+   40|  11.4k|    }
    41|       |
    42|       |    // Can't eccept too large buffers
-   43|    108|    if (argv.size() > std::numeric_limits<phi::int32_t>::max())
+   43|    138|    if (argv.size() > std::numeric_limits<phi::int32_t>::max())
   ------------------
-  |  Branch (43:9): [True: 0, False: 108]
+  |  Branch (43:9): [True: 0, False: 138]
   ------------------
    44|      0|    {
    45|      0|        return 1;
    46|      0|    }
    47|       |
-   48|    108|    (void)emulator.HandleCommandLineArguments(static_cast<phi::int32_t>(argv.size()), argv.data());
+   48|    138|    (void)emulator.HandleCommandLineArguments(static_cast<phi::int32_t>(argv.size()), argv.data());
    49|       |
-   50|    108|    return 0;
-   51|    108|}
+   50|    138|    return 0;
+   51|    138|}
 
